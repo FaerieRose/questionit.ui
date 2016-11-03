@@ -1,0 +1,7 @@
+app/**/*.js.map
+app/**/*.js
+node_modules
+app/less/*.css
+app/less/*.css.map
+npm-debug.log
+.vscode
