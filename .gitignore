@@ -1,3 +1,4 @@
+system-config.js*
 app/**/*.js.map
 app/**/*.js
 node_modules
@@ -5,3 +6,8 @@ app/less/*.css
 app/less/*.css.map
 npm-debug.log
 .vscode
+jspm_packages
+bower_components
+aot/*
+dist/*
+yarn.lock
