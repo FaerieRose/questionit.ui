@@ -22,8 +22,11 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionService.getQuestionExam(1).subscribe(question => {
-      this.question = question;
-    });
+    this.questionService.getQuestion(1).subscribe(question => this.question = question);
+  }
+
+  changeId($event) {
+    let id = $event.target.value;
+    this.questionService.getQuestion(id).subscribe(question => this.question = question);
   }
 }
