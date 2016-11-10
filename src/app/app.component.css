@@ -1,0 +1,30 @@
+.divRowTitle {
+  background-color: #ccaaff;
+  margin: 0;
+  padding: 2vh;
+  max-height: 100px;
+  height: 10vh;
+  text-align: center;
+}
+
+.divRowTitle h1 {
+  font-size: 6vh;
+  font-weight: bold;
+}
+
+.divRowBody {
+  padding: 2vh;
+}
+
+#divScreen {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.divCol {
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+

@@ -1,16 +1,16 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-12">
+<div class="container-fluid" id="divScreen">
+  <div class="row divRowTitle">
+    <div class="col-md-12 divCol">
       <h1>
         {{title}}
       </h1>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-8">
-      QUESTIONS AREA
+  <div class="row divRowBody">
+    <div class="col-md-8 divCol">
+      <router-outlet></router-outlet>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 divCol">
       NAVBAR
     </div>
   </div>
