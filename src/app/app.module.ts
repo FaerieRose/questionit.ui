@@ -4,6 +4,7 @@ import { FormsModule }     from '@angular/forms';
 import { HttpModule }      from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 
+import './rxjs-extensions';
 
 import { AppComponent }      from './app.component';
 import { QuestionComponent } from './question/question.component';

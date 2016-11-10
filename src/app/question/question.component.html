@@ -1,2 +1,7 @@
-id: {{ q.id }} <br>
-name: {{ q.name }}
+<div *ngIf="question">
+  id = {{ question.id }}<br>
+  name = {{ question.name }}<br>
+  language = {{ question.programmingLanguage }}<br>
+  forExam = {{ question.forExam }}<br>
+  question = {{ question.question }}
+</div>
