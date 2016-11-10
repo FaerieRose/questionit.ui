@@ -3,5 +3,10 @@
   name = {{ question.name }}<br>
   language = {{ question.programmingLanguage }}<br>
   forExam = {{ question.forExam }}<br>
-  question = {{ question.question }}
+  question = {{ question.question }}<br>
+  explantionAnswer = {{ question.explantionAnswer }}
+</div>
+<div>
+  Scroll through list of Questions:<br>
+  <input type="number" (change)="changeId($event)">
 </div>
