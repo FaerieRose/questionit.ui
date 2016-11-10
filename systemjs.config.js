@@ -34,6 +34,9 @@
       },
       rxjs: {
         defaultExtension: 'js'
+      },
+      map: {
+        'rxjs':"lib/rxjs"
       }
     }
   });

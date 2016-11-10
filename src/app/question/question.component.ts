@@ -1,18 +1,29 @@
-import { Component } from '@angular/core';
+/* ----------------------------------------------------------------------------------- */
+/* Author       : FaerieRose                                                           */
+/* Date created : 10 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
+import { Component, OnInit } from '@angular/core';
 
-import { Question }  from './question';
+import { Observable }        from 'rxjs';
+
+import { Question }          from './question';
+import { QuestionService }   from './question.service';
 
 @Component({
   selector: 'my-question',
   templateUrl: 'question.component.html',
-  styleUrls: ['question.styles.css']
+  styleUrls: ['question.styles.css'],
+  providers: [ QuestionService ]
 })
-export class QuestionComponent {
-  q: Question = new Question();
+export class QuestionComponent implements OnInit {
+  question: Question;
 
-  constructor() {
-    this.q.id = 72;
-    this.q.name = "Rosalynn";
+  constructor(private questionService: QuestionService) {
   }
 
+  ngOnInit() {
+    this.questionService.getQuestionExam(1).subscribe(question => {
+      this.question = question;
+    });
+  }
 }
