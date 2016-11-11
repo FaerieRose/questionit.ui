@@ -9,6 +9,7 @@ import { Observable }        from 'rxjs';
 import { Question }          from './question';
 import { QuestionService }   from './question.service';
 
+
 @Component({
   selector: 'my-question',
   templateUrl: 'question.component.html',
@@ -17,6 +18,7 @@ import { QuestionService }   from './question.service';
 })
 export class QuestionComponent implements OnInit {
   question: Question;
+  languages: string[] = [ "NONE", "JAVA", "HTML_CSS_JS" ];
 
   constructor(private questionService: QuestionService) {
   }
@@ -30,4 +32,8 @@ export class QuestionComponent implements OnInit {
     this.questionService.getQuestion(id).subscribe(question => this.question = question);
   }
   
+  updateLanguage($event) {
+    console.log($event.target.value);
+  }
+
 }

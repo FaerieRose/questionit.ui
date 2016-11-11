@@ -21,12 +21,24 @@
     </div>
 
     <div class="div-input-text">
+            <label class="control-input">Selecteer gevelonderdeel om te koppelen:</label>
+            <select (change)="updateLanguage($event)">
+                <option value=0 >{{ languages[0] }}</option> 
+                <option value=1 >{{ languages[1] }}</option> 
+                <option value=2 >{{ languages[2] }}</option> 
+<!--                <option *ngFor='#lang of languages' >{{lang}}</option> --> 
+            </select>
+    </div>
+
+    <p>{{ languages[0] }}</p>
+
+    <div class="div-input-text">
       <label class="control-input text" for="questionexam">For Exxam</label>
       <input class="control-input input-text" type="text" id="questionaxam" placeholder="Exam" value="{{ question.forExam }}" ><br>
     </div>
 
     <div class="div-input-text">
-      <label class="control-input text" for="question">Question</label><br>
+      <label class="control-input text" for="question">Question</label><br> 
       ​<textarea class="control-input input-text" id="question" placeholder="Question">{{ question.question }}</textarea>
     </div>
 
