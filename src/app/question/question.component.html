@@ -1,11 +1,6 @@
-<div *ngIf="question">
-  id = {{ question.id }}<br>
-  question = {{ question.question }}<br>
-  explantionAnswer = {{ question.explantionAnswer }}
-</div>
 <div>
-  Scroll through list of Questions:<br>
-  <input type="number" (change)="changeId($event)">
+  Scroll through list of Questions: 
+  <input type="number" value=1 (change)="changeId($event)">
 </div>
 <div *ngIf="question">
   <form>
