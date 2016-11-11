@@ -29,4 +29,5 @@ export class QuestionComponent implements OnInit {
     let id = $event.target.value;
     this.questionService.getQuestion(id).subscribe(question => this.question = question);
   }
+  
 }
