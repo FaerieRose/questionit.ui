@@ -1,0 +1,50 @@
+
+
+.div-input-text {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em;  /* top right botton left */
+}
+
+.control-input {
+  margin: 0px;
+  padding: 0px 0px 0px 1em;      /* top right botton left */
+}
+
+.input-text {
+  border: 0px;
+  border-radius: 1vh;
+}
+
+label.text {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+}
+
+input.input-text {
+  width: 63%;
+}
+
+textarea.input-text {
+  width: 100%;
+}
+
+label.button {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 10px;
+  background-color: royalblue;
+  box-shadow: 3px 3px 2px cornflowerblue;
+  color: aliceblue;
+  width: 35%;
+  margin-top: 1em;
+}
