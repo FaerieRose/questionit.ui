@@ -1,5 +1,8 @@
-
-
+/* ----------------------------------------------------------------------------------- */
+/* Author       : FaerieRose                                                           */
+/* Date created : 10 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
+/* Layout input text fields                                                            */
 .div-input-text {
   display: inline-block;
   cursor: pointer;
@@ -36,6 +39,8 @@ textarea.input-text {
   width: 100%;
 }
 
+/* ----------------------------------------------------------------------------------- */
+/* Layout input buttons                                                                */
 label.button {
   display: inline-block;
   cursor: pointer;

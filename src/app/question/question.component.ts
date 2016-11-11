@@ -12,7 +12,7 @@ import { QuestionService }   from './question.service';
 @Component({
   selector: 'my-question',
   templateUrl: 'question.component.html',
-  styleUrls: ['question.styles.css'],
+  styleUrls: [ 'question.component.css' ],
   providers: [ QuestionService ]
 })
 export class QuestionComponent implements OnInit {
