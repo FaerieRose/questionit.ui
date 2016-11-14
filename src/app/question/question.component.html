@@ -6,7 +6,7 @@
   Scroll through list of Questions: 
   <input type="number" value=1 (change)="changeId($event)">
 </div>
-<div *ngIf="question">
+<div *ngIf='question'>
   <form>
     <legend>Add Question</legend>
 
@@ -17,30 +17,22 @@
 
     <div class="div-input-text">
       <label class="control-input text" for="questionlanguage">Programming Language</label>
-      <input class="control-input input-text" type="text" id="questionlanguage" placeholder="Language" value="{{ question.programmingLanguage }}" ><br>
+      <select class="control-input input-text" (change)="updateLanguage($event)">
+        <option *ngFor='let lang of languages' id="questionlanguage" value='{{ lang.id }}' >{{ lang.name }}</option> 
+      </select>
     </div>
 
     <div class="div-input-text">
-            <label class="control-input">Selecteer gevelonderdeel om te koppelen:</label>
-            <select (change)="updateLanguage($event)">
-                <option value=0 >{{ languages[0] }}</option> 
-                <option value=1 >{{ languages[1] }}</option> 
-                <option value=2 >{{ languages[2] }}</option> 
-<!--                <option *ngFor='#lang of languages' >{{lang}}</option> --> 
-            </select>
-    </div>
-
-    <p>{{ languages[0] }}</p>
-
-    <div class="div-input-text">
-      <label class="control-input text" for="questionexam">For Exxam</label>
-      <input class="control-input input-text" type="text" id="questionaxam" placeholder="Exam" value="{{ question.forExam }}" ><br>
+      <label class="control-input text" for="questionexam">For Exam</label>
+      <select  class="control-input input-text" (change)="updateExam($event)">
+        <option *ngFor='let exam of exams' id="questionexam" value='{{ exam.id }}' >{{ exam.name }}</option> 
+      </select>
     </div>
 
     <div class="div-input-text">
       <label class="control-input text" for="question">Question</label><br> 
       ​<textarea class="control-input input-text" id="question" placeholder="Question">{{ question.question }}</textarea>
-    </div>
+    </div> 
 
   </form>
 </div>

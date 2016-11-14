@@ -1,10 +1,10 @@
-enum EnumLanguages {
+export enum EnumLanguages {
   NONE,
   JAVA,
   HTML_CSS_JS
 }
 
-enum EnumExams {
+export enum EnumExams {
   NONE,
   OCA,
   OCP,
