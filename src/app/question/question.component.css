@@ -31,7 +31,7 @@ label.text {
   width: 35%;
 }
 
-input.input-text {
+select.input-text, input.input-text {
   width: 63%;
 }
 
