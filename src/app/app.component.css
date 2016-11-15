@@ -39,4 +39,15 @@
   padding-right: 2vw;
 }
 
- 
+.divMain {
+  overflow-y: auto;  
+  overflow-x: hidden; 
+  height: 84vh;
+  direction: rtl;
+}
+
+#divRouterOutlet {
+  margin: 0;
+  padding: 0;
+  direction: ltr;  
+}

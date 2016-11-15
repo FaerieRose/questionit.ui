@@ -37,6 +37,8 @@ select.input-text, input.input-text {
 
 textarea.input-text {
   width: 100%;
+  height: 20em;
+  overflow-y: auto;
 }
 
 /* ----------------------------------------------------------------------------------- */
