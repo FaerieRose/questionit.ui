@@ -2,7 +2,9 @@
 /* Author       : FaerieRose                                                           */
 /* Date created : 10 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import '../enums';
+
+import { EnumLanguages } from '../enums'; 
+import { EnumExams }     from '../enums'; 
 
 export class Question {
   id? : number;

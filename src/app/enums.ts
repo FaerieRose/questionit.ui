@@ -1,12 +1,15 @@
-enum EnumLanguages {
+export enum EnumLanguages {
   NONE,
   JAVA,
-  HTML_CSS_JS
+  HTML_CSS_JS,
+  PHP,
+  C_SHARP
 }
 
-enum EnumExams {
+export enum EnumExams {
   NONE,
   OCA,
   OCP,
-  _70_480
+  _70_480,
+  _70_483
 }

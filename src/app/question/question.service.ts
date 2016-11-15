@@ -35,6 +35,13 @@ export class QuestionService {
 	}
 
 	// -------------------------------------------------------------
+	// GET one question exam style with specific id
+	getQuestions() : Observable<Question[]>{
+		this.currentUrl = this.questionUrl;
+		return this.http.get(this.currentUrl).map(this.getExtractData);
+	}
+
+	// -------------------------------------------------------------
 	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
 	private getExtractData(res: Response) {
 		if (res.status == 200) {

@@ -31,12 +31,14 @@ label.text {
   width: 35%;
 }
 
-input.input-text {
+select.input-text, input.input-text {
   width: 63%;
 }
 
 textarea.input-text {
   width: 100%;
+  height: 20em;
+  overflow-y: auto;
 }
 
 /* ----------------------------------------------------------------------------------- */
