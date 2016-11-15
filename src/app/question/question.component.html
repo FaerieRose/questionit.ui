@@ -17,15 +17,15 @@
 
     <div class="div-input-text">
       <label class="control-input text" for="questionlanguage">Programming Language</label>
-      <select class="control-input input-text" (change)="updateLanguage($event)">
-        <option *ngFor='let lang of languages' id="questionlanguage" value='{{ lang.id }}' >{{ lang.name }}</option> 
+      <select class="control-input input-text" (change)="updateLanguage($event)" >
+        <option *ngFor='let lang of languages' id="questionlanguage" value='{{ lang.id }}' [selected]="lang.id == question.programmingLanguage" >{{ lang.name }}</option> 
       </select>
     </div>
 
     <div class="div-input-text">
       <label class="control-input text" for="questionexam">For Exam</label>
       <select  class="control-input input-text" (change)="updateExam($event)">
-        <option *ngFor='let exam of exams' id="questionexam" value='{{ exam.id }}' >{{ exam.name }}</option> 
+        <option *ngFor='let exam of exams' id="questionexam" value='{{ exam.id }}' [selected]="exam.id == question.forExam">{{ exam.name }}</option> 
       </select>
     </div>
 
