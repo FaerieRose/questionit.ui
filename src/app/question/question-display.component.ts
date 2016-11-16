@@ -1,20 +1,38 @@
 import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
+import {Observable} from 'rxjs/Rx';
 
 @Component({
   selector: 'question-display',
   template: `
-    <p #qstn></p>
+    <p #qstn [innerHTML]="_q"></p>
   `
 })
 export class QuestionDisplayComponent {
   @ViewChild("qstn") qstn;
+  _q: string = 'test';
   pElement: HTMLParagraphElement;
-//  q: string = "Is the following statement correct?<br><pre>  for (int a = 0; a < 10; a++)<br>    a = a * a;<br>  }</pre>";
-  @Input() q: string;
+
+  @Input() 
+  set q(q: string) {
+    this._q = q;
+    if(this.pElement != null) {
+      let timer = Observable.timer(500);
+      timer.subscribe(t => {
+        this.updateCSS();
+      });
+    }
+  }
+  get q() {
+    return this._q;
+  }
+
 
   ngAfterViewInit() {
     this.pElement = this.qstn.nativeElement;
-    this.pElement.innerHTML = this.q;
+    this.updateCSS();
+  }
+
+  updateCSS() {
     console.log("childElementCount=" + this.pElement.childElementCount);
     for (let i=0; i<this.pElement.children.length ; i++) {
       let chld = this.pElement.children[i];
