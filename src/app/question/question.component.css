@@ -41,6 +41,11 @@ textarea.input-text {
   overflow-y: auto;
 }
 
+.pQuestion {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:#777;
+}
+
 /* ----------------------------------------------------------------------------------- */
 /* Layout input buttons                                                                */
 label.button {

@@ -2,13 +2,14 @@
 /* Author       : FaerieRose                                                           */
 /* Date created : 10 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
 
-import { Question }          from './question';
-import { QuestionService }   from './question.service';
+import { Question }                 from './question';
+import { QuestionService }          from './question.service';
+import { QuestionDisplayComponent } from './question-display.component';
 
-import { EnumLanguages } from '../enums'; 
-import { EnumExams }     from '../enums'; 
+import { EnumLanguages }   from '../enums'; 
+import { EnumExams }       from '../enums'; 
 
 @Component({
   selector: 'my-question',
@@ -21,6 +22,7 @@ export class QuestionComponent implements OnInit {
   question: Question;
   languages = [];
   exams = [];
+
 
   constructor(private questionService: QuestionService) {
     let lang = EnumLanguages;
@@ -42,19 +44,20 @@ export class QuestionComponent implements OnInit {
   ngOnInit() {
     this.questionService.getQuestions().subscribe(questions => {
       this.questions = questions;
-      console.log(JSON.stringify(questions));
     });
     this.questionService.getQuestion(1).subscribe(question => {
       this.question = question;
-      console.log(JSON.stringify(question));
     });
   }
 
   changeId($event) {
     let id = $event.target.value;
-    this.questionService.getQuestion(id).subscribe(question => this.question = question);
+    let pQuestion = 
+    this.questionService.getQuestion(id).subscribe(question => {
+      this.question = question;
+    });
   }
-  
+
   updateLanguage($event) {
     console.log($event.target.value);
   }
