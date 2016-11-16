@@ -47,10 +47,16 @@ select.input-text, input.input-text {
 
 textarea.input-text {
   width: 100%;
-  height: 20em;
   overflow-y: auto;
 }
 
+textarea#question {
+  height: 20em;
+}
+
+textarea#questionexplanation {
+  height: 5em;
+}
 
 .pQuestion {
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

@@ -47,20 +47,26 @@ export class QuestionService {
 	// -------------------------------------------------------------
 	// GET one question with specific id
 	postNewQuestion(question: Question) : Observable<Question> {
-		let jsonQuestion: string = JSON.stringify(question);
+		let qstn: Question = new Question();
+		qstn = question;
+		let jsonQuestion: string = JSON.stringify(qstn);
+		console.log(jsonQuestion);
 		return this.http.post(this.questionUrl, jsonQuestion, { headers: this.headers }).map(this.getExtractData);
 	}
 
 	// -------------------------------------------------------------
 	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
 	private getExtractData(res: Response) {
-		if (res.status == 200) {
-			console.error("Response from " + res.url + ": Status: " + res.status);
+		if (res.status == 200 || res.status == 202) {
+			console.log("Response from " + res.url + ": Status: " + res.status);
+			console.log(res.json());
 			return res.json();
+		} else if (res.status == 204){
+			console.log("Response from " + res.url + ": Status: " + res.status);
+			return {}
 		} else {
 			console.error("Response from " + res.url + ": Status: " + res.status);
 			return {}
 		}
   }
-
 }

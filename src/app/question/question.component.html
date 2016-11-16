@@ -33,13 +33,23 @@
     </div>
 
     <div class="div-input-text">
+      <label class="control-input text" for="questiontype">Type of Question</label>
+      <input class="control-input input-text" type="text" id="questiontype" placeholder="Type" value="{{ question.type }}" (change)="updateType($event)"><br>
+    </div>
+
+    <div class="div-input-text">
       <div class="divHalf1">
         <label class="control-input text" for="question">Question</label><br> 
-        ​<textarea class="control-input input-text" id="question" placeholder="Question" (change)="updateQuestion($event)">{{ question.question }}</textarea>
+        ​<textarea class="control-input input-text" id="question" placeholder="Question" (change)="updateQuestion($event)" value="{{ question.question }}" ></textarea>
       </div>
       <div class="divHalf2">
         <question-display [question]="question.question"></question-display>
       </div>
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionexplanation">Explanation Answer</label><br> 
+      ​<textarea class="control-input input-text" id="questionexplanation" placeholder="Explanation" (change)="updateExplanation($event)" value="{{ question.explantionAnswer }}" ></textarea>
     </div>
 
   </form>

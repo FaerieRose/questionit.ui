@@ -14,4 +14,7 @@ export class Question {
   question: string;
   explantionAnswer: string;
   typeOfQuestion: string;
+  creator: any;
+  correctAnswers: any;
+  givenAnswers: any[];
 }

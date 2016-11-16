@@ -54,10 +54,12 @@ export class QuestionComponent implements OnInit {
     });
   }
 
-  updateLanguage($event) { this.question.programmingLanguage  = $event.target.value; }
-  updateExam($event)     { this.question.forExam              = $event.target.value; }
-  updateName($event)     { this.question.name                 = $event.target.value; }
-  updateQuestion($event) { this.question.question             = $event.target.value; }
+  updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
+  updateExam($event)        { this.question.forExam              = $event.target.value; }
+  updateName($event)        { this.question.name                 = $event.target.value; }
+  updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
+  updateExplanation($event) { this.question.explantionAnswer     = $event.target.value; }
+  updateQuestion($event)    { this.question.question             = $event.target.value; }
 
   saveQuestion() {
     this.questionService.postNewQuestion(this.question).subscribe(question => {
