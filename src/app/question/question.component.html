@@ -9,10 +9,13 @@
 <div *ngIf='question'>
   <form>
     <legend>Add Question</legend>
+                <label class="btn btn-primary btn-file btn-raised btn-xs" id="cstm5">Save 
+                      <input type="button" (click)="saveQuestion()" style="display:none" />
+                </label>
 
     <div class="div-input-text">
       <label class="control-input text" for="questionname">Question name</label>
-      <input class="control-input input-text" type="text" id="questionname" placeholder="Name" value="{{ question.name }}"><br>
+      <input class="control-input input-text" type="text" id="questionname" placeholder="Name" value="{{ question.name }}" (change)="updateName($event)"><br>
     </div>
 
     <div class="div-input-text">
@@ -30,10 +33,14 @@
     </div>
 
     <div class="div-input-text">
-      <label class="control-input text" for="question">Question</label><br> 
-      ​<textarea class="control-input input-text" id="question" placeholder="Question">{{ question.question }}</textarea>
-    </div> 
+      <div class="divHalf1">
+        <label class="control-input text" for="question">Question</label><br> 
+        ​<textarea class="control-input input-text" id="question" placeholder="Question" (change)="updateQuestion($event)">{{ question.question }}</textarea>
+      </div>
+      <div class="divHalf2">
+        <question-display [question]="question.question"></question-display>
+      </div>
+    </div>
 
   </form>
-  <question-display [question]="question.question"></question-display>
 </div>

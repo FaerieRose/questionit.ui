@@ -42,9 +42,6 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionService.getQuestions().subscribe(questions => {
-      this.questions = questions;
-    });
     this.questionService.getQuestion(1).subscribe(question => {
       this.question = question;
     });
@@ -52,18 +49,19 @@ export class QuestionComponent implements OnInit {
 
   changeId($event) {
     let id = $event.target.value;
-    let pQuestion = 
     this.questionService.getQuestion(id).subscribe(question => {
       this.question = question;
     });
   }
 
-  updateLanguage($event) {
-    console.log($event.target.value);
-  }
-  
-  updateExam($event) {
-    console.log($event.target.value);
-  }
+  updateLanguage($event) { this.question.programmingLanguage  = $event.target.value; }
+  updateExam($event)     { this.question.forExam              = $event.target.value; }
+  updateName($event)     { this.question.name                 = $event.target.value; }
+  updateQuestion($event) { this.question.question             = $event.target.value; }
 
+  saveQuestion() {
+    this.questionService.postNewQuestion(this.question).subscribe(question => {
+      console.log("POST SUCCEEDED");
+    });
+  }
 }
