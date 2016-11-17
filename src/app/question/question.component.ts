@@ -4,6 +4,7 @@
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
 
+import { GlobalService }            from '../global.service';
 import { Question }                 from './question';
 import { QuestionService }          from './question.service';
 import { QuestionDisplayComponent } from './question-display.component';
@@ -22,9 +23,9 @@ export class QuestionComponent implements OnInit {
   question: Question;
   languages = [];
   exams = [];
+  instructor: number;
 
-
-  constructor(private questionService: QuestionService) {
+  constructor(private questionService: QuestionService, private globalService: GlobalService) {
     let lang = EnumLanguages;
     let i = 0;
     while (lang[i] != null) {
@@ -42,28 +43,29 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionService.getQuestions().subscribe(questions => {
-      this.questions = questions;
-    });
     this.questionService.getQuestion(1).subscribe(question => {
       this.question = question;
     });
+    this.instructor = this.globalService.getInstructorID();
   }
 
   changeId($event) {
     let id = $event.target.value;
-    let pQuestion = 
     this.questionService.getQuestion(id).subscribe(question => {
       this.question = question;
     });
   }
 
-  updateLanguage($event) {
-    console.log($event.target.value);
-  }
-  
-  updateExam($event) {
-    console.log($event.target.value);
-  }
+  updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
+  updateExam($event)        { this.question.forExam              = $event.target.value; }
+  updateName($event)        { this.question.name                 = $event.target.value; }
+  updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
+  updateExplanation($event) { this.question.explantionAnswer     = $event.target.value; }
+  updateQuestion($event)    { this.question.question             = $event.target.value; }
 
+  saveQuestion() {
+    this.questionService.postNewQuestion(this.question).subscribe(question => {
+      console.log("POST SUCCEEDED");
+    });
+  }
 }
