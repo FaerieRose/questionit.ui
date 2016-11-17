@@ -9,9 +9,10 @@
 <div *ngIf='question'>
   <form>
     <legend>Add Question</legend>
-                <label class="btn btn-primary btn-file btn-raised btn-xs" id="cstm5">Save 
-                      <input type="button" (click)="saveQuestion()" style="display:none" />
-                </label>
+    Instructor ID : {{ instructor }}<br>
+    <label class="btn btn-primary btn-file btn-raised btn-xs" id="cstm5">Save 
+      <input type="button" (click)="saveQuestion()" style="display:none" />
+    </label>
 
     <div class="div-input-text">
       <label class="control-input text" for="questionname">Question name</label>

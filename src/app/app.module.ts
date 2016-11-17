@@ -7,6 +7,7 @@ import { AppRoutingModule }  from './app-routing.module';
 import { AppComponent }      from './app.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionDisplayComponent } from './question/question-display.component';
+import { GlobalService }     from './global.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { QuestionDisplayComponent } from './question/question-display.component'
     HttpModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [GlobalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
