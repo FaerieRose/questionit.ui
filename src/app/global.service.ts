@@ -13,7 +13,8 @@ export class GlobalService {
 
   constructor() {
 		let hostName: string = window.location.hostname;
-		if (hostName.substring(0,4) == "quest") {
+    console.log(hostName.substring(0,4));
+		if (hostName.substring(0,4) == "ques") {
 			this.baseUrl = "http://api.questionit.carpago.nl/api/";
 		} else {
 			this.baseUrl = "http://" + hostName + ":8081/api/";
