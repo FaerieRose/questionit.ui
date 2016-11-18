@@ -10,7 +10,7 @@
   <form>
     <legend>Add Question</legend>
     Instructor ID : {{ instructor }}<br>
-    <label class="btn btn-primary btn-file btn-raised btn-xs" id="cstm5">Save 
+    <label class="button" id="saveQuestion">Save 
       <input type="button" (click)="saveQuestion()" style="display:none" />
     </label>
 
@@ -46,6 +46,27 @@
       <div class="divHalf2">
         <question-display [question]="question.question"></question-display>
       </div>
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionanswers">Answers</label><br>
+      <table>
+        <tr  *ngFor='let answer of question.possibleAnswers; let i = index;' class="answers" >
+          <td> 
+            ​<input class="answers" type="text" disabled value="{{ i+1 }}">
+          </td>
+          <td>
+            <input class="answers" type="checkbox" >
+          </td>
+          <td class="answers">
+            <textarea class="control-input input-text answers" id="answer{{ i }}" (change)="updateAnswer(i, $event)" value="{{ answer }}" ></textarea><br>
+          </td>
+        </tr>
+      </table>
+      <label class="button" id="addAnswer">Add Answer 
+        <input type="button" (click)="addAnswer()" style="display:none" />
+      </label>
+
     </div>
 
     <div class="div-input-text">

@@ -1,3 +1,8 @@
+/* ----------------------------------------------------------------------------------- */
+/* Author       : FaerieRose                                                           */
+/* Date created : 10 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
+
 import { BrowserModule }   from '@angular/platform-browser';
 import { NgModule }        from '@angular/core';
 import { FormsModule }     from '@angular/forms';

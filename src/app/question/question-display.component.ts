@@ -1,3 +1,8 @@
+/* ----------------------------------------------------------------------------------- */
+/* Author       : FaerieRose                                                           */
+/* Date created : 16 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
+
 import { Component, ViewChild } from '@angular/core';
 import { Input, AfterViewInit } from '@angular/core';
 import {Observable}             from 'rxjs/Rx';

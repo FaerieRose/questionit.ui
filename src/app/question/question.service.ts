@@ -9,6 +9,7 @@ import { Request, RequestMethod }  from '@angular/http';
 
 import { Observable }              from 'rxjs/Observable';
 
+import { GlobalService }           from '../global.service';
 import { Question }                from './question';
 
 @Injectable()
@@ -18,8 +19,8 @@ export class QuestionService {
 	private questionUrl: string;
 	private currentUrl: string;
 
-  constructor(private http: Http) {
-		this.questionUrl = "http://" + window.location.hostname + ":8081/api/questions";
+  constructor(private http: Http, private globalService: GlobalService) {
+		this.questionUrl = this.globalService.getBaseUrl() + "questions";
 		console.log("Question base url: " + this.questionUrl);
 	}
 

@@ -63,6 +63,44 @@ textarea#questionexplanation {
   color:#777;
 }
 
+
+/* ----------------------------------------------------------------------------------- */
+/* Layout answers                                                                      */
+div.answers {
+  display: block;
+  height: 6vh;
+  width: 100%;
+  margin-top: 0.5vh;
+  position: relative;
+}
+
+td.answers {
+  width: 80vw;
+}
+
+td {
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+}
+
+textarea.answers {
+  display: inline-block;
+  height: 6vh;
+  width: 100%;
+}
+
+input.answers {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: #E1F1FE;
+}
+
 /* ----------------------------------------------------------------------------------- */
 /* Layout input buttons                                                                */
 label.button {
@@ -70,10 +108,10 @@ label.button {
   cursor: pointer;
   position: relative;
   text-align: center;
-  border-radius: 10px;
-  background-color: royalblue;
-  box-shadow: 3px 3px 2px cornflowerblue;
-  color: aliceblue;
-  width: 35%;
-  margin-top: 1em;
+  border-radius: 1vh;
+  background-color: #23639E;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+  margin-top: 0.5vh;
+  padding: 0 2em 0 2em;
 }

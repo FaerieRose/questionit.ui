@@ -17,4 +17,5 @@ export class Question {
   creator: any;
   correctAnswers: any;
   givenAnswers: any[];
+  possibleAnswers: string[];
 }

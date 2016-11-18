@@ -24,6 +24,7 @@ export class QuestionComponent implements OnInit {
   languages = [];
   exams = [];
   instructor: number;
+  possibleAnswers: string[];
 
   constructor(private questionService: QuestionService, private globalService: GlobalService) {
     let lang = EnumLanguages;
@@ -43,17 +44,25 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.questionService.getQuestion(1).subscribe(question => {
-      this.question = question;
-    });
+    this.getQuestion(1);
     this.instructor = this.globalService.getInstructorID();
   }
 
   changeId($event) {
     let id = $event.target.value;
+    this.getQuestion(id);
+  }
+
+  getQuestion(id: number) {
     this.questionService.getQuestion(id).subscribe(question => {
       this.question = question;
+      this.possibleAnswers = this.question.possibleAnswers;
+      console.log(this.question.correctAnswers);
     });
+  }
+
+  addAnswer() {
+    this.possibleAnswers.push("");
   }
 
   updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }

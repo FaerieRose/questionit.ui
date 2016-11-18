@@ -1,24 +1,43 @@
- import {Injectable} from '@angular/core';
+/* ----------------------------------------------------------------------------------- */
+/* Author       : FaerieRose                                                           */
+/* Date created : 17 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
 
-  @Injectable()
-  export class GlobalService {
-    private instructorID: number = -1;
-    private studentID: number = -1;
+import {Injectable} from '@angular/core';
 
-    public getInstructorID() {
-      return this.instructorID;
-    }
-    public setInstructorID(id: number) {
-      this.instructorID = id;
-      this.studentID = -1;
-    }
+@Injectable()
+export class GlobalService {
+  private instructorID: number = -1;
+  private studentID: number = -1;
+  private baseUrl: string;
 
-    public getStudentID() {
-      return this.studentID;
-    }
-    public setStudentID(id: number) {
-      this.instructorID = -1;
-      this.studentID = id;
-    }
-
+  constructor() {
+		let hostName: string = window.location.hostname;
+		if (hostName.substring(0,4) == "quest") {
+			this.baseUrl = "http://api.questionit.carpago.nl/api/";
+		} else {
+			this.baseUrl = "http://" + hostName + ":8081/api/";
+		}
+		console.log("Base url: " + this.baseUrl);
   }
+
+  public getInstructorID() {
+    return this.instructorID;
+  }
+  public setInstructorID(id: number) {
+    this.instructorID = id;
+    this.studentID = -1;
+  }
+
+  public getStudentID() {
+    return this.studentID;
+  }
+  public setStudentID(id: number) {
+    this.instructorID = -1;
+    this.studentID = id;
+  }
+
+  public getBaseUrl() {
+    return this.baseUrl;
+  }
+}
