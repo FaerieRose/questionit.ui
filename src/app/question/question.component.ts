@@ -111,16 +111,12 @@ export class QuestionComponent implements OnInit {
   updateCorrectAnswer(id: number, $event) {
     this.correctAnswers.answers[id] = $event.target.checked;
     this.question.correctAnswers = this.correctAnswers;
-    console.log(this.correctAnswers);
-    console.log(this.question.correctAnswers);
   }
 
 
   saveQuestion() {
     let qstn = this.question;
-    console.log(this.correctAnswers);
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
-      console.log("---- AnswerListID = " + answerListId);
       if (answerListId > 0) {
         this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
           console.log("POST SUCCEEDED");

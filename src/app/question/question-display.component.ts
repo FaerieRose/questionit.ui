@@ -42,7 +42,6 @@ export class QuestionDisplayComponent {
   updateCSS() {
     for (let i=0; i<this.pElement.children.length ; i++) {
       let chld = this.pElement.children[i];
-      console.log(i + " - tagName = " + chld.tagName);
       if (chld.tagName == "PRE") {
         chld.setAttribute("style","color:red; font-weight:bold;");
       }
