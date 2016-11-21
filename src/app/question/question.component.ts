@@ -4,10 +4,13 @@
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
 
-import { GlobalService }            from '../global.service';
 import { Question }                 from './question';
 import { QuestionService }          from './question.service';
 import { QuestionDisplayComponent } from './question-display.component';
+
+import { GlobalService }            from '../global.service';
+import { AnswerList }               from '../answerlist/answerlist';
+import { AnswerListService }        from '../answerlist/answerlist.service';
 
 import { EnumLanguages }   from '../enums'; 
 import { EnumExams }       from '../enums'; 
@@ -19,12 +22,12 @@ import { EnumExams }       from '../enums';
   providers: [ QuestionService ]
 })
 export class QuestionComponent implements OnInit {
-  questions: Question[];
   question: Question;
   languages = [];
   exams = [];
   instructor: number;
-  possibleAnswers: string[];
+  possibleAnswers: string[] = [ "" ];
+  correctAnswers: AnswerList =  new AnswerList();
 
   constructor(private questionService: QuestionService, private globalService: GlobalService) {
     let lang = EnumLanguages;
@@ -41,6 +44,8 @@ export class QuestionComponent implements OnInit {
       this.exams.push(exam);
       i++;
     }
+    this.correctAnswers.id = -1;
+    this.correctAnswers.answers = [ false, false, false, false, false, false, false, false, false, false ];
   }
 
   ngOnInit() {
@@ -54,10 +59,27 @@ export class QuestionComponent implements OnInit {
   }
 
   getQuestion(id: number) {
+    this.question = null;
     this.questionService.getQuestion(id).subscribe(question => {
-      this.question = question;
-      this.possibleAnswers = this.question.possibleAnswers;
-      console.log(this.question.correctAnswers);
+      if (question.id == -1) {
+        this.question = new Question();
+      } else {
+        this.question = question;
+      }
+      if (this.question.possibleAnswers != undefined) {
+        this.possibleAnswers = this.question.possibleAnswers;
+        this.correctAnswers  = this.question.correctAnswers; 
+      } else {
+        while (this.possibleAnswers.length > 0) {
+          this.possibleAnswers.pop();
+        }
+        for (let i = 0; i < 10; i++) {
+          this.correctAnswers[i] = false;
+        }
+        this.possibleAnswers.push("");
+      }
+      console.log(this.possibleAnswers);
+      console.log("possibleAnswers.length = " + this.possibleAnswers.length);
     });
   }
 
@@ -71,6 +93,16 @@ export class QuestionComponent implements OnInit {
   updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
   updateExplanation($event) { this.question.explantionAnswer     = $event.target.value; }
   updateQuestion($event)    { this.question.question             = $event.target.value; }
+  updateAnswer(id: number, $event) {
+    this.possibleAnswers[id] =  $event.target.value;
+    this.question.possibleAnswers = this.possibleAnswers; 
+  }
+  updateCorrectAnswer(id: number, $event) {
+    console.log($event);
+    this.correctAnswers.answers[id] =  $event.target.value;
+    this.question.correctAnswers.answers = this.correctAnswers;
+  }
+
 
   saveQuestion() {
     this.questionService.postNewQuestion(this.question).subscribe(question => {

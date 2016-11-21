@@ -3,7 +3,8 @@
 /* Date created : 17 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Response }   from '@angular/http';
 
 @Injectable()
 export class GlobalService {
@@ -41,4 +42,22 @@ export class GlobalService {
   public getBaseUrl() {
     return this.baseUrl;
   }
+
+	// -------------------------------------------------------------
+	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
+	public getExtractData(res: Response) {
+		if (res.status == 200 || res.status == 202) {
+			console.log("Response from " + res.url + ": Status: " + res.status);
+			console.log(res.json());
+			return res.json();
+		} else if (res.status == 204){
+			console.log("Response from " + res.url + ": Status: " + res.status);
+			return { "id":-1 }
+		} else {
+			console.error("Response from " + res.url + ": Status: " + res.status);
+			return { "id":-1 }
+		}
+  }
+
+
 }
