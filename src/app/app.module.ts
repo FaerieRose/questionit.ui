@@ -12,13 +12,15 @@ import { AppRoutingModule }  from './app-routing.module';
 import { AppComponent }      from './app.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionDisplayComponent } from './question/question-display.component';
+import { InstructorComponent } from './instructor/instructor.component';
 import { GlobalService }     from './global.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionComponent,
-    QuestionDisplayComponent
+    QuestionDisplayComponent,
+    InstructorComponent
   ],
   imports: [
     BrowserModule,
