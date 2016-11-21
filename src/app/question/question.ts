@@ -5,6 +5,7 @@
 
 import { EnumLanguages } from '../enums'; 
 import { EnumExams }     from '../enums'; 
+import { AnswerList } from '../answerlist/answerlist';
 
 export class Question {
   id? : number;
@@ -15,7 +16,7 @@ export class Question {
   explantionAnswer: string;
   typeOfQuestion: string;
   creator: any;
-  correctAnswers: any;
+  correctAnswers: AnswerList;
   givenAnswers: any[];
   possibleAnswers: string[];
 }

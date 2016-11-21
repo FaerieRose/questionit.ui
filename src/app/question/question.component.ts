@@ -19,7 +19,7 @@ import { EnumExams }       from '../enums';
   selector: 'my-question',
   templateUrl: 'question.component.html',
   styleUrls: [ 'question.component.css' ],
-  providers: [ QuestionService ]
+  providers: [ QuestionService, AnswerListService ]
 })
 export class QuestionComponent implements OnInit {
   question: Question;
@@ -27,9 +27,12 @@ export class QuestionComponent implements OnInit {
   exams = [];
   instructor: number;
   possibleAnswers: string[] = [ "" ];
-  correctAnswers: AnswerList =  new AnswerList();
+  correctAnswers: AnswerList;
 
-  constructor(private questionService: QuestionService, private globalService: GlobalService) {
+  constructor(
+        private questionService  : QuestionService,
+        private answerListService: AnswerListService, 
+        private globalService    : GlobalService) {
     let lang = EnumLanguages;
     let i = 0;
     while (lang[i] != null) {
@@ -44,13 +47,26 @@ export class QuestionComponent implements OnInit {
       this.exams.push(exam);
       i++;
     }
-    this.correctAnswers.id = -1;
-    this.correctAnswers.answers = [ false, false, false, false, false, false, false, false, false, false ];
+    this.correctAnswers = this.resetCorrectAnswers();
   }
 
   ngOnInit() {
     this.getQuestion(1);
     this.instructor = this.globalService.getInstructorID();
+  }
+
+  resetCorrectAnswers(): AnswerList {
+    let correctAnswers = new AnswerList();
+    correctAnswers.id = -1;
+    correctAnswers.answers = [ false, false, false, false, false, false, false, false, false, false ];
+    return correctAnswers;
+  }
+
+  resetPossibleAnswers() {
+    while (this.possibleAnswers.length > 0) {
+      this.possibleAnswers.pop();
+    }
+    this.possibleAnswers.push("");
   }
 
   changeId($event) {
@@ -62,24 +78,19 @@ export class QuestionComponent implements OnInit {
     this.question = null;
     this.questionService.getQuestion(id).subscribe(question => {
       if (question.id == -1) {
+        console.log("----NEW QUESTION CREATED");
         this.question = new Question();
+        this.correctAnswers = this.resetCorrectAnswers();
+        this.resetPossibleAnswers();
       } else {
         this.question = question;
-      }
-      if (this.question.possibleAnswers != undefined) {
-        this.possibleAnswers = this.question.possibleAnswers;
-        this.correctAnswers  = this.question.correctAnswers; 
-      } else {
-        while (this.possibleAnswers.length > 0) {
-          this.possibleAnswers.pop();
+        if (this.question.possibleAnswers != undefined) {
+          this.possibleAnswers = this.question.possibleAnswers;
+          this.correctAnswers  = this.question.correctAnswers; 
+        } else {
+          this.resetPossibleAnswers();
         }
-        for (let i = 0; i < 10; i++) {
-          this.correctAnswers[i] = false;
-        }
-        this.possibleAnswers.push("");
       }
-      console.log(this.possibleAnswers);
-      console.log("possibleAnswers.length = " + this.possibleAnswers.length);
     });
   }
 
@@ -98,15 +109,23 @@ export class QuestionComponent implements OnInit {
     this.question.possibleAnswers = this.possibleAnswers; 
   }
   updateCorrectAnswer(id: number, $event) {
-    console.log($event);
-    this.correctAnswers.answers[id] =  $event.target.value;
-    this.question.correctAnswers.answers = this.correctAnswers;
+    this.correctAnswers.answers[id] = $event.target.checked;
+    this.question.correctAnswers = this.correctAnswers;
+    console.log(this.correctAnswers);
+    console.log(this.question.correctAnswers);
   }
 
 
   saveQuestion() {
-    this.questionService.postNewQuestion(this.question).subscribe(question => {
-      console.log("POST SUCCEEDED");
+    let qstn = this.question;
+    console.log(this.correctAnswers);
+    this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+      console.log("---- AnswerListID = " + answerListId);
+      if (answerListId > 0) {
+        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
+          console.log("POST SUCCEEDED");
+        });
+      }
     });
   }
 }
