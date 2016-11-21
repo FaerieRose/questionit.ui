@@ -33,8 +33,8 @@ export class AnswerListService {
   postAnswerList(answerList: AnswerList) {
     this.currentUrl = this.answerListUrl;
 		let jsonResult: string = JSON.stringify(answerList);
-		console.log(jsonResult);
-		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+		console.log("---- JSON(AnswerList) = " + jsonResult);
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
   }
 
 }

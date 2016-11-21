@@ -48,7 +48,6 @@ export class GlobalService {
 	public getExtractData(res: Response) {
 		if (res.status == 200 || res.status == 202) {
 			console.log("Response from " + res.url + ": Status: " + res.status);
-			console.log(res.json());
 			return res.json();
 		} else if (res.status == 204){
 			console.log("Response from " + res.url + ": Status: " + res.status);
@@ -56,6 +55,21 @@ export class GlobalService {
 		} else {
 			console.error("Response from " + res.url + ": Status: " + res.status);
 			return { "id":-1 }
+		}
+  }
+
+	// -------------------------------------------------------------
+	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
+	public getExtractText(res: Response) {
+		if (res.status == 200 || res.status == 202) {
+			console.log("Response from " + res.url + ": Status: " + res.status);
+			return parseInt(res.text());
+		} else if (res.status == 204){
+			console.log("Response from " + res.url + ": Status: " + res.status);
+			return -1;
+		} else {
+			console.error("Response from " + res.url + ": Status: " + res.status);
+			return -1;
 		}
   }
 

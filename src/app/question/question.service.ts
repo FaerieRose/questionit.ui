@@ -48,15 +48,15 @@ export class QuestionService {
 
 	// -------------------------------------------------------------
 	// POST a question
-	postNewQuestion(question: Question) : Observable<Question> {
-		this.currentUrl = this.questionUrl + "/creator/1/correct-answers/1";
+	postNewQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
+		this.currentUrl = this.questionUrl + "/creator/1/correct-answers/" + correctAnswersId;
 		let qstn: Question = new Question();
 		qstn = question;
 		qstn.correctAnswers = undefined;
 		qstn.givenAnswers = undefined;
 		qstn.creator = undefined;
 		let jsonResult: string = JSON.stringify(qstn);
-		console.log(jsonResult);
+		console.log("---- JSON(Question) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
 
