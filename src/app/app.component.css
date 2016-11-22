@@ -1,0 +1,54 @@
+.divRowTitle {
+  background-color: #23639E;
+  margin: 2vh 2vh 1vh 2vh;
+  padding: 2vh;
+  max-height: 100px;
+  height: 10vh;
+  text-align: center;
+  border-radius: 3vh 3vh 0 3vh;
+}
+
+.divRowTitle h1 {
+  font-size: 6vh;
+  font-weight: bold;
+  color: #E1F1FE;
+}
+
+.divRowBody {
+  margin: 1vh 2vh 2vh 2vh;
+  padding: 0;
+}
+
+.divNav {
+  background-color: #E1F1FE;
+  border-radius: 0 0 3vh 3vh;
+  height: 84vh;
+}
+
+#divScreen {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #F7F8F9;
+}
+
+.divCol {
+  margin: 0;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}
+
+.divMain {
+  overflow-y: auto;  
+  overflow-x: hidden; 
+  height: 84vh;
+  direction: rtl;
+}
+
+#divRouterOutlet {
+  margin: 0;
+  padding: 0;
+  direction: ltr;  
+}
+

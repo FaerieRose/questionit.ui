@@ -1,0 +1,24 @@
+<div class="container-fluid" id="divScreen">
+  <div class="row divRowTitle">
+    <div class="col-md-12 divCol">
+      <h1>
+        {{title}}
+      </h1>
+    </div>
+  </div>
+  <div class="row divRowBody">
+    <div class="col-md-9 divCol divMain">
+      <div id="divRouterOutlet">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    <div class="col-md-3 divCol divNav">
+      Current Instructor ID: {{ instructor }}<br>
+      Current Student ID: {{ student }}<br><br>
+      <legend>Navigation</legend>
+      <a class="nav-link" routerLink="/question" routerLinkActive="active"> >> Question</a><br>
+      <a class="nav-link" routerLink="/instructor" routerLinkActive="active"> >> Instructor</a><br>
+    </div>
+  </div>
+</div>
+

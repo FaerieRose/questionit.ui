@@ -1,0 +1,78 @@
+<!-- -------------------------------------------------------------------------------- -->
+<!-- Author       : FaerieRose                                                        -->
+<!-- Date created : 10 Nov 2016                                                       -->
+<!-- -------------------------------------------------------------------------------- -->
+<div>
+  Scroll through list of Questions: 
+  <input type="number" value=1 (change)="changeId($event)">
+</div>
+<div *ngIf='question'>
+  <form>
+    <legend>Add Question</legend>
+    Instructor ID : {{ instructor }}<br>
+    <label class="button" id="saveQuestion">Save 
+      <input type="button" (click)="saveQuestion()" style="display:none" />
+    </label>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionname">Question name</label>
+      <input class="control-input input-text" type="text" id="questionname" placeholder="Name" value="{{ question.name }}" (change)="updateName($event)"><br>
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionlanguage">Programming Language</label>
+      <select class="control-input input-text" (change)="updateLanguage($event)" >
+        <option *ngFor='let lang of languages' id="questionlanguage" value='{{ lang.id }}' [selected]="lang.id == question.programmingLanguage" >{{ lang.name }}</option> 
+      </select>
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionexam">For Exam</label>
+      <select  class="control-input input-text" (change)="updateExam($event)">
+        <option *ngFor='let exam of exams' id="questionexam" value='{{ exam.id }}' [selected]="exam.id == question.forExam">{{ exam.name }}</option> 
+      </select>
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questiontype">Type of Question</label>
+      <input class="control-input input-text" type="text" id="questiontype" placeholder="Type" value="{{ question.typeOfQuestion }}" (change)="updateType($event)"><br>
+    </div>
+
+    <div class="div-input-text">
+      <div class="divHalf1">
+        <label class="control-input text" for="question">Question</label><br> 
+        ​<textarea class="control-input input-text" id="question" placeholder="Question" value="{{ question.question }}" (change)="updateQuestion($event)" ></textarea>
+      </div>
+      <div class="divHalf2">
+        <question-display [question]="question.question"></question-display>
+      </div>
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionanswers">Answers</label><br>
+      <table>
+        <tr  *ngFor='let answer of possibleAnswers; let i = index;' class="answers" >
+          <td> 
+            ​<input class="answers" type="text" disabled value="{{ i+1 }}">
+          </td>
+          <td>
+            <input class="answers" type="checkbox" [checked]="correctAnswers.answers[i]" (change)="updateCorrectAnswer(i, $event)" >
+          </td>
+          <td class="answers">
+            <textarea class="control-input input-text answers" id="answer{{ i }}" (change)="updateAnswer(i, $event)" value="{{ answer }}" ></textarea><br>
+          </td>
+        </tr>
+      </table>
+      <label class="button" id="addAnswer">Add Answer
+        <input type="button" (click)="addAnswer()" style="display:none" />
+      </label>
+
+    </div>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="questionexplanation">Explanation Answer</label><br> 
+      ​<textarea class="control-input input-text" id="questionexplanation" placeholder="Explanation" (change)="updateExplanation($event)" value="{{ question.explantionAnswer }}" ></textarea>
+    </div>
+
+  </form>
+</div>
