@@ -24,4 +24,16 @@ export class InstructorService {
     this.currentUrl = this.instructorUrl + "/" + id;
     return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
+  postNewInstructor(instructor: Instructor) : Observable<Instructor> {
+	//	this.currentUrl = this.instructorUrl + "/creator/1/correct-answers/" + correctAnswersId;
+   // this.currentUrl = this.instructorUrl + "/instructor/";
+		let instr: Instructor = new Instructor();
+		instr = instructor;
+		let jsonResult: string = JSON.stringify(instr);
+		console.log("---- JSON(Instructor) = " + jsonResult);
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+    
+    
+    //.map(this.globalService.getExtractData);
+	}
 }

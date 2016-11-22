@@ -1,1 +1,37 @@
 <input type="text" value="{{ instructor.firstName }}" >
+<input type="text" value="{{ instructor.lastName }}" >
+<input type="text" value="{{ instructor.email }}" >
+<input type="text" value="{{ instructor.id }}" >
+
+
+
+<div>
+  Scroll through list of Instructors: 
+  <input type="number" value=1 (change)="changeId($event)">
+</div>
+<div *ngIf='instructor'>
+  <form>
+    <legend>Add New instructor</legend>
+    Instructor ID : {{ instructor }}<br>
+    <label class="button" id="saveInstructor">Save 
+      <input type="button" (click)="saveInstructor()"  />
+    </label>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="instructorfirstname">First Name</label>
+      <input class="control-input input-text" type="text" id="instructorfirstname" placeholder="First Name" (change)="updateFirstName($event)"><br>
+    </div>
+    <div class="div-input-text">
+      <label class="control-input text" for="instructorlastname">Last Name</label>
+      <input class="control-input input-text" type="text" id="instructorfirstname" placeholder="Last Name" (change)="updateLastName($event)"><br>
+    </div>
+    <div class="div-input-text">
+      <label class="control-input text" for="instructoremail">Email address</label>
+      <input class="control-input input-text" type="text" id="instructoremail" placeholder="Email" (change)="updateEmail($event)"><br>
+    </div>
+
+
+
+
+
+   
