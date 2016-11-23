@@ -13,6 +13,7 @@ import { AppComponent }      from './app.component';
 import { QuestionComponent } from './question/question.component';
 import { QuestionDisplayComponent } from './question/question-display.component';
 import { InstructorComponent } from './instructor/instructor.component';
+import { StudentComponent } from './student/student.component';
 import { GlobalService }     from './global.service';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { GlobalService }     from './global.service';
     AppComponent,
     QuestionComponent,
     QuestionDisplayComponent,
-    InstructorComponent
+    InstructorComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
