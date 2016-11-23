@@ -1,0 +1,51 @@
+<!--<input type="text" value="{{ student.firstName }}" >
+<input type="text" value="{{ student.lastName }}" >
+<input type="text" value="{{ student.email }}" >
+<input type="text" value="{{ student.id }}" >
+<input type="text" value="{{ student.valid }}" >
+
+
+
+<div>
+  Scroll through list of students: 
+  <input type="number" value=1 (change)="changeId($event)">
+</div>
+-->
+<div *ngIf='student'>
+  <form>
+    <legend>Add New student</legend>
+
+
+
+    <div class="div-input-text">
+      <label class="control-input text" for="studentfirstname">First Name</label>
+      <input class="control-input input-text" type="text" id="studentfirstname" placeholder="First Name" (change)="updateFirstName($event)"><br>
+    </div>
+    <div class="div-input-text">
+      <label class="control-input text" for="studentlastname">Last Name</label>
+      <input class="control-input input-text" type="text" id="studentfirstname" placeholder="Last Name" (change)="updateLastName($event)"><br>
+    </div>
+    <div class="div-input-text">
+      <label class="control-input text" for="studentemail">Email address</label>
+      <input class="control-input input-text" type="text" id="studentemail" placeholder="Email" (change)="updateEmail($event)"><br>
+    </div>
+    <!--<div class="div-input-text">
+      <label class="control-input text" for="studentid">Student ID</label>
+      <input class="control-input input-text" type="text" id="studentid" placeholder="id" (change)="updateID($event)"><br>
+    </div>-->
+    <!--<div class="div-input-text">
+      <label class="control-input text" for="studentvalid">Student Is Valid</label>
+      <input class="control-input input-text" type="checkbox" id="studentvalid"  (change)="updatevalid($event)"><br>
+    </div>-->
+        <label class="button" id="saveStudent">Save
+      <input type="button" (click)="saveStudent()" style="display:none"/>
+    </label>
+  </form>
+</div>
+
+
+
+
+
+
+   

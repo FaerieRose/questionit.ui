@@ -26,14 +26,14 @@ export class GlobalService {
   }
   public setInstructorID(id: number) {
     this.instructorID = id;
-    this.studentID = -1;
+    //this.studentID = -1;
   }
 
   public getStudentID(): number {
     return this.studentID;
   }
   public setStudentID(id: number) {
-    this.instructorID = -1;
+    //this.instructorID = -1;
     this.studentID = id;
   }
 
@@ -52,14 +52,15 @@ export class GlobalService {
 	// -------------------------------------------------------------
 	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
 	public getExtractData(res: Response) {
+		console.log("Begin ExtData");
 		if (res.status == 200 || res.status == 202) {
-			console.log("Response from " + res.url + ": Status: " + res.status);
+			console.log("Response from getExtractData " + res.url + ": Status: " + res.status);
 			return res.json();
 		} else if (res.status == 204){
-			console.log("Response from " + res.url + ": Status: " + res.status);
+			console.log("Response from getExtractData " + res.url + ": Status: " + res.status);
 			return { "id":-1 }
 		} else {
-			console.error("Response from " + res.url + ": Status: " + res.status);
+			console.error("Response from getExtractData " + res.url + ": Status: " + res.status);
 			return { "id":-1 }
 		}
   }
@@ -68,13 +69,13 @@ export class GlobalService {
 	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
 	public getExtractText(res: Response) {
 		if (res.status == 200 || res.status == 202) {
-			console.log("Response from " + res.url + ": Status: " + res.status);
+			console.log("Response from getExtractText" + res.url + ": Status: " + res.status);
 			return parseInt(res.text());
 		} else if (res.status == 204){
-			console.log("Response from " + res.url + ": Status: " + res.status);
+			console.log("Response from getExtractText" + res.url + ": Status: " + res.status);
 			return -1;
 		} else {
-			console.error("Response from " + res.url + ": Status: " + res.status);
+			console.error("Response from getExtractText " + res.url + ": Status: " + res.status);
 			return -1;
 		}
   }
