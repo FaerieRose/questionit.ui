@@ -8,9 +8,10 @@ import { NgModule }        from '@angular/core';
 import { FormsModule }     from '@angular/forms';
 import { HttpModule }      from '@angular/http';
 
-import { AppRoutingModule }  from './app-routing.module';
-import { AppComponent }      from './app.component';
-import { QuestionComponent } from './question/question.component';
+import { AppRoutingModule }     from './app-routing.module';
+import { AppComponent }         from './app.component';
+import { QuestionComponent }    from './question/question.component';
+import { QuestionsComponent }   from './question/questions.component';
 import { QuestionDisplayComponent } from './question/question-display.component';
 import { InstructorComponent } from './instructor/instructor.component';
 import { StudentComponent } from './student/student.component';
@@ -20,6 +21,7 @@ import { GlobalService }     from './global.service';
   declarations: [
     AppComponent,
     QuestionComponent,
+    QuestionsComponent,
     QuestionDisplayComponent,
     InstructorComponent,
     StudentComponent

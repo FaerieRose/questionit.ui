@@ -8,15 +8,17 @@ import { RouterModule, Routes }       from '@angular/router';
 
 import './rxjs-extensions';
 
-import { QuestionComponent }          from './question/question.component';
-import { InstructorComponent }        from './instructor/instructor.component';
+import { QuestionComponent }        from './question/question.component';
+import { QuestionsComponent }       from './question/questions.component';
+import { InstructorComponent }      from './instructor/instructor.component';
 import { StudentComponent }           from './student/student.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/question', pathMatch: 'full' },
-  { path: 'question',  component: QuestionComponent },
+  { path: '', redirectTo: '/questions', pathMatch: 'full' },
+  { path: 'questions',  component: QuestionsComponent },
+  { path: 'question',   component: QuestionComponent },
   { path: 'instructor', component: InstructorComponent },
-  { path: 'student', component: StudentComponent }
+  { path: 'student',    component: StudentComponent }
 ];
 
 @NgModule({
