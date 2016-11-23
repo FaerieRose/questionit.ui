@@ -9,7 +9,7 @@
       "outDir": "dist",
       "assets": [
         "./assets",
-        "images/**/*.*",
+        "images",
         "assets/images",
         "favicon.ico"
       ],
