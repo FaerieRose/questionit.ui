@@ -28,14 +28,14 @@ export class QuestionService {
 	// -------------------------------------------------------------
 	// GET one question with specific id
 	getQuestion(id) : Observable<Question>{
-		this.currentUrl = this.questionUrl + "/" + id;
+		this.currentUrl = this.questionUrl + "/" + id + "/basic";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
 	// -------------------------------------------------------------
 	// GET one question exam style with specific id
 	getQuestionExam(id) : Observable<Question>{
-		this.currentUrl = this.questionUrl + "/exam/" + id;
+		this.currentUrl = this.questionUrl + "/" + id + "/exam";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 

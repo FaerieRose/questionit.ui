@@ -8,19 +8,12 @@ import { Response }   from '@angular/http';
 
 @Injectable()
 export class GlobalService {
-  private instructorID: number = -1;
+  private instructorID: number = 1;
   private studentID: number = -1;
   private baseUrl: string;
 
   constructor() {
-		let hostName: string = window.location.hostname;
-    console.log(hostName.substring(0,4));
-		if (hostName.substring(0,4) == "ques") {
-			this.baseUrl = "http://api.questionit.carpago.nl/api/";
-		} else {
-			this.baseUrl = "http://" + hostName + ":8081/api/";
-		}
-		console.log("Base url: " + this.baseUrl);
+		this.defineBaseUrl();
   }
 
   public getInstructorID() {
@@ -73,5 +66,15 @@ export class GlobalService {
 		}
   }
 
+	private defineBaseUrl() {
+		let hostName: string = window.location.hostname;
+    console.log(hostName.substring(0,4));
+		if (hostName.substring(0,4) == "ques") {
+			this.baseUrl = "http://api.questionit.carpago.nl/api/";
+		} else {
+			this.baseUrl = "http://" + hostName + ":8081/api/";
+		}
+		console.log("Base url: " + this.baseUrl);
+	}
 
 }

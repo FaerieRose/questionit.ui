@@ -25,7 +25,6 @@ export class QuestionComponent implements OnInit {
   question: Question;
   languages = [];
   exams = [];
-  instructor: number;
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
 
@@ -52,7 +51,6 @@ export class QuestionComponent implements OnInit {
 
   ngOnInit() {
     this.getQuestion(1);
-    this.instructor = this.globalService.getInstructorID();
   }
 
   resetCorrectAnswers(): AnswerList {
