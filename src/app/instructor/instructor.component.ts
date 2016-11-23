@@ -61,6 +61,11 @@ export class InstructorComponent implements OnInit {
    updateID($event) { this.instructor.id = $event.target.value; }
    updatevalid($event) { this.instructor.valid = $event.target.value; }
 
+
+   showAllInstructors(){
+      var element = document.getElementById("instructorlist").appendChild(document.createElement("article"));
+      console.log("Element = " + element);
+   }
   }
 
 

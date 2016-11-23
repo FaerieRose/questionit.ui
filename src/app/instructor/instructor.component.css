@@ -115,3 +115,16 @@ label.button {
   margin-top: 0.5vh;
   padding: 0 2em 0 2em;
 }
+
+/* ----------------------------------------------------------------------------------- */
+/* Try-outs:::::::::::;                                                                */
+article {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: black;
+}
