@@ -17,28 +17,34 @@ import { EnumExams }             from '../enums';
   styleUrls: [ 'question.component.css' ],
   providers: [ QuestionService ]
 })
-export class QuestionsComponent {
+export class QuestionsComponent implements OnInit {
   languages = [];
   exams = [];
+  questionList: Question[];
+  list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false}
 
   constructor(
         private questionService  : QuestionService,
         private globalService    : GlobalService) { 
-    let lang = EnumLanguages;
-    let i = 0;
-    while (lang[i] != null) {
-      let language = { id: i, name: lang[i] };
-      this.languages.push(language);
-      i++;
-    }
-    let exams = EnumExams;
-    i = 0;
-    while (exams[i] != null) {
-      let exam = { id: i, name: exams[i] };
-      this.exams.push(exam);
-      i++;
-    }
+    this.languages = this.globalService.getLanguages();
+    this.exams = this.globalService.getExams();
   }
+
+  ngOnInit() {
+    this.getQuestionList();
+  }
+
+  getQuestionList() {
+    this.questionService.getQuestions(this.list.exam, this.list.language, this.list.enabled, this.list.obsolete).subscribe(questions => {
+      this.questionList = questions;
+      console.log(this.questionList.length);
+    }); 
+  }
+
+  updateLanguage($event)    { this.list.language  = EnumLanguages[parseInt($event.target.value)]; this.getQuestionList(); }
+  updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];     this.getQuestionList(); }
+  updateEnabled($event)     { this.list.enabled   = $event.target.value;                          this.getQuestionList(); }
+  updateObsolete($event)    { this.list.obsolete  = $event.target.value;                          this.getQuestionList(); }
 
 
 }

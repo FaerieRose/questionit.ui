@@ -13,12 +13,15 @@
       </div>
     </div>
     <div class="col-md-3 divCol divNav">
+      <div id="divLogo">
+        <img src="app/images/logo_question_it_2016-11-23.png" id="logo">
+      </div>
       <span *ngIf="instructorId > 0">
         <legend>Instructor: {{ instructorName }}</legend>
       </span>
       <span *ngIf="studentId > 0">
         <legend>Student: {{ studentName }}</legend>
-      </span><br><br>
+      </span><br>
       <legend>Navigation</legend>
       <a class="nav-link" routerLink="/questions"   routerLinkActive="active"> >> Questions</a><br>
       <a class="nav-link" routerLink="/question"    routerLinkActive="active"> >> Edit Question</a><br>

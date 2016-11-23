@@ -2,21 +2,26 @@
 /* Author       : FaerieRose                                                           */
 /* Date created : 17 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-
 import { Injectable } from '@angular/core';
 import { Response }   from '@angular/http';
+
+import { EnumLanguages }         from './enums'; 
+import { EnumExams }             from './enums'; 
 
 @Injectable()
 export class GlobalService {
   private instructorID: number = 1;
   private studentID: number = -1;
   private baseUrl: string;
+	private languages = [];
+	private exams = [];
 
   constructor() {
 		this.defineBaseUrl();
+		this.defineEnumsAsArrays();
   }
 
-  public getInstructorID() {
+  public getInstructorID(): number {
     return this.instructorID;
   }
   public setInstructorID(id: number) {
@@ -24,7 +29,7 @@ export class GlobalService {
     this.studentID = -1;
   }
 
-  public getStudentID() {
+  public getStudentID(): number {
     return this.studentID;
   }
   public setStudentID(id: number) {
@@ -32,9 +37,17 @@ export class GlobalService {
     this.studentID = id;
   }
 
-  public getBaseUrl() {
+  public getBaseUrl(): string {
     return this.baseUrl;
   }
+
+	public getLanguages() {
+		return this.languages;
+	}
+
+	public getExams() {
+		return this.exams;
+	}
 
 	// -------------------------------------------------------------
 	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
@@ -75,6 +88,23 @@ export class GlobalService {
 			this.baseUrl = "http://" + hostName + ":8081/api/";
 		}
 		console.log("Base url: " + this.baseUrl);
+	}
+
+	private defineEnumsAsArrays() {
+    let lang = EnumLanguages;
+    let i = 0;
+    while (lang[i] != null) {
+      let language = { id: i, name: lang[i] };
+      this.languages.push(language);
+      i++;
+    }
+    let exams = EnumExams;
+    i = 0;
+    while (exams[i] != null) {
+      let exam = { id: i, name: exams[i] };
+      this.exams.push(exam);
+      i++;
+    }
 	}
 
 }

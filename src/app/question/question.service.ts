@@ -13,6 +13,9 @@ import { Observable }              from 'rxjs/Observable';
 import { GlobalService }           from '../global.service';
 import { Question }                from './question';
 
+import { EnumLanguages }   from '../enums'; 
+import { EnumExams }       from '../enums'; 
+
 @Injectable()
 export class QuestionService {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -41,8 +44,9 @@ export class QuestionService {
 
 	// -------------------------------------------------------------
 	// GET one question exam style with specific id
-	getQuestions() : Observable<Question[]>{
-		this.currentUrl = this.questionUrl;
+	getQuestions(exam: string, lang: string, enabled: boolean, obsolete: boolean) : Observable<Question[]>{
+		this.currentUrl = this.questionUrl + "/select/" + exam + "/" + lang + "/" + enabled + "/" + obsolete;
+		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
