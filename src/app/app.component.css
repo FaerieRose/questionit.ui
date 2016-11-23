@@ -52,3 +52,16 @@
   direction: ltr;  
 }
 
+#divLogo {
+  width: 100%;
+  text-align: center;
+  padding: 3vh;
+  margin-bottom: 2vh;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #23639E;
+}
+
+#logo {
+  width: 10vw;
+}

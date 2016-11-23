@@ -19,4 +19,6 @@ export class Question {
   correctAnswers: AnswerList;
   givenAnswers: any[];
   possibleAnswers: string[];
+  isEnabled: boolean;
+  isObsolete: boolean;
 }
