@@ -3,5 +3,6 @@ export class Instructor {
   firstName: string;
   lastName: string;
   email: string;
+  valid: boolean;
   //id: string;
 }

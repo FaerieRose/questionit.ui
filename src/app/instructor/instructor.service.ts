@@ -29,6 +29,7 @@ export class InstructorService {
    // this.currentUrl = this.instructorUrl + "/instructor/";
 		let instr: Instructor = new Instructor();
 		instr = instructor;
+    this.currentUrl = "http://localhost:8081/api/instructors";
 		let jsonResult: string = JSON.stringify(instr);
 		console.log("---- JSON(Instructor) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
