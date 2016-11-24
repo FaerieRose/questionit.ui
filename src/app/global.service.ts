@@ -13,6 +13,7 @@ export class GlobalService {
   private instructorID: number = 1;
   private studentID: number = -1;
   private baseUrl: string;
+  private baseUrlImage: string;
 	private languages = [];
 	private exams = [];
 
@@ -39,6 +40,10 @@ export class GlobalService {
 
   public getBaseUrl(): string {
     return this.baseUrl;
+  }
+
+  public getBaseUrlImage(): string {
+    return this.baseUrlImage;
   }
 
 	public getLanguages() {
@@ -85,8 +90,10 @@ export class GlobalService {
     console.log(hostName.substring(0,4));
 		if (hostName.substring(0,4) == "ques") {
 			this.baseUrl = "http://api.questionit.carpago.nl/api/";
+			this.baseUrlImage = "http://api.questionit.carpago.nl/images/";
 		} else {
 			this.baseUrl = "http://" + hostName + ":8081/api/";
+			this.baseUrlImage = "http://" + hostName + ":4200/assets/images/";
 		}
 		console.log("Base url: " + this.baseUrl);
 	}

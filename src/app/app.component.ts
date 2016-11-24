@@ -22,12 +22,14 @@ export class AppComponent {
   instructorName: string;
   studentId: number;
   studentName: string;
+  imageUrl: string;
 
   constructor(
       private globalService: GlobalService,
       private instructorService: InstructorService, 
       private router: Router) {
     this.upodate();
+    this.imageUrl = this.globalService.getBaseUrlImage();
   }
 
   navQuestion() {
