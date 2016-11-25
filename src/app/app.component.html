@@ -14,8 +14,16 @@
     </div>
     <div class="col-md-3 divCol divNav">
       <div id="divLogo">
-        <img src="app/images/logo_question_it_2016-11-23.png" id="logo">
+        <img src="{{ imageUrl }}logo_question_it_2016-11-23.png" id="logo">
       </div>
+<!--
+      <div id="divLogo2">
+        <img src="assets/logo_question_it_2016-11-23.png" id="logo2">
+      </div>
+      <div id="divLogo3">
+        <img src="images/logo_question_it_2016-11-23.png" id="logo3">
+      </div>
+-->
       <span *ngIf="instructorId > 0">
         <legend>Instructor: {{ instructorName }}</legend>
       </span>
