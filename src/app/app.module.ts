@@ -14,6 +14,7 @@ import { QuestionComponent }    from './question/question.component';
 import { QuestionsComponent }   from './question/questions.component';
 import { QuestionDisplayComponent } from './question/question-display.component';
 import { InstructorComponent } from './instructor/instructor.component';
+import { InstructorsComponent } from './instructor/instructors.component';
 import { StudentComponent } from './student/student.component';
 import { GlobalService }     from './global.service';
 
@@ -24,6 +25,7 @@ import { GlobalService }     from './global.service';
     QuestionsComponent,
     QuestionDisplayComponent,
     InstructorComponent,
+    InstructorsComponent,
     StudentComponent
   ],
   imports: [

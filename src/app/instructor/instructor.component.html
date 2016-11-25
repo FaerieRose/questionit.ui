@@ -65,5 +65,12 @@
 </div>
 
 
+<div *ngIf="instructorList">
+  <ul>
+    <li *ngFor="let instr of instructorList">{{ instr.id }} - {{ instr.name }}</li>
+  </ul>
+</div>
+
+
 
    
