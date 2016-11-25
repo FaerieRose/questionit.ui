@@ -57,7 +57,7 @@ export class InstructorComponent implements OnInit {
           console.log("POST SUCCEEDED");
         });
       }
-   updateFirstName($event) { this.instructor.firstName = $event.target.value; }
+   updateFirstName($event, i:number) { this.getInstructorById(i); this.instructor.firstName = $event.target.value; }
    updateLastName($event) { this.instructor.lastName = $event.target.value; }
    updateEmail($event) { this.instructor.email = $event.target.value; }
    updateID($event) { this.instructor.id = $event.target.value; }
