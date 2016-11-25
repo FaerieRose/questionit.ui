@@ -28,10 +28,6 @@
   border: 0px;
   border-radius: 1vh;
 }
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
 
 label.text {
   color: #23639E;
@@ -85,8 +81,6 @@ div.answers {
 td.answers {
   width: 80vw;
 }
-
-
 
 textarea.answers {
   display: inline-block;
