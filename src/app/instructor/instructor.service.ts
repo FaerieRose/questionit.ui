@@ -26,22 +26,17 @@ export class InstructorService {
   }
 
   getInstructors() : Observable<Instructor[]>{
-		this.currentUrl = this.instructorUrl;// + "/select/" + exam + "/" + lang + "/" + enabled + "/" + obsolete;
+		this.currentUrl = this.instructorUrl;
 		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
   postNewInstructor(instructor: Instructor) : Observable<Instructor> {
-	//	this.currentUrl = this.instructorUrl + "/creator/1/correct-answers/" + correctAnswersId;
-   // this.currentUrl = this.instructorUrl + "/instructor/";
 		let instr: Instructor = new Instructor();
 		instr = instructor;
-    this.currentUrl = "http://localhost:8081/api/instructors";
+    this.currentUrl = this.instructorUrl;
 		let jsonResult: string = JSON.stringify(instr);
 		console.log("---- JSON(Instructor) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
-    
-    
-    //.map(this.globalService.getExtractData);
 	}
 }
