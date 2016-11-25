@@ -47,27 +47,10 @@
 <div *ngIf='instructor' id="instructorlist">
     <!--<form>-->
       <legend>Instructor overview</legend>
-      <input type="number" value=1 (change)="changeId($event)">
-      Instructor ID = {{ instructor }}
-     <!--<table>
-        <tr>
-          <td> <input type="text" value="{{ instructor.lastName }}" ></td>
-          <td><input type="text" value="{{ instructor.email }}" ></td>
-          <td><input type="text" value="{{ instructor.id }}" ></td>
-          <td><input type="text" value="{{ instructor.valid }}" ></td>
-        </tr>
-     </table>-->
-
-    <!--</form>-->
-    <label class="button" id="saveInstructor">
-      <input type="button" (click)="showAllInstructors()" value="Click me!!"/>
-    </label>
 </div>
-
-
-<div *ngIf="instructorList">
+ <div *ngIf="instructorList"class="div-input-text">
   <ul>
-    <li *ngFor="let instr of instructorList">{{ instr.id }} - {{ instr.name }}</li>
+    <li *ngFor="let instr of instructorList">{{ instr.id }} - {{ instr.firstName }} - {{ instr.lastName }} - {{ instr.email }}</li>
   </ul>
 </div>
 

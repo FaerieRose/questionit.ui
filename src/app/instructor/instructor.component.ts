@@ -13,6 +13,7 @@ import { Instructor }         from './instructor';
 })
 export class InstructorComponent implements OnInit {
   instructor: Instructor;
+  instructorList: Instructor[];
 
   constructor(
           private instructorService: InstructorService,
@@ -30,6 +31,7 @@ export class InstructorComponent implements OnInit {
 
   ngOnInit() {
     this.getInstructorById(1);
+    this.getInstructorList();
    // this.instructor = this.globalService.getInstructorID();
   }
 
@@ -66,6 +68,12 @@ export class InstructorComponent implements OnInit {
       var element = document.getElementById("instructorlist").appendChild(document.createElement("article"));
       console.log("Element = " + element);
    }
+     getInstructorList() {
+    this.instructorService.getInstructors().subscribe(instructors => {
+      this.instructorList = instructors;
+      console.log(this.instructorList.length);
+    }); 
+  }
   }
 
 
