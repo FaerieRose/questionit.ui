@@ -11,6 +11,7 @@ import './rxjs-extensions';
 import { QuestionComponent }        from './question/question.component';
 import { QuestionsComponent }       from './question/questions.component';
 import { InstructorComponent }      from './instructor/instructor.component';
+import { InstructorsComponent }      from './instructor/instructors.component';
 import { StudentComponent }           from './student/student.component';
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'questions',  component: QuestionsComponent },
   { path: 'question',   component: QuestionComponent },
   { path: 'instructor', component: InstructorComponent },
+    { path: 'instructors', component: InstructorsComponent },
   { path: 'student',    component: StudentComponent }
 ];
 

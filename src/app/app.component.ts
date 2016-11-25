@@ -9,6 +9,7 @@ import { Router }            from '@angular/router';
 import { GlobalService }     from './global.service';
 import { InstructorService } from './instructor/instructor.service';
 import { Instructor }        from './instructor/instructor';
+// import { Instructors }        from './instructor/instructors';
 
 @Component({
   selector: 'app-root',

@@ -82,12 +82,6 @@ td.answers {
   width: 80vw;
 }
 
-td {
-  margin: 0;
-  border-width: 0;
-  padding: 0;
-}
-
 textarea.answers {
   display: inline-block;
   height: 6vh;

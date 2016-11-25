@@ -74,8 +74,16 @@ div.answers {
   position: relative;
 }
 
-td.answers {
-  width: 80vw;
+td.indx {
+  width: 3vw;
+}
+
+td.name {
+  width: 16vw;
+}
+
+td.mail {
+  width: 32vw;
 }
 
 td {
@@ -84,21 +92,15 @@ td {
   padding: 0;
 }
 
-textarea.answers {
+td input {
   display: inline-block;
-  height: 6vh;
-  width: 100%;
-}
-
-input.answers {
-  display: inline-block;
-  font-size: 3vh;
-  height: 3vh;
-  width: 3vh;
+  font-size: 2vh;
+  height: 4vh;
+  width: inherit;
   padding: 0;
-  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  margin: 0.5vh;     /* top right botton left */
   border-width: 0;
-  background-color: #E1F1FE;
+  background-color: #FFFFFF;
 }
 
 /* ----------------------------------------------------------------------------------- */
@@ -114,4 +116,17 @@ label.button {
   color: #fff;
   margin-top: 0.5vh;
   padding: 0 2em 0 2em;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* Try-outs:::::::::::;                                                                */
+article {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: black;
 }
