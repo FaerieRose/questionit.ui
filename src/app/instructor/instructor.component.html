@@ -43,9 +43,9 @@
   </form>
 </div>
 
-<!--
+
 <div *ngIf='instructor' id="instructorlist">
-    <form>
+    <!--<form>-->
       <legend>Instructor overview</legend>
       <input type="number" value=1 (change)="changeId($event)">
       Instructor ID = {{ instructor }}
@@ -59,41 +59,11 @@
      </table>-->
 
     <!--</form>-->
-    <!--<label class="button" id="saveInstructor">
+    <label class="button" id="saveInstructor">
       <input type="button" (click)="showAllInstructors()" value="Click me!!"/>
     </label>
-</div>-->
+</div>
 
-
-<div class="div-input-text">
-    <label class="control-input text" for="allinstructors">Overview Instructors</label><br>
-    <table>
-      <tr  *ngFor='let instructor of instructor; let i = index;' class="instructors" >
-        <td> 
-          ​<input class="instructors" type="text" disabled value="{{ i+1 }}">
-        </td>
-        <td>
-          <input class="instructors" type="text" value="instructor.id[i]"  >
-        </td>
-        <!--<td class="instructors">
-          <textarea class="control-input input-text answers" id="answer{{ i }}" (change)="updateAnswer(i, $event)" value="{{ answer }}" ></textarea><br>
-        </td>-->
-      </tr>
-    </table>
-
-    <table>
-        <tr>
-          <td> <input type="text" value="{{ instructor.lastName }}" ></td>
-          <td><input type="text" value="{{ instructor.email }}" ></td>
-          <td><input type="text" value="{{ instructor.id }}" ></td>
-          <td><input type="text" value="{{ instructor.valid }}" ></td>
-        </tr>
-     </table>
-    <label class="button" id="addAnswer">Show Instructors
-      <input type="button" (click)="addAnswer()" style="display:none" />
-    </label>
-
-  </div>
 
 
    
