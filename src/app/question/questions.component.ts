@@ -27,7 +27,7 @@ export class QuestionsComponent implements OnInit {
         private questionService  : QuestionService,
         private globalService    : GlobalService) { 
     this.languages = this.globalService.getLanguages();
-    this.exams = this.globalService.getExams();
+    this.exams.push( { "id": 0, "name":"NONE" } );
   }
 
   ngOnInit() {
@@ -41,7 +41,19 @@ export class QuestionsComponent implements OnInit {
     }); 
   }
 
-  updateLanguage($event)    { this.list.language  = EnumLanguages[parseInt($event.target.value)]; this.getQuestionList(); }
+  updateLanguage($event)    { 
+    this.list.language  = EnumLanguages[parseInt($event.target.value)];
+    this.questionService.getLevels(this.list.language).subscribe(levels => {
+      console.log(levels);
+      this.exams.length = 1;
+      for(let i=0 ; i<levels.length ; i++) {
+        this.exams.push( { "id": i+1, "name":levels[i] } );
+      }
+    })
+    this.list.exam = this.exams[0].name;
+    this.getQuestionList(); 
+  }
+
   updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];     this.getQuestionList(); }
   updateEnabled($event)     { this.list.enabled   = $event.target.value;                          this.getQuestionList(); }
   updateObsolete($event)    { this.list.obsolete  = $event.target.value;                          this.getQuestionList(); }

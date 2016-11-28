@@ -51,6 +51,14 @@ export class QuestionService {
 	}
 
 	// -------------------------------------------------------------
+	// GET levels for programming languiage
+	getLevels(lang: string) {
+		this.currentUrl = this.questionUrl + "/" + lang;
+		console.log(this.currentUrl);
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+	}
+
+	// -------------------------------------------------------------
 	// POST a question
 	postNewQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
 		this.currentUrl = this.questionUrl + "/creator/1/correct-answers/" + correctAnswersId;
