@@ -62,12 +62,12 @@ export class InstructorComponent implements OnInit {
   }
 
   updateListFirstName($event, i: number) { this.instructorList[i].firstName = $event.target.value; this.saveUpdatedInstructor(this.instructorList[i]) }
-  updateListLastName($event, i: number)  { this.instructorList[i].lastName = $event.target.value;  this.saveUpdatedInstructor(this.instructorList[i]) }
-  updateListEmail($event, i: number)     { this.instructorList[i].email = $event.target.value;     this.saveUpdatedInstructor(this.instructorList[i]) }
+  updateListLastName($event, i: number) { this.instructorList[i].lastName = $event.target.value; this.saveUpdatedInstructor(this.instructorList[i]) }
+  updateListEmail($event, i: number) { this.instructorList[i].email = $event.target.value; this.saveUpdatedInstructor(this.instructorList[i]) }
   updateFirstName($event) { this.instructor.firstName = $event.target.value; }
-  updateLastName($event)  { this.instructor.lastName = $event.target.value;  }
-  updateEmail($event)     { this.instructor.email = $event.target.value;     }
-  updatevalid($event)     { this.instructor.valid = $event.target.value;     }
+  updateLastName($event) { this.instructor.lastName = $event.target.value; }
+  updateEmail($event) { this.instructor.email = $event.target.value; }
+  updatevalid($event) { this.instructor.valid = $event.target.value; }
 
 
 }

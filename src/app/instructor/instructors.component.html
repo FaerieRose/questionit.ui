@@ -1,21 +1,21 @@
 <div>
   <div class="div-input-text">
     <label class="control-input text" for="questionlanguage">Programming Language</label>
-    <select class="control-input input-text" id="questionlanguage" (change)="updateLanguage($event)" >
+    <select class="control-input input-text" id="questionlanguage" (change)="updateLanguage($event)">
       <option *ngFor='let lang of languages' value='{{ lang.id }}' >{{ lang.name }}</option> 
     </select>
   </div>
 
   <div class="div-input-text">
     <label class="control-input text" for="questionexam">For Exam</label>
-    <select  class="control-input input-text" id="questionexam" (change)="updateExam($event)">
+    <select class="control-input input-text" id="questionexam" (change)="updateExam($event)">
       <option *ngFor='let exam of exams' value='{{ exam.id }}' >{{ exam.name }}</option> 
     </select>
   </div>
 
   <div class="div-input-text">
     <label class="control-input text" for="questionenabled">Is Enabled</label>
-    <select  class="control-input input-text" id="questionenabled" (change)="updateEnabled($event)">
+    <select class="control-input input-text" id="questionenabled" (change)="updateEnabled($event)">
       <option value='true' >TRUE</option> 
       <option value='false' >FALSE</option> 
     </select>
@@ -23,14 +23,14 @@
 
   <div class="div-input-text">
     <label class="control-input text" for="questionobsolete">Is Obsolete</label>
-    <select  class="control-input input-text" id="questionobsolete" (change)="updateObsolete($event)">
+    <select class="control-input input-text" id="questionobsolete" (change)="updateObsolete($event)">
       <option value='true' >TRUE</option> 
       <option value='false' selected>FALSE</option> 
     </select>
   </div>
 </div>
 
-<div *ngIf="instructorList"class="div-input-text">
+<div *ngIf="instructorList" class="div-input-text">
   <ul>
     <li *ngFor="let instr of instructorList">{{ instr.id }} - {{ instr.firstName }} - {{ instr.lastName }} - {{ instr.email }}</li>
   </ul>
