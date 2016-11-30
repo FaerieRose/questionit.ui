@@ -1,0 +1,11 @@
+STUDENTCLASS
+
+
+
+
+<div class="div-input-text">
+  <label class="control-input text" for="studentclassname">Select Class for Instructor to teach</label>
+  <select class="control-input input-text" (change)="updateStudentClass($event)">
+      <option *ngFor="let studcl of studentClassList"  id="studentclassname" value='{{ studcl.id }}' [selected]="studcl.id == studentClassList.name" >{{ studcl.name }}</option> 
+    </select>
+</div>
