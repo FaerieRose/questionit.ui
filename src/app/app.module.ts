@@ -8,17 +8,17 @@ import { NgModule }        from '@angular/core';
 import { FormsModule }     from '@angular/forms';
 import { HttpModule }      from '@angular/http';
 
-import { AppRoutingModule }     from './app-routing.module';
-import { AppComponent }         from './app.component';
-import { QuestionComponent }    from './question/question.component';
-import { QuestionsComponent }   from './question/questions.component';
+import { AppRoutingModule }         from './app-routing.module';
+import { AppComponent }             from './app.component';
+import { QuestionComponent }        from './question/question.component';
+import { QuestionsComponent }       from './question/questions.component';
 import { QuestionDisplayComponent } from './question/question-display.component';
-import { InstructorComponent } from './instructor/instructor.component';
-import { InstructorsComponent } from './instructor/instructors.component';
-import { StudentClassComponent } from './studentclasses/studentclass.component';
+import { InstructorComponent }      from './instructor/instructor.component';
+import { InstructorsComponent }     from './instructor/instructors.component';
+import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { BindInstructorToClassComponent } from './instructor/bindinstructortoclass.component';
-import { StudentComponent } from './student/student.component';
-import { GlobalService }     from './global.service';
+import { StudentComponent }         from './student/student.component';
+import { GlobalService }            from './global.service';
 
 @NgModule({
   declarations: [
