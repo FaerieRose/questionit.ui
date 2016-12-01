@@ -85,6 +85,21 @@ export class GlobalService {
 		}
   }
 
+	// -------------------------------------------------------------
+	// Returns the received JSON data if the response from the GET is 200, otherwise an empty JSON object
+	public getExtractVoid(res: Response) {
+		if (res.status == 200 || res.status == 202) {
+			console.log("Response from getExtractText" + res.url + ": Status: " + res.status);
+			return 1;
+		} else if (res.status == 204){
+			console.log("Response from getExtractText" + res.url + ": Status: " + res.status);
+			return -1;
+		} else {
+			console.error("Response from getExtractText " + res.url + ": Status: " + res.status);
+			return -1;
+		}
+  }
+
 	private defineBaseUrl() {
 		let hostName: string = window.location.hostname;
     console.log(hostName.substring(0,4));

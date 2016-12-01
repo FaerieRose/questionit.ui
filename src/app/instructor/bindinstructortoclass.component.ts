@@ -24,13 +24,9 @@ import { StudentClassComponent } from '../studentclasses/studentclass.component'
 })
 export class BindInstructorToClassComponent implements OnInit {
   instructor: Instructor; // Create 1 instance of instructor
-  instructors = []; // Create a Array of instructors
   instructorList: Instructor[]; //Create variable to hold all instructors Used in the HTML used in the ngFor list
-  studentclass: StudentClass; //Create 1 instance of StudentClass
+  studentClass: StudentClass; //Create 1 instance of StudentClass
   studentClassList: StudentClass[]; // Create variable to hold all studentClasses Used in the HTML used in the ngFor list
-  list = { "instructor": Instructor[0] } // Create variable list with objects of instructor
-  classList = { "studentclass": StudentClass[0] } // Create variable list with objects of studentclass
-
 
   constructor(
     private instructorService: InstructorService, // Needed to access the methods for instructor
@@ -39,16 +35,27 @@ export class BindInstructorToClassComponent implements OnInit {
   }
 
   ngOnInit() { // Like the name says this method will be executed on page load
-    this.instructorService.getInstructorsForClass(this.list.instructor).subscribe(instructors => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
+    this.instructorService.getInstructors().subscribe(instructors => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
       this.instructorList = instructors; // In the locale variable instructorList place the outcome of getInstructorsForClass
+      this.instructor = this.instructorList[0];
     });
     this.studentClassService.getStudentClasses().subscribe(studentClasses => { // Same as above but then for studentclasses
       this.studentClassList = studentClasses;  // Same as above but then for studentclasses
+      this.studentClass = this.studentClassList[0];
     });
   }
 
-  updateInstructor($event) { this.list.instructor = $event.target.value; } // Saves instructor on update
-  updateStudentClass($event) { this.classList.studentclass = $event.target.value; } //Saves studentclass on update
+  updateInstructor($event)   { 
+    this.instructorService.getInstructorById(parseInt($event.target.value)).subscribe(instructor => {
+      this.instructor = instructor;
+    });
+   } //Gets instructor on update
+      
+  updateStudentClass($event) { 
+    this.studentClassService.getStudentClassById(parseInt($event.target.value)).subscribe(studentClass => { // Same as above but then for studentclasses
+      this.studentClass = studentClass;  // Same as above but then for studentclasses
+    });
+   } //Gets studentclass on update
 
   getInstructor(id: number) {
     console.log("----IN getInstructor CREATED");
@@ -73,18 +80,8 @@ export class BindInstructorToClassComponent implements OnInit {
     });
   }
 
-  saveInstructorToClass(instructorid: number, studentclassid: number) { //Save method for saving instructor in an studentclass and posting it in the database
-    console.log("======================================================" ); // Just for checking and following
-    console.log("IN saveInstructorToClass met instructorid " + instructorid + " en met studentclass id : " + studentclassid ); // Just for checking and following
-    let studcl = this.studentClassList[0];
-    console.log("studcl.name =  " + studcl.name);
-    this.instructorService.getInstructorById(instructorid).subscribe(instructor =>{
-      this.instructor = instructor;
-      console.log("de instructor naam = " + this.instructor.firstName);
-      this.studentClassService.postInstructorToStudentClass(studcl, instructor.id).subscribe(studentclass => {
-        console.log("POST INSTRUCTOR ADDING TO CLASS SUCCEEDED");
-      });
-    })
+  saveInstructorToClass() { //Save method for saving instructor in an studentclass and posting it in the database
+    this.studentClassService.postInstructorToStudentClass(this.studentClass.id, this.instructor.id).subscribe();
   }
 
 

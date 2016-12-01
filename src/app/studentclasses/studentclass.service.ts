@@ -29,20 +29,18 @@ export class StudentClassService {
         });
     }
 
-    postInstructorToStudentClass(studentClass: StudentClass, selectedInstructorId: number): Observable<StudentClass> {
-        this.currentUrl = this.studentclassUrl + "/" + studentClass.id + "/instructor/" + selectedInstructorId;
+    postInstructorToStudentClass(studentClassID: number, instructorId: number) {
+        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/instructor/" + instructorId;
         let jsonResult: string = "{}";
         console.log("---- JSON(StudentClass) = " + jsonResult);
-        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
     }
 
 
 
     getStudentClassById(id: number): Observable<StudentClass> {
-        this.currentUrl = this.studentclassUrl; + "/" + id;
-        //this.currentUrl = "http://localhost:8081/api/studentclasses";
+        this.currentUrl = this.studentclassUrl + "/" + id;
         return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
-
     }
 
     getClassesForInstructors(classes: string): Observable<StudentClass[]> {
