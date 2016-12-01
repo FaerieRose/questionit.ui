@@ -32,7 +32,7 @@ export class InstructorComponent implements OnInit {
     //   this.instructor = null;
     this.instructorService.getInstructorById(id).subscribe(instructor => {
       if (instructor.id == 1) {
-        console.log("---- NEW INSTRUCTOR CREATED");
+        console.log("---- NEW INSTRUCTOR CREATED in instructor compoment");
         this.instructor = new Instructor();
       } else {
         this.instructor = instructor;

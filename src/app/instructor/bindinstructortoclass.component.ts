@@ -50,11 +50,43 @@ export class BindInstructorToClassComponent implements OnInit {
   updateInstructor($event) { this.list.instructor = $event.target.value; } // Saves instructor on update
   updateStudentClass($event) { this.classList.studentclass = $event.target.value; } //Saves studentclass on update
 
-  saveInstructorToClass() { //Save method for saving instructor in an studentclass and posting it in the database
-    console.log(" IN saveInstructorToClass "); // Just for checking and following
-    let instr = new Instructor();
-    instr.firstName = "test";
-    this.instructor ;
+  getInstructor(id: number) {
+    console.log("----IN getInstructor CREATED");
+    //this.instructor = null;
+    this.instructorService.getInstructorById(id).subscribe(instructor => {
+      console.log("----IN getInstructor CREATED with id: " + instructor.id);
+      if (instructor.id == -1) {
+        console.log("----NEW INSTRUCTOR CREATED");
+        this.instructor = new Instructor();
+       // this.correctAnswers = this.resetCorrectAnswers();
+    //    this.resetPossibleAnswers();
+      } else {
+        console.log("----NO NEW INSTRUCTOR CREATED");
+        this.instructor = instructor;
+        // if (this.question.possibleAnswers != undefined) {
+        //   this.possibleAnswers = this.question.possibleAnswers;
+        //   this.correctAnswers  = this.question.correctAnswers; 
+        // } else {
+        //   this.resetPossibleAnswers();
+        // }
+      }
+    });
+  }
+
+  saveInstructorToClass(instructorid: number, studentclassid: number) { //Save method for saving instructor in an studentclass and posting it in the database
+    console.log(" IN saveInstructorToClass met instructorid " +instructorid+ " en met studentclass id : " + studentclassid ); // Just for checking and following
+    //  let instr = new Instructor();
+    // let instr = this.instructor;
+  //  this.instructor=null;
+    this.getInstructor(instructorid);
+    console.log("de instructor naam = " + this.instructor.id);
+    this.instructorService.getInstructorById(instructorid).subscribe(instructor =>{
+      this.instructor = instructor;
+      console.log("de instructor naam = " + this.instructor);
+    })
+    console.log("de instructor naam = " + this.instructor.firstName);
+ //   instr.firstName = "test";
+    this.instructor;
     let studcl = this.classList.studentclass;
     console.log("We zijn een stap verder.");
 
@@ -65,7 +97,7 @@ export class BindInstructorToClassComponent implements OnInit {
 
 
 
-    this.instructorService.postNewInstructor(instr).subscribe(instructor=> {
+    this.instructorService.postNewInstructor(instr).subscribe(instructor => {
       console.log(" IN 2 saveInstructorToClass "); // Just for checking and following
       if (instructor.id > 0) {
         console.log(" IN 3 saveInstructorToClass ");

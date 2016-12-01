@@ -30,7 +30,7 @@ export class StudentClassService {
     }
 
     postInstructorToStudentClass(studentClass: StudentClass, selectedInstructorId: number): Observable<StudentClass> {
-        this.currentUrl = this.studentclassUrl + "/creator/1/correct-answers/" + selectedInstructorId;
+        this.currentUrl = this.studentclassUrl + "/" + studentClass.id + "/instructor/" + selectedInstructorId;
         let studcl: StudentClass = new StudentClass();
         studcl = studentClass;
         // studcl.correctAnswers = undefined;
