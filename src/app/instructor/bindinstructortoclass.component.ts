@@ -74,38 +74,17 @@ export class BindInstructorToClassComponent implements OnInit {
   }
 
   saveInstructorToClass(instructorid: number, studentclassid: number) { //Save method for saving instructor in an studentclass and posting it in the database
-    console.log(" IN saveInstructorToClass met instructorid " +instructorid+ " en met studentclass id : " + studentclassid ); // Just for checking and following
-    //  let instr = new Instructor();
-    // let instr = this.instructor;
-  //  this.instructor=null;
-    this.getInstructor(instructorid);
-    console.log("de instructor naam = " + this.instructor.id);
+    console.log("======================================================" ); // Just for checking and following
+    console.log("IN saveInstructorToClass met instructorid " + instructorid + " en met studentclass id : " + studentclassid ); // Just for checking and following
+    let studcl = this.studentClassList[0];
+    console.log("studcl.name =  " + studcl.name);
     this.instructorService.getInstructorById(instructorid).subscribe(instructor =>{
       this.instructor = instructor;
-      console.log("de instructor naam = " + this.instructor);
+      console.log("de instructor naam = " + this.instructor.firstName);
+      this.studentClassService.postInstructorToStudentClass(studcl, instructor.id).subscribe(studentclass => {
+        console.log("POST INSTRUCTOR ADDING TO CLASS SUCCEEDED");
+      });
     })
-    console.log("de instructor naam = " + this.instructor.firstName);
- //   instr.firstName = "test";
-    this.instructor;
-    let studcl = this.classList.studentclass;
-    console.log("We zijn een stap verder.");
-
-    console.log("in sinstr zit :" + instr);
-    console.log("in studcl zit : " + studcl);
-
-    //  this.studentClassService.postInstructorToStudentClass(studcl, instr.id)
-
-
-
-    this.instructorService.postNewInstructor(instr).subscribe(instructor => {
-      console.log(" IN 2 saveInstructorToClass "); // Just for checking and following
-      if (instructor.id > 0) {
-        console.log(" IN 3 saveInstructorToClass ");
-        this.studentClassService.postInstructorToStudentClass(studcl, instr.id).subscribe(studentclass => {
-          console.log("POST INSTRUCTOR ADDING TO CLASS SUCCEEDED");
-        });
-      }
-    });
   }
 
 
