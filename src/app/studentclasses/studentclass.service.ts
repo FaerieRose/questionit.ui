@@ -30,13 +30,8 @@ export class StudentClassService {
     }
 
     postInstructorToStudentClass(studentClass: StudentClass, selectedInstructorId: number): Observable<StudentClass> {
-        this.currentUrl = this.studentclassUrl + "/creator/1/correct-answers/" + selectedInstructorId;
-        let studcl: StudentClass = new StudentClass();
-        studcl = studentClass;
-        // studcl.correctAnswers = undefined;
-        // studcl.givenAnswers = undefined;
-        // studcl.creator = undefined;
-        let jsonResult: string = JSON.stringify(studcl);
+        this.currentUrl = this.studentclassUrl + "/" + studentClass.id + "/instructor/" + selectedInstructorId;
+        let jsonResult: string = "{}";
         console.log("---- JSON(StudentClass) = " + jsonResult);
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
     }

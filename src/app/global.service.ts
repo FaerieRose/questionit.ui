@@ -59,7 +59,7 @@ export class GlobalService {
 	public getExtractData(res: Response) {
 		console.log("Begin ExtData");
 		if (res.status == 200 || res.status == 202) {
-			console.log("Response from getExtractData " + res.url + ": Status: " + res.status);
+			console.log("Response from getExtractData " + res.url + ": Status: " + res.status + " Output "+ res);
 			return res.json();
 		} else if (res.status == 204){
 			console.log("Response from getExtractData " + res.url + ": Status: " + res.status);

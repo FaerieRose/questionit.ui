@@ -22,6 +22,8 @@ export class InstructorService {
 
 	getInstructorById(id: number): Observable<Instructor> {
 		this.currentUrl = this.instructorUrl + "/" + id;
+		console.log("----IN getInstructorById where id = " + id);
+		console.log("this.currentUrl = " + this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
