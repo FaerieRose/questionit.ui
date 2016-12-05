@@ -46,6 +46,37 @@
       </tbody>
     </table>
   </form>
+
+
+
+  <div *ngIf='studentList'>
+  <form>
+    <div class="div-input-text">
+      <label class="control-input text" for="studentname">Select Class For Student</label>
+      <select class="control-input input-text" (change)="updateStudent($event)">
+      <option *ngFor="let stud of studentList"  id="studentname" value='{{ stud.id }}'  [selected]="stud.id == studentList.firstname" >{{ stud.firstName }}</option> 
+    </select>
+    </div>
+
+    <div class="div-input-text" *ngIf='studentClassList'>
+      <label class="control-input text" for="studentclassname">Select Class for Student to teach</label>
+      <select class="control-input input-text" (change)="updateStudentClass($event)">
+    <option *ngFor="let studcl of studentClassList"  id="studentclassname" value='{{ studcl.id }}' [selected]="studcl.id == studentClassList.name" >{{ studcl.name }}</option> 
+  </select>
+    </div>
+
+    <div class="div-input-text" id="divSave">
+      <label class="button" id="saveStudentToClass">Save 
+    <input type="button" (click)="saveStudentToClass()" style="display:none"  VALUE="Refresh"/>
+  </label>
+    </div>
+
+  </form>
+</div>
+
+
+
+<!--
   <legend>Student Overview From Database</legend>
   <table style="width:100%">
     <thead>
@@ -64,4 +95,4 @@
         <td>{{ stud.email }}</td>
       </tr>
     </tbody>
-  </table>
+  </table>-->

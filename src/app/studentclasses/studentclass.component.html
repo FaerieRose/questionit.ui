@@ -19,13 +19,15 @@
     <thead>
       <tr>
 
-        <th>Class Name</th>
+        <th class="div-input-text3">Class Name</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let studcl of studentClassList; let i = index;">
  
-        <td>{{ studcl.name }}</td>
+        <!--<td>{{ studcl.name }}</td>-->
+        <td class="deze"><input type="text" value="{{ studcl.name }}" (change)="updateClassName($event,i)"></td>
+        
       </tr>
     </tbody>
   </table>
@@ -36,17 +38,17 @@
     <thead>
       <tr>
 
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email address</th>
+        <th class="div-input-text3">First Name</th>
+        <th class="div-input-text3">Last Name</th>
+        <th class="div-input-text3">Email address</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let instr of instructorList; let i = index;">
 
-        <td>{{ instr.firstName }}</td>
-        <td>{{ instr.lastName }}</td>
-        <td>{{ instr.email }}</td>
+        <td class ="deze">{{ instr.firstName }}</td>
+        <td class ="deze">{{ instr.lastName }}</td>
+        <td class ="deze">{{ instr.email }}</td>
 
       </tr>
     </tbody>

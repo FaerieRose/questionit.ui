@@ -27,6 +27,14 @@
   padding: 0.2vh 1em 0.5vh 1em;  /* top right botton left */
 
 }
+td.deze {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+  margin-top: 2px;
+      border-radius: 1vh;
+    background-color: #E1F1FE;
+}
 
 .control-input {
   margin: 0px;
@@ -39,6 +47,11 @@
 }
 
 label.text {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+}
+.div-input-text3 {
   color: #23639E;
   position: relative;
   width: 35%;
@@ -108,11 +121,11 @@ td {
 
 td input {
   display: inline-block;
-  font-size: 2vh;
-  height: 4vh;
+
+ margin: 0.5vh;     /* top right botton left */
   width: inherit;
   padding: 0;
-  margin: 0.5vh;     /* top right botton left */
+
   border-width: 0;
   background-color: #FFFFFF;
 }

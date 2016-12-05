@@ -66,6 +66,7 @@ export class StudentClassComponent implements OnInit {
       console.log("POST SUCCEEDED");
     });
   }
+  updateClassName($event, i: number) { this.studentClassList[i].name = $event.target.value; this.saveUpdatedStudentclass(this.studentClassList[i]) }
 
   saveStudentclass() {
     let instr = this.studentclass;
