@@ -25,7 +25,6 @@ export class QuestionComponent implements OnInit {
   question: Question;
   languages = [];
   exams = [];
-  instructor: number;
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
 
@@ -33,26 +32,13 @@ export class QuestionComponent implements OnInit {
         private questionService  : QuestionService,
         private answerListService: AnswerListService, 
         private globalService    : GlobalService) {
-    let lang = EnumLanguages;
-    let i = 0;
-    while (lang[i] != null) {
-      let language = { id: i, name: lang[i] };
-      this.languages.push(language);
-      i++;
-    }
-    let exams = EnumExams;
-    i = 0;
-    while (exams[i] != null) {
-      let exam = { id: i, name: exams[i] };
-      this.exams.push(exam);
-      i++;
-    }
+    this.languages = this.globalService.getLanguages();
+    this.exams = this.globalService.getExams();
     this.correctAnswers = this.resetCorrectAnswers();
   }
 
   ngOnInit() {
     this.getQuestion(1);
-    this.instructor = this.globalService.getInstructorID();
   }
 
   resetCorrectAnswers(): AnswerList {

@@ -1,1 +1,63 @@
-<input type="text" value="{{ instructor.firstName }}" >
+<div *ngIf='instructor'>
+  <form>
+    <legend>Add New instructor</legend>
+
+    <div class="div-input-text">
+      <label class="control-input text" for="instructorfirstname">First Name</label>
+      <input class="control-input input-text" type="text" id="instructorfirstname" placeholder="First Name" (change)="updateFirstName($event)"><br>
+    </div>
+    <div class="div-input-text">
+      <label class="control-input text" for="instructorlastname">Last Name</label>
+      <input class="control-input input-text" type="text" id="instructorfirstname" placeholder="Last Name" (change)="updateLastName($event)"><br>
+    </div>
+    <div class="div-input-text">
+      <label class="control-input text" for="instructoremail">Email address</label>
+      <input class="control-input input-text" type="text" id="instructoremail" placeholder="Email" (change)="updateEmail($event)"><br>
+    </div>
+    <label class="button" id="saveInstructor">Save
+      <input type="button" (click)="saveInstructor()" style="display:none"/>
+    </label>
+  </form>
+</div>
+
+<div *ngIf='instructor' id="instructorlist" class="answers">
+  <form>
+    <legend>Instructor Editor</legend>
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let instr of instructorList; let i = index;">
+          <td class="indx">{{ instr.id }}</td>
+          <td class="name"><input type="text" value="{{ instr.firstName }}" (change)="updateListFirstName($event,i)"></td>
+          <td class="name"><input type="text" value="{{ instr.lastName }}" (change)="updateListLastName($event,i)"></td>
+          <td class="mail"><input type="text" value="{{ instr.email }}" (change)="updateListEmail($event,i)"></td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+  <legend>Instructor Overview From Database</legend>
+  <table style="width:100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let instr of instructorList; let i = index;">
+        <td>{{ instr.id }}</td>
+        <td>{{ instr.firstName }}</td>
+        <td>{{ instr.lastName }}</td>
+        <td>{{ instr.email }}</td>
+      </tr>
+    </tbody>
+  </table>

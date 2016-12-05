@@ -15,10 +15,6 @@
   padding: 0.5vh 1em 0.5vh 1em;  /* top right botton left */
 }
 
-#divSave {
-  text-align: right;
-}
-
 .control-input {
   margin: 0px;
   padding: 0px 0px 0px 1em;      /* top right botton left */
@@ -80,6 +76,12 @@ div.answers {
 
 td.answers {
   width: 80vw;
+}
+
+td {
+  margin: 0;
+  border-width: 0;
+  padding: 0;
 }
 
 textarea.answers {

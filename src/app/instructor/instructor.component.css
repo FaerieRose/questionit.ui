@@ -15,10 +15,6 @@
   padding: 0.5vh 1em 0.5vh 1em;  /* top right botton left */
 }
 
-#divSave {
-  text-align: right;
-}
-
 .control-input {
   margin: 0px;
   padding: 0px 0px 0px 1em;      /* top right botton left */
@@ -78,25 +74,33 @@ div.answers {
   position: relative;
 }
 
-td.answers {
-  width: 80vw;
+td.indx {
+  width: 3vw;
 }
 
-textarea.answers {
-  display: inline-block;
-  height: 6vh;
-  width: 100%;
+td.name {
+  width: 16vw;
 }
 
-input.answers {
-  display: inline-block;
-  font-size: 3vh;
-  height: 3vh;
-  width: 3vh;
-  padding: 0;
-  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+td.mail {
+  width: 32vw;
+}
+
+td {
+  margin: 0;
   border-width: 0;
-  background-color: #E1F1FE;
+  padding: 0;
+}
+
+td input {
+  display: inline-block;
+  font-size: 2vh;
+  height: 4vh;
+  width: inherit;
+  padding: 0;
+  margin: 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: #FFFFFF;
 }
 
 /* ----------------------------------------------------------------------------------- */
@@ -112,4 +116,17 @@ label.button {
   color: #fff;
   margin-top: 0.5vh;
   padding: 0 2em 0 2em;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* Try-outs:::::::::::;                                                                */
+article {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: black;
 }

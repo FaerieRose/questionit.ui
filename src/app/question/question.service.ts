@@ -13,6 +13,9 @@ import { Observable }              from 'rxjs/Observable';
 import { GlobalService }           from '../global.service';
 import { Question }                from './question';
 
+import { EnumLanguages }   from '../enums'; 
+import { EnumExams }       from '../enums'; 
+
 @Injectable()
 export class QuestionService {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
@@ -28,21 +31,30 @@ export class QuestionService {
 	// -------------------------------------------------------------
 	// GET one question with specific id
 	getQuestion(id) : Observable<Question>{
-		this.currentUrl = this.questionUrl + "/" + id;
+		this.currentUrl = this.questionUrl + "/" + id + "/basic";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
 	// -------------------------------------------------------------
 	// GET one question exam style with specific id
 	getQuestionExam(id) : Observable<Question>{
-		this.currentUrl = this.questionUrl + "/exam/" + id;
+		this.currentUrl = this.questionUrl + "/" + id + "/exam";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
 	// -------------------------------------------------------------
 	// GET one question exam style with specific id
-	getQuestions() : Observable<Question[]>{
-		this.currentUrl = this.questionUrl;
+	getQuestions(exam: string, lang: string, enabled: boolean, obsolete: boolean) : Observable<Question[]>{
+		this.currentUrl = this.questionUrl + "/select/" + exam + "/" + lang + "/" + enabled + "/" + obsolete;
+		console.log(this.currentUrl);
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+	}
+
+	// -------------------------------------------------------------
+	// GET levels for programming languiage
+	getLevels(lang: string) {
+		this.currentUrl = this.questionUrl + "/" + lang;
+		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
