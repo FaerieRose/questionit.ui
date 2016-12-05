@@ -27,6 +27,13 @@ export class StudentService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
+	getStudentsForClass(instructor: string): Observable<Student[]> {
+		console.log(" we zitten nu in de getStudentsForClass");
+		this.currentUrl = this.studentUrl;
+		console.log(this.currentUrl);
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+	}
+
 	getStudents(): Observable<Student[]> {
 		this.currentUrl = this.studentUrl;
 		console.log(this.currentUrl);

@@ -36,7 +36,7 @@ export class StudentComponent implements OnInit {
   }
 
   updateStudent($event) {
-    console.log("----IN updateInstructor CREATED");
+    console.log("----IN updateStudent CREATED");
     this.studentService.getStudentById(parseInt($event.target.value)).subscribe(student => {
       this.student = student;
     });
@@ -116,12 +116,20 @@ export class StudentComponent implements OnInit {
 
     console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " +this.student.id)
     this.studentClassService.postStudentToStudentClass(this.studentClass.id, this.student.id).subscribe();
-    // this.getInstructorList();
-    // this.getStudentClassList();
+     this.getStudentList();
+     this.getStudentClassList();
 
   }
 updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
 updateCurrentStudent($event, i: number) { this.studentList[i].id = $event.target.value; this.student.id = this.studentList[i].id }
+   getStudentClassList() {
+    this.studentClassService.getStudentClasses().subscribe(studentclass => {
+      this.studentClassList = studentclass;
+      console.log(this.studentClassList.length);
+    });
+  }
+
+  
 
 }
 
