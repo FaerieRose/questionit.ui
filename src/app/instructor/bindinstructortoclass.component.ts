@@ -46,14 +46,16 @@ export class BindInstructorToClassComponent implements OnInit {
   }
 
   updateInstructor($event)   { 
+    console.log("----IN updateInstructor CREATED");
     this.instructorService.getInstructorById(parseInt($event.target.value)).subscribe(instructor => {
       this.instructor = instructor;
     });
    } //Gets instructor on update
       
   updateStudentClass($event) { 
-    this.studentClassService.getStudentClassById(parseInt($event.target.value)).subscribe(studentClass => { // Same as above but then for studentclasses
-      this.studentClass = studentClass;  // Same as above but then for studentclasses
+    console.log("----IN updateStudentClass CREATED :" + $event.target.value);
+    this.studentClassService.getStudentClassById(parseInt($event.target.value)).subscribe(studentclass => { // Same as above but then for studentclasses
+      this.studentClass = studentclass;  // Same as above but then for studentclasses
     });
    } //Gets studentclass on update
 
@@ -81,8 +83,9 @@ export class BindInstructorToClassComponent implements OnInit {
   }
 
   saveInstructorToClass() { //Save method for saving instructor in an studentclass and posting it in the database
+    console.log("in saveInstructorToClass Studentid =: " + this.studentClass.id + " instructorid = : " +this.instructor.id)
     this.studentClassService.postInstructorToStudentClass(this.studentClass.id, this.instructor.id).subscribe();
   }
-
-
+updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
+updateCurrentInstructor($event, i: number) { this.instructorList[i].id = $event.target.value; this.instructor.id = this.instructorList[i].id }
 }
