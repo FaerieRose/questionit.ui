@@ -16,14 +16,6 @@
       <div id="divLogo">
         <img src="{{ imageUrl }}logo_question_it_2016-11-23.png" id="logo">
       </div>
-      <!--
-      <div id="divLogo2">
-        <img src="assets/logo_question_it_2016-11-23.png" id="logo2">
-      </div>
-      <div id="divLogo3">
-        <img src="images/logo_question_it_2016-11-23.png" id="logo3">
-      </div>
--->
       <span *ngIf="instructorId > 0">
         <legend>Instructor: {{ instructorName }}</legend>
       </span>
@@ -31,13 +23,13 @@
         <legend>Student: {{ studentName }}</legend>
       </span><br>
       <legend>Navigation</legend>
-      <a class="nav-link" routerLink="/questions" routerLinkActive="active"> >> Questions</a><br>
-      <a class="nav-link" routerLink="/question" routerLinkActive="active"> >> Edit Question</a><br>
-      <a class="nav-link" routerLink="/instructors" routerLinkActive="active"> >> Instructors</a><br>
-      <a class="nav-link" routerLink="/instructor" routerLinkActive="active"> >> Instructor</a><br>
+      <a class="nav-link" routerLink="/questions"             routerLinkActive="active"> >> Questions</a><br>
+      <a class="nav-link" routerLink="/question"              routerLinkActive="active"> >> Edit Question</a><br>
+      <a class="nav-link" routerLink="/instructors"           routerLinkActive="active"> >> Instructors</a><br>
+      <a class="nav-link" routerLink="/instructor"            routerLinkActive="active"> >> Instructor</a><br>
       <a class="nav-link" routerLink="/bindinstructortoclass" routerLinkActive="active"> >> Select Teacher For Class</a><br>
-      <a class="nav-link" routerLink="/studentclasses" routerLinkActive="active"> >> studentclass</a><br>
-      <a class="nav-link" routerLink="/student" routerLinkActive="active"> >> Student</a><br>
+      <a class="nav-link" routerLink="/studentclasses"        routerLinkActive="active"> >> studentclass</a><br>
+      <a class="nav-link" routerLink="/student"               routerLinkActive="active"> >> Student</a><br>
     </div>
   </div>
 </div>

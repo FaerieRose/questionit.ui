@@ -5,7 +5,7 @@
 
 import { EnumLanguages } from '../enums'; 
 import { EnumExams }     from '../enums'; 
-import { AnswerList } from '../answerlist/answerlist';
+import { AnswerList }    from '../answerlist/answerlist';
 
 export class Question {
   id? : number;
