@@ -1,33 +1,54 @@
-STUDENTCLASS
-
-e
-
-
-<!--<div class="div-input-text">
-  <label class="control-input text" for="studentclassname">Select Class for Instructor to teach</label>
-  <select class="control-input input-text" (change)="updateStudentClass($event)">
-      <option *ngFor="let studcl of studentClassList"  id="studentclassname" value='{{ studcl.id }}' [selected]="studcl.id == studentClassList.name" >{{ studcl.name }}</option> 
-    </select>
-</div>-->
 
 <div *ngIf='studentclass'>
   <form>
-    <legend>Add New Class</legend>
-
+    <legend>Create A New Class</legend>
     <div class="div-input-text">
       <label class="control-input text" for="studentclassname">Name Of The Class</label>
       <input class="control-input input-text" type="text" id="studentclassname" placeholder="Class Name" (change)="updateStudentClass($event)"><br>
     </div>
-    <!--<div class="div-input-text">
-      <label class="control-input text" for="instructorlastname">Last Name</label>
-      <input class="control-input input-text" type="text" id="instructorfirstname" placeholder="Last Name" (change)="updateLastName($event)"><br>
-    </div>
-    <div class="div-input-text">
-      <label class="control-input text" for="instructoremail">Email address</label>
-      <input class="control-input input-text" type="text" id="instructoremail" placeholder="Email" (change)="updateEmail($event)"><br>
-    </div>-->
     <label class="button" id="saveStudentClass">Save
       <input type="button" (click)="saveStudentclass()" style="display:none"/>
     </label>
   </form>
 </div>
+
+
+
+ <legend>Available Classes </legend>
+  <table style="width:100%">
+    <thead>
+      <tr>
+
+        <th>Class Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let studcl of studentClassList; let i = index;">
+ 
+        <td>{{ studcl.name }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <legend>Available Instructors Overview </legend>
+  <table style="width:100%">
+    <thead>
+      <tr>
+
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let instr of instructorList; let i = index;">
+
+        <td>{{ instr.firstName }}</td>
+        <td>{{ instr.lastName }}</td>
+        <td>{{ instr.email }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+

@@ -81,10 +81,27 @@ export class BindInstructorToClassComponent implements OnInit {
       }
     });
   }
+    getStudentClassList() {
+    this.studentClassService.getStudentClasses().subscribe(studentclass => {
+      this.studentClassList = studentclass;
+      console.log(this.studentClassList.length);
+    });
+  }
+
+   getInstructorList() {
+    this.instructorService.getInstructors().subscribe(instructor => {
+      this.instructorList = instructor;
+      console.log(this.instructorList.length);
+    });
+  }
 
   saveInstructorToClass() { //Save method for saving instructor in an studentclass and posting it in the database
+
     console.log("in saveInstructorToClass Studentid =: " + this.studentClass.id + " instructorid = : " +this.instructor.id)
     this.studentClassService.postInstructorToStudentClass(this.studentClass.id, this.instructor.id).subscribe();
+    this.getInstructorList();
+    this.getStudentClassList();
+
   }
 updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
 updateCurrentInstructor($event, i: number) { this.instructorList[i].id = $event.target.value; this.instructor.id = this.instructorList[i].id }

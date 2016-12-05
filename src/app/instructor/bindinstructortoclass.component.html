@@ -2,24 +2,29 @@
 <!-- Author       : FaerieRose                                                        -->
 <!-- Date created : 10 Nov 2016                                                       -->
 <!-- -------------------------------------------------------------------------------- -->
-<div class="div-input-text" *ngIf='instructorList'>
-  <label class="control-input text" for="instructorname">Select Instructor for class</label>
-  <select class="control-input input-text" (change)="updateInstructor($event)">
-      <option *ngFor="let instr of instructorList"  id="instructorname" value='{{ instr.id }}' [selected]="instr.id == instructorList.firstname" >{{ instr.firstName }}</option> 
+<div *ngIf='instructorList'>
+  <form>
+    <div class="div-input-text">
+      <label class="control-input text" for="instructorname">Select Instructor for class</label>
+      <select class="control-input input-text" (change)="updateInstructor($event)">
+      <option *ngFor="let instr of instructorList"  id="instructorname" value='{{ instr.id }}'  [selected]="instr.id == instructorList.firstname" >{{ instr.firstName }}</option> 
     </select>
-</div>
+    </div>
 
-<div class="div-input-text" *ngIf='studentClassList'>
-  <label class="control-input text" for="studentclassname">Select Class for Instructor to teach</label>
-  <select class="control-input input-text" (change)="updateStudentClass($event)">
+    <div class="div-input-text" *ngIf='studentClassList'>
+      <label class="control-input text" for="studentclassname">Select Class for Instructor to teach</label>
+      <select class="control-input input-text" (change)="updateStudentClass($event)">
     <option *ngFor="let studcl of studentClassList"  id="studentclassname" value='{{ studcl.id }}' [selected]="studcl.id == studentClassList.name" >{{ studcl.name }}</option> 
   </select>
-</div>
+    </div>
 
-<div class="div-input-text" id="divSave">
-  <label class="button" id="saveInstructorToClass">Save 
-    <input type="button" (click)="saveInstructorToClass()" style="display:none" />
+    <div class="div-input-text" id="divSave">
+      <label class="button" id="saveInstructorToClass">Save 
+    <input type="button" (click)="saveInstructorToClass()" style="display:none"  onClick="history.go(0)" VALUE="Refresh"/>
   </label>
+    </div>
+
+  </form>
 </div>
 
 <!--<div class="div-input-text">
@@ -31,23 +36,24 @@
 
 
 
-<div class="div-input-text" *ngIf='instructorList'>
-  <table style="width:100%">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email address</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let instr of instructorList; let i = index;">
-        <td>{{ instr.id }}</td>
-        <td>{{ instr.firstName }}</td>
-        <td>{{ instr.lastName }}</td>
-        <td>{{ instr.email }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<legend>Instructor + Classes</legend>
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Classes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let instr of instructorList; let i = index;">
+      <td class="div-input-text2">{{ instr.firstName }}</td>
+      <td class="div-input-text2">{{ instr.lastName }}</td>
+      <td>
+        <ul style="list-style-type:none" >
+          <li class="div-input-text2" *ngFor="let cls of instr.studentClasses">{{ cls.name }}</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
