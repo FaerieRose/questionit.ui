@@ -61,6 +61,10 @@ export class StudentComponent implements OnInit {
       this.studentClassList = studentClasses;  // Same as above but then for studentclasses
       this.studentClass = this.studentClassList[0];
     });
+    this.studentService.getStudents().subscribe(students => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
+      this.studentList = students; // In the locale variable instructorList place the outcome of getInstructorsForClass
+      // this.student = this.studentList[0];
+    });
   }
   getStudentList() {
     this.studentService.getStudents().subscribe(students => {
@@ -95,6 +99,7 @@ export class StudentComponent implements OnInit {
 
     this.studentService.postNewStudent(stud).subscribe(Student => {
       console.log("POST SUCCEEDED");
+      this.getStudentList();
     });
   }
 

@@ -34,13 +34,15 @@ export class StudentService {
 	}
 
 	postNewStudent(student: Student): Observable<Student> {
+		console.log(" we zitten nu in de postNewStudent");
 		//	this.currentUrl = this.studentUrl + "/creator/1/correct-answers/" + correctAnswersId;
 		// this.currentUrl = this.studentUrl + "/student/";
-		let instr: Student = new Student();
-		instr = student;
-		this.currentUrl = "http://localhost:8081/api/students";
-		let jsonResult: string = JSON.stringify(instr);
-		console.log("---- JSON(Student) = " + jsonResult);
+		let stud: Student = new Student();
+		stud = student;
+		this.currentUrl = this.studentUrl;
+		// this.currentUrl = "http://localhost:8081/api/students";
+		let jsonResult: string = JSON.stringify(stud);
+		console.log("---- JSON(Student) = " + jsonResult + " met currentUrl =:" + this.currentUrl);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 
 
