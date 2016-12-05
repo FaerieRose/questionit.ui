@@ -69,6 +69,10 @@ export class StudentClassService {
         console.log("---- JSON(StudentClass) = " + jsonResult);
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
     }
+  
+//   updateLastName($event) { this.instructor.lastName = $event.target.value; }
+//   updateEmail($event) { this.instructor.email = $event.target.value; }
+//   updatevalid($event) { this.instructor.valid = $event.target.value; }
 
     // getStudentClasses(studentClass: string): Observable<StudentClass[]> {
     // 	this.currentUrl = this.studentclassUrl;

@@ -13,6 +13,7 @@ import { StudentClass } from './studentclass';
 @Component({
   selector: 'my-studentclass',
   templateUrl: './studentclass.component.html',
+  styleUrls: ['studentclass.component.css'],
   providers: [StudentClassService]
 
 })
@@ -72,6 +73,7 @@ export class StudentClassComponent implements OnInit {
   //   updateLastName($event) { this.studentclass.lastName = $event.target.value; }
   //   updateEmail($event) { this.studentclass.email = $event.target.value; }
   //   updatevalid($event) { this.studentclass.valid = $event.target.value; }
-  updateStudentClass($event) { this.list.studentclass = $event.target.value; }
+  // updateStudentClass($event) { this.list.studentclass = $event.target.value; }
+    updateStudentClass($event) {console.log ("inhoud is " + $event.target.value); this.studentclass.name = $event.target.value; }
 
 }
