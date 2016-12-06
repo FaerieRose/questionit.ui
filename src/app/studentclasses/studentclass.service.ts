@@ -30,7 +30,17 @@ export class StudentClassService {
     }
 
     postInstructorToStudentClass(studentClassID: number, instructorId: number) {
+        console.log("in de postInstructorToStudentClass met studentClassID : " + studentClassID + " en met instructorId : "+ instructorId)
         this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/instructor/" + instructorId;
+        let jsonResult: string = "{}";
+        console.log("---- JSON(StudentClass) = " + jsonResult);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+    }
+
+    
+    postStudentToStudentClass(studentClassID: number, studentId: number) {
+        console.log("in de postStudentToStudentClass met studentClassID : " + studentClassID + " en met studentId : "+ studentId)
+        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/student/" + studentId;
         let jsonResult: string = "{}";
         console.log("---- JSON(StudentClass) = " + jsonResult);
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
@@ -39,23 +49,28 @@ export class StudentClassService {
 
 
     getStudentClassById(id: number): Observable<StudentClass> {
+        console.log(" we zitten nu in de getStudentClassById met id " + id);
         this.currentUrl = this.studentclassUrl + "/" + id;
+        console.log("this.currentUrl = " + this.currentUrl);
         return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
     }
 
     getClassesForInstructors(classes: string): Observable<StudentClass[]> {
+        console.log(" we zitten nu in de getClassesForInstructors");
         this.currentUrl = this.studentclassUrl;
         console.log(this.currentUrl);
         return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
     }
 
     getStudentClasses(): Observable<StudentClass[]> {
+        console.log(" we zitten nu in de getStudentClasses");
         this.currentUrl = this.studentclassUrl;
         console.log(this.currentUrl);
         return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
     }
 
     postNewStudentclass(studentClass: StudentClass): Observable<StudentClass> {
+        console.log(" we zitten nu in de postNewStudentclass");
         let studcl: StudentClass = new StudentClass();
         studcl = studentClass;
         this.currentUrl = this.studentclassUrl;
@@ -63,6 +78,10 @@ export class StudentClassService {
         console.log("---- JSON(StudentClass) = " + jsonResult);
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
     }
+  
+//   updateLastName($event) { this.instructor.lastName = $event.target.value; }
+//   updateEmail($event) { this.instructor.email = $event.target.value; }
+//   updatevalid($event) { this.instructor.valid = $event.target.value; }
 
     // getStudentClasses(studentClass: string): Observable<StudentClass[]> {
     // 	this.currentUrl = this.studentclassUrl;

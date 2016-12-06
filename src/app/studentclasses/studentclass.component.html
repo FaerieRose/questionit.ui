@@ -1,11 +1,56 @@
-STUDENTCLASS
 
-
-
-
-<div class="div-input-text">
-  <label class="control-input text" for="studentclassname">Select Class for Instructor to teach</label>
-  <select class="control-input input-text" (change)="updateStudentClass($event)">
-      <option *ngFor="let studcl of studentClassList"  id="studentclassname" value='{{ studcl.id }}' [selected]="studcl.id == studentClassList.name" >{{ studcl.name }}</option> 
-    </select>
+<div *ngIf='studentclass'>
+  <form>
+    <legend>Create A New Class</legend>
+    <div class="div-input-text">
+      <label class="control-input text" for="studentclassname">Name Of The Class</label>
+      <input class="control-input input-text" type="text" id="studentclassname" placeholder="Class Name" (change)="updateStudentClass($event)"><br>
+    </div>
+    <label class="button" id="saveStudentClass">Save
+      <input type="button" (click)="saveStudentclass()" style="display:none"/>
+    </label>
+  </form>
 </div>
+
+
+
+ <legend>Available Classes </legend>
+  <table style="width:100%">
+    <thead>
+      <tr>
+
+        <th class="div-input-text3">Class Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let studcl of studentClassList; let i = index;">
+ 
+        <!--<td>{{ studcl.name }}</td>-->
+        <td class="deze"><input type="text" value="{{ studcl.name }}" (change)="updateClassName($event,i)"></td>
+        
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+  <legend>Available Instructors Overview </legend>
+  <table style="width:100%">
+    <thead>
+      <tr>
+
+        <th class="div-input-text3">First Name</th>
+        <th class="div-input-text3">Last Name</th>
+        <th class="div-input-text3">Email address</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let instr of instructorList; let i = index;">
+
+        <td class ="deze">{{ instr.firstName }}</td>
+        <td class ="deze">{{ instr.lastName }}</td>
+        <td class ="deze">{{ instr.email }}</td>
+
+      </tr>
+    </tbody>
+  </table>
+
