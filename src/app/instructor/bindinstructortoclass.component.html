@@ -48,11 +48,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let instr of instructorList; let i = index;">
-      <td class="div-input-text3">{{ instr.firstName }}</td>
-      <td class="div-input-text3">{{ instr.lastName }}</td>
+      <td class="div-input-text3"><div class="marcel">{{ instr.firstName }}</div></td>
+      <td class="div-input-text3"><div class="marcel">{{ instr.lastName }}</div></td>
       <td class="div-input-text3">
         <ul style="list-style-type:none" >
-          <li class="deze" *ngFor="let cls of instr.studentClasses">{{ cls.name }}</li>
+          <li class="deze" *ngFor="let cls of instr.studentClasses"><div class="marcel">{{ cls.name }}</div> </li>
         </ul>
       </td>
     </tr>
