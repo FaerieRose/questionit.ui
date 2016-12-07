@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------- */
-/* Author       : Rik & Rémond                                                           */
+/* Author       : Rik & Rémond                                                         */
 /* Date created : 30 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +17,6 @@ import { StudentClassComponent } from '../studentclasses/studentclass.component'
 
 @Component({
   selector: 'my-bindinstructortoclass',
-  // templateUrl: './bindinstructortoclass.component.html',
   templateUrl: 'bindinstructortoclass.component.html',
   styleUrls: ['instructor.component.css'],
   providers: [StudentClassService, InstructorService]
@@ -35,14 +34,8 @@ export class BindInstructorToClassComponent implements OnInit {
   }
 
   ngOnInit() { // Like the name says this method will be executed on page load
-    this.instructorService.getInstructors().subscribe(instructors => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
-      this.instructorList = instructors; // In the locale variable instructorList place the outcome of getInstructorsForClass
-      this.instructor = this.instructorList[0];
-    });
-    this.studentClassService.getStudentClasses().subscribe(studentClasses => { // Same as above but then for studentclasses
-      this.studentClassList = studentClasses;  // Same as above but then for studentclasses
-      this.studentClass = this.studentClassList[0];
-    });
+    this.getInstructorList(true);
+    this.getStudentClassList(true);
   }
 
   updateInstructor($event)   { 
@@ -52,37 +45,40 @@ export class BindInstructorToClassComponent implements OnInit {
    } //Gets instructor on update
       
   updateStudentClass($event) { 
-    this.studentClassService.getStudentClassById(parseInt($event.target.value)).subscribe(studentClass => { // Same as above but then for studentclasses
-      this.studentClass = studentClass;  // Same as above but then for studentclasses
+    this.studentClassService.getStudentClassById(parseInt($event.target.value)).subscribe(studentclass => { // Same as above but then for studentclasses
+      this.studentClass = studentclass;  // Same as above but then for studentclasses
     });
    } //Gets studentclass on update
 
-  getInstructor(id: number) {
-    console.log("----IN getInstructor CREATED");
-    //this.instructor = null;
-    this.instructorService.getInstructorById(id).subscribe(instructor => {
-      console.log("----IN getInstructor CREATED with id: " + instructor.id);
-      if (instructor.id == -1) {
-        console.log("----NEW INSTRUCTOR CREATED");
-        this.instructor = new Instructor();
-       // this.correctAnswers = this.resetCorrectAnswers();
-    //    this.resetPossibleAnswers();
-      } else {
-        console.log("----NO NEW INSTRUCTOR CREATED");
-        this.instructor = instructor;
-        // if (this.question.possibleAnswers != undefined) {
-        //   this.possibleAnswers = this.question.possibleAnswers;
-        //   this.correctAnswers  = this.question.correctAnswers; 
-        // } else {
-        //   this.resetPossibleAnswers();
-        // }
-      }
+  getStudentClassList(setStudentClass: boolean) {
+    this.studentClassService.getStudentClasses().subscribe(studentClasses => { // Same as above but then for studentclasses
+      this.studentClassList = studentClasses;  // Same as above but then for studentclasses
+      if (setStudentClass) this.studentClass = this.studentClassList[0];
+    });
+  }
+
+  getInstructorList(setInstructor: boolean) {
+    this.instructorService.getInstructors().subscribe(instructors => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
+      this.instructorList = instructors; // In the locale variable instructorList place the outcome of getInstructorsForClass
+      if (setInstructor) this.instructor = this.instructorList[0];
     });
   }
 
   saveInstructorToClass() { //Save method for saving instructor in an studentclass and posting it in the database
-    this.studentClassService.postInstructorToStudentClass(this.studentClass.id, this.instructor.id).subscribe();
+    console.log("in saveInstructorToClass Studentid =: " + this.studentClass.id + " instructorid = : " +this.instructor.id)
+    this.studentClassService.postInstructorToStudentClass(this.studentClass.id, this.instructor.id).subscribe(nr => {
+      this.getInstructorList(false);
+      this.getStudentClassList(false);
+    });
   }
 
-
+  updateCurrentStudentClass($event, i: number) { 
+    this.studentClassList[i].id = $event.target.value; 
+    this.studentClass.id = this.studentClassList[i].id;
+  }
+  
+  updateCurrentInstructor($event, i: number) { 
+    this.instructorList[i].id = $event.target.value;
+    this.instructor.id = this.instructorList[i].id;
+  }
 }

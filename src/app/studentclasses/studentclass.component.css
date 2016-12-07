@@ -4,7 +4,7 @@
 /* ----------------------------------------------------------------------------------- */
 /* Layout input text fields                                                            */
 .div-input-text {
-  /*display: inline-block;*/
+  display: inline-block;
   cursor: pointer;
   position: relative;
   border-radius: 1vh;
@@ -12,33 +12,28 @@
   text-align: justify;
   width: 100%;
   margin-top: 0.5vh;
-  padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+  padding: 0.5vh 1em 0.5vh 1em;  /* top right botton left */
 }
-.marcel{
-   /*display: inline-block;*/
-  display: inline-grid;
+
+.div-input-text2 {
+  display: inline-block;
   cursor: pointer;
   position: relative;
   border-radius: 1vh;
-  background-color: #fff;
-  /*background-color: #0000FE;*/
+  background-color: #E1F1FE;
   text-align: justify;
-  width: 100%;
-  margin-top: 0.3vh;
-  /*padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+ 
+  margin-top: 0.5vh;
+  padding: 0.2vh 1em 0.5vh 1em;  /* top right botton left */
 
 }
-.div-input-text3 {
-  /*display: inline-block;*/
-  display: inline-grid;
-  cursor: pointer;
+td.deze {
+  color: #23639E;
   position: relative;
-  border-radius: 1vh;
-  background-color: #E1F1FE;
-  text-align: justify;
-  width: 27%;
-  margin-top: 0.5vh;
-  padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+  width: 35%;
+  margin-top: 2px;
+      border-radius: 1vh;
+    background-color: #E1F1FE;
 }
 
 .control-input {
@@ -51,15 +46,12 @@
   border-radius: 1vh;
 }
 
-td.deze {
-  /*color: #23639E;*/
+label.text {
+  color: #23639E;
   position: relative;
   width: 35%;
-  margin-top: 2px;
-      border-radius: 1vh;
-    background-color: #E1F1FE;
 }
-label.text {
+.div-input-text3 {
   color: #23639E;
   position: relative;
   width: 35%;
@@ -98,6 +90,7 @@ textarea#questionexplanation {
 }
 
 
+
 /* ----------------------------------------------------------------------------------- */
 /* Layout answers                                                                      */
 div.answers {
@@ -125,21 +118,14 @@ td {
   border-width: 0;
   padding: 0;
 }
-ul { 
-    display: block;
-    list-style-type: none;
-    margin-top: 1em;
-    margin-bottom: 1 em;
-    margin-left: 0;
-    margin-right: 0;
-    padding-left: 0px;
-}
+
 td input {
   display: inline-block;
 
+ margin: 0.5vh;     /* top right botton left */
   width: inherit;
   padding: 0;
-  margin: 0.5vh;     /* top right botton left */
+
   border-width: 0;
   background-color: #FFFFFF;
 }

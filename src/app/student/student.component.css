@@ -4,7 +4,7 @@
 /* ----------------------------------------------------------------------------------- */
 /* Layout input text fields                                                            */
 .div-input-text {
-  display: inline-block;
+  /*display: inline-block;*/
   cursor: pointer;
   position: relative;
   border-radius: 1vh;
@@ -12,7 +12,20 @@
   text-align: justify;
   width: 100%;
   margin-top: 0.5vh;
-  padding: 0.5vh 1em 0.5vh 1em;  /* top right botton left */
+  padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+}
+
+.div-input-text3 {
+  /*display: inline-block;*/
+  display: inline-grid;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 27%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
 }
 
 .control-input {
@@ -25,6 +38,14 @@
   border-radius: 1vh;
 }
 
+td.deze {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+  margin-top: 2px;
+      border-radius: 1vh;
+    background-color: #E1F1FE;
+}
 label.text {
   color: #23639E;
   position: relative;
@@ -74,8 +95,16 @@ div.answers {
   position: relative;
 }
 
-td.answers {
-  width: 80vw;
+td.indx {
+  width: 3vw;
+}
+
+td.name {
+  width: 16vw;
+}
+
+td.mail {
+  width: 32vw;
 }
 
 td {
@@ -84,21 +113,24 @@ td {
   padding: 0;
 }
 
-textarea.answers {
+td input {
   display: inline-block;
-  height: 6vh;
-  width: 100%;
+
+  width: inherit;
+  padding: 0;
+  margin: 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: #FFFFFF;
 }
 
-input.answers {
-  display: inline-block;
-  font-size: 3vh;
-  height: 3vh;
-  width: 3vh;
-  padding: 0;
-  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
-  border-width: 0;
-  background-color: #E1F1FE;
+ul { 
+    display: block;
+    list-style-type: none;
+    margin-top: 1em;
+    margin-bottom: 1 em;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0px;
 }
 
 /* ----------------------------------------------------------------------------------- */
@@ -114,4 +146,17 @@ label.button {
   color: #fff;
   margin-top: 0.5vh;
   padding: 0 2em 0 2em;
+}
+
+/* ----------------------------------------------------------------------------------- */
+/* Try-outs:::::::::::;                                                                */
+article {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: black;
 }
