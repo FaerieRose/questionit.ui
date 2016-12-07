@@ -46,7 +46,6 @@ export class QuestionService {
 	// GET one question exam style with specific id
 	getQuestions(exam: string, lang: string, enabled: boolean, obsolete: boolean) : Observable<Question[]>{
 		this.currentUrl = this.questionUrl + "/select/" + exam + "/" + lang + "/" + enabled + "/" + obsolete;
-		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
@@ -54,7 +53,6 @@ export class QuestionService {
 	// GET levels for programming languiage
 	getLevels(lang: string) {
 		this.currentUrl = this.questionUrl + "/" + lang;
-		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
