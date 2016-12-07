@@ -99,6 +99,14 @@ export class StudentComponent implements OnInit {
     });
   }
 
+  removeStudentFromClass(studentId: number, studentClassId : number){
+    console.log("IN removeStudentFromClass with studentId " + studentId + " and studentClassId :" + studentClassId);
+    this.studentClassService.removeStudentFromClass(studentClassId,studentId);
+    // this.studentClassService.getStudentClassById(studentClassId);
+    // console.log("  this.student.id = "+this.student.id);
+
+  }
+
   saveStudent() {
     let stud = this.student; 
     console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = "+this.student.id);

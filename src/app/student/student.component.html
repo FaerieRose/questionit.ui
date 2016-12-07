@@ -88,7 +88,9 @@
         <td class="div-input-text3"><div class="marcel">{{ cls.name }}</div></td>
         <td class="div-input-text3">
           <ul style="list-style-type:none">
-            <li  *ngFor="let stud of cls.students"><div class="marcel">{{ stud.firstName }} {{ stud.lastName }} </div></li>
+            <li  *ngFor="let stud of cls.students"><div class="marcel">{{ stud.firstName }} {{ stud.lastName }} </div><label class="button" id="removeStudent">Remove
+      <input type="button"  (click)="removeStudentFromClass(stud.id, cls.id)" style="display:none"/>
+    </label></li>
           </ul>
         </td>
       </tr>
