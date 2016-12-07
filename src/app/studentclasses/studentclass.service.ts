@@ -48,7 +48,7 @@ export class StudentClassService {
 
     removeStudentFromClass(studentClassID: number, studentId: number) {
         console.log("in de removeStudentFromClass in studentCLASS met studentClassID : " + studentClassID + " en met studentId : "+ studentId)
-        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/student/" + studentId;
+        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/studentremove/" + studentId;
         let jsonResult: string = "{}";
         console.log("---- JSON(StudentClass) = " + jsonResult);
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);

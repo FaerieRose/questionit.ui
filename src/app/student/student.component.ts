@@ -101,7 +101,12 @@ export class StudentComponent implements OnInit {
 
   removeStudentFromClass(studentId: number, studentClassId : number){
     console.log("IN removeStudentFromClass with studentId " + studentId + " and studentClassId :" + studentClassId);
-    this.studentClassService.removeStudentFromClass(studentClassId,studentId);
+    this.studentClassService.getStudentClassById(studentClassId);
+    // this.studentService.getStudentById(studentId);
+    this.studentClassService.removeStudentFromClass(studentClassId,studentId).subscribe(StudentClass =>{
+      console.log("POST SUCCEEDED");
+      this.getStudentList();
+    });
     // this.studentClassService.getStudentClassById(studentClassId);
     // console.log("  this.student.id = "+this.student.id);
 
