@@ -85,10 +85,10 @@
     </thead>
     <tbody>
       <tr *ngFor="let cls of studentClassList; let i = index;">
-        <td class="div-input-text3">{{ cls.name }}</td>
+        <td class="div-input-text3"><div class="marcel">{{ cls.name }}</div></td>
         <td class="div-input-text3">
           <ul style="list-style-type:none">
-            <li  *ngFor="let stud of cls.students">{{ stud.firstName }} {{ stud.lastName }} </li>
+            <li  *ngFor="let stud of cls.students"><div class="marcel">{{ stud.firstName }} {{ stud.lastName }} </div></li>
           </ul>
         </td>
       </tr>

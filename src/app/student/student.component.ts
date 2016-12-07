@@ -63,7 +63,7 @@ export class StudentComponent implements OnInit {
     });
     this.studentService.getStudents().subscribe(students => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
       this.studentList = students; // In the locale variable instructorList place the outcome of getInstructorsForClass
-      // this.student = this.studentList[0];
+      this.student = this.studentList[0];
     });
   }
   getStudentList() {
@@ -88,6 +88,11 @@ export class StudentComponent implements OnInit {
     });
   }
 
+
+  wisstudent
+  StudentClassService
+  delete
+
   saveUpdatedStudent(instr: Student) {
     this.studentService.postNewStudent(instr).subscribe(Student => {
       console.log("POST SUCCEEDED");
@@ -95,8 +100,9 @@ export class StudentComponent implements OnInit {
   }
 
   saveStudent() {
-    let stud = this.student;
-
+    let stud = this.student; 
+    console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = "+this.student.id);
+    if (stud.id == 1) {stud.id=null;this.student.id=null;console.log ("zou moeten zijn genulled");console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = "+this.student.id);}
     this.studentService.postNewStudent(stud).subscribe(Student => {
       console.log("POST SUCCEEDED");
       this.getStudentList();

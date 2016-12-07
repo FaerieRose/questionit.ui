@@ -14,6 +14,20 @@
   margin-top: 0.5vh;
   padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
 }
+.marcel{
+   /*display: inline-block;*/
+  display: inline-grid;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #fff;
+  /*background-color: #0000FE;*/
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.3vh;
+  /*padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+
+}
 
 .div-input-text3 {
   /*display: inline-block;*/
