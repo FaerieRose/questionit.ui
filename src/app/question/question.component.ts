@@ -88,7 +88,7 @@ export class QuestionComponent implements OnInit {
   updateExam($event)        { this.question.forExam              = $event.target.value; }
   updateName($event)        { this.question.name                 = $event.target.value; }
   updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
-  updateExplanation($event) { this.question.explantionAnswer     = $event.target.value; }
+  updateExplanation($event) { this.question.explanationAnswer    = $event.target.value; }
   updateQuestion($event)    { this.question.question             = $event.target.value; }
   updateAnswer(id: number, $event) {
     this.possibleAnswers[id] =  $event.target.value;

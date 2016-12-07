@@ -13,7 +13,7 @@ export class Question {
   programmingLanguage: EnumLanguages;
   forExam: EnumExams;
   question: string;
-  explantionAnswer: string;
+  explanationAnswer: string;
   typeOfQuestion: string;
   creator: any;
   correctAnswers: AnswerList;
