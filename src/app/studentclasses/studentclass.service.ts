@@ -29,7 +29,7 @@ export class StudentClassService {
         });
     }
 
-    postInstructorToStudentClass(studentClassID: number, instructorId: number) {
+    postInstructorToStudentClass(studentClassID: number, instructorId: number): Observable<number> {
         console.log("in de postInstructorToStudentClass met studentClassID : " + studentClassID + " en met instructorId : "+ instructorId)
         this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/instructor/" + instructorId;
         let jsonResult: string = "{}";
