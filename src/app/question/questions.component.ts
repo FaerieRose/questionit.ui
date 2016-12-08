@@ -58,9 +58,9 @@ export class QuestionsComponent implements OnInit {
   }
 
   editQuestion(questionId){
-     console.log(questionId);
+     //navigate to /question/:questionId
      this.router.navigate(['/question/', questionId.toString()]);
-     console.log(questionId.toString());
+     //console.log(questionId.toString());
   }
 
   updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];     this.getQuestionList(); }

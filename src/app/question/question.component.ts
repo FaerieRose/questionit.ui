@@ -41,9 +41,13 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
+    //get question id from routeParams
+    //Takes INITIAL value of routeParams. Works only if there is no direct routing from one question to another
     let id = +this.route.snapshot.params['id'];
     console.log(id);
     this.getQuestion(id);
+    // alternative, takes ACTUAL value of routeParams (not tested):
+    // this.route.params.switchMap((params: Params) => this.getQuestion(+params['id']));
     
   }
 
