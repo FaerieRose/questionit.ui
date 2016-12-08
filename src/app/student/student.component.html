@@ -44,7 +44,7 @@
           <td class="name"><input type="text" value="{{ stud.firstName }}" (change)="updateListFirstName($event,i)"></td>
           <td class="name"><input type="text" value="{{ stud.lastName }}" (change)="updateListLastName($event,i)"></td>
           <td class="mail"><input type="text" value="{{ stud.email }}" (change)="updateListEmail($event,i)"></td>
-          <label class="button" id="removeStudent">Remove<input type="button" (click)="removeStudent(stud.id)" style="display:none"/></label>
+          <td class="name"><label class="button" id="removeStudent">Remove<input type="button" (click)="removeStudent(stud.id)" style="display:none"/></label></td>
         </tr>
       </tbody>
     </table>

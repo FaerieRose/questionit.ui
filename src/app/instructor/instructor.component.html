@@ -29,6 +29,7 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email Address</th>
+           <th>Remove Instructor</th>
         </tr>
       </thead>
       <tbody>
@@ -36,6 +37,7 @@
           <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ instr.firstName }}" (change)="updateListFirstName($event,i)"></div></td>
           <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ instr.lastName }}" (change)="updateListLastName($event,i)"></div></td>
           <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ instr.email }}" (change)="updateListEmail($event,i)"></div></td>
+          <td class="div-input-text3"><label class="button" id="removeInstructor">Remove<input type="button" (click)="removeInstructor(instr.id)" style="display:none"/></label></td>
         </tr>
       </tbody>
     </table>
