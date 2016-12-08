@@ -3,6 +3,8 @@
 /* Date created : 10 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+//import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Question }                 from './question';
 import { QuestionService }          from './question.service';
@@ -29,6 +31,7 @@ export class QuestionComponent implements OnInit {
   correctAnswers: AnswerList;
 
   constructor(
+        private route: ActivatedRoute,
         private questionService  : QuestionService,
         private answerListService: AnswerListService, 
         private globalService    : GlobalService) {
@@ -38,7 +41,10 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getQuestion(1);
+    let id = +this.route.snapshot.params['id'];
+    console.log(id);
+    this.getQuestion(id);
+    
   }
 
   resetCorrectAnswers(): AnswerList {

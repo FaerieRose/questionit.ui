@@ -19,7 +19,7 @@ import { StudentClassComponent} from './studentclasses/studentclass.component';
 const routes: Routes = [
   { path: '', redirectTo: '/questions', pathMatch: 'full' },
   { path: 'questions', component: QuestionsComponent },
-  { path: 'question', component: QuestionComponent },
+  { path: 'question/:id', component: QuestionComponent },
   { path: 'instructor', component: InstructorComponent },
   { path: 'instructors', component: InstructorsComponent },
   { path: 'bindinstructortoclass', component: BindInstructorToClassComponent },
