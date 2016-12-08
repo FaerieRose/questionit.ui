@@ -34,6 +34,15 @@ export class StudentService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
+	removeStudent(studentId: number){
+		console.log("in de removeStudent in STUDENT met studentId : "+ studentId)
+        this.currentUrl = this.studentUrl + "/removestudent/"+ studentId;
+        let jsonResult: string = "{}";
+        console.log("---- JSON(Student) = " + jsonResult);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+
+	}
+
 	getStudents(): Observable<Student[]> {
 		this.currentUrl = this.studentUrl;
 		console.log(this.currentUrl);

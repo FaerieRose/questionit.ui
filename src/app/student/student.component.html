@@ -26,6 +26,7 @@
 
 <div *ngIf='student' id="studentlist" class="answers">
   <form>
+     <div class="div-input-text">
     <legend>Student Editor</legend>
     <table style="width:100%">
       <thead>
@@ -34,6 +35,7 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email address</th>
+           <th>Remove Student</th>
         </tr>
       </thead>
       <tbody>
@@ -42,9 +44,11 @@
           <td class="name"><input type="text" value="{{ stud.firstName }}" (change)="updateListFirstName($event,i)"></td>
           <td class="name"><input type="text" value="{{ stud.lastName }}" (change)="updateListLastName($event,i)"></td>
           <td class="mail"><input type="text" value="{{ stud.email }}" (change)="updateListEmail($event,i)"></td>
+          <label class="button" id="removeStudent">Remove<input type="button" (click)="removeStudent(stud.id)" style="display:none"/></label>
         </tr>
       </tbody>
     </table>
+     </div>
   </form>
 
 

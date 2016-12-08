@@ -99,23 +99,26 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  removeStudentFromClass(studentId: number, studentClassId : number){
+  removeStudentFromClass(studentId: number, studentClassId: number) {
     console.log("IN removeStudentFromClass with studentId " + studentId + " and studentClassId :" + studentClassId);
     this.studentClassService.getStudentClassById(studentClassId);
-    // this.studentService.getStudentById(studentId);
-    this.studentClassService.removeStudentFromClass(studentClassId,studentId).subscribe(StudentClass =>{
+    this.studentClassService.removeStudentFromClass(studentClassId, studentId).subscribe(StudentClass => {
       console.log("POST SUCCEEDED");
       this.getStudentList();
     });
-    // this.studentClassService.getStudentClassById(studentClassId);
-    // console.log("  this.student.id = "+this.student.id);
-
   }
-
+  removeStudent(studentId: number) {
+    console.log("IN removeStudent with studentId " + studentId);
+    this.studentService.getStudentById(studentId);
+    this.studentService.removeStudent(studentId).subscribe(Student => {
+      console.log("POST SUCCEEDED");
+      this.getStudentList();
+    });
+  }
   saveStudent() {
-    let stud = this.student; 
-    console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = "+this.student.id);
-    if (stud.id == 1) {stud.id=null;this.student.id=null;console.log ("zou moeten zijn genulled");console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = "+this.student.id);}
+    let stud = this.student;
+    console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = " + this.student.id);
+    if (stud.id == 1) { stud.id = null; this.student.id = null; console.log("zou moeten zijn genulled"); console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = " + this.student.id); }
     this.studentService.postNewStudent(stud).subscribe(Student => {
       console.log("POST SUCCEEDED");
       this.getStudentList();
@@ -131,24 +134,24 @@ export class StudentComponent implements OnInit {
   updateID($event) { this.student.id = $event.target.value; }
   updatevalid($event) { this.student.valid = $event.target.value; }
 
-    saveStudentToClass() { //Save method for saving instructor in an studentclass and posting it in the database
+  saveStudentToClass() { //Save method for saving instructor in an studentclass and posting it in the database
 
-    console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " +this.student.id)
+    console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " + this.student.id)
     this.studentClassService.postStudentToStudentClass(this.studentClass.id, this.student.id).subscribe();
-     this.getStudentList();
-     this.getStudentClassList();
+    this.getStudentList();
+    this.getStudentClassList();
 
   }
-updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
-updateCurrentStudent($event, i: number) { this.studentList[i].id = $event.target.value; this.student.id = this.studentList[i].id }
-   getStudentClassList() {
+  updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
+  updateCurrentStudent($event, i: number) { this.studentList[i].id = $event.target.value; this.student.id = this.studentList[i].id }
+  getStudentClassList() {
     this.studentClassService.getStudentClasses().subscribe(studentclass => {
       this.studentClassList = studentclass;
       console.log(this.studentClassList.length);
     });
   }
 
-  
+
 
 }
 
