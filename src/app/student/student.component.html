@@ -75,22 +75,33 @@
     </form>
   </div>
 
-  <legend>Classes With Their Students</legend>
+   <legend>Classes With Their Students</legend>
   <table style="width:100%">
     <thead>
       <tr>
         <th>Class Name</th>
         <th>Students</th>
+        <th>Remove From Class</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let cls of studentClassList; let i = index;">
-        <td class="div-input-text3"><div class="marcel">{{ cls.name }}</div></td>
+        <td class="div-input-text3">
+          <div class="marcel">{{ cls.name }}</div>
+        </td>
         <td class="div-input-text3">
           <ul style="list-style-type:none">
-            <li  *ngFor="let stud of cls.students"><div class="marcel">{{ stud.firstName }} {{ stud.lastName }} </div><label class="button" id="removeStudent">Remove
-      <input type="button"  (click)="removeStudentFromClass(stud.id, cls.id)" style="display:none"/>
-    </label></li>
+            <div class="marcel">
+              <li class="marcel" *ngFor="let stud of cls.students">{{ stud.firstName }} {{ stud.lastName }}
+              </li>
+              </div>
+          </ul>
+        </td>
+        <td class="div-input-text3">
+          <ul style="list-style-type:none">
+            <li *ngFor="let stud of cls.students">
+              <label class="button" id="removeStudentFromClass">Remove<input type="button" (click)="removeStudentFromClass(stud.id, cls.id)" style="display:none"/></label>
+            </li>
           </ul>
         </td>
       </tr>
