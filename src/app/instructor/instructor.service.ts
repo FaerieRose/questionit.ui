@@ -55,6 +55,8 @@ export class InstructorService {
 		console.log("---- JSON(instructorId) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
   }
+
+
 }
 
 

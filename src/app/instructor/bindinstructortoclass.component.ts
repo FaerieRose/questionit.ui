@@ -72,6 +72,19 @@ export class BindInstructorToClassComponent implements OnInit {
     });
   }
 
+    removeInstructorFromClass(instructorId: number, studentClassId : number){
+    console.log("IN removeInstructorFromClass with instructorId " + instructorId + " and studentClassId :" + studentClassId);
+    this.studentClassService.getStudentClassById(studentClassId);
+    // this.studentService.getStudentById(studentId);
+    this.studentClassService.removeInstructorFromClass(studentClassId,instructorId).subscribe(StudentClass =>{
+      console.log("POST SUCCEEDED");
+      this.getInstructorList(true);
+    });
+    // this.studentClassService.getStudentClassById(studentClassId);
+    // console.log("  this.student.id = "+this.student.id);
+
+  }
+
   updateCurrentStudentClass($event, i: number) { 
     this.studentClassList[i].id = $event.target.value; 
     this.studentClass.id = this.studentClassList[i].id;

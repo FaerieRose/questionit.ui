@@ -53,6 +53,13 @@ export class StudentClassService {
         console.log("---- JSON(StudentClass) = " + jsonResult);
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
     }
+    removeInstructorFromClass(studentClassID: number, instructorId: number) {
+        console.log("in de removeInstructorFromClass in studentCLASS met studentClassID : " + studentClassID + " en met instructorId : "+ instructorId)
+        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/instructorremove/" + instructorId;
+        let jsonResult: string = "{}";
+        console.log("---- JSON(StudentClass) = " + jsonResult);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+    }
 
 
 
