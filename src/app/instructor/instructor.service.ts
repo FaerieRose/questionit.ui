@@ -40,12 +40,12 @@ export class InstructorService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
-	removeInstructor(instructorId: number){
-		console.log("in de removeStudent in INSTRUCTOR met instructorId : "+ instructorId)
-        this.currentUrl = this.instructorUrl + "/removeinstructor/"+ instructorId;
-        let jsonResult: string = "{}";
-        console.log("---- JSON(Instructor) = " + jsonResult);
-        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+	removeInstructor(instructorId: number) {
+		console.log("in de removeStudent in INSTRUCTOR met instructorId : " + instructorId)
+		this.currentUrl = this.instructorUrl + "/removeinstructor/" + instructorId;
+		let jsonResult: string = "{}";
+		console.log("---- JSON(Instructor) = " + jsonResult);
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
 
 	}
 	postNewInstructor(instructor: Instructor): Observable<Instructor> {
@@ -57,13 +57,13 @@ export class InstructorService {
 		console.log("---- JSON(Instructor) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
-	  postInstructorId(instructorId: Number) {
-		  console.log(" we zitten nu in de postInstructorId");
-    this.currentUrl = this.instructorUrl;
+	postInstructorId(instructorId: Number) {
+		console.log(" we zitten nu in de postInstructorId");
+		this.currentUrl = this.instructorUrl;
 		let jsonResult: string = JSON.stringify(instructorId);
 		console.log("---- JSON(instructorId) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
-  }
+	}
 
 
 }

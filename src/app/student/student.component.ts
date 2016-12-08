@@ -89,9 +89,7 @@ export class StudentComponent implements OnInit {
   }
 
 
-  wisstudent
-  StudentClassService
-  delete
+
 
   saveUpdatedStudent(instr: Student) {
     this.studentService.postNewStudent(instr).subscribe(Student => {

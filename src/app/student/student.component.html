@@ -10,7 +10,7 @@
     </div>
     <div class="div-input-text">
       <label class="control-input text" for="studentlastname">Last Name</label>
-      <input class="control-input input-text" type="text" id="studentfirstname" placeholder="Last Name" (change)="updateLastName($event)"><br>
+      <input class="control-input input-text" type="text" id="studentlastname" placeholder="Last Name" (change)="updateLastName($event)"><br>
     </div>
     <div class="div-input-text">
       <label class="control-input text" for="studentemail">Email address</label>
@@ -38,9 +38,15 @@
       </thead>
       <tbody>
         <tr *ngFor="let stud of studentList; let i = index;">
-          <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ stud.firstName }}" (change)="updateListFirstName($event,i)"></div></td>
-          <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ stud.lastName }}"(change)="updateListLastName($event,i)"></div></td>
-          <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ stud.email }}"(change)="updateListEmail($event,i)"></div></td>
+          <td class="div-input-text3">
+            <div class="marcel"><input type="text" value="{{ stud.firstName }}" (change)="updateListFirstName($event,i)"></div>
+          </td>
+          <td class="div-input-text3">
+            <div class="marcel"><input type="text" value="{{ stud.lastName }}" (change)="updateListLastName($event,i)"></div>
+          </td>
+          <td class="div-input-text3">
+            <div class="marcel"><input type="text" value="{{ stud.email }}" (change)="updateListEmail($event,i)"></div>
+          </td>
           <td class="div-input-text3"><label class="button" id="removeStudent">Remove<input type="button" (click)="removeStudent(stud.id)" style="display:none"/></label></td>
         </tr>
       </tbody>
@@ -59,7 +65,7 @@
       </div>
 
       <div class="div-input-text" *ngIf='studentClassList'>
-        <label class="control-input text" for="studentclassname">Select Class for Student to teach</label>
+        <label class="control-input text" for="studentclassname">Select Class for Student To Attend</label>
         <select class="control-input input-text" (change)="updateStudentClass($event)">
     <option *ngFor="let studcl of studentClassList"  id="studentclassname" value='{{ studcl.id }}' [selected]="studcl.id == studentClassList.name" >{{ studcl.name }}</option> 
   </select>
@@ -68,14 +74,13 @@
       <div class="div-input-text" id="divSave">
         <label class="button" id="saveStudentToClass">Save 
     <input type="button" (click)="saveStudentToClass()" style="display:none"  VALUE="Refresh"/>
-      <!--<input type="button" (click)="saveStudentToClass()" style="display:none"  onClick="history.go(0)" VALUE="Refresh"/>-->
   </label>
       </div>
 
     </form>
   </div>
 
-   <legend>Classes With Their Students</legend>
+  <legend>Classes With Their Students</legend>
   <table style="width:100%">
     <thead>
       <tr>
@@ -94,7 +99,7 @@
             <div class="marcel">
               <li class="marcel" *ngFor="let stud of cls.students">{{ stud.firstName }} {{ stud.lastName }}
               </li>
-              </div>
+            </div>
           </ul>
         </td>
         <td class="div-input-text3">
@@ -109,7 +114,7 @@
   </table>
 
 
-<!--
+  <!--
   <legend>Students With Their Classes</legend>
   <table style="width:100%">
     <thead>
