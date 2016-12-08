@@ -26,7 +26,6 @@
     <table style="width:100%">
       <thead>
         <tr>
-          <th>ID</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email Address</th>
@@ -34,10 +33,9 @@
       </thead>
       <tbody>
         <tr *ngFor="let instr of instructorList; let i = index;">
-          <td class="indx">{{ instr.id }}</td>
-          <td class="name"><input type="text" value="{{ instr.firstName }}" (change)="updateListFirstName($event,i)"></td>
-          <td class="name"><input type="text" value="{{ instr.lastName }}" (change)="updateListLastName($event,i)"></td>
-          <td class="mail"><input type="text" value="{{ instr.email }}" (change)="updateListEmail($event,i)"></td>
+          <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ instr.firstName }}" (change)="updateListFirstName($event,i)"></div></td>
+          <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ instr.lastName }}" (change)="updateListLastName($event,i)"></div></td>
+          <td class="div-input-text3"><div class="marcel"><input type="text" value="{{ instr.email }}" (change)="updateListEmail($event,i)"></div></td>
         </tr>
       </tbody>
     </table>
@@ -46,7 +44,7 @@
   <table style="width:100%">
     <thead>
       <tr>
-        <th>ID</th>
+
         <th>First Name</th>
         <th>Last Name</th>
         <th>Email address</th>
@@ -54,10 +52,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let instr of instructorList; let i = index;">
-        <td>{{ instr.id }}</td>
-        <td>{{ instr.firstName }}</td>
-        <td>{{ instr.lastName }}</td>
-        <td>{{ instr.email }}</td>
+        <td class="div-input-text3"><div class="marcel">{{ instr.firstName }}</div></td>
+        <td class="div-input-text3"><div class="marcel">{{ instr.lastName }}</div></td>
+        <td class="div-input-text3"><div class="marcel">{{ instr.email }}</div></td>
       </tr>
     </tbody>
   </table>
