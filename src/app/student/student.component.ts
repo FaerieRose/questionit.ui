@@ -22,6 +22,7 @@ import { Student } from './student';
 })
 export class StudentComponent implements OnInit {
   student: Student;
+  newstudent:Student;
   studentList: Student[];
   studentClass: StudentClass; //Create 1 instance of StudentClass
   studentClassList: StudentClass[]; // Create variable to hold all studentClasses Used in the HTML used in the ngFor list
@@ -63,7 +64,7 @@ export class StudentComponent implements OnInit {
     });
     this.studentService.getStudents().subscribe(students => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
       this.studentList = students; // In the locale variable instructorList place the outcome of getInstructorsForClass
-      this.student = this.studentList[0];
+      this.newstudent = this.studentList[0];
     });
   }
   getStudentList() {
@@ -134,8 +135,8 @@ export class StudentComponent implements OnInit {
 
   saveStudentToClass() { //Save method for saving instructor in an studentclass and posting it in the database
 
-    console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " + this.student.id)
-    this.studentClassService.postStudentToStudentClass(this.studentClass.id, this.student.id).subscribe();
+    console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " + this.newstudent.id)
+    this.studentClassService.postStudentToStudentClass(this.studentClass.id, this.newstudent.id).subscribe();
     this.getStudentList();
     this.getStudentClassList();
 
