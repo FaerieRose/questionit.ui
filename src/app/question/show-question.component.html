@@ -31,9 +31,16 @@
         </td>
       </tr>
     </table>
-    <label class="button" id="submitAnswer">Submit Answer
-      <input type="button" (click)="submitAnswer()" style="display:none" />
-    </label>
+    <div *ngIf='question.id > 1'>
+      <label class="button" id="previousQuestion">Previous Question
+        <input type="button" (click)="gotoPreviousQuestion()" style="display:none" />
+      </label>
+    </div>
+    <div *ngIf='question.id < 2'>
+      <label class="button" id="nextQuestion">Next Question
+        <input type="button" (click)="gotoNextQuestion()" style="display:none" />
+      </label>
+    </div>
   </div>
 
 </div>

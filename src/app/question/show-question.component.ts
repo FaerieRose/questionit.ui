@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------------- */
-/* Author       : FaerieRose                                                           */
-/* Date created : 10 Nov 2016                                                          */
+/* Author       : Bas Smulderd                                                         */
+/* Date created : 9 Dec 2016                                                           */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
 
@@ -34,7 +34,7 @@ export class ShowQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getQuestion(1);
+    this.getQuestion(2);
   }
 
   resetCorrectAnswers(): AnswerList {
@@ -122,5 +122,14 @@ export class ShowQuestionComponent implements OnInit {
       }
     });
   }
+
+  gotoPreviousQuestion() {
+    this.getQuestion(this.question.id - 1);
+  }
+
+  gotoNextQuestion() {
+    this.getQuestion(this.question.id + 1);
+  }
+
 
 }
