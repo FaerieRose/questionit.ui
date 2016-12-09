@@ -8,25 +8,20 @@ import { RouterModule, Routes } from '@angular/router';
 
 import './rxjs-extensions';
 
-import { QuestionComponent } from './question/question.component';
+import { QuestionComponent }     from './question/question.component';
 import { ShowQuestionComponent } from './question/show-question.component';
-import { QuestionsComponent } from './question/questions.component';
-import { InstructorComponent } from './instructor/instructor.component';
-import { InstructorsComponent } from './instructor/instructors.component';
-import { BindInstructorToClassComponent } from './instructor/bindinstructortoclass.component';
-import { StudentComponent } from './student/student.component';
-import { StudentClassComponent} from './studentclasses/studentclass.component';
+import { QuestionsComponent }    from './question/questions.component';
+import { StudentComponent }      from './student/student.component';
+import { StudentClassComponent}  from './studentclasses/studentclass.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/questions', pathMatch: 'full' },
-  { path: 'questions', component: QuestionsComponent },
-  { path: 'question', component: QuestionComponent },
-  { path: 'showquestion', component: ShowQuestionComponent },
-  { path: 'instructor', component: InstructorComponent },
-  { path: 'instructors', component: InstructorsComponent },
-  { path: 'bindinstructortoclass', component: BindInstructorToClassComponent },
+  { path: 'questions',      component: QuestionsComponent },
+  { path: 'question',       component: QuestionComponent },
+  { path: 'showquestion',   component: ShowQuestionComponent },
+  { path: 'instructor',     loadChildren: 'app/instructor/instructor.module#InstructorModule' },
   { path: 'studentclasses', component: StudentClassComponent },
-  { path: 'student', component: StudentComponent }
+  { path: 'student',        component: StudentComponent }
 ];
 
 @NgModule({
