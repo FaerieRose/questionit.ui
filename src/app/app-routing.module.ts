@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'questions', component: QuestionsComponent },
   { path: 'question', component: QuestionComponent },
   { path: 'showquestion', component: ShowQuestionComponent },
+  { path: 'showquestion/:id', component: ShowQuestionComponent },
   { path: 'instructor', component: InstructorComponent },
   { path: 'instructors', component: InstructorsComponent },
   { path: 'bindinstructortoclass', component: BindInstructorToClassComponent },

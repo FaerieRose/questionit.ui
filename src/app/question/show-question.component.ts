@@ -1,8 +1,9 @@
 /* ----------------------------------------------------------------------------------- */
-/* Author       : Bas Smulderd                                                         */
+/* Author       : Bas Smulders                                                         */
 /* Date created : 9 Dec 2016                                                           */
 /* ----------------------------------------------------------------------------------- */
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit }        from '@angular/core';
+import { ActivatedRoute, Params }   from '@angular/router';
 
 import { Question }                 from './question';
 import { QuestionService }          from './question.service';
@@ -21,27 +22,17 @@ import { AnswerListService }        from '../answerlist/answerlist.service';
 export class ShowQuestionComponent implements OnInit {
   question: Question;
   possibleAnswers: string[] = [ "" ];
-  correctAnswers: AnswerList;
   givenAnswers: AnswerList;
 
   constructor(
         private questionService  : QuestionService,
         private answerListService: AnswerListService, 
         private globalService    : GlobalService) {
-    this.correctAnswers = this.resetCorrectAnswers();
-    this.givenAnswers = this.resetGivenAnswers();
-    
   }
 
   ngOnInit() {
-    this.getQuestion(2);
-  }
-
-  resetCorrectAnswers(): AnswerList {
-    let correctAnswers = new AnswerList();
-    correctAnswers.id = -1;
-    correctAnswers.answers = [ false, false, false, false, false, false, false, false, false, false ];
-    return correctAnswers;
+    console.log(params['id'])
+    this.getQuestion(params['id']);
   }
 
   resetGivenAnswers(): AnswerList {
@@ -50,6 +41,7 @@ export class ShowQuestionComponent implements OnInit {
     givenAnswers.answers = [ false, false, false, false, false, false, false, false, false, false ];
     return givenAnswers;
   }
+
   resetPossibleAnswers() {
     while (this.possibleAnswers.length > 0) {
       this.possibleAnswers.pop();
@@ -64,17 +56,17 @@ export class ShowQuestionComponent implements OnInit {
 
   getQuestion(id: number) {
     this.question = null;
-    this.questionService.getQuestion(id).subscribe(question => {
+    this.questionService.getQuestionExam(id).subscribe(question => {
       if (question.id == -1) {
-        console.log("----NEW QUESTION CREATED");
+        console.log("----NO QUESTION AVAILABLE");
         this.question = new Question();
-        this.correctAnswers = this.resetCorrectAnswers();
+        this.givenAnswers = this.resetGivenAnswers();
         this.resetPossibleAnswers();
       } else {
         this.question = question;
         if (this.question.possibleAnswers != undefined) {
           this.possibleAnswers = this.question.possibleAnswers;
-          this.correctAnswers  = this.question.correctAnswers; 
+          this.givenAnswers  = this.resetGivenAnswers(); 
         } else {
           this.resetPossibleAnswers();
         }
@@ -86,30 +78,12 @@ export class ShowQuestionComponent implements OnInit {
     this.possibleAnswers.push("");
   }
 
-  //updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
-  //updateExam($event)        { this.question.forExam              = $event.target.value; }
   updateName($event)        { this.question.name                 = $event.target.value; }
   updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
-  //updateExplanation($event) { this.question.explanationAnswer    = $event.target.value; }
   updateQuestion($event)    { this.question.question             = $event.target.value; }
   updateAnswer(id: number, $event) {
     this.possibleAnswers[id] =  $event.target.value;
     this.question.possibleAnswers = this.possibleAnswers; 
-  }
-  updateCorrectAnswer(id: number, $event) {
-    this.correctAnswers.answers[id] = $event.target.checked;
-    this.question.correctAnswers = this.correctAnswers;
-  }
-
-  saveQuestion() {
-    let qstn = this.question;
-    this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
-      if (answerListId > 0) {
-        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
-          console.log("POST SUCCEEDED");
-        });
-      }
-    });
   }
   
   saveGivenAnswers() {

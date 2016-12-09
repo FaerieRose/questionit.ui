@@ -27,6 +27,7 @@ export class QuestionComponent implements OnInit {
   exams = [];
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
+  
 
   constructor(
         private questionService  : QuestionService,

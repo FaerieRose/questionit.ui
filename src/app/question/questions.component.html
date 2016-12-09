@@ -32,6 +32,9 @@
 
 <div *ngIf="questionList">
   <ul>
-    <li *ngFor="let qstn of questionList">{{ qstn.id }} - {{ qstn.name }}</li>
+    <li *ngFor="let qstn of questionList"><a href="{{ qstn.id }}">{{ qstn.id }} - {{ qstn.name }}</a></li>
   </ul>
+
+
 </div>
+
