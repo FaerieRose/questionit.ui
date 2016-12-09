@@ -12,13 +12,10 @@ import { GlobalService }            from '../global.service';
 import { AnswerList }               from '../answerlist/answerlist';
 import { AnswerListService }        from '../answerlist/answerlist.service';
 
-import { EnumLanguages }   from '../enums'; 
-import { EnumExams }       from '../enums'; 
-
 @Component({
-  selector: 'my-question',
+  selector: 'my-show-question',
   templateUrl: 'show-question.component.html',
-  styleUrls: [ 'show-question.component.css' ],
+  styleUrls: [ 'question.component.css' ],
   providers: [ QuestionService, AnswerListService ]
 })
 export class ShowQuestionComponent implements OnInit {
