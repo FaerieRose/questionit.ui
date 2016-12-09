@@ -16,6 +16,7 @@ import { InstructorsComponent } from './instructor/instructors.component';
 import { BindInstructorToClassComponent } from './instructor/bindinstructortoclass.component';
 import { StudentComponent } from './student/student.component';
 import { StudentClassComponent} from './studentclasses/studentclass.component';
+import { AttemptScoreComponent} from './attempt/attemptscore.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/questions', pathMatch: 'full' },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'instructors', component: InstructorsComponent },
   { path: 'bindinstructortoclass', component: BindInstructorToClassComponent },
   { path: 'studentclasses', component: StudentClassComponent },
-  { path: 'student', component: StudentComponent }
+  { path: 'student', component: StudentComponent },
+  { path: 'attemptscore/:id', component: AttemptScoreComponent }
 ];
 
 @NgModule({
