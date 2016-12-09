@@ -1,0 +1,54 @@
+<!-- -------------------------------------------------------------------------------- -->
+<!-- Author       : Bas Smulders                                                      -->
+<!-- Date created : 8 Dec 2016                                                        -->
+<!-- -------------------------------------------------------------------------------- -->
+<div *ngIf='question'>
+  <legend>{{ question.name }}</legend>
+
+  <div class="div-input-text">
+    <label class="control-input text" for="questiontype">Type of Question</label>
+    <input class="control-input input-text" type="text" id="questiontype" placeholder="Type" value="{{ question.typeOfQuestion }}" (change)="updateType($event)"><br>
+  </div>
+
+  <div class="div-input-text">
+    <div class="divHalf1">
+      <label class="control-input text" for="question">Question</label><br> 
+      ​<textarea class="control-input input-text" id="question" placeholder="Question" value="{{ question.question }}" (change)="updateQuestion($event)" ></textarea>
+    </div>
+    <div class="divHalf2">
+      <question-display [question]="question.question"></question-display>
+    </div>
+  </div>
+
+  <div class="div-input-text">
+    <label class="control-input text" for="questionanswers">Answers</label><br>
+    <table>
+      <tr  *ngFor='let answer of possibleAnswers; let i = index;' class="answers" >
+        <td> 
+          ​<input class="answers" type="text" disabled value="{{ i+1 }}">
+        </td>
+        <td>
+          <input class="answers" type="checkbox" [checked]="correctAnswers.answers[i]" (change)="updateCorrectAnswer(i, $event)" >
+        </td>
+        <td class="answers">
+          <textarea class="control-input input-text answers" id="answer{{ i }}" (change)="updateAnswer(i, $event)" value="{{ answer }}" ></textarea><br>
+        </td>
+      </tr>
+    </table>
+    <label class="button" id="addAnswer">Add Answer
+      <input type="button" (click)="addAnswer()" style="display:none" />
+    </label>
+
+  </div>
+
+  <div class="div-input-text">
+    <label class="control-input text" for="questionexplanation">Explanation Answer</label><br> 
+    ​<textarea class="control-input input-text" id="questionexplanation" placeholder="Explanation" (change)="updateExplanation($event)" value="{{ question.explanationAnswer }}" ></textarea>
+  </div>
+
+  <div class="div-input-text" id="divSave">
+    <label class="button" id="saveQuestion">Save 
+      <input type="button" (click)="saveQuestion()" style="display:none" />
+    </label>
+  </div>
+</div>

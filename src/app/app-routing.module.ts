@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'instructor', component: InstructorComponent },
   { path: 'instructors', component: InstructorsComponent },
   { path: 'bindinstructortoclass', component: BindInstructorToClassComponent },
-   { path: 'studentclasses', component: StudentClassComponent },
+  { path: 'studentclasses', component: StudentClassComponent },
   { path: 'student', component: StudentComponent }
 ];
 
