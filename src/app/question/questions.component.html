@@ -32,7 +32,7 @@
 
 <div *ngIf="questionList">
   <ul>
-    <li *ngFor="let qstn of questionList"><a href="{{ qstn.id }}">{{ qstn.id }} - {{ qstn.name }}</a></li>
+    <li *ngFor="let qstn of questionList" (click)="editQuestion(qstn.id)">{{ qstn.id }} - {{ qstn.name }}</li>
   </ul>
 
 
