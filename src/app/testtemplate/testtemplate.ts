@@ -14,7 +14,7 @@ import { Question }    from '../question/question';
 import { EnumLanguages } from '../enums'; 
 import { EnumExams }     from '../enums';
 
-export class testTemplate {
+export class TestTemplate {
     id? : number;
     name : string;
     programmingLanguage: EnumLanguages;

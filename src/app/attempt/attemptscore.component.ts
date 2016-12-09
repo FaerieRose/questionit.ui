@@ -3,7 +3,7 @@
 /* Date created : 09 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
-//import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 //import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Attempt }                 from './attempt';
@@ -12,7 +12,7 @@ import { Attempt }                 from './attempt';
 
 //import { GlobalService }            from '../global.service';
 //import { AnswerList }               from '../answerlist/answerlist';
-//import { AnswerListService }        from '../answerlist/answerlist.service';
+import { AttemptService }        from '../attempt/attempt.service';
 
 //import { EnumLanguages }   from '../enums'; 
 //import { EnumExams }       from '../enums'; 
@@ -21,7 +21,7 @@ import { Attempt }                 from './attempt';
   selector: 'my-question',
   templateUrl: 'attemptscore.component.html',
   //styleUrls: [ 'attemptscore.component.css' ],
-  providers: [ /*QuestionService, AnswerListService*/ ]
+  providers: [ AttemptService /*, AnswerListService*/ ]
 })
 export class AttemptScoreComponent implements OnInit {
 //   question: Question;
@@ -33,12 +33,13 @@ attempt: Attempt;
 
   constructor(
         private route: ActivatedRoute,
-        // private questionService  : QuestionService,
+        private attemptService  : AttemptService,
         // private answerListService: AnswerListService, 
-        private globalService    : GlobalService) {
-    this.languages = this.globalService.getLanguages();
-    this.exams = this.globalService.getExams();
-    this.correctAnswers = this.resetCorrectAnswers();
+        //private globalService    : GlobalService
+        ) {
+    //this.languages = this.globalService.getLanguages();
+    //this.exams = this.globalService.getExams();
+    //this.correctAnswers = this.resetCorrectAnswers();
   }
 
   ngOnInit() {
@@ -54,8 +55,9 @@ attempt: Attempt;
 
 
   getAttempt(id) {
-
-
-
+    this.attemptService.getAttempt(id).subscribe(attempt => { this.attempt = attempt;
+      console.log(this.attempt.id);
+          }); 
   }
 
+}

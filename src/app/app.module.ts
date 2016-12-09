@@ -19,6 +19,7 @@ import { InstructorsComponent }     from './instructor/instructors.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { BindInstructorToClassComponent } from './instructor/bindinstructortoclass.component';
 import { StudentComponent }         from './student/student.component';
+import { AttemptScoreComponent }    from './attempt/attemptscore.component';
 import { GlobalService }            from './global.service';
 
 @NgModule({
@@ -32,7 +33,8 @@ import { GlobalService }            from './global.service';
     InstructorComponent,
     InstructorsComponent,
     StudentClassComponent,
-    StudentComponent
+    StudentComponent,
+    AttemptScoreComponent
   ],
   imports: [
     BrowserModule,
