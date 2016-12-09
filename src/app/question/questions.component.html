@@ -32,6 +32,6 @@
 
 <div *ngIf="questionList">
   <ul>
-    <li *ngFor="let qstn of questionList">{{ qstn.id }} - {{ qstn.name }}</li>
+    <li *ngFor="let qstn of questionList" (click)="editQuestion(qstn.id)">{{ qstn.id }} - {{ qstn.name }}</li>
   </ul>
 </div>

@@ -3,6 +3,8 @@
 /* Date created : 23 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }     from '@angular/core';
+import { Router }            from '@angular/router';
+
 
 import { Question }              from './question';
 import { QuestionService }       from './question.service';
@@ -25,7 +27,8 @@ export class QuestionsComponent implements OnInit {
 
   constructor(
         private questionService  : QuestionService,
-        private globalService    : GlobalService) { 
+        private globalService    : GlobalService,
+        private router: Router) { 
     this.languages = this.globalService.getLanguages();
     this.exams.push( { "id": 0, "name":"NONE" } );
   }
@@ -52,6 +55,12 @@ export class QuestionsComponent implements OnInit {
     })
     this.list.exam = this.exams[0].name;
     this.getQuestionList(); 
+  }
+
+  editQuestion(questionId){
+     //navigate to /question/:questionId
+     this.router.navigate(['/question/', questionId.toString()]);
+     //console.log(questionId.toString());
   }
 
   updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];     this.getQuestionList(); }
