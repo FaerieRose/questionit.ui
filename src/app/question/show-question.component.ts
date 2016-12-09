@@ -31,8 +31,9 @@ export class ShowQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(params['id'])
-    this.getQuestion(params['id']);
+    //console.log(params['id'])
+    //this.getQuestion(params['id']);
+    this.getQuestion(2);
   }
 
   resetGivenAnswers(): AnswerList {
@@ -86,16 +87,16 @@ export class ShowQuestionComponent implements OnInit {
     this.question.possibleAnswers = this.possibleAnswers; 
   }
   
-  saveGivenAnswers() {
-    let qstn = this.question;
-    this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
-      if (answerListId > 0) {
-        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
-          console.log("POST SUCCEEDED");
-        });
-      }
-    });
-  }
+  // saveGivenAnswers() {
+  //   let qstn = this.question;
+  //   this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+  //     if (answerListId > 0) {
+  //       this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
+  //         console.log("POST SUCCEEDED");
+  //       });
+  //     }
+  //   });
+  // }
 
   gotoPreviousQuestion() {
     this.getQuestion(this.question.id - 1);
