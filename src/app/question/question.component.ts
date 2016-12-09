@@ -29,6 +29,7 @@ export class QuestionComponent implements OnInit {
   exams = [];
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
+  
 
   constructor(
         private route: ActivatedRoute,

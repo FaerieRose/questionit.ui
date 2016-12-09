@@ -10,10 +10,6 @@ import { HttpModule }      from '@angular/http';
 
 import { AppRoutingModule }         from './app-routing.module';
 import { AppComponent }             from './app.component';
-import { QuestionComponent }        from './question/question.component';
-import { QuestionsComponent }       from './question/questions.component';
-import { QuestionDisplayComponent } from './question/question-display.component';
-import { ShowQuestionComponent }    from './question/show-question.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { StudentComponent }         from './student/student.component';
 import { AttemptScoreComponent }    from './attempt/attemptscore.component';
@@ -22,10 +18,6 @@ import { GlobalService }            from './global.service';
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent,
-    QuestionsComponent,
-    QuestionDisplayComponent,
-    ShowQuestionComponent,
     StudentClassComponent,
     StudentComponent,
     AttemptScoreComponent
