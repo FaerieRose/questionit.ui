@@ -59,7 +59,7 @@ export class QuestionsComponent implements OnInit {
 
   editQuestion(questionId){
      //navigate to /question/:questionId
-     this.router.navigate(['/question/', questionId.toString()]);
+     this.router.navigate(['/question/', questionId]);
      //console.log(questionId.toString());
   }
 

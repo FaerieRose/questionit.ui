@@ -3,7 +3,8 @@
 <!-- Date created : 10 Nov 2016                                                       -->
 <!-- -------------------------------------------------------------------------------- -->
 <div *ngIf='question'>
-  <legend>Edit Question</legend>
+  <div *ngIf="question.id == null"><legend>New Question</legend></div>
+  <div *ngIf="question.id != null"><legend>Edit Question</legend></div>
   <div class="div-input-text">
     <label class="control-input text" for="questionname">Question name</label>
     <input class="control-input input-text" type="text" id="questionname" placeholder="Name" value="{{ question.name }}" (change)="updateName($event)"><br>

@@ -72,22 +72,40 @@ export class QuestionComponent implements OnInit {
 
   getQuestion(id: number) {
     this.question = null;
-    this.questionService.getQuestion(id).subscribe(question => {
-      if (question.id == -1) {
+    if (id == -1) {
         console.log("----NEW QUESTION CREATED");
         this.question = new Question();
         this.correctAnswers = this.resetCorrectAnswers();
         this.resetPossibleAnswers();
-      } else {
-        this.question = question;
-        if (this.question.possibleAnswers != undefined) {
-          this.possibleAnswers = this.question.possibleAnswers;
-          this.correctAnswers  = this.question.correctAnswers; 
-        } else {
-          this.resetPossibleAnswers();
-        }
-      }
-    });
+    } else {
+        this.questionService.getQuestion(id).subscribe(question => {
+          this.question = question;
+          if (this.question.possibleAnswers != undefined) {
+            this.possibleAnswers = this.question.possibleAnswers;
+            this.correctAnswers  = this.question.correctAnswers; 
+          } else {
+            this.resetPossibleAnswers();
+          }
+        });
+    }
+    
+    //this seems odd...
+    // this.questionService.getQuestion(id).subscribe(question => {
+    //   if (question.id == -1) {
+    //     console.log("----NEW QUESTION CREATED");
+    //     this.question = new Question();
+    //     this.correctAnswers = this.resetCorrectAnswers();
+    //     this.resetPossibleAnswers();
+    //   } else {
+    //     this.question = question;
+    //     if (this.question.possibleAnswers != undefined) {
+    //       this.possibleAnswers = this.question.possibleAnswers;
+    //       this.correctAnswers  = this.question.correctAnswers; 
+    //     } else {
+    //       this.resetPossibleAnswers();
+    //     }
+    //   }
+    // });
   }
 
   addAnswer() {
@@ -112,12 +130,17 @@ export class QuestionComponent implements OnInit {
 
   saveQuestion() {
     let qstn = this.question;
-    this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
-      if (answerListId > 0) {
-        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
-          console.log("POST SUCCEEDED");
-        });
-      }
-    });
+    //note: saving question with no exam (and maybe other fields) indicated will save this value as null
+    //this leads to errors, ie when displaying a filtered list of questions.
+    //check added here to avoid this. Maybe grayed out save button is better option.
+    if (qstn.forExam != null){
+      this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+        if (answerListId > 0) {
+          this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
+            console.log("POST SUCCEEDED");
+          });
+        }
+      });
+    } else console.log("forExam not selected, will not save");  
   }
 }
