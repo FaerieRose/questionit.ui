@@ -2,7 +2,9 @@
 <div> 
   <h1 >  Attempt id: {{visibleId}} </h1>
   <p> </p>
-  <label> Your total percentage is: {{scoresRate*100}} % </label>
+  <div *ngIf="scoresRate >-1">
+    <label> Your total percentage is: {{scoresRate*100}} % </label>
+  </div>
   <p> </p>
   <label> questions: </label>
   <div *ngIf="scoresList">
@@ -13,7 +15,3 @@
   <p> </p>
   <button>Back</button>
 </div>
-
-
-
-

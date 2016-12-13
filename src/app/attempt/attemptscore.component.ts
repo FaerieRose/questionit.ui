@@ -38,21 +38,21 @@ export class AttemptScoreComponent implements OnInit {
   getAttempt(id) {
     this.attemptService.getAttempt(id).subscribe(attempt => {
       this.attempt = attempt;
-      console.log(this.attempt.id);
+      // console.log(this.attempt.id);
       }); 
   }
 
   getScoresList(id) {
     this.attemptService.getScoresList(id).subscribe(scoresList => {
       this.scoresList = scoresList;
-      console.log(this.scoresList);
+      // console.log(this.scoresList);
       }); 
   }
 
   getScoresRate(id) {
     this.attemptService.getScoresRate(id).subscribe(scoresRate => {
       this.scoresRate = scoresRate;
-      console.log(this.getScoresRate);
+      // console.log(this.getScoresRate);
       }); 
   }
 
