@@ -76,6 +76,9 @@ export class QuestionComponent implements OnInit {
         console.log("----NEW QUESTION CREATED");
         this.question = new Question();
         //put forexam init (and others?) here
+        this.question.name = "";
+        this.question.forExam = 0;
+        this.question.programmingLanguage = 0;
         this.correctAnswers = this.resetCorrectAnswers();
         this.resetPossibleAnswers();
     } else {
@@ -142,17 +145,15 @@ export class QuestionComponent implements OnInit {
 
   saveQuestion() {
     let qstn = this.question;
-    //note: saving question with no exam (and maybe other fields) indicated will save this value as null
-    //this leads to errors, ie when displaying a filtered list of questions.
-    //check added here to avoid this. Maybe grayed out save button is better option.
-    if (qstn.forExam != null){
-      this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
-        if (answerListId > 0) {
-          this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
-            console.log("POST SUCCEEDED");
-          });
-        }
-      });
-    } else console.log("forExam not selected, will not save");  
+    //TODO: wanneeer nieuw/aangepast? nakijken of/hoe onderstaande werkt 
+  
+    this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+      if (answerListId > 0) {
+        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
+          console.log("POST SUCCEEDED");
+        });
+      }
+    });
+  
   }
 }
