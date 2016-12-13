@@ -34,6 +34,15 @@ export class StudentService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
+	removeStudent(studentId: number){
+		console.log("in de removeStudent in STUDENT met studentId : "+ studentId)
+        this.currentUrl = this.studentUrl + "/removestudent/"+ studentId;
+        let jsonResult: string = "{}";
+        console.log("---- JSON(Student) = " + jsonResult);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+
+	}
+
 	getStudents(): Observable<Student[]> {
 		this.currentUrl = this.studentUrl;
 		console.log(this.currentUrl);
@@ -42,17 +51,13 @@ export class StudentService {
 
 	postNewStudent(student: Student): Observable<Student> {
 		console.log(" we zitten nu in de postNewStudent");
-		//	this.currentUrl = this.studentUrl + "/creator/1/correct-answers/" + correctAnswersId;
-		// this.currentUrl = this.studentUrl + "/student/";
 		let stud: Student = new Student();
 		stud = student;
 		this.currentUrl = this.studentUrl;
-		// this.currentUrl = "http://localhost:8081/api/students";
 		let jsonResult: string = JSON.stringify(stud);
 		console.log("---- JSON(Student) = " + jsonResult + " met currentUrl =:" + this.currentUrl);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 
 
-		//.map(this.globalService.getExtractData);
 	}
 }
