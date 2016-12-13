@@ -5,8 +5,8 @@ import { GlobalService } from '../global.service';
 import { StudentClassService } from './studentclass.service';
 import { StudentClass } from './studentclass';
 
-import { Instructor }               from '../instructor/instructor';
-import { InstructorService }        from '../instructor/instructor.service';
+import { Instructor } from '../instructor/instructor';
+import { InstructorService } from '../instructor/instructor.service';
 
 
 
@@ -18,20 +18,20 @@ import { InstructorService }        from '../instructor/instructor.service';
 
 })
 export class StudentClassComponent implements OnInit {
-   instructor: Instructor; // Create 1 instance of instructor
+  instructor: Instructor; // Create 1 instance of instructor
   instructorList: Instructor[]; //Create variable to hold all instructors Used in the HTML used in the ngFor list
   studentclass: StudentClass;
   studentClassList: StudentClass[];
   list = { "studentclass": StudentClass[0] }
 
-  constructor(private studentClassService: StudentClassService, private globalService: GlobalService,private instructorService: InstructorService) {
-      // Needed to access the methods for instructor
+  constructor(private studentClassService: StudentClassService, private globalService: GlobalService, private instructorService: InstructorService) {
+    // Needed to access the methods for instructor
     this.studentclass = new StudentClass;
     this.studentclass.name = "eerstetest";
     this.studentClassService.getStudentClassById(1).subscribe(studentclass => this.studentclass = studentclass);
   }
   ngOnInit() {
-     this.instructorService.getInstructors().subscribe(instructors => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
+    this.instructorService.getInstructors().subscribe(instructors => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
       this.instructorList = instructors; // In the locale variable instructorList place the outcome of getInstructorsForClass
       this.instructor = this.instructorList[0];
     });
@@ -77,13 +77,7 @@ export class StudentClassComponent implements OnInit {
   }
 
   updateListName($event, i: number) { this.studentClassList[i].name = $event.target.value; this.saveUpdatedStudentclass(this.studentClassList[i]) }
-  //   updateListLastName($event, i: number) { this.studentClassList[i].lastName = $event.target.value; this.saveUpdatedStudentclass(this.studentClassList[i]) }
-  //   updateListEmail($event, i: number) { this.studentClassList[i].email = $event.target.value; this.saveUpdatedStudentclass(this.studentClassList[i]) }
   updateName($event) { this.studentclass.name = $event.target.value; }
-  //   updateLastName($event) { this.studentclass.lastName = $event.target.value; }
-  //   updateEmail($event) { this.studentclass.email = $event.target.value; }
-  //   updatevalid($event) { this.studentclass.valid = $event.target.value; }
-  // updateStudentClass($event) { this.list.studentclass = $event.target.value; }
-    updateStudentClass($event) {console.log ("inhoud is " + $event.target.value); this.studentclass.name = $event.target.value; }
+  updateStudentClass($event) { console.log("inhoud is " + $event.target.value); this.studentclass.name = $event.target.value; }
 
 }

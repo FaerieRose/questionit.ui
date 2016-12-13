@@ -80,6 +80,7 @@ textarea.answers {
   display: inline-block;
   height: 6vh;
   width: 100%;
+  vertical-align: middle;
 }
 
 input.answers {

@@ -75,6 +75,7 @@ export class QuestionComponent implements OnInit {
     if (id == -1) {
         console.log("----NEW QUESTION CREATED");
         this.question = new Question();
+        //put forexam init (and others?) here
         this.correctAnswers = this.resetCorrectAnswers();
         this.resetPossibleAnswers();
     } else {
@@ -110,6 +111,17 @@ export class QuestionComponent implements OnInit {
 
   addAnswer() {
     this.possibleAnswers.push("");
+  }
+
+  removeAnswer(index) {
+    //don't forget to update correctAnswers
+    //btw. what happens (/must happen) if question is part of attempts?
+    //btw2. 
+    this.correctAnswers[index] = false;
+
+
+
+
   }
 
   updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
