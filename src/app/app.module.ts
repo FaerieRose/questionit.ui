@@ -10,27 +10,17 @@ import { HttpModule }      from '@angular/http';
 
 import { AppRoutingModule }         from './app-routing.module';
 import { AppComponent }             from './app.component';
-import { QuestionComponent }        from './question/question.component';
-import { QuestionsComponent }       from './question/questions.component';
-import { QuestionDisplayComponent } from './question/question-display.component';
-import { InstructorComponent }      from './instructor/instructor.component';
-import { InstructorsComponent }     from './instructor/instructors.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
-import { BindInstructorToClassComponent } from './instructor/bindinstructortoclass.component';
 import { StudentComponent }         from './student/student.component';
+import { AttemptScoreComponent }    from './attempt/attemptscore.component';
 import { GlobalService }            from './global.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent,
-    QuestionsComponent,
-    QuestionDisplayComponent,
-    BindInstructorToClassComponent,
-    InstructorComponent,
-    InstructorsComponent,
     StudentClassComponent,
-    StudentComponent
+    StudentComponent,
+    AttemptScoreComponent
   ],
   imports: [
     BrowserModule,

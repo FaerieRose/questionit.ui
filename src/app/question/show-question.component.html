@@ -1,0 +1,44 @@
+<!-- -------------------------------------------------------------------------------- -->
+<!-- Author       : Bas Smulders                                                      -->
+<!-- Date created : 8 Dec 2016                                                        -->
+<!-- -------------------------------------------------------------------------------- -->
+<div *ngIf='question'>
+  <legend>{{ question.id }}. {{ question.name }}</legend>
+
+  <div class="div-input-text">
+    <label class="control-input text" for="questiontype">Type of Question</label>
+    <label class="control-input text" type="text" id="questiontype" placeholder="Type">{{ question.typeOfQuestion }}</label><br>
+  </div>
+
+  <div class="div-input-text">
+    <div class="formattedQuestion">
+      <question-display [question]="question.question"></question-display>
+    </div>
+  </div>
+
+  <div class="div-input-text">
+    <label class="control-input text" for="questionanswers">Select the {{ question.numberOfCorrectAnswers }} correct answer(s):</label><br>
+    <table>
+      <tr *ngFor='let answer of possibleAnswers; let i = index;' class="answers" >
+        <td> 
+          ​<input class="answers" type="text" disabled value="{{ i+1 }}">
+        </td>
+        <td>
+          <input class="answers" type="checkbox" [checked]="givenAnswers.answers[i]">
+        </td>
+        <td class="answers">
+          <textarea class="control-input input-text answers" id="answer{{ i }}" disabled value="{{ answer }}" ></textarea><br>
+        </td>
+      </tr>
+    </table>
+    <div>
+      <label *ngIf='question.id > 1' class="button" id="previousQuestion">Previous Question
+        <input type="button" (click)="gotoPreviousQuestion()" style="display:none" />
+      </label>
+      <label *ngIf='question.id < 3' class="button" id="nextQuestion">Next Question
+        <input type="button" (click)="gotoNextQuestion()" style="display:none" />
+      </label>
+    </div>
+  </div>
+
+</div>

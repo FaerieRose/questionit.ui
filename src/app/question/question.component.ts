@@ -3,6 +3,8 @@
 /* Date created : 10 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+//import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { Question }                 from './question';
 import { QuestionService }          from './question.service';
@@ -27,8 +29,10 @@ export class QuestionComponent implements OnInit {
   exams = [];
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
+  
 
   constructor(
+        private route: ActivatedRoute,
         private questionService  : QuestionService,
         private answerListService: AnswerListService, 
         private globalService    : GlobalService) {
@@ -38,7 +42,14 @@ export class QuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getQuestion(1);
+    //get question id from routeParams
+    //Takes INITIAL value of routeParams. Works only if there is no direct routing from one question to another
+    let id = +this.route.snapshot.params['id'];
+    console.log(id);
+    this.getQuestion(id);
+    // alternative, takes ACTUAL value of routeParams (not tested):
+    // this.route.params.switchMap((params: Params) => this.getQuestion(+params['id']));
+    
   }
 
   resetCorrectAnswers(): AnswerList {
@@ -88,7 +99,7 @@ export class QuestionComponent implements OnInit {
   updateExam($event)        { this.question.forExam              = $event.target.value; }
   updateName($event)        { this.question.name                 = $event.target.value; }
   updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
-  updateExplanation($event) { this.question.explantionAnswer     = $event.target.value; }
+  updateExplanation($event) { this.question.explanationAnswer    = $event.target.value; }
   updateQuestion($event)    { this.question.question             = $event.target.value; }
   updateAnswer(id: number, $event) {
     this.possibleAnswers[id] =  $event.target.value;

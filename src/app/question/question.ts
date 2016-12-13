@@ -13,7 +13,7 @@ export class Question {
   programmingLanguage: EnumLanguages;
   forExam: EnumExams;
   question: string;
-  explantionAnswer: string;
+  explanationAnswer: string;
   typeOfQuestion: string;
   creator: any;
   correctAnswers: AnswerList;
@@ -21,4 +21,5 @@ export class Question {
   possibleAnswers: string[];
   isEnabled: boolean;
   isObsolete: boolean;
+  numberOfCorrectAnswers: number; // Added by Bas 2016-12-09
 }
