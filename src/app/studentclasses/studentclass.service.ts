@@ -46,6 +46,21 @@ export class StudentClassService {
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
     }
 
+    removeStudentFromClass(studentClassID: number, studentId: number) {
+        console.log("in de removeStudentFromClass in studentCLASS met studentClassID : " + studentClassID + " en met studentId : "+ studentId)
+        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/studentremove/" + studentId;
+        let jsonResult: string = "{}";
+        console.log("---- JSON(StudentClass) = " + jsonResult);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+    }
+    removeInstructorFromClass(studentClassID: number, instructorId: number) {
+        console.log("in de removeInstructorFromClass in studentCLASS met studentClassID : " + studentClassID + " en met instructorId : "+ instructorId)
+        this.currentUrl = this.studentclassUrl + "/" + studentClassID + "/removeinstructorfromclass/" + instructorId;
+        let jsonResult: string = "{}";
+        console.log("---- JSON(StudentClass) = " + jsonResult);
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+    }
+
 
 
     getStudentClassById(id: number): Observable<StudentClass> {

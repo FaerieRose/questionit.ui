@@ -53,6 +53,15 @@ export class InstructorComponent implements OnInit {
     });
   }
 
+    removeInstructor(instructorId: number) {
+    console.log("IN removeInstructor with instructorId " + instructorId);
+    this.instructorService.getInstructorById(instructorId);
+    this.instructorService.removeInstructor(instructorId).subscribe(Student => {
+      console.log("POST SUCCEEDED");
+     this.getInstructorList();
+    });
+  }
+
   saveInstructor() {
     let instr = this.instructor;
     this.instructorService.postNewInstructor(instr).subscribe(Instructor => {

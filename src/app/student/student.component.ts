@@ -22,6 +22,7 @@ import { Student } from './student';
 })
 export class StudentComponent implements OnInit {
   student: Student;
+  newstudent:Student;
   studentList: Student[];
   studentClass: StudentClass; //Create 1 instance of StudentClass
   studentClassList: StudentClass[]; // Create variable to hold all studentClasses Used in the HTML used in the ngFor list
@@ -63,7 +64,7 @@ export class StudentComponent implements OnInit {
     });
     this.studentService.getStudents().subscribe(students => { // Go to the instructorService and ask method getInstructorsForClass to give all instructors
       this.studentList = students; // In the locale variable instructorList place the outcome of getInstructorsForClass
-      // this.student = this.studentList[0];
+      this.newstudent = this.studentList[0];
     });
   }
   getStudentList() {
@@ -88,15 +89,35 @@ export class StudentComponent implements OnInit {
     });
   }
 
+
+
+
   saveUpdatedStudent(instr: Student) {
     this.studentService.postNewStudent(instr).subscribe(Student => {
       console.log("POST SUCCEEDED");
     });
   }
 
+  removeStudentFromClass(studentId: number, studentClassId: number) {
+    console.log("IN removeStudentFromClass with studentId " + studentId + " and studentClassId :" + studentClassId);
+    this.studentClassService.getStudentClassById(studentClassId);
+    this.studentClassService.removeStudentFromClass(studentClassId, studentId).subscribe(StudentClass => {
+      console.log("POST SUCCEEDED");
+      this.getStudentList();
+    });
+  }
+  removeStudent(studentId: number) {
+    console.log("IN removeStudent with studentId " + studentId);
+    this.studentService.getStudentById(studentId);
+    this.studentService.removeStudent(studentId).subscribe(Student => {
+      console.log("POST SUCCEEDED");
+      this.getStudentList();
+    });
+  }
   saveStudent() {
     let stud = this.student;
-
+    console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = " + this.student.id);
+    if (stud.id == 1) { stud.id = null; this.student.id = null; console.log("zou moeten zijn genulled"); console.log("in saveStudent stud.id =" + stud.id + "  this.student.id = " + this.student.id); }
     this.studentService.postNewStudent(stud).subscribe(Student => {
       console.log("POST SUCCEEDED");
       this.getStudentList();
@@ -112,24 +133,24 @@ export class StudentComponent implements OnInit {
   updateID($event) { this.student.id = $event.target.value; }
   updatevalid($event) { this.student.valid = $event.target.value; }
 
-    saveStudentToClass() { //Save method for saving instructor in an studentclass and posting it in the database
+  saveStudentToClass() { //Save method for saving instructor in an studentclass and posting it in the database
 
-    console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " +this.student.id)
-    this.studentClassService.postStudentToStudentClass(this.studentClass.id, this.student.id).subscribe();
-     this.getStudentList();
-     this.getStudentClassList();
+    console.log("in saveStudentToClass Studentid =: " + this.studentClass.id + " instructorid = : " + this.newstudent.id)
+    this.studentClassService.postStudentToStudentClass(this.studentClass.id, this.newstudent.id).subscribe();
+    this.getStudentList();
+    this.getStudentClassList();
 
   }
-updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
-updateCurrentStudent($event, i: number) { this.studentList[i].id = $event.target.value; this.student.id = this.studentList[i].id }
-   getStudentClassList() {
+  updateCurrentStudentClass($event, i: number) { this.studentClassList[i].id = $event.target.value; this.studentClass.id = this.studentClassList[i].id }
+  updateCurrentStudent($event, i: number) { this.studentList[i].id = $event.target.value; this.student.id = this.studentList[i].id }
+  getStudentClassList() {
     this.studentClassService.getStudentClasses().subscribe(studentclass => {
       this.studentClassList = studentclass;
       console.log(this.studentClassList.length);
     });
   }
 
-  
+
 
 }
 
