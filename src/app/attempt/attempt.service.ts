@@ -30,11 +30,15 @@ export class AttemptService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 
-//   postAnswerList(answerList: AnswerList) {
-//     this.currentUrl = this.answerListUrl;
-// 		let jsonResult: string = JSON.stringify(answerList);
-// 		console.log("---- JSON(AnswerList) = " + jsonResult);
-// 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
-//   }
+  getScoresList(id: number): Observable<Boolean[]> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/scoresList";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
+  getScoresRate(id: number): Observable<number> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/scoresRate";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
 
 }
