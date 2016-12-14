@@ -25,12 +25,17 @@ export class TestTemplateService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
+	getTestTemplateMetaById(id: number): Observable<TestTemplate> {
+		this.currentUrl = this.testTemplateUrl + "/" + id + "/meta";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+	}
+
 	removeTestTemplate(testTemplateId: number) {
 		//To do
 	}
 
-	getTestTemplates(): Observable<TestTemplate[]> {
-		this.currentUrl = this.testTemplateUrl;
+	getTestTemplatesMeta(): Observable<TestTemplate[]> {
+		this.currentUrl = this.testTemplateUrl + "/meta";
 		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}

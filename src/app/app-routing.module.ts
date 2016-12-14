@@ -8,20 +8,24 @@ import { RouterModule, Routes } from '@angular/router';
 
 import './rxjs-extensions';
 
-import { QuestionComponent }     from './question/question.component';
-import { ShowQuestionComponent } from './question/show-question.component';
-import { QuestionsComponent }    from './question/questions.component';
+//import { QuestionComponent }     from './question/question.component';
+//import { ShowQuestionComponent } from './question/show-question.component';
+//import { QuestionsComponent }    from './question/questions.component';
 import { StudentComponent }      from './student/student.component';
 import { StudentClassComponent}  from './studentclasses/studentclass.component';
 import { AttemptScoreComponent}  from './attempt/attemptscore.component';
+//import { ChooseTestTemplateComponent}  from './choose-testtemplate/choose-testtemplate.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/question/browse', pathMatch: 'full' },
-  { path: 'instructor',       loadChildren: 'app/instructor/instructor.module#InstructorModule' },
-  { path: 'question',         loadChildren: 'app/question/question.module#QuestionModule' },
-  { path: 'studentclasses',   component: StudentClassComponent },
-  { path: 'student',          component: StudentComponent },
-  { path: 'attemptscore/:id', component: AttemptScoreComponent }
+  { path: 'instructor',         loadChildren: 'app/instructor/instructor.module#InstructorModule' },
+  { path: 'question',           loadChildren: 'app/question/question.module#QuestionModule' },
+  { path: 'studentclasses',     component: StudentClassComponent },
+  { path: 'student',            component: StudentComponent },
+  { path: 'attemptscore/:id',   component: AttemptScoreComponent },
+  { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' }
+  //{ path: 'choosetesttemplate', loadChildren: 'app/ctt/ctt.module#CttModule' }
+  //{ path: 'choosetesttemplate',           loadChildren: 'app/question/question-a.module#QuestionModule' }
 ];
 
 @NgModule({
