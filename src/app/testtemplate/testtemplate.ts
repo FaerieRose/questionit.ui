@@ -22,5 +22,6 @@ export class TestTemplate {
     //creator: any;
     isEnabled: boolean;
     questions: Question[];
-    examTimeInMinutes: number;
+    attemptTimeInMinutes: number;
+    size: number;  
 }
