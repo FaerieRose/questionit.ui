@@ -10,7 +10,7 @@ import { AttemptService }        from '../attempt/attempt.service';
 @Component({
   selector: 'my-attemptscore',
   templateUrl: 'attemptscore.component.html',
-  //styleUrls: [ 'attemptscore.component.css' ],
+  styleUrls: [ 'attempt.component.css' ],
   providers: [ AttemptService ]
 })
 
