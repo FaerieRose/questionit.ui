@@ -3,7 +3,8 @@
 <!-- Date created : 10 Nov 2016                                                       -->
 <!-- -------------------------------------------------------------------------------- -->
 <div *ngIf='question'>
-  <legend>Edit Question</legend>
+  <div *ngIf="question.id == null"><legend>New Question</legend></div>
+  <div *ngIf="question.id != null"><legend>Edit Question</legend></div>
   <div class="div-input-text">
     <label class="control-input text" for="questionname">Question name</label>
     <input class="control-input input-text" type="text" id="questionname" placeholder="Name" value="{{ question.name }}" (change)="updateName($event)"><br>
@@ -51,6 +52,9 @@
         <td class="answers">
           <textarea class="control-input input-text answers" id="answer{{ i }}" (change)="updateAnswer(i, $event)" value="{{ answer }}" ></textarea><br>
         </td>
+        <!--<td>
+          <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>
+        </td>-->
       </tr>
     </table>
     <label class="button" id="addAnswer">Add Answer

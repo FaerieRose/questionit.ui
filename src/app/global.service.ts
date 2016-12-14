@@ -104,7 +104,12 @@ export class GlobalService {
 		if (hostName.substring(0,4) == "ques") {
 			this.baseUrl = "http://api.questionit.carpago.nl/api/";
 			this.baseUrlImage = "http://api.questionit.carpago.nl/images/";
-		} else {
+		}
+		// else if (hostName.substring(0,4) == "dave") {
+		// 	this.baseUrl = "http://api.questionit.carpago.nl/api/";
+		// 	this.baseUrlImage = "http://api.questionit.carpago.nl/images/";
+		// } 
+		else {
 			this.baseUrl = "http://" + hostName + ":8081/api/";
 			this.baseUrlImage = "http://" + hostName + ":4200/assets/images/";
 		}

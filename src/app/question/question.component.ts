@@ -29,7 +29,6 @@ export class QuestionComponent implements OnInit {
   exams = [];
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
-  
 
   constructor(
         private route: ActivatedRoute,
@@ -73,26 +72,55 @@ export class QuestionComponent implements OnInit {
 
   getQuestion(id: number) {
     this.question = null;
-    this.questionService.getQuestion(id).subscribe(question => {
-      if (question.id == -1) {
+    if (id == -1) {
         console.log("----NEW QUESTION CREATED");
         this.question = new Question();
+        //put forexam init (and others?) here
+        this.question.name = "";
+        this.question.forExam = 0;
+        this.question.programmingLanguage = 0;
         this.correctAnswers = this.resetCorrectAnswers();
         this.resetPossibleAnswers();
-      } else {
-        this.question = question;
-        if (this.question.possibleAnswers != undefined) {
-          this.possibleAnswers = this.question.possibleAnswers;
-          this.correctAnswers  = this.question.correctAnswers; 
-        } else {
-          this.resetPossibleAnswers();
-        }
-      }
-    });
+    } else {
+        this.questionService.getQuestion(id).subscribe(question => {
+          this.question = question;
+          if (this.question.possibleAnswers != undefined) {
+            this.possibleAnswers = this.question.possibleAnswers;
+            this.correctAnswers  = this.question.correctAnswers; 
+          } else {
+            this.resetPossibleAnswers();
+          }
+        });
+    }
+    
+    //this seems odd...
+    // this.questionService.getQuestion(id).subscribe(question => {
+    //   if (question.id == -1) {
+    //     console.log("----NEW QUESTION CREATED");
+    //     this.question = new Question();
+    //     this.correctAnswers = this.resetCorrectAnswers();
+    //     this.resetPossibleAnswers();
+    //   } else {
+    //     this.question = question;
+    //     if (this.question.possibleAnswers != undefined) {
+    //       this.possibleAnswers = this.question.possibleAnswers;
+    //       this.correctAnswers  = this.question.correctAnswers; 
+    //     } else {
+    //       this.resetPossibleAnswers();
+    //     }
+    //   }
+    // });
   }
 
   addAnswer() {
     this.possibleAnswers.push("");
+  }
+
+  
+  //INCOMPLETE! Work in progress...
+  removeAnswer(index) {
+    this.correctAnswers[index] = false;
+
   }
 
   updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
@@ -114,11 +142,13 @@ export class QuestionComponent implements OnInit {
   saveQuestion() {
     let qstn = this.question;
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+      //will return id==-1 if post failed  
       if (answerListId > 0) {
         this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
           console.log("POST SUCCEEDED");
         });
       }
     });
+  
   }
 }
