@@ -116,14 +116,10 @@ export class QuestionComponent implements OnInit {
     this.possibleAnswers.push("");
   }
 
+  
+  //INCOMPLETE! Work in progress...
   removeAnswer(index) {
-    //don't forget to update correctAnswers
-    //btw. what happens (/must happen) if question is part of attempts?
-    //btw2. 
     this.correctAnswers[index] = false;
-
-
-
 
   }
 
@@ -145,9 +141,8 @@ export class QuestionComponent implements OnInit {
 
   saveQuestion() {
     let qstn = this.question;
-    //TODO: wanneeer nieuw/aangepast? nakijken of/hoe onderstaande werkt 
-  
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+      //will return id==-1 if post failed  
       if (answerListId > 0) {
         this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
           console.log("POST SUCCEEDED");
