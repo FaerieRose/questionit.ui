@@ -1,3 +1,7 @@
+/* ----------------------------------------------------------------------------------- */
+/* Author       : Rik & Rémond                                                         */
+/* Date created : 30 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
 import { Component, OnInit } from '@angular/core';
 import { GlobalService } from '../global.service';
 

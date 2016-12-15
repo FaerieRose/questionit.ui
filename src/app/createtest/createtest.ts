@@ -1,8 +1,13 @@
 /* ----------------------------------------------------------------------------------- */
 /* Author       : Rik & Rémond                                                         */
-/* Date created : 30 Nov 2016                                                          */
+/* Date created : 15 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-export class StudentClass {
-    id?: number;
-    name: string;
+
+export class CreateTest {
+  id?: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  valid: boolean;
+  //id: string;
 }

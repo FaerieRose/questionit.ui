@@ -1,0 +1,30 @@
+<!--/* ------------------------------------------------------------------------------- */
+/* Author       : Rik & Rémond                                                         */
+/* Date created : 15 Dec 2016                                                          */
+/* ----------------------------------------------------------------------------------- */-->
+<div>
+  <div class="div-input-text">
+    <label class="control-input text" for="testTemplateListLanguage">Select Programming Language For Exam</label>
+    <select class="control-input input-text" id="testTemplateListLanguage" (change)="updateLanguage($event)" >
+      <option *ngFor='let lang of languages' value='{{ lang.id }}' >{{ lang.name }}</option> 
+    </select>
+  </div>
+
+</div>
+
+
+ <div class="div-input-text">
+    <label class="control-input text" for="questionexam">For Exam</label>
+    <select  class="control-input input-text" id="questionexam" (change)="updateExam($event)">
+      <option *ngFor='let exam of exams' value='{{ exam.id }}' >{{ exam.name }}</option> 
+    </select>
+  </div>
+
+
+<div *ngIf="questionList">
+  <ul>
+    <li *ngFor="let qstn of questionList" (click)="editQuestion(qstn.id)">{{ qstn.id }} - {{ qstn.name }}</li>
+  </ul>
+
+
+</div>
