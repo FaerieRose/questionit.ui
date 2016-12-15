@@ -2,6 +2,7 @@
 /* Author       : Rik & Rémond                                                         */
 /* Date created : 15 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */-->
+<legend>Select Program Language And Type Of Exam</legend>
 <div>
   <div class="div-input-text">
     <label class="control-input text" for="testTemplateListLanguage">Select Programming Language For Exam</label>
@@ -18,15 +19,15 @@
     </select>
 </div>
 
-<div *ngIf="questionList">
+<!--<div *ngIf="questionList">
   <ul>
     <li *ngFor="let qstn of questionList" (click)="editQuestion(qstn.id)">{{ qstn.id }} - {{ qstn.name }}</li>
   </ul>
-</div>
+</div>-->
 
 <div id="questionList" class="answers">
   <form>
-    <legend>Test Editor</legend>
+    <legend>Select Questions For The New Test</legend>
     <table style="width:100%">
       <thead>
         <tr>
