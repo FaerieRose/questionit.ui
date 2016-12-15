@@ -5,26 +5,51 @@
 <div>
   <div class="div-input-text">
     <label class="control-input text" for="testTemplateListLanguage">Select Programming Language For Exam</label>
-    <select class="control-input input-text" id="testTemplateListLanguage" (change)="updateLanguage($event)" >
+    <select class="control-input input-text" id="testTemplateListLanguage" (change)="updateLanguage($event)">
       <option *ngFor='let lang of languages' value='{{ lang.id }}' >{{ lang.name }}</option> 
     </select>
   </div>
-
 </div>
 
-
- <div class="div-input-text">
-    <label class="control-input text" for="questionexam">For Exam</label>
-    <select  class="control-input input-text" id="questionexam" (change)="updateExam($event)">
+<div class="div-input-text">
+  <label class="control-input text" for="questionexam">For Exam</label>
+  <select class="control-input input-text" id="questionexam" (change)="updateExam($event)">
       <option *ngFor='let exam of exams' value='{{ exam.id }}' >{{ exam.name }}</option> 
     </select>
-  </div>
-
+</div>
 
 <div *ngIf="questionList">
   <ul>
     <li *ngFor="let qstn of questionList" (click)="editQuestion(qstn.id)">{{ qstn.id }} - {{ qstn.name }}</li>
   </ul>
+</div>
 
+<div id="questionList" class="answers">
+  <form>
+    <legend>Test Editor</legend>
+    <table style="width:100%">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Question</th>
+          <th>Already Used In A Test</th>
+          <th>Add Question</th>
 
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stud of questionList; let i = index;">
+          <td class="div-input-text3">
+            <div class="marcel"><input type="text" value="{{ stud.id }}"></div>
+          </td>
+          <td class="div-input-text3">
+            <div class="marcel"><input type="text" value="{{ stud.name }}"></div>
+          </td>
+          <td class="div-input-text3"><input type="checkbox" /></td> 
+          <td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>
+
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </div>
