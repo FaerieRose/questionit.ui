@@ -9,13 +9,15 @@ import { Router }            from '@angular/router';
 import { GlobalService }     from './global.service';
 import { InstructorService } from './instructor/instructor.service';
 import { Instructor }        from './instructor/instructor';
+import { StudentService }    from './student/student.service';
+import { Student }           from './student/student';
 // import { Instructors }        from './instructor/instructors';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  providers: [ GlobalService, InstructorService ]
+  providers: [ GlobalService, InstructorService, StudentService ]
 })
 export class AppComponent {
   title = 'Q u e s t i o n I T';
@@ -28,8 +30,9 @@ export class AppComponent {
   constructor(
       private globalService: GlobalService,
       private instructorService: InstructorService, 
+      private studentService: StudentService, 
       private router: Router) {
-    this.upodate();
+    this.update();
     this.imageUrl = this.globalService.getBaseUrlImage();
   }
 
@@ -37,14 +40,14 @@ export class AppComponent {
     this.router.navigate(['/question']);
   }
 
-  upodate() {
+  update() {
     this.instructorId = this.globalService.getInstructorID();
     this.studentId = this.globalService.getStudentID();
     if (this.instructorId > 0) {
       this.instructorService.getInstructorById(this.instructorId).subscribe(instructor => this.instructorName = instructor.firstName);
     }
     if (this.studentId > 0) {
-      this.instructorName = "Remond Karst";
+      this.studentService.getStudentById(this.studentId).subscribe(student => this.studentName = student.firstName);
     }
   }
 

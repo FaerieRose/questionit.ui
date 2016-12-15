@@ -10,8 +10,8 @@ import { EnumExams }             from './enums';
 
 @Injectable()
 export class GlobalService {
-  private instructorID: number = 1;
-  private studentID: number = -1;
+  private instructorID: number = -1;
+  private studentID: number = 1;
   private baseUrl: string;
   private baseUrlImage: string;
 	private languages = [];
