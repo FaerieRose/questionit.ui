@@ -67,6 +67,7 @@ export class CreateTestComponent implements OnInit {
 
   updateLanguage($event) {
     this.list.language = EnumLanguages[parseInt($event.target.value)];
+    this.testTemplate.programmingLanguage = parseInt($event.target.value); console.log("WAARDE VOOR LANGUAGE ID :" + this.testTemplate.programmingLanguage);
     this.questionService.getLevels(this.list.language).subscribe(levels => {
       console.log(levels);
       this.exams.length = 1;
@@ -85,19 +86,19 @@ export class CreateTestComponent implements OnInit {
     saveTest() {
       console.log("in the savetest");
     let template = this.testTemplate;
-    console.log("in the savetest with template : "+template.id);
+    console.log("in the savetest with template : "+template.id + " en ALS EXAMEN : " + template.forExam);
     // this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
     //   //will return id==-1 if post failed  
     //   if (answerListId > 0) {
-      if (template.id ==-1){this.testTemplate.id = null;}
+      if (template.id ==-1){this.testTemplate.id = 1;}
         this.createTestService.postNewTestTemplate(template).subscribe(TestTemplate => {
           console.log("POST SUCCEEDED");
     //     });
     //   }
     });
         }
-
-  updateExam($event) { this.list.exam = EnumExams[parseInt($event.target.value)]; this.getQuestionList(); }
+updateTestName($event) { this.testTemplate.name = $event.target.value; }
+  updateExam($event) { this.list.exam = EnumExams[parseInt($event.target.value)];this.testTemplate.forExam = parseInt($event.target.value); console.log("WAARDE VOOR FOREXAM ID :" + this.testTemplate.forExam);this.getQuestionList(); }
 
 
 }
