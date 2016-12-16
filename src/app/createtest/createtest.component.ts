@@ -7,7 +7,8 @@ import { Router } from '@angular/router';
 
 import { GlobalService } from '../global.service';
 import { TestTemplate } from '../testtemplate/testtemplate';
-import { CreateTestService } from './createtest.service';
+
+import { TestTemplateService }   from '../testtemplate/testtemplate.service';
 
 import { QuestionService } from '../question/question.service';
 import { Question } from '../question/question';
@@ -19,7 +20,7 @@ import { EnumExams } from '../enums';
   selector: 'my-createtest',
   templateUrl: './createtest.component.html',
   styleUrls: ['./createtest.component.css'],
-  providers: [CreateTestService, QuestionService]
+  providers: [TestTemplateService, QuestionService]
 })
 export class CreateTestComponent implements OnInit {
   languages = [];
@@ -30,7 +31,7 @@ export class CreateTestComponent implements OnInit {
 
   constructor(
     private questionService: QuestionService,
-    private createTestService: CreateTestService,
+    private createTestService: TestTemplateService,
     private globalService: GlobalService,
     private router: Router) {
     this.languages = this.globalService.getLanguages();
@@ -60,6 +61,10 @@ export class CreateTestComponent implements OnInit {
     })
     this.list.exam = this.exams[0].name;
     this.getQuestionList();
+  }
+
+  addOrRemoveQuestionFromTest($event, questionId : number){
+    console.log("in the addOrRemoveQuestionFromTest with question id :" + questionId);
   }
 
   updateExam($event) { this.list.exam = EnumExams[parseInt($event.target.value)]; this.getQuestionList(); }
