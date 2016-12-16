@@ -41,7 +41,12 @@ export class TestTemplateService {
 	}
 
 	postNewTestTemplate(testTemplate: TestTemplate): Observable<TestTemplate> {
-		//To do
-		return null;
+	console.log(" we zitten nu in de postNewTestTemplate");
+		let template: TestTemplate = new TestTemplate();
+		template = testTemplate;
+		this.currentUrl = this.testTemplateUrl;
+		let jsonResult: string = JSON.stringify(template);
+		console.log("---- JSON(TestTemplate) = " + jsonResult);
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
 }

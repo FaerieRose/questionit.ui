@@ -25,6 +25,7 @@ import { EnumExams } from '../enums';
 export class CreateTestComponent implements OnInit {
   languages = [];
   exams = [];
+  testTemplate :TestTemplate;
   questionList: Question[];
   testTemplateList: TestTemplate[];
   list = { "exam": EnumExams[0], "language": EnumLanguages[0], "enabled": true, "obsolete": false }
@@ -34,13 +35,27 @@ export class CreateTestComponent implements OnInit {
     private createTestService: TestTemplateService,
     private globalService: GlobalService,
     private router: Router) {
+      this.testTemplate = new TestTemplate();
     this.languages = this.globalService.getLanguages();
     this.exams.push({ "id": 0, "name": "NONE" });
   }
 
   ngOnInit() {
     this.getQuestionList();
+    this.getTestTemplateById(1);
 
+  }
+  getTestTemplateById(id: number) {
+    console.log("in the getTestTemplateById with ID: "+id);
+    //   this.instructor = null;
+    this.createTestService.getTestTemplateById(id).subscribe(testTemplate => {
+      if (testTemplate.id == 1) {
+        console.log("---- NEW INSTRUCTOR CREATED in instructor compoment");
+        this.testTemplate = new TestTemplate();
+      } else {
+        this.testTemplate = testTemplate;
+      }
+    });
   }
 
   getQuestionList() {
@@ -67,5 +82,22 @@ export class CreateTestComponent implements OnInit {
     console.log("in the addOrRemoveQuestionFromTest with question id :" + questionId);
   }
 
+    saveTest() {
+      console.log("in the savetest");
+    let template = this.testTemplate;
+    console.log("in the savetest with template : "+template.id);
+    // this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
+    //   //will return id==-1 if post failed  
+    //   if (answerListId > 0) {
+      if (template.id ==-1){this.testTemplate.id = null;}
+        this.createTestService.postNewTestTemplate(template).subscribe(TestTemplate => {
+          console.log("POST SUCCEEDED");
+    //     });
+    //   }
+    });
+        }
+
   updateExam($event) { this.list.exam = EnumExams[parseInt($event.target.value)]; this.getQuestionList(); }
+
+
 }
