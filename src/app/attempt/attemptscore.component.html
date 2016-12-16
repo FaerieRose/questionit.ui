@@ -9,7 +9,14 @@
   <label> questions: </label>
   <div class="c1" *ngIf="scoresList">
     <ul class="c2">
-      <li *ngFor="let element of scoresList; let i = index; " class="{{ element ? 'correct':'incorrect'}}" >Question {{ i + 1 }} <!--: {{element}} --> 
+      <li *ngFor="let element of scoresList; let i = index;" class="{{ element ? 'correct':'incorrect'}}" >
+          Question {{ i + 1 }}   <!--: {{element}} --> 
+      </li>
+    </ul>
+  </div>
+  <div>
+    <ul>
+      <li *ngFor="let answers of correctAnswers;"> {{answers}}
       </li>
     </ul>
   </div>
