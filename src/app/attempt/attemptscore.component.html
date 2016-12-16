@@ -3,15 +3,16 @@
   <h1 >  Attempt id: {{visibleId}} </h1>
   <p> </p>
   <div *ngIf="scoresRate > -1">
-    <label class="label.text text"> Your total percentage is: {{scoresRate*100}} % </label>
+    <label class="label.text text"> Your total percentage is: {{(scoresRate*100).toFixed(1)}} % </label>
   </div>
   <p> </p>
   <label> questions: </label>
   <div class="c1" *ngIf="scoresList">
     <ul class="c2">
-      <li *ngFor="let element of scoresList; let i = index; " class="{{ element ? 'correct':'incorrect'}}" >Question {{ i + 1 }} <!--: {{element}} --> </li>
+      <li *ngFor="let element of scoresList; let i = index; " class="{{ element ? 'correct':'incorrect'}}" >Question {{ i + 1 }} <!--: {{element}} --> 
+      </li>
     </ul>
   </div>
   <p> </p>
-  <button>Back</button>
+  <button>Ready</button>
 </div>
