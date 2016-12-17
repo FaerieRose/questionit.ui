@@ -58,7 +58,7 @@ export class QuestionService {
 
 	// -------------------------------------------------------------
 	// POST a question
-	postNewQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
+	postQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
 		this.currentUrl = this.questionUrl + "/creator/1/correct-answers/" + correctAnswersId;
 		let qstn: Question = new Question();
 		qstn = question;

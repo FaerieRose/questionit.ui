@@ -40,7 +40,7 @@ export class QuestionsComponent implements OnInit {
   getQuestionList() {
     this.questionService.getQuestions(this.list.exam, this.list.language, this.list.enabled, this.list.obsolete).subscribe(questions => {
       this.questionList = questions;
-      console.log(this.questionList.length);
+      console.log("questionlist.length: " + this.questionList.length);
     }); 
   }
 

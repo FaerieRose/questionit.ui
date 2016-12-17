@@ -76,6 +76,7 @@ export class QuestionComponent implements OnInit {
         console.log("----NEW QUESTION CREATED");
         this.question = new Question();
         //put forexam init (and others?) here
+        this.question.id = -1;
         this.question.name = "";
         this.question.forExam = 0;
         this.question.programmingLanguage = 0;
@@ -144,8 +145,10 @@ export class QuestionComponent implements OnInit {
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
       //will return id==-1 if post failed  
       if (answerListId > 0) {
-        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
+        this.questionService.postQuestion(qstn, answerListId).subscribe(question => {
+          //return value check?
           console.log("POST SUCCEEDED");
+          //save success confirmation for user?
         });
       }
     });
