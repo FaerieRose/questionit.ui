@@ -40,5 +40,9 @@ export class AttemptService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 
+  postNewAttempt(testTemplateId: number, studentId: number): Observable<number> {
+		this.currentUrl = this.attemptUrl + "/start/" + testTemplateId + "/" + studentId;
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
 
 }
