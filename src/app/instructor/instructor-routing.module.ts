@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'edit', pathMatch: 'full'},
   { path: 'edit', component: InstructorComponent },
   { path: 'list', component: InstructorsComponent },
-  { path: 'bind', component: BindInstructorToClassComponent },
+  { path: 'bind/:id', component: BindInstructorToClassComponent },
 ];
 
 @NgModule({

@@ -6,6 +6,7 @@ import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 
 import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
+import { PreAttemptComponent }          from '../preattempt/pre-attempt.component';
 
 import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-routing.module';
 
@@ -15,7 +16,8 @@ import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-rou
     ChooseTestTemplateRoutingModule 
   ],
   declarations: [
-    ChooseTestTemplateComponent
+    ChooseTestTemplateComponent,
+    PreAttemptComponent
   ]
 })
 export class ChooseTestTemplateModule { }

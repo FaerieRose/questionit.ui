@@ -56,10 +56,10 @@ export class ChooseTestTemplateComponent implements OnInit {
   //   this.getQuestionList(); 
   // }
 
-  startAttempt(testTemplateId) {
-     //navigate to /question/:questionId
-     this.router.navigate(['/attempts/start', testTemplateId.toString(), this.getStudentId().toString()]);
-     //console.log(questionId.toString());
+  goToPreAttempt(testTemplateId) {
+     //navigate to /startattempt/:testTemplateId
+     this.router.navigate(['choosetesttemplate/startattempt', testTemplateId.toString()]);
+     //console.log(testTemplateId.toString());
   }
 
   editTestTemplate(testTemplateId) {

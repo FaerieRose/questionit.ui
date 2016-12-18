@@ -1,0 +1,24 @@
+<!-- -------------------------------------------------------------------------------- -->
+<!-- Author       : Bas Smulders                                                      -->
+<!-- Date created : 16 Dec 2016                                                        -->
+<!-- -------------------------------------------------------------------------------- -->
+<div *ngIf='testtemplate'>
+  <legend></legend>
+  You are about to start the following test:
+  <div class="div-input-text">
+    <label class="control-input text" for="testtemplate-name">Title of test:</label>
+    <label class="control-input text" type="text" id="testtemplate-name" placeholder="Type">{{ testtemplate.name }}</label><br>
+  </div>
+  <div class="div-input-text">
+    <label class="control-input text" for="testtemplate-time">Maximum time allowed (in minutes):</label>
+    <label class="control-input text" type="text" id="testtemplate-time" placeholder="Type">{{ testtemplate.attemptTimeInMinutes }}</label><br>
+  </div>
+  <div class="div-input-text">
+    <label class="control-input text" for="testtemplate-size">Number of questions:</label>
+    <label class="control-input text" type="text" id="testtemplate-size" placeholder="Type">{{ testtemplate.size }}</label><br>
+  </div>
+
+  <label *ngIf='true' class="button" id="previousQuestion">Start test
+    <input type="button" (click)="startAttempt()" style="display:none" />
+  </label>
+</div>
