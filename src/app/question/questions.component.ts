@@ -23,7 +23,7 @@ export class QuestionsComponent implements OnInit {
   languages = [];
   exams = [];
   questionList: Question[];
-  list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false}
+  list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true}
 
   constructor(
         private questionService  : QuestionService,
@@ -38,7 +38,7 @@ export class QuestionsComponent implements OnInit {
   }
 
   getQuestionList() {
-    this.questionService.getQuestions(this.list.exam, this.list.language, this.list.enabled, this.list.obsolete).subscribe(questions => {
+    this.questionService.getQuestions(this.list.exam, this.list.language, this.list.enabled).subscribe(questions => {
       this.questionList = questions;
       console.log("questionlist.length: " + this.questionList.length);
     }); 
@@ -65,7 +65,7 @@ export class QuestionsComponent implements OnInit {
 
   updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];     this.getQuestionList(); }
   updateEnabled($event)     { this.list.enabled   = $event.target.value;                          this.getQuestionList(); }
-  updateObsolete($event)    { this.list.obsolete  = $event.target.value;                          this.getQuestionList(); }
+  //updateObsolete($event)    { this.list.obsolete  = $event.target.value;                          this.getQuestionList(); }
 
 
 }
