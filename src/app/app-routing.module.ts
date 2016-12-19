@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'student',            component: StudentComponent },
   { path: 'attemptscore/:id',   component: AttemptScoreComponent },
   { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' }
+  
   //{ path: 'choosetesttemplate', loadChildren: 'app/ctt/ctt.module#CttModule' }
   //{ path: 'choosetesttemplate',           loadChildren: 'app/question/question-a.module#QuestionModule' }
 ];

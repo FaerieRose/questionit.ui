@@ -7,10 +7,12 @@ import { Routes,
          RouterModule } from '@angular/router';
 
 import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
+import { PreAttemptComponent }          from '../preattempt/pre-attempt.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'browse', pathMatch: 'full'},
-  { path: 'browse', component: ChooseTestTemplateComponent }
+  { path: 'browse', component: ChooseTestTemplateComponent },
+  { path: 'startattempt/:testTemplateID', component: PreAttemptComponent }
 ];
 
 @NgModule({
@@ -20,26 +22,26 @@ const routes: Routes = [
 export class ChooseTestTemplateRoutingModule {}
 
 // /* ----------------------------------------------------------------------------------- */
-// /* Author       : Bas Smulders                                                         */
+// /* Author       : FaerieRose                                                           */
 // /* Date created : 09 Dec 2016                                                          */
 // /* ----------------------------------------------------------------------------------- */
 // import { NgModule }     from '@angular/core';
 // import { Routes,
 //          RouterModule } from '@angular/router';
 
-// import { QuestionComponent }            from './question.component';
-// import { QuestionsComponent }           from './questions.component';
-// import { ShowQuestionComponent }        from './show-question.component';
+// import { InstructorComponent }            from './instructor.component';
+// import { InstructorsComponent }           from './instructors.component';
+// import { BindInstructorToClassComponent } from './bindinstructortoclass.component';
 
 // const routes: Routes = [
-//   { path: '', redirectTo: 'browse', pathMatch: 'full'},
-//   { path: 'edit/:id', component: QuestionComponent }, //Edit Question. id==-1 leads to new question.
-//   { path: 'show', component: ShowQuestionComponent },
-//   { path: 'browse', component: QuestionsComponent }
+//   { path: '', redirectTo: 'edit', pathMatch: 'full'},
+//   { path: 'edit', component: InstructorComponent },
+//   { path: 'list', component: InstructorsComponent },
+//   { path: 'bind', component: BindInstructorToClassComponent },
 // ];
 
 // @NgModule({
 //   imports: [RouterModule.forChild(routes)],
 //   exports: [RouterModule]
 // })
-// export class QuestionRoutingModule {}
+// export class InstructorRoutingModule {}
