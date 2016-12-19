@@ -6,19 +6,29 @@
     <label class="label.text text"> Your total percentage is: {{(scoresRate*100).toFixed(1)}} % </label>
   </div>
   <p> </p>
-  <label> questions: </label>
-  <div class="c1" *ngIf="scoresList">
-    <ul class="c2">
-      <li *ngFor="let element of scoresList; let i = index;" class="{{ element ? 'correct':'incorrect'}}" >
-          Question {{ i + 1 }}   <!--: {{element}} --> 
-      </li>
-    </ul>
-  </div>
   <div>
-    <ul>
-      <li *ngFor="let answers of correctAnswers;"> {{answers}}
-      </li>
-    </ul>
+    <table>
+      <tr> 
+        <th>
+            questions:
+        </th>
+        <th>
+            your answer(s):
+        </th>  
+        <th>
+            answer(s) if NOK:
+        </th>    
+      </tr>
+      <tr *ngFor="let element of scoresList; let i = index;" >
+         <td class="{{ element ? 'correct':'incorrect'}}">
+           <li> 
+             Question {{ i + 1 }}
+            </li>
+         </td>
+         <td > {{ givenAnswers[i] }} </td>
+        <td *ngIf="!element"> {{ correctAnswers[i] }} </td> 
+      </tr>
+    </table>
   </div>
   <p> </p>
   <button>Ready</button>

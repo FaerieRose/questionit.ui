@@ -45,6 +45,10 @@ export class AttemptService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 
+    getGivenAnswers(id: number): Observable<String[]> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/givenAnswersList";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
 
 
 }
