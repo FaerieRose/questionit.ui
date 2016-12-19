@@ -18,6 +18,8 @@ export class AttemptScoreComponent implements OnInit {
   visibleId : number;
   scoresList : Boolean[];
   scoresRate : number;
+  correctAnswers : String[];
+  givenAnswers : String[]
 
   attempt: Attempt;
   constructor(
@@ -31,6 +33,8 @@ export class AttemptScoreComponent implements OnInit {
     // this.getAttempt(id); 
     this.getScoresList(id);
     this.getScoresRate(id);
+    this.getCorrectAnswers(id);
+    this.getGivenAnswers(id);
     this.visibleId = id;
 
   }
@@ -55,5 +59,20 @@ export class AttemptScoreComponent implements OnInit {
       // console.log(this.getScoresRate);
       }); 
   }
+
+   getCorrectAnswers(id) {
+    this.attemptService.getCorrectAnswers(id).subscribe(correctAnswers => {
+      this.correctAnswers = correctAnswers;
+      // console.log(this.getCorrectAnswers);
+      }); 
+  }
+
+   getGivenAnswers(id) {
+    this.attemptService.getGivenAnswers(id).subscribe(givenAnswers => {
+      this.givenAnswers = givenAnswers;
+      // console.log(this.getGivenAnswers);
+      }); 
+  }
+
 
 }

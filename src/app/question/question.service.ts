@@ -44,8 +44,8 @@ export class QuestionService {
 
 	// -------------------------------------------------------------
 	// GET one question exam style with specific id
-	getQuestions(exam: string, lang: string, enabled: boolean, obsolete: boolean) : Observable<Question[]>{
-		this.currentUrl = this.questionUrl + "/select/" + exam + "/" + lang + "/" + enabled + "/" + obsolete;
+	getQuestions(exam: string, lang: string, enabled: boolean) : Observable<Question[]>{
+		this.currentUrl = this.questionUrl + "/select/" + exam + "/" + lang + "/" + enabled;
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
@@ -58,7 +58,7 @@ export class QuestionService {
 
 	// -------------------------------------------------------------
 	// POST a question
-	postNewQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
+	postQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
 		this.currentUrl = this.questionUrl + "/creator/1/correct-answers/" + correctAnswersId;
 		let qstn: Question = new Question();
 		qstn = question;
