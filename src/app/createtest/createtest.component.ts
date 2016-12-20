@@ -63,7 +63,7 @@ export class CreateTestComponent implements OnInit {
       this.testTemplate.attemptTimeInMinutes=0;
       this.testTemplate.forExam=0;
       this.testTemplate.isEnabled=true;
-      this.testTemplate.name = "Oefening";
+      this.testTemplate.name = "";
       this.testTemplate.programmingLanguage=0;
       this.testTemplate.questions = null;
       this.testTemplate.size=0;
@@ -133,6 +133,6 @@ export class CreateTestComponent implements OnInit {
     }
     updateTestName($event) { this.testTemplate.name = $event.target.value; }
     updateExam($event) { this.list.exam = EnumExams[parseInt($event.target.value)]; this.testTemplate.forExam = parseInt($event.target.value); console.log("WAARDE VOOR FOREXAM ID :" + this.testTemplate.forExam); this.getQuestionList(); }
-
+    updateDuration($event){ this.testTemplate.attemptTimeInMinutes = $event.target.value; }
 
   }

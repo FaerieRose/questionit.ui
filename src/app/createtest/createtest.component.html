@@ -3,14 +3,19 @@
 /* Date created : 15 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */-->
 <div *ngIf='testTemplate'>
-  <div *ngIf="testTemplate.id == null"><legend>New Question</legend></div>
-  <div *ngIf="testTemplate.id != null"><legend>Edit Question</legend></div>
+
 <legend>Add New Test</legend>
 
 <div class="div-input-text">
   <label class="control-input text" for="testtemplatename">Name Of The Test</label>
   <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>
 </div>
+
+<div class="div-input-text">
+  <label class="control-input text" for="testtemplatename">Number Of Minutes To Complete The Test</label>
+  <input class="control-input input-text" type="number" id="attempttimeinminutes" placeholder="Time in Minutes" (change)="updateDuration($event)"><br>
+</div>
+
 <legend>Select Program Language And Type Of Exam</legend>
 <div>
   <div class="div-input-text">
