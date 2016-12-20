@@ -2,13 +2,15 @@
 /* Author       : Rik & Rémond                                                         */
 /* Date created : 15 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */-->
+<div *ngIf='testTemplate'>
+  <div *ngIf="testTemplate.id == null"><legend>New Question</legend></div>
+  <div *ngIf="testTemplate.id != null"><legend>Edit Question</legend></div>
+<legend>Add New Test</legend>
 
-    <legend>Add New Test</legend>
-
-    <div class="div-input-text">
-      <label class="control-input text" for="testtemplatename">Name Of The Test</label>
-      <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>
-    </div>
+<div class="div-input-text">
+  <label class="control-input text" for="testtemplatename">Name Of The Test</label>
+  <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>
+</div>
 <legend>Select Program Language And Type Of Exam</legend>
 <div>
   <div class="div-input-text">
@@ -36,32 +38,33 @@
   <form>
     <legend>Select Questions For The New Test</legend>
     <table style="width:100%">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Question</th>
-          <th>Already Used In A Test</th>
-          <th>Add Question</th>
+<thead>
+  <tr>
+    <th>ID</th>
+    <th>Question</th>
+    <th>Already Used In A Test</th>
+    <th>Add Question</th>
 
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let quest of questionList; let i = index;">
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ quest.id }}"></div>
-          </td>
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ quest.name }}"></div>
-          </td>
-          <td class="div-input-text3"><input type="checkbox" /></td> 
-          <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-          <td class="div-input-text3"><input type="checkbox" (change)="addOrRemoveQuestionFromTest($event, quest.id)" /></td> 
+  </tr>
+</thead>
+<tbody>
+  <tr *ngFor="let quest of questionList; let i = index;">
+    <td class="div-input-text3">
+      <div class="marcel"><input type="text" value="{{ quest.id }}"></div>
+    </td>
+    <td class="div-input-text3">
+      <div class="marcel"><input type="text" value="{{ quest.name }}"></div>
+    </td>
+    <td class="div-input-text3"><input type="checkbox" /></td>
+    <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
+    <td class="div-input-text3"><input type="checkbox" (change)="addOrRemoveQuestionFromTest($event, quest.id)" /></td>
 
-        </tr>
-      </tbody>
-    </table>
-        <label class="button" id="saveTestTemplate">Save
+  </tr>
+</tbody>
+</table>
+<label class="button" id="saveTestTemplate">Save
       <input type="button" (click)="saveTest()" style="display:none"/>
-    </label>
-  </form>
+</label>
+</form>
+</div>
 </div>
