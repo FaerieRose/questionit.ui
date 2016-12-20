@@ -84,7 +84,7 @@ export class CreateTestComponent implements OnInit {
   addOrRemoveQuestionFromTest($event, questionId: number) {
     //   this.saveTest();
     console.log("in the addOrRemoveQuestionFromTest with question id :" + questionId + " and templateid : " + this.testTemplate.id);
-    this.createTestService.addQuestionToTemplate(15, questionId);
+    this.createTestService.addQuestionToTemplate(1, questionId).subscribe(q => {});
   }
 
   saveTest() {

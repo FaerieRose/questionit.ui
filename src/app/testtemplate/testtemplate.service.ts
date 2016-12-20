@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { GlobalService } from '../global.service';
 import { TestTemplate } from './testtemplate';
+import { Question }              from '../question/question';
 
 
 @Injectable()
@@ -40,15 +41,16 @@ export class TestTemplateService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
-	addQuestionToTemplate(templateId: number, questionId :number){
+	addQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
 		let template: TestTemplate = new TestTemplate();
 		console.log("in de addQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId)
 
-        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/addquestiontotemplate/"+ questionId;
+        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/question/"+ questionId;
 		console.log( templateId + " currentUrl: " + this.currentUrl)
         let jsonResult: string = "{}";
         console.log("---- JSON(TestTemplate) = " + jsonResult);
-        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+		//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 
 	}
 
