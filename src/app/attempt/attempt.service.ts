@@ -16,15 +16,15 @@ import { Question } 							 from '../question/question';
 
 @Injectable()
 export class AttemptService {
-	private headers = new Headers({ 'Content-Type': 'application/json' });
+  private headers = new Headers({ 'Content-Type': 'application/json' });
 
-	private attemptUrl: string;
-	private currentUrl: string;
+  private attemptUrl: string;
+  private currentUrl: string;
 
   constructor(private http: Http, private globalService: GlobalService) {
-		this.attemptUrl = this.globalService.getBaseUrl() + "attempts";
-		console.log("Attempt base url: " + this.attemptUrl);
-	}
+    this.attemptUrl = this.globalService.getBaseUrl() + "attempts";
+    console.log("Attempt base url: " + this.attemptUrl);
+  }
 
   getAttempt(id: number): Observable<Attempt> {
 		this.currentUrl = this.attemptUrl + "/" + id;

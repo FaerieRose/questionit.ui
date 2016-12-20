@@ -13,12 +13,6 @@
 </div>
 
 <div *ngIf="testTemplateList">
-  <ul>
-    <li *ngFor="let testTemplate of testTemplateList" (click)="startAttempt(testTemplate.id)">
-      {{ testTemplate.id }} - {{ testTemplate.name }} - {{ testTemplate.size }} - {{ testTemplate.size }}
-    </li>
-  </ul>
-
   <form>
     <legend>Available Tests</legend>
     <table style="width:100%">

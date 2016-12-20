@@ -25,14 +25,16 @@ export class ShowQuestionComponent implements OnInit {
   givenAnswers: AnswerList;
 
   constructor(
-        private questionService  : QuestionService,
-        private answerListService: AnswerListService, 
-        private globalService    : GlobalService) {
+    private route: ActivatedRoute,
+    private questionService  : QuestionService,
+    private answerListService: AnswerListService, 
+    private globalService    : GlobalService) {
   }
 
   ngOnInit() {
     //console.log(params['id'])
     //this.getQuestion(params['id']);
+    let id = +this.route.snapshot.params['id'];
     this.getQuestion(2);
   }
 
