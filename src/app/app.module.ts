@@ -14,13 +14,15 @@ import { StudentClassComponent }    from './studentclasses/studentclass.componen
 import { StudentComponent }         from './student/student.component';
 import { AttemptScoreComponent }    from './attempt/attemptscore.component';
 import { GlobalService }            from './global.service';
+import { StudentReviewComponent }   from './student/studentreview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StudentClassComponent,
     StudentComponent,
-    AttemptScoreComponent
+    AttemptScoreComponent,
+    StudentReviewComponent
   ],
   imports: [
     BrowserModule,
