@@ -55,7 +55,7 @@ export class TestTemplateService {
 	}
 
 	postNewTestTemplate(testTemplate: TestTemplate): Observable<TestTemplate> {
-	console.log(" we zitten nu in de postNewTestTemplate");
+		console.log(" we zitten nu in de postNewTestTemplate");
 		let template: TestTemplate = new TestTemplate();
 		template = testTemplate;
 		this.currentUrl = this.testTemplateUrl;
