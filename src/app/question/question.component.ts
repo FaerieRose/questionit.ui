@@ -73,14 +73,15 @@ export class QuestionComponent implements OnInit {
   getQuestion(id: number) {
     this.question = null;
     if (id == -1) {
-        console.log("----NEW QUESTION CREATED");
         this.question = new Question();
         //put forexam init (and others?) here
+        this.question.id = -1;
         this.question.name = "";
         this.question.forExam = 0;
         this.question.programmingLanguage = 0;
         this.correctAnswers = this.resetCorrectAnswers();
         this.resetPossibleAnswers();
+        console.log("----NEW QUESTION CREATED");
     } else {
         this.questionService.getQuestion(id).subscribe(question => {
           this.question = question;
@@ -92,7 +93,7 @@ export class QuestionComponent implements OnInit {
           }
         });
     }
-    
+  }  
     //this seems odd...
     // this.questionService.getQuestion(id).subscribe(question => {
     //   if (question.id == -1) {
@@ -110,7 +111,7 @@ export class QuestionComponent implements OnInit {
     //     }
     //   }
     // });
-  }
+  
 
   addAnswer() {
     this.possibleAnswers.push("");
@@ -144,8 +145,10 @@ export class QuestionComponent implements OnInit {
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
       //will return id==-1 if post failed  
       if (answerListId > 0) {
-        this.questionService.postNewQuestion(qstn, answerListId).subscribe(question => {
+        this.questionService.postQuestion(qstn, answerListId).subscribe(question => {
+          //return value check?
           console.log("POST SUCCEEDED");
+          //save success confirmation for user?
         });
       }
     });

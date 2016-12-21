@@ -89,7 +89,7 @@ export class CreateTestComponent implements OnInit {
   }
 
   getQuestionList() {
-    this.questionService.getQuestions(this.list.exam, this.list.language, this.list.enabled, this.list.obsolete).subscribe(questions => {
+    this.questionService.getQuestions(this.list.exam, this.list.language, this.list.enabled).subscribe(questions => {
       this.questionList = questions;
       console.log(this.questionList.length);
     });

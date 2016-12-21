@@ -12,6 +12,7 @@ import { Observable }              from 'rxjs/Observable';
 
 import { GlobalService }           from '../global.service';
 import { Attempt }                 from './attempt';
+import { Question } 							 from '../question/question'; 
 
 @Injectable()
 export class AttemptService {
@@ -37,6 +38,26 @@ export class AttemptService {
 
   getScoresRate(id: number): Observable<number> {
 		this.currentUrl = this.attemptUrl + "/" + id + "/scoresRate";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
+  postNewAttempt(testTemplateId: number, studentId: number): Observable<number> {
+		this.currentUrl = this.attemptUrl + "/start/" + testTemplateId + "/" + studentId;
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
+	getQuestion(attemptId: number, questionNr: number): Observable<Question> {
+		this.currentUrl = this.attemptUrl + "/" + attemptId + "/question/" + questionNr;
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+	}
+
+  getCorrectAnswers(id: number): Observable<String[]> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/correctAnswers";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
+  getGivenAnswers(id: number): Observable<String[]> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/givenAnswersList";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 

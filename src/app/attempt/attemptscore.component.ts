@@ -3,7 +3,7 @@
 /* Date created : 09 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { Attempt }                 from './attempt';
 import { AttemptService }        from '../attempt/attempt.service';
 
@@ -18,10 +18,13 @@ export class AttemptScoreComponent implements OnInit {
   visibleId : number;
   scoresList : Boolean[];
   scoresRate : number;
+  correctAnswers : String[];
+  givenAnswers : String[]
 
   attempt: Attempt;
   constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private attemptService  : AttemptService,
   ) { }
 
@@ -31,6 +34,8 @@ export class AttemptScoreComponent implements OnInit {
     // this.getAttempt(id); 
     this.getScoresList(id);
     this.getScoresRate(id);
+    this.getCorrectAnswers(id);
+    this.getGivenAnswers(id);
     this.visibleId = id;
 
   }
@@ -55,5 +60,23 @@ export class AttemptScoreComponent implements OnInit {
       // console.log(this.getScoresRate);
       }); 
   }
+
+   getCorrectAnswers(id) {
+    this.attemptService.getCorrectAnswers(id).subscribe(correctAnswers => {
+      this.correctAnswers = correctAnswers;
+      // console.log(this.getCorrectAnswers);
+      }); 
+  }
+
+   getGivenAnswers(id) {
+    this.attemptService.getGivenAnswers(id).subscribe(givenAnswers => {
+      this.givenAnswers = givenAnswers;
+      // console.log(this.getGivenAnswers);
+      }); 
+  }
+
+    studentReview(id) : void{
+      this.router.navigate(['studentreview']);
+    }
 
 }

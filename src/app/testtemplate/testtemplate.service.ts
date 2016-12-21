@@ -80,4 +80,5 @@ removeQuestionToTemplate(templateId: number, questionId :number): Observable<Que
 		console.log("---- JSON(TestTemplate) = " + jsonResult);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
+
 }

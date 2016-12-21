@@ -16,6 +16,7 @@ import { StudentClassComponent}  from './studentclasses/studentclass.component';
 import { CreateTestComponent}    from './createtest/createtest.component';
 import { AttemptScoreComponent}  from './attempt/attemptscore.component';
 //import { ChooseTestTemplateComponent}  from './choose-testtemplate/choose-testtemplate.component';
+import { StudentReviewComponent }   from './student/studentreview.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/question/browse', pathMatch: 'full' },
@@ -25,7 +26,9 @@ const routes: Routes = [
   { path: 'student',            component: StudentComponent },
   { path: 'createtest',         component: CreateTestComponent },
   { path: 'attemptscore/:id',   component: AttemptScoreComponent },
-  { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' }
+  { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' },
+  { path: 'studentreview' ,     component: StudentReviewComponent} 
+  
   //{ path: 'choosetesttemplate', loadChildren: 'app/ctt/ctt.module#CttModule' }
   //{ path: 'choosetesttemplate',           loadChildren: 'app/question/question-a.module#QuestionModule' }
 ];

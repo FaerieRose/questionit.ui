@@ -36,9 +36,9 @@ export class AppComponent {
     this.imageUrl = this.globalService.getBaseUrlImage();
   }
 
-  navQuestion() {
-    this.router.navigate(['/question']);
-  }
+  // navQuestion() {
+  //   this.router.navigate(['/question']);
+  // }
 
   update() {
     this.instructorId = this.globalService.getInstructorID();

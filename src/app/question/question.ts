@@ -20,6 +20,6 @@ export class Question {
   givenAnswers: any[];
   possibleAnswers: string[];
   isEnabled: boolean;
-  isObsolete: boolean;
+  //isObsolete: boolean;
   numberOfCorrectAnswers: number; // Added by Bas 2016-12-09
 }
