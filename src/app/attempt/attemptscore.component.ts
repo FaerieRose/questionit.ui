@@ -3,7 +3,7 @@
 /* Date created : 09 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { Attempt }                 from './attempt';
 import { AttemptService }        from '../attempt/attempt.service';
 
@@ -24,6 +24,7 @@ export class AttemptScoreComponent implements OnInit {
   attempt: Attempt;
   constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private attemptService  : AttemptService,
   ) { }
 
@@ -74,5 +75,8 @@ export class AttemptScoreComponent implements OnInit {
       }); 
   }
 
+    studentReview(id) : void{
+      this.router.navigate(['studentreview']);
+    }
 
 }
