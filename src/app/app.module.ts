@@ -16,6 +16,7 @@ import { AttemptScoreComponent }    from './attempt/attemptscore.component';
 import { CreateTestComponent }      from './createtest/createtest.component';
 import { GlobalService }            from './global.service';
 import { StudentReviewComponent }   from './student/studentreview.component';
+import { StudentLoginComponent }   from './student/studentlogin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { StudentReviewComponent }   from './student/studentreview.component';
     StudentComponent,
     AttemptScoreComponent,
     CreateTestComponent,
-    StudentReviewComponent
+    StudentReviewComponent,
+    StudentLoginComponent
   ],
   imports: [
     BrowserModule,
