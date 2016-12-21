@@ -1,3 +1,7 @@
+/* ----------------------------------------------------------------------------------- */
+/* Author       : Rik & Rémond                                                         */
+/* Date created : 15 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';

@@ -13,6 +13,7 @@ import { AppComponent }             from './app.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { StudentComponent }         from './student/student.component';
 import { AttemptScoreComponent }    from './attempt/attemptscore.component';
+import { CreateTestComponent }      from './createtest/createtest.component';
 import { GlobalService }            from './global.service';
 import { StudentReviewComponent }   from './student/studentreview.component';
 
@@ -22,6 +23,7 @@ import { StudentReviewComponent }   from './student/studentreview.component';
     StudentClassComponent,
     StudentComponent,
     AttemptScoreComponent,
+    CreateTestComponent,
     StudentReviewComponent
   ],
   imports: [
