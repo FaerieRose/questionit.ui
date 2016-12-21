@@ -8,6 +8,7 @@ import { Attempt }                 from '../attempt/attempt';
 import { Student }                 from './student';
 import { AttemptService }        from '../attempt/attempt.service';
 import { StudentService }        from '../student/student.service';
+import { Router }                from '@angular/router';
 
 @Component({
   selector: 'my-studentlogin',
@@ -21,11 +22,15 @@ export class StudentLoginComponent implements OnInit {
   constructor(
         private route: ActivatedRoute,
         private attemptService  : AttemptService,
+        private router: Router
   ) { }
 
   ngOnInit() {
 
   }
 
+  studentNewAttempt(student_id) : void{
+      this.router.navigate(['choosetesttemplate']);
+    }
 
 }
