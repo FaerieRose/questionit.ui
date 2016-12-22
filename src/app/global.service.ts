@@ -11,7 +11,8 @@ import { EnumExams }             from './enums';
 @Injectable()
 export class GlobalService {
   private instructorID: number = -1;
-  private studentID: number = 1;
+  private studentID: number = -1;
+	//private loginID: number;
   private baseUrl: string;
   private baseUrlImage: string;
 	private languages = [];
@@ -26,15 +27,14 @@ export class GlobalService {
     return this.instructorID;
   }
   public setInstructorID(id: number) {
-    this.instructorID = id;
-    //this.studentID = -1;
+    console.log("in globalservice.setinstructorid. ID = " + id);
+		this.instructorID = id;
   }
 
   public getStudentID(): number {
     return this.studentID;
   }
   public setStudentID(id: number) {
-    //this.instructorID = -1;
     this.studentID = id;
   }
 

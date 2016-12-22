@@ -19,47 +19,67 @@ import { Instructor } from '../instructor/instructor';
 @Component({
   selector: 'my-login',
   templateUrl: 'login.component.html',
-  //styleUrls: ['login.component.css'],
+  styleUrls: ['login.component.css'],
   providers: [InstructorService, StudentService ]
 
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
     students: Student[];
     instructors: Instructor[];
   
   constructor(
     private studentService: StudentService,
     private instructorService: InstructorService,
-    private router: Router
-    //private globalService: GlobalService
+    private router: Router,
+    private globalService: GlobalService
     ) {
   }
 
+
+  ngOnInit(){
+      //this.globalService.setInstructorID(-1);
+      //this.globalService.setStudentID(-1);
+  }
+
   trylogin(loginName: String){
-      //ideally, will lookup username in single userlist (students AND instructors), using an extra field like "loginname" or by mailaddress
+      //ideally, will lookup username in single userlist (students AND instructors), using an extra field like "loginname" or by mailaddress.
+      //alternatively, create new single API call that checks both tables in backend.
+      //Will largely depend on authentication solution, so kept it simple for now.
       //for now:
       //  - password/authentication not yet implemented
-      //  - will use firstname to "login".
-      //  - will keep instructor/student userlists, so have to check both.
-      //assumption: no identical usernames across students/instructors.
+      //  - will use check on firstname to "login".
+      //  - will keep separate instructor/student userlists, so have to check both.
+      //  - assumption: no identical usernames across students/instructors.
+    
+    //just to be sure...
+    //this.globalService.setInstructorID(-1);
+    //this.globalService.setStudentID(-1);
+
+    var userFound: boolean = false;  
+    console.log("now in trylogin. loginname: " + loginName);
     this.studentService.getStudents().subscribe(students => {
         this.students = students;
         for (let stdnt of this.students) {
-            if (stdnt.firstName === loginName){
+            if ( !userFound && (stdnt.firstName === loginName) ){
+                //globally set current loginID
+                this.globalService.setStudentID(stdnt.id);
+                userFound = true;
                 //goto student landing page
-                this.router.navigate(['student/landing']);          //not using routeparam for id because of -yet to be implemented- authentication
-                console.log("if you're reading this, things don't work as planned...");
+                this.router.navigate(['student/landing']);         
             }
         }   
     });
-    //console.log("if you're reading this, things don't work as planned...");
+    //also check if logging in as instructor...assuming no students/instr. with same firstName.
     this.instructorService.getInstructors().subscribe(instructors => {
         this.instructors = instructors;
         for (let instrctr of this.instructors) {
-            if (instrctr.firstName === loginName){
+            if ( !userFound && (instrctr.firstName === loginName) ){
+                //globally set current loginID
+                console.log(instrctr.id);
+                this.globalService.setInstructorID(instrctr.id);
+                userFound = true;
                 //goto instructor landing page
-                 this.router.navigate(['instructor/landing']);      //not using routeparam for id because of -yet to be implemented- authentication
-                 console.log("if you're reading this, things don't work as planned...");
+                this.router.navigate(['instructor/landing']);      
             }
     }
     });

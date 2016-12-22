@@ -2,7 +2,7 @@
      Author       : Dave Schellekens                                                  
      Date created : 10 Nov 2016                                                       
  -------------------------------------------------------------------------------- -->
-<legend>QuestionIT Login</legend></div>
+<legend>QuestionIT Login</legend>
   <div class="div-input-text">
     <label class="control-input text" for="loginname">User name</label>
     <input #usrname (keyup.enter)="trylogin(usrname.value)"class="control-input input-text" type="text" placeholder="LoginName"><br>
@@ -13,9 +13,7 @@
     <input class="control-input input-text" type="text" id="questionname" placeholder="Disabled for now..." value="disabled for now..."><br>
   </div>
 
-  <div class="div-input-text" id="divLogin">
     <label class="button" id="login">Login 
       <input type="button" (click)="trylogin(usrname.value)" style="display:none" />
     </label>
-  </div>
-
+  

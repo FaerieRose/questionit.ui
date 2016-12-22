@@ -17,7 +17,7 @@ import { Student }           from './student/student';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  providers: [ GlobalService, InstructorService, StudentService ]
+  providers: [ /*GlobalService,*/ InstructorService, StudentService ]
 })
 export class AppComponent {
   title = 'Q u e s t i o n I T';
@@ -32,7 +32,7 @@ export class AppComponent {
       private instructorService: InstructorService, 
       private studentService: StudentService, 
       private router: Router) {
-    this.update();
+    //this.update();
     this.imageUrl = this.globalService.getBaseUrlImage();
   }
 

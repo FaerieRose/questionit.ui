@@ -1,5 +1,6 @@
-
-    <legend>Instructor pagina</legend>
+<div *ngIf='instructor'>
+  
+    <legend>Logged in as Instructor: {{ instructor.firstName}}</legend>
 
    
     <label class="button" id="overview">Overview
@@ -14,4 +15,4 @@
  <label class="button" id="backToLogin">Login as different user
       <input type="button" (click)="goToLogin()" style="display:none"/>
     </label>
-
+</div>
