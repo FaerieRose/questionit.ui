@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit{
             this.globalService.setStudentID(stdnt.id);
             userFound = true;
             //goto student landing page
-            this.router.navigate(['student/landing']);         
+            this.router.navigate(['studentlogin']);         //route exists in other branch
         }
     }
     if(!userFound){
