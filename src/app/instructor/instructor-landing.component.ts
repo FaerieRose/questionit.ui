@@ -46,7 +46,7 @@ export class InstructorLandingComponent {
         this.router.navigate(['instructor/landing']);   //doesn't exist yet
     }
 
-    backToLogin(){
+    goToLogin(){
         this.router.navigate(['login']);
     }
     

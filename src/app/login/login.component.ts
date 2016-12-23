@@ -26,6 +26,7 @@ import { Instructor } from '../instructor/instructor';
 export class LoginComponent implements OnInit{
     students: Student[];
     instructors: Instructor[];
+    loginMsg: String;
   
   constructor(
     private studentService: StudentService,
@@ -39,35 +40,41 @@ export class LoginComponent implements OnInit{
   ngOnInit(){
       //this.globalService.setInstructorID(-1);
       //this.globalService.setStudentID(-1);
+      this.loginMsg = "";
   }
 
   trylogin(loginName: String){
-      //ideally, will lookup username in single userlist (students AND instructors), using an extra field like "loginname" or by mailaddress.
-      //alternatively, create new single API call that checks both tables in backend.
-      //Will largely depend on authentication solution, so kept it simple for now.
-      //for now:
-      //  - password/authentication not yet implemented
-      //  - will use check on firstname to "login".
-      //  - will keep separate instructor/student userlists, so have to check both.
-      //  - assumption: no identical usernames across students/instructors.
-    
+    this.loginMsg = "Please Wait...";
+
+    //ideally, will lookup username in single userlist (students AND instructors), using an extra field like "loginname" or by mailaddress.
+    //alternatively, create new single API call that checks both tables in backend.
+    //Will largely depend on authentication solution, so kept it simple for now.
+    //for now:
+    //  - password/authentication not yet implemented
+    //  - will use check on firstname to "login".
+    //  - will keep separate instructor/student userlists, so have to check both.
+    //  - assumption: no identical usernames across students/instructors.
+
     //just to be sure...
     //this.globalService.setInstructorID(-1);
     //this.globalService.setStudentID(-1);
 
-    var userFound: boolean = false;  
+    var userFound: boolean = false;
+    var unknownUser: boolean = false;  
     console.log("now in trylogin. loginname: " + loginName);
     this.studentService.getStudents().subscribe(students => {
         this.students = students;
         for (let stdnt of this.students) {
             if ( !userFound && (stdnt.firstName === loginName) ){
                 //globally set current loginID
+                this.globalService.setInstructorID(-1);
                 this.globalService.setStudentID(stdnt.id);
                 userFound = true;
                 //goto student landing page
                 this.router.navigate(['student/landing']);         
             }
-        }   
+        }
+           
     });
     //also check if logging in as instructor...assuming no students/instr. with same firstName.
     this.instructorService.getInstructors().subscribe(instructors => {
@@ -76,6 +83,7 @@ export class LoginComponent implements OnInit{
             if ( !userFound && (instrctr.firstName === loginName) ){
                 //globally set current loginID
                 console.log(instrctr.id);
+                this.globalService.setStudentID(-1);
                 this.globalService.setInstructorID(instrctr.id);
                 userFound = true;
                 //goto instructor landing page
@@ -83,6 +91,13 @@ export class LoginComponent implements OnInit{
             }
     }
     });
+  
+    //wil melding als geen user gevonden...Maar geen idee of resultaat van beide APIcalls al binnen/verwerkt is...
+    //zou kunnen werken met een pause/sleep (bah!)
+    //er moet een manier zijn om dit fatsoenlijk af te vangen...event?
+    //dit werkt natuurlijk niet, of eigenlijk te vroeg:
+    if (!userFound) this.loginMsg = "Entered Username is unknown";
+
   }
     
 }

@@ -17,7 +17,7 @@ import { Student }           from './student/student';
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css'],
-  providers: [ /*GlobalService,*/ InstructorService, StudentService ]
+  providers: [ InstructorService, StudentService ]
 })
 export class AppComponent {
   title = 'Q u e s t i o n I T';
