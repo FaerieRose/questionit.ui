@@ -38,9 +38,14 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit(){
-      //this.globalService.setInstructorID(-1);
-      //this.globalService.setStudentID(-1);
+      this.globalService.setInstructorID(-1);
+      this.globalService.setStudentID(-1);
       this.loginMsg = "";
+      this.studentService.getStudents().subscribe(students => {
+        this.students = students;});
+      this.instructorService.getInstructors().subscribe(instructors => {
+        this.instructors = instructors;});      
+
   }
 
   trylogin(loginName: String){
@@ -55,43 +60,32 @@ export class LoginComponent implements OnInit{
     //  - will keep separate instructor/student userlists, so have to check both.
     //  - assumption: no identical usernames across students/instructors.
 
-    //just to be sure...
-    //this.globalService.setInstructorID(-1);
-    //this.globalService.setStudentID(-1);
 
     var userFound: boolean = false;
     var unknownUser: boolean = false;  
     console.log("now in trylogin. loginname: " + loginName);
-    this.studentService.getStudents().subscribe(students => {
-        this.students = students;
-        for (let stdnt of this.students) {
-            if ( !userFound && (stdnt.firstName === loginName) ){
-                //globally set current loginID
-                this.globalService.setInstructorID(-1);
-                this.globalService.setStudentID(stdnt.id);
-                userFound = true;
-                //goto student landing page
-                this.router.navigate(['student/landing']);         
-            }
+    for (let stdnt of this.students) {
+        if ( !userFound && (stdnt.firstName === loginName) ){
+            //globally set current loginID
+            this.globalService.setStudentID(stdnt.id);
+            userFound = true;
+            //goto student landing page
+            this.router.navigate(['student/landing']);         
         }
-           
-    });
-    //also check if logging in as instructor...assuming no students/instr. with same firstName.
-    this.instructorService.getInstructors().subscribe(instructors => {
-        this.instructors = instructors;
+    }
+    if(!userFound){
         for (let instrctr of this.instructors) {
             if ( !userFound && (instrctr.firstName === loginName) ){
                 //globally set current loginID
                 console.log(instrctr.id);
-                this.globalService.setStudentID(-1);
                 this.globalService.setInstructorID(instrctr.id);
                 userFound = true;
                 //goto instructor landing page
                 this.router.navigate(['instructor/landing']);      
             }
+        }
     }
-    });
-  
+    
     //wil melding als geen user gevonden...Maar geen idee of resultaat van beide APIcalls al binnen/verwerkt is...
     //zou kunnen werken met een pause/sleep (bah!)
     //er moet een manier zijn om dit fatsoenlijk af te vangen...event?
