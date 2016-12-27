@@ -21,34 +21,13 @@ import { Student }           from './student/student';
 })
 export class AppComponent {
   title = 'Q u e s t i o n I T';
-  instructorId: number;
-  instructorName: string;
-  studentId: number;
-  studentName: string;
   imageUrl: string;
 
   constructor(
       private globalService: GlobalService,
-      private instructorService: InstructorService, 
-      private studentService: StudentService, 
       private router: Router) {
     //this.update();
     this.imageUrl = this.globalService.getBaseUrlImage();
-  }
-
-  // navQuestion() {
-  //   this.router.navigate(['/question']);
-  // }
-
-  update() {
-    this.instructorId = this.globalService.getInstructorID();
-    this.studentId = this.globalService.getStudentID();
-    if (this.instructorId > 0) {
-      this.instructorService.getInstructorById(this.instructorId).subscribe(instructor => this.instructorName = instructor.firstName);
-    }
-    if (this.studentId > 0) {
-      this.studentService.getStudentById(this.studentId).subscribe(student => this.studentName = student.firstName);
-    }
   }
 
 }

@@ -16,11 +16,11 @@
       <div id="divLogo">
         <img src="{{ imageUrl }}logo_question_it_2016-11-23.png" id="logo">
       </div>
-      <span *ngIf="instructorId > 0">
-        <legend>Instructor: {{ instructorName }}</legend>
+      <span *ngIf="globalService.getInstructorID() > 0">
+        <legend>Instructor: {{ globalService.getInstructorName() }}</legend>
       </span>
-      <span *ngIf="studentId > 0">
-        <legend>Student: {{ studentName }}</legend>
+      <span *ngIf="globalService.getStudentID() > 0">
+        <legend>Student: {{ globalService.getStudentName() }}</legend>
       </span><br>
       <legend>Navigation</legend>
       <a class="nav-link" routerLink="/question"              routerLinkActive="active"> >> Questions</a><br>

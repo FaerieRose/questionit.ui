@@ -2,23 +2,28 @@
 /* Author       : FaerieRose                                                           */
 /* Date created : 17 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { Injectable } from '@angular/core';
-import { Response }   from '@angular/http';
+import { Injectable }     from '@angular/core';
+import { Http, Response } from '@angular/http';
 
-import { EnumLanguages }         from './enums'; 
-import { EnumExams }             from './enums'; 
+import { Observable }     from 'rxjs/Observable';
+
+import { EnumLanguages }  from './enums'; 
+import { EnumExams }      from './enums';
+import { Instructor }     from './instructor/instructor';
 
 @Injectable()
 export class GlobalService {
   private instructorID: number = -1;
   private studentID: number = -1;
+  private instructorName: string = "";
+  private studentName: string = "";
 	//private loginID: number;
   private baseUrl: string;
   private baseUrlImage: string;
 	private languages = [];
 	private exams = [];
 
-  constructor() {
+  constructor(private http: Http) {
 		this.defineBaseUrl();
 		this.defineEnumsAsArrays();
   }
@@ -27,8 +32,13 @@ export class GlobalService {
     return this.instructorID;
   }
   public setInstructorID(id: number) {
-    console.log("in globalservice.setinstructorid. ID = " + id);
 		this.instructorID = id;
+    this.http.get(this.baseUrl + "instructors/" + this.instructorID).map(this.getExtractData).subscribe(instructor => {
+        this.instructorName = instructor.firstName + " " + instructor.lastName;
+    });	
+  }
+  public getInstructorName(): string {
+    return this.instructorName;
   }
 
   public getStudentID(): number {
@@ -36,6 +46,12 @@ export class GlobalService {
   }
   public setStudentID(id: number) {
     this.studentID = id;
+    this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
+        this.studentName = student.firstName + " " + student.lastName;
+    });	
+  }
+  public getStudentName(): string {
+    return this.studentName;
   }
 
   public getBaseUrl(): string {
@@ -132,5 +148,6 @@ export class GlobalService {
       i++;
     }
 	}
+
 
 }
