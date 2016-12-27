@@ -38,8 +38,8 @@ export class LoginComponent implements OnInit{
 
 
   ngOnInit(){
-      this.globalService.setInstructorID(-1);
-      this.globalService.setStudentID(-1);
+      //this.globalService.setInstructorID(-1);
+      //this.globalService.setStudentID(-1);
       this.loginMsg = "";
       this.studentService.getStudents().subscribe(students => {
         this.students = students;});

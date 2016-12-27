@@ -26,7 +26,7 @@ export class StudentLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    
   }
 
   studentNewAttempt(student_id) : void{
@@ -35,6 +35,10 @@ export class StudentLoginComponent implements OnInit {
   
   studentLogOut(){
       this.router.navigate(['login']);
+  }
+
+  buttonstate(){
+    return true;
   }
 
 }
