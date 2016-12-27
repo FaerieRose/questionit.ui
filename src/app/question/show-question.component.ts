@@ -106,7 +106,7 @@ export class ShowQuestionComponent implements OnInit {
     this.getQuestion(this.question.id + 1);
   }
 
- toChar(number: Number){
+ toCharLetter(number: Number){
     var char = String.fromCharCode(number.valueOf() + 64);
     return char;
   }
