@@ -26,8 +26,8 @@ export class StudentService {
 
 	getStudentById(id: number): Observable<Student> {
 
-		console.log("in de  getStudentById this.currentUrl = " + this.currentUrl);
 		this.currentUrl = this.studentUrl + "/" + id;
+		console.log("in de  getStudentById this.currentUrl = " + this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 

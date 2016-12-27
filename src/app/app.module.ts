@@ -10,6 +10,7 @@ import { HttpModule }      from '@angular/http';
 
 import { AppRoutingModule }         from './app-routing.module';
 import { AppComponent }             from './app.component';
+import { LoginComponent }           from './login/login.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { StudentComponent }         from './student/student.component';
 import { AttemptScoreComponent }    from './attempt/attemptscore.component';
@@ -21,6 +22,7 @@ import { StudentLoginComponent }   from './student/studentlogin.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     StudentClassComponent,
     StudentComponent,
     AttemptScoreComponent,
