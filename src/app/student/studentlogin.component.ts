@@ -26,11 +26,16 @@ export class StudentLoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
+    
   }
 
   studentNewAttempt(student_id) : void{
       this.router.navigate(['choosetesttemplate']);
-    }
+  }
+  
+  studentLogOut(){
+      this.router.navigate(['login']);
+  }
+
 
 }

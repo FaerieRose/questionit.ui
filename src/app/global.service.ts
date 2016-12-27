@@ -35,9 +35,11 @@ export class GlobalService {
   }
   public setInstructorID(id: number) {
 		this.instructorID = id;
-    this.http.get(this.baseUrl + "instructors/" + this.instructorID).map(this.getExtractData).subscribe(instructor => {
-        this.instructorName = instructor.firstName + " " + instructor.lastName;
-    });	
+    if (id > 0){
+			this.http.get(this.baseUrl + "instructors/" + this.instructorID).map(this.getExtractData).subscribe(instructor => {
+					this.instructorName = instructor.firstName + " " + instructor.lastName;
+			});
+		}	
   }
   public getInstructorName(): string {
     return this.instructorName;
@@ -48,9 +50,11 @@ export class GlobalService {
   }
   public setStudentID(id: number) {
     this.studentID = id;
-    this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
-        this.studentName = student.firstName + " " + student.lastName;
-    });	
+    if (id >0){
+			this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
+					this.studentName = student.firstName + " " + student.lastName;
+			});
+		}	
   }
 
   public getAttemptID(): number {
