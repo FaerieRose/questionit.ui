@@ -37,8 +37,5 @@ export class StudentLoginComponent implements OnInit {
       this.router.navigate(['login']);
   }
 
-  buttonstate(){
-    return true;
-  }
 
 }
