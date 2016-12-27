@@ -62,10 +62,11 @@ export class LoginComponent implements OnInit{
 
 
     var userFound: boolean = false;
-    var unknownUser: boolean = false;  
+    var unknownUser: boolean = false;
+    loginName = loginName.toLowerCase();  
     console.log("now in trylogin. loginname: " + loginName);
     for (let stdnt of this.students) {
-        if ( !userFound && (stdnt.firstName === loginName) ){
+        if ( !userFound && (stdnt.firstName.toLowerCase() === loginName) ){
             //globally set current loginID
             this.globalService.setStudentID(stdnt.id);
             userFound = true;
@@ -75,7 +76,7 @@ export class LoginComponent implements OnInit{
     }
     if(!userFound){
         for (let instrctr of this.instructors) {
-            if ( !userFound && (instrctr.firstName === loginName) ){
+            if ( !userFound && (instrctr.firstName.toLowerCase() === loginName) ){
                 //globally set current loginID
                 console.log(instrctr.id);
                 this.globalService.setInstructorID(instrctr.id);

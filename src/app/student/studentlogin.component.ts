@@ -31,6 +31,10 @@ export class StudentLoginComponent implements OnInit {
 
   studentNewAttempt(student_id) : void{
       this.router.navigate(['choosetesttemplate']);
-    }
+  }
+  
+  studentLogOut(){
+      this.router.navigate(['login']);
+  }
 
 }
