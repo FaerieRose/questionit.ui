@@ -1,6 +1,6 @@
 /* ----------------------------------------------------------------------------------- */
 /* Author       : S.Martens                                                            */
-/* Date created : 20 Dec 2016                                                          */
+/* Date created : 27 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -11,13 +11,13 @@ import { StudentService }        from '../student/student.service';
 import { Router }                from '@angular/router';
 
 @Component({
-  selector: 'my-studentlogin',
-  templateUrl: 'studentlogin.component.html',
+  selector: 'my-studentpostattempt',
+  templateUrl: 'studentpostattempt.component.html',
   styleUrls: [ 'student.component.css' ],
   providers: [ AttemptService , StudentService]
 })
 
-export class StudentLoginComponent implements OnInit {
+export class StudentPostAttemptComponent implements OnInit {
 
   constructor(
         private route: ActivatedRoute,
@@ -29,12 +29,12 @@ export class StudentLoginComponent implements OnInit {
     
   }
 
-  studentNewAttempt(student_id) : void{
-      this.router.navigate(['choosetesttemplate']);
+  studentFinishAttempt() : void{
+      this.router.navigate(['attemptscore/:1']);
   }
   
-  studentLogOut(){
-      this.router.navigate(['login']);
-  } 
+  studentBackContinue(){
+      this.router.navigate(['/question/show']);
+  }  
 
 }
