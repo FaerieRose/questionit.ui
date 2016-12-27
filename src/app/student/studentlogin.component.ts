@@ -33,4 +33,8 @@ export class StudentLoginComponent implements OnInit {
       this.router.navigate(['choosetesttemplate']);
     }
 
+  // isNotValid(){
+  //   this.isNotValid;
+  // }  
+
 }
