@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { GlobalService } from '../global.service';
 import { TestTemplate } from './testtemplate';
+import { Question }              from '../question/question';
 
 
 @Injectable()
@@ -39,10 +40,45 @@ export class TestTemplateService {
 		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
+removeQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+		let template: TestTemplate = new TestTemplate();
+		this.testTemplateUrl = this.testTemplateUrl;
+		console.log("in de removeQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId);
+        
+        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/removequestionfromtesttemplate/"+ questionId;
+		console.log("==============-----------------***-"+this.currentUrl +"----------------=================");
+		// console.log( templateId + " currentUrl: " + this.currentUrl)
+        let jsonResult: string = "{}";
+        console.log("---- JSON(TestTemplate) = " + jsonResult);
+		//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+
+	}
+
+
+
+
+	addQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+		let template: TestTemplate = new TestTemplate();
+		console.log("in de addQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId)
+
+        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/question/"+ questionId;
+		console.log( templateId + " currentUrl: " + this.currentUrl)
+        let jsonResult: string = "{}";
+        console.log("---- JSON(TestTemplate) = " + jsonResult);
+		//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
+        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+
+	}
 
 	postNewTestTemplate(testTemplate: TestTemplate): Observable<TestTemplate> {
-		//To do
-		return null;
+		console.log(" we zitten nu in de postNewTestTemplate");
+		let template: TestTemplate = new TestTemplate();
+		template = testTemplate;
+		this.currentUrl = this.testTemplateUrl;
+		let jsonResult: string = JSON.stringify(template);
+		console.log("---- JSON(TestTemplate) = " + jsonResult);
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
 
 }
