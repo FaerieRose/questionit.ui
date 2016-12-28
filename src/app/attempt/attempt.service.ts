@@ -61,5 +61,14 @@ export class AttemptService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 
+  getReviewIncorrectChoices(id: number): Observable<number[]> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/review";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
+  getMarkedQuestions(id: number): Observable<number[]> {
+		this.currentUrl = this.attemptUrl + "/" + id + "/markedQuestions";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
 
 }
