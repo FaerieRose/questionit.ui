@@ -9,6 +9,7 @@ import { TestTemplate }                   from '../testtemplate/testtemplate';
 import { TestTemplateService }            from '../testtemplate/testtemplate.service';
 import { GlobalService }                  from '../global.service';
 import { AttemptService }                 from '../attempt/attempt.service';
+import { Question }                       from '../question/question';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class PreAttemptComponent implements OnInit {
   ngOnInit() {
     let id = +this.route.snapshot.params['testTemplateID'];
     //console.log(this.route.snapshot.params);
-    console.log("In PreAttemptComponent.ngOnInit with id=" + id);
+    // console.log("In PreAttemptComponent.ngOnInit with testTemplateID = " + id);
     this.testTemplateService.getTestTemplateMetaById(id).subscribe(tt => this.testtemplate = tt);
   }
 
@@ -42,10 +43,12 @@ export class PreAttemptComponent implements OnInit {
   startAttempt(testTemplateId: number) {
     this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe(attemptID => { 
       this.globalService.setAttemptID(attemptID);
-      //console.log("In PreAttemptComponent.startAttempt with globalService.attemptID=" + this.globalService.getAttemptID());
-    });
-    // To add: navigate to attempt component, which is being made by Dave.
-    // this.router.navigate(['question/show']);
+      // console.log("In PreAttemptComponent.startAttempt with globalService.attemptID=" + this.globalService.getAttemptID());
+      // Get the question on position 1 in the list and include its Id in the navigater call.
+      this.attemptService.getQuestion(attemptID, 1).subscribe(q => {
+        console.log("In PreAttemptComponent.startAttempt with q.id = " + q.id);
+        this.router.navigate(['question/show/', q.id.toString()]);
+      });
+    }); 
   }
-
 }
