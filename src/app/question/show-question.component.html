@@ -3,7 +3,7 @@
 <!-- Date created : 8 Dec 2016                                                        -->
 <!-- -------------------------------------------------------------------------------- -->
 <div *ngIf='question'>
-  <legend>{{ question.id }}. {{ question.name }}</legend>
+  <legend>{{ index }}. {{ question.name }}</legend>
 
   <div class="div-input-text">
     <label class="control-input text" for="questiontype">Type of Question</label>
@@ -32,11 +32,14 @@
       </tr>
     </table>
     <div>
-      <label *ngIf='question.id > 1' class="button" id="previousQuestion">Previous Question
+      <label *ngIf='index > 1' class="button" id="previousQuestion">Previous Question
         <input type="button" (click)="gotoPreviousQuestion()" style="display:none" />
       </label>
-      <label *ngIf='question.id < 5' class="button" id="nextQuestion">Next Question
+      <label *ngIf='index < size' class="button" id="nextQuestion">Next Question
         <input type="button" (click)="gotoNextQuestion()" style="display:none" />
+      </label>
+      <label class="button" id="finish">Review
+        <input type="button" (click)="gotoPostExam()" style="display:none" />
       </label>
     </div>
   </div>
