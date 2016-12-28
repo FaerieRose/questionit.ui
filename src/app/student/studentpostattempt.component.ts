@@ -19,6 +19,8 @@ import { GlobalService }          from '../global.service';
 })
 
 export class StudentPostAttemptComponent implements OnInit {
+  reviewIncorrectChoices : number[];
+  markedQuestions : number[];
 
   constructor(
         private route: ActivatedRoute,
@@ -29,7 +31,11 @@ export class StudentPostAttemptComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    
+    var attempt_id = this.globalService.getAttemptID().valueOf();
+   //  var attempt_id = 2;
+ 
+    this.getReviewIncorrectChoices(attempt_id);
+    this.getMarkedQuestions(attempt_id);
   }
 
   studentFinishAttempt() : void{
@@ -51,5 +57,19 @@ export class StudentPostAttemptComponent implements OnInit {
       }); 
   }
   
+  getReviewIncorrectChoices(attempt_id){
+    this.attemptService.getReviewIncorrectChoices(attempt_id).subscribe(reviewIncorrectChoices => {
+      this.reviewIncorrectChoices = reviewIncorrectChoices;
+      // console.log(this.reviewIncorrectChoices);
+      }); 
+  }
 
+  getMarkedQuestions(attempt_id){
+    this.attemptService.getMarkedQuestions(attempt_id).subscribe(markedQuestions => {
+      this.markedQuestions = markedQuestions;
+      // console.log(this.markedQuestions);
+      }); 
+  }
+
+  
 }
