@@ -152,6 +152,11 @@ export class QuestionComponent implements OnInit {
         });
       }
     });
-  
   }
+
+ toCharLetter(number: Number){
+    var char = String.fromCharCode(number.valueOf() + 64);
+    return char;
+  }
+
 }

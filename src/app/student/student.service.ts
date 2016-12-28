@@ -19,9 +19,11 @@ export class StudentService {
 
 	private studentUrl: string;
 	private currentUrl: string;
+	private attemptUrl: string;
 
 	constructor(private http: Http, private globalService: GlobalService) {
 		this.studentUrl = this.globalService.getBaseUrl() + 'students';
+		this.attemptUrl = this.globalService.getBaseUrl() + "attempts";
 	}
 
 	getStudentById(id: number): Observable<Student> {
@@ -61,7 +63,11 @@ export class StudentService {
 		let jsonResult: string = JSON.stringify(stud);
 		console.log("---- JSON(Student) = " + jsonResult + " met currentUrl =:" + this.currentUrl);
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
-
-
 	}
+
+	 postEndAttempt(attempt_id: number){
+		this.currentUrl = this.attemptUrl + "/" + attempt_id + "/" + "end";
+		let jsonResult: string = "{}";
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+  	}
 }
