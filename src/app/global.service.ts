@@ -117,7 +117,6 @@ export class GlobalService {
 	public getExtractText(res: Response) {
 		if (res.status == 200 || res.status == 202) {
 			console.log("==== Response getExtractText " + res.url + ": Status: " + res.status);
-			console.log(res.text());
 			return parseInt(res.text());
 		} else if (res.status == 204){
 			console.log("==== Response getExtractText" + res.url + ": Status: " + res.status);
