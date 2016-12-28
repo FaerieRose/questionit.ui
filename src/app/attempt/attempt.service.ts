@@ -43,7 +43,8 @@ export class AttemptService {
 
   postNewAttempt(testTemplateId: number, studentId: number): Observable<number> {
 		this.currentUrl = this.attemptUrl + "/start/" + testTemplateId + "/" + studentId;
-		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+		let jsonResult: string = "{}";
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
   }
 
 	getQuestion(attemptId: number, questionNr: number): Observable<Question> {

@@ -20,6 +20,7 @@ export class PreAttemptComponent implements OnInit {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
   private testtemplate: TestTemplate;
   private currentUrl: string;
+  //private attemptID: number;
 
   constructor(
     private route: ActivatedRoute, 
@@ -39,11 +40,12 @@ export class PreAttemptComponent implements OnInit {
 
   // WORK IN PROGRESS
   startAttempt(testTemplateId: number) {
-    console.log('in PreAttemptComponent.startAttempt()');
-    //this.globalService.setAttemptID(this.postNewAttempt(testTemplateId, this.globalService.getStudentID()));
-    // this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe();
-    // this.globalService.setAttemptID();
-    this.router.navigate(['question/show']);
+    this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe(attemptID => { 
+      this.globalService.setAttemptID(attemptID);
+      //console.log("In PreAttemptComponent.startAttempt with globalService.attemptID=" + this.globalService.getAttemptID());
+    });
+    // To add: navigate to attempt component, which is being made by Dave.
+    // this.router.navigate(['question/show']);
   }
 
 }
