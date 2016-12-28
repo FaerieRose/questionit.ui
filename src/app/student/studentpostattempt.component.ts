@@ -34,7 +34,9 @@ export class StudentPostAttemptComponent implements OnInit {
 
   studentFinishAttempt() : void{
     var attempt_id : Number = 1;
-   // this.globalService.
+    // var id : Number = 3;
+    // this.globalService.setAttemptID(id.valueOf());
+    attempt_id = this.globalService.getAttemptID().valueOf();
     this.EndAttempt(attempt_id);  
     this.router.navigate(['attemptscore/'+ attempt_id]);
   }
