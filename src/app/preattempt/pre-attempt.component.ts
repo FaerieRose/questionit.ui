@@ -41,7 +41,7 @@ export class PreAttemptComponent implements OnInit {
   startAttempt(testTemplateId: number) {
     console.log('in PreAttemptComponent.startAttempt()');
     //this.globalService.setAttemptID(this.postNewAttempt(testTemplateId, this.globalService.getStudentID()));
-    // this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe();
+    this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe();
     // this.globalService.setAttemptID();
     this.router.navigate(['question/show']);
   }
