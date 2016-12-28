@@ -50,7 +50,7 @@ export class AttemptScoreComponent implements OnInit {
   getScoresList(attempt_id) {
     this.attemptService.getScoresList(attempt_id).subscribe(scoresList => {
       this.scoresList = scoresList;
-      // console.log(this.scoresList);
+       console.log(this.scoresList);
       }); 
   }
 

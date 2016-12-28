@@ -10,4 +10,28 @@
    <div >
     <label class="button" >Back / Continue<input type="button" (click)="studentBackContinue()" style="display:none"/></label>
   </div>
+  <p> </p>
+  <div >
+    <label class="label.text text"> Your questions with incorrect selected number of choices are: </label>
+  </div>
+  <p> </p>
+  <table>
+    <tr *ngFor="let element of reviewIncorrectChoices; let i = index" >
+      <td>
+        <label class="button"> Question  {{element}} <input type="button" (click)="studentBackContinue(i)" style="display:none"/></label> 
+      </td>
+    </tr>
+  </table>
+  <p> </p>
+  <div >
+    <label class="label.text text"> Your marked questions are: </label>
+  </div>
+  <p> </p>
+  <table>
+   <tr *ngFor="let element of markedQuestions; let i = index">
+    <td>
+      <label class="button">  Question  {{element+1}} <input type="button" (click)="studentBackContinue(i)" style="display:none"/></label>  
+    </td>
+   </tr>
+  </table>
 </div>
