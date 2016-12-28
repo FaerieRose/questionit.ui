@@ -9,12 +9,14 @@ import { Routes,
 import { InstructorComponent }            from './instructor.component';
 import { InstructorsComponent }           from './instructors.component';
 import { BindInstructorToClassComponent } from './bindinstructortoclass.component';
+import { InstructorLandingComponent }           from './instructor-landing.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'edit', pathMatch: 'full'},
+  { path: '', redirectTo: 'edit', pathMatch: 'full'},         //waarom default naar edit?
   { path: 'edit', component: InstructorComponent },
   { path: 'list', component: InstructorsComponent },
   { path: 'bind', component: BindInstructorToClassComponent },
+  { path: 'landing', component: InstructorLandingComponent }
 ];
 
 @NgModule({

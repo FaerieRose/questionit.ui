@@ -1,10 +1,9 @@
 // When creating a new component, always first import Component:
-import { Component, OnInit }      from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { Component, OnInit }              from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { TestTemplate }           from '../testtemplate/testtemplate';
-import { TestTemplateService }    from '../testtemplate/testtemplate.service';
-
+import { TestTemplate }                   from '../testtemplate/testtemplate';
+import { TestTemplateService }            from '../testtemplate/testtemplate.service';
 
 @Component({
   selector:     'my-pre-attempt',
@@ -14,8 +13,10 @@ import { TestTemplateService }    from '../testtemplate/testtemplate.service';
 export class PreAttemptComponent implements OnInit {
   testtemplate: TestTemplate;
 
-  constructor(private route: ActivatedRoute, private testTemplateService: TestTemplateService) {
-
+  constructor(
+    private route: ActivatedRoute, 
+    private router: Router,
+    private testTemplateService: TestTemplateService) {
   }
 
   ngOnInit() {
@@ -25,7 +26,8 @@ export class PreAttemptComponent implements OnInit {
 
   startAttempt() {
     console.log('in PreAttemptComponent.startAttempt() with id=' + this.testtemplate.id);
-
+    //console.log('in PreAttemptComponent.startAttempt()');
+    this.router.navigate(['question/show']);
   }
 
 }

@@ -10,23 +10,28 @@ import './rxjs-extensions';
 
 //import { QuestionComponent }     from './question/question.component';
 //import { ShowQuestionComponent } from './question/show-question.component';
-//import { QuestionsComponent }    from './question/questions.component';
+import { LoginComponent }    from './login/login.component';
 import { StudentComponent }      from './student/student.component';
 import { StudentClassComponent}  from './studentclasses/studentclass.component';
+import { CreateTestComponent}    from './createtest/createtest.component';
 import { AttemptScoreComponent}  from './attempt/attemptscore.component';
 //import { ChooseTestTemplateComponent}  from './choose-testtemplate/choose-testtemplate.component';
+import { StudentReviewComponent }   from './student/studentreview.component';
+import { StudentLoginComponent }   from './student/studentlogin.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/question/browse', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login',              component: LoginComponent },
   { path: 'instructor',         loadChildren: 'app/instructor/instructor.module#InstructorModule' },
   { path: 'question',           loadChildren: 'app/question/question.module#QuestionModule' },
   { path: 'studentclasses',     component: StudentClassComponent },
   { path: 'student',            component: StudentComponent },
+  { path: 'createtest',         component: CreateTestComponent },
   { path: 'attemptscore/:id',   component: AttemptScoreComponent },
-  { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' }
+  { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' },
+  { path: 'studentreview' ,     component: StudentReviewComponent}, 
+  { path: 'studentlogin' ,      component: StudentLoginComponent} 
   
-  //{ path: 'choosetesttemplate', loadChildren: 'app/ctt/ctt.module#CttModule' }
-  //{ path: 'choosetesttemplate',           loadChildren: 'app/question/question-a.module#QuestionModule' }
 ];
 
 @NgModule({

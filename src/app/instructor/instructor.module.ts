@@ -8,6 +8,7 @@ import { CommonModule }        from '@angular/common';
 import { InstructorComponent }            from './instructor.component';
 import { InstructorsComponent }           from './instructors.component';
 import { BindInstructorToClassComponent } from './bindinstructortoclass.component';
+import { InstructorLandingComponent }     from './instructor-landing.component'
 import { InstructorRoutingModule }        from './instructor-routing.module';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { InstructorRoutingModule }        from './instructor-routing.module';
   declarations: [
     InstructorComponent, 
     InstructorsComponent, 
-    BindInstructorToClassComponent
+    BindInstructorToClassComponent,
+    InstructorLandingComponent
   ]
 })
 export class InstructorModule { }

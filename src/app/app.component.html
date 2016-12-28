@@ -16,11 +16,11 @@
       <div id="divLogo">
         <img src="{{ imageUrl }}logo_question_it_2016-11-23.png" id="logo">
       </div>
-      <span *ngIf="instructorId > 0">
-        <legend>Instructor: {{ instructorName }}</legend>
+      <span *ngIf="globalService.getInstructorID() > 0">
+        <legend>Instructor: {{ globalService.getInstructorName() }}</legend>
       </span>
-      <span *ngIf="studentId > 0">
-        <legend>Student: {{ studentName }}</legend>
+      <span *ngIf="globalService.getStudentID() > 0">
+        <legend>Student: {{ globalService.getStudentName() }}</legend>
       </span><br>
       <legend>Navigation</legend>
       <a class="nav-link" routerLink="/question"              routerLinkActive="active"> >> Questions</a><br>
@@ -28,12 +28,14 @@
       <a class="nav-link" routerLink="/question/edit/-1"      routerLinkActive="active"> >> New Question</a><br>
       <a class="nav-link" routerLink="/question/show"         routerLinkActive="active"> >> Show Question</a><br>
       <a class="nav-link" routerLink="/instructor"            routerLinkActive="active"> >> Instructor</a><br>
-      <a class="nav-link" routerLink="/instructor/list"       routerLinkActive="active"> >> Instructors</a><br>
+
       <a class="nav-link" routerLink="/instructor/bind"       routerLinkActive="active"> >> Select Teacher For Class</a><br>
       <a class="nav-link" routerLink="/studentclasses"        routerLinkActive="active"> >> studentclass</a><br>
       <a class="nav-link" routerLink="/student"               routerLinkActive="active"> >> Student</a><br>
       <a class="nav-link" routerLink="/attemptscore/1"        routerLinkActive="active"> >> Attempt Score</a><br>
       <a class="nav-link" routerLink="/choosetesttemplate"    routerLinkActive="active"> >> Choose Test Template</a><br>
+      <a class="nav-link" routerLink="/createtest"            routerLinkActive="active"> >> Create A New Test Template</a><br>
+      <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Student Login</a><br>
     </div>
   </div>
 </div>

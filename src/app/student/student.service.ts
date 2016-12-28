@@ -1,3 +1,7 @@
+/* ----------------------------------------------------------------------------------- */
+/* Author       : Rik & Rémond                                                         */
+/* Date created : 15 Nov 2016                                                          */
+/* ----------------------------------------------------------------------------------- */
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
@@ -22,8 +26,8 @@ export class StudentService {
 
 	getStudentById(id: number): Observable<Student> {
 
-		console.log("in de  getStudentById this.currentUrl = " + this.currentUrl);
 		this.currentUrl = this.studentUrl + "/" + id;
+		console.log("in de  getStudentById this.currentUrl = " + this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
