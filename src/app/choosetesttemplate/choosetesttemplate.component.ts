@@ -22,7 +22,7 @@ export class ChooseTestTemplateComponent implements OnInit {
   languages = [];
   //exams = [];
   testTemplateList: TestTemplate[];
-  list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
+ // list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
 
   constructor(
         private testTemplateService  : TestTemplateService,
@@ -55,7 +55,9 @@ export class ChooseTestTemplateComponent implements OnInit {
   getTestTemplateListSelectionLanguage(enumLang : number) {
     this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
       console.log("getTestTemplatesMeta() " + testTemplates.length);
-      testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == enumLang);
+      if (enumLang != 0){
+          testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == enumLang);
+      }
       this.testTemplateList = testTemplates;
       console.log(this.testTemplateList.length);
     }); 
@@ -67,8 +69,6 @@ export class ChooseTestTemplateComponent implements OnInit {
     this.testTemplateList = undefined;
     this.getTestTemplateListSelectionLanguage(EnumL);
    }
-
-  
 
   // updateLanguage($event)    { 
   //   this.list.language  = EnumLanguages[parseInt($event.target.value)];
