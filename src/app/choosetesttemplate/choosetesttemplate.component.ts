@@ -33,8 +33,8 @@ export class ChooseTestTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
-    //this.getTestTemplateListMeta();
-     this.getTestTemplateListSelection();
+    this.getTestTemplateListMeta();
+    // this.getTestTemplateListSelection();
   }
 
   getTestTemplateListMeta() {
