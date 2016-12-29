@@ -74,4 +74,12 @@ export class ChooseTestTemplateComponent implements OnInit {
     return this.globalService.getInstructorID();
   }
 
+  getEnumLanguages(nrEnum : number): String{
+    return EnumLanguages[nrEnum];
+  }
+
+  getEnumExams(nrEnum : number): String{
+    return EnumExams[nrEnum];
+  }
+
 }
