@@ -17,7 +17,7 @@ export class GlobalService {
   private studentID: number = -1;
   private instructorName: string = "";
   private studentName: string = "";
-	private attemptID: number = -1;
+	private currentAttemptID: number = -1;
 	private currentQuestionIndex: number = -1;
 	//private loginID: number;
   private baseUrl: string;
@@ -57,11 +57,11 @@ export class GlobalService {
 		}	
   }
 
-  public getAttemptID(): number {
-    return this.attemptID;
+  public getCurrentAttemptID(): number {
+    return this.currentAttemptID;
   }
-  public setAttemptID(id: number) {
-    this.attemptID = id;
+  public setCurrentAttemptID(id: number) {
+    this.currentAttemptID = id;
     // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
     //     this.studentName = student.firstName + " " + student.lastName;
     // });	
