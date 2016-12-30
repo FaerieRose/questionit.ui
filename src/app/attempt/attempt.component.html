@@ -1,5 +1,5 @@
-<div>  
-  <h1>I'm an attempt</h1>
+<div *ngIf='currentAttemptID'>  
+  <h1>I'm an attempt, nr. {{currentAttemptID}}</h1>
   
    <div class="div-input-text">
     <div class="divHalf1">
@@ -7,14 +7,11 @@
       ​<textarea class="control-input input-text" id="trala" placeholder="Question" value="{{ trala }}" (change)="updatetrala($event)" ></textarea>
     </div>
     
-  </div>
-  
-  <div>
-    <my-show-question>  hiiiieerrrrrr  </my-show-question>
-  </div>
-
-
-
+  </div>  
+<div *ngIf='question'>
+    <h2> Question {{currentQuestionNR}}</h2>
+    <div>question text: {{question.question}}    </div>
+</div>
 </div>  
 
 

@@ -3,20 +3,25 @@ import { Component, Directive, OnInit }        from '@angular/core';
 import { GlobalService }            from '../global.service';
 import { TestTemplateService }      from '../testtemplate/testtemplate.service';
 import { AttemptService }           from '../attempt/attempt.service';
-import { ShowQuestionComponent }    from '../question/show-question.component';
-
+//import { QuestionModule }           from '../question/question.module';
+import { Question }                 from '../question/question';
+import { QuestionService }          from '../question/question.service';
+//import { QuestionDisplayComponent } from '../question/question-display.component';
 
 
 
 @Component({
   selector: 'attempt-selector',
-  template: 'attempt.component.html'
+  templateUrl: 'attempt.component.html',
+  providers: [TestTemplateService, AttemptService]
   
 })
 export class AttemptComponent implements OnInit {   
 
 trala: String;
-currentAttemptID: number;
+currentAttemptID: number;       //id of attempt currently in progress
+currentQuestionNR: number;      //question nr. (index [1, ...]) to display
+question: Question;
 
 constructor(
     private testTemplateService: TestTemplateService,
@@ -27,21 +32,21 @@ constructor(
 
     ngOnInit(){
         this.currentAttemptID = this.globalService.getCurrentAttemptID();
-        this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe(attemptID => { 
-      //this.globalService.setAttemptID(attemptID);
-      // console.log("In PreAttemptComponent.startAttempt with globalService.attemptID=" + this.globalService.getAttemptID());
-      // Get the question on position 1 in the list and include its Id in the navigater call.
-      //this.attemptService.getQuestion(attemptID, 1).subscribe(q => {
-        //console.log("In PreAttemptComponent.startAttempt with q.id = " + q.id);
-        //this.router.navigate(['question/show/', q.id.toString()]);
-      //});
-    //}); 
+        this.currentQuestionNR = this.globalService.getCurrentQuestionIndex();
+       
+        this.getQuestion(this.currentAttemptID, this.currentQuestionNR );
+     
     }
 
     updatetrala($event){
         this.trala = "dffdfs";
     }
 
-
+    getQuestion(attmptID, questNR){
+      this.attemptService.getQuestion(attmptID, questNR).subscribe(q => {
+        console.log("In AttemptComponent.getQuestion with q.id = " + q.id);
+        this.question = q;
+        });
+    }
 
 }

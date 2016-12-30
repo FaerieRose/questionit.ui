@@ -17,8 +17,8 @@ export class GlobalService {
   private studentID: number = -1;
   private instructorName: string = "";
   private studentName: string = "";
-	private currentAttemptID: number = -1;
-	private currentQuestionIndex: number = -1;
+	private currentAttemptID: number = -1;				//id of attempt currently in progress
+	private currentQuestionIndex: number = -1;		//INDEX of currently displayed attempt question.
 	//private loginID: number;
   private baseUrl: string;
   private baseUrlImage: string;

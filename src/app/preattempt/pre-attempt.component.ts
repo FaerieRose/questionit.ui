@@ -52,10 +52,11 @@ export class PreAttemptComponent implements OnInit {
   }
 
   // WORK IN PROGRESS
-  startAttempt(testTemplateId: number) {
+  startNewAttempt(testTemplateId: number) {
     
     this.attemptService.postNewAttempt(testTemplateId, this.globalService.getStudentID()).subscribe(attemptID => { 
       this.globalService.setCurrentAttemptID(attemptID);
+      this.globalService.setCurrentQuestionIndex(1);
       console.log("In PreAttemptComponent.startAttempt with globalService.attemptID=" + this.globalService.getCurrentAttemptID());
       this.router.navigate(['attempt']);
       // Get the question on position 1 in the list and include its Id in the navigater call.
