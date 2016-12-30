@@ -18,6 +18,8 @@ import { AttemptScoreComponent}  from './attempt/attemptscore.component';
 //import { ChooseTestTemplateComponent}  from './choose-testtemplate/choose-testtemplate.component';
 import { StudentReviewComponent }   from './student/studentreview.component';
 import { StudentLoginComponent }   from './student/studentlogin.component';
+import { StudentPostAttemptComponent }   from './student/studentpostattempt.component';
+
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -30,7 +32,8 @@ const routes: Routes = [
   { path: 'attemptscore/:id',   component: AttemptScoreComponent },
   { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' },
   { path: 'studentreview' ,     component: StudentReviewComponent}, 
-  { path: 'studentlogin' ,      component: StudentLoginComponent} 
+  { path: 'studentlogin' ,      component: StudentLoginComponent}, 
+  { path: 'studentpostattempt', component: StudentPostAttemptComponent}
   
 ];
 

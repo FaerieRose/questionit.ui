@@ -25,17 +25,17 @@ export class ShowQuestionComponent implements OnInit {
   givenAnswers: AnswerList;
 
   constructor(
-    private route: ActivatedRoute,
-    private questionService  : QuestionService,
-    private answerListService: AnswerListService, 
-    private globalService    : GlobalService) {
+        private route            : ActivatedRoute, 
+        private questionService  : QuestionService,
+        private answerListService: AnswerListService, 
+        private globalService    : GlobalService) {
   }
 
   ngOnInit() {
-    //console.log(params['id'])
-    //this.getQuestion(params['id']);
     let id = +this.route.snapshot.params['id'];
-    this.getQuestion(2);
+    // console.log("In ShowQuestionComponent.ngOnInit with id = " + id)
+    //this.getQuestion(params['id']);
+    this.getQuestion(id);
   }
 
   resetGivenAnswers(): AnswerList {
@@ -108,5 +108,9 @@ export class ShowQuestionComponent implements OnInit {
     this.getQuestion(this.question.id + 1);
   }
 
+ toCharLetter(number: Number){
+    var char = String.fromCharCode(number.valueOf() + 64);
+    return char;
+  }
 
 }

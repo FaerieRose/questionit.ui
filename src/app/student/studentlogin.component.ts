@@ -35,7 +35,6 @@ export class StudentLoginComponent implements OnInit {
   
   studentLogOut(){
       this.router.navigate(['login']);
-  }
-
+  } 
 
 }

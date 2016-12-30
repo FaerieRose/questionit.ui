@@ -31,10 +31,10 @@
             <div class="marcel"><input type="text" value="{{ tt.name }}"></div>
           </td>
           <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ tt.programmingLanguage }}"></div>
+            <div class="marcel"><input type="text" value="{{ getEnumLanguages(tt.programmingLanguage) }}"></div>
           </td>
           <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ tt.forExam }}"></div>
+            <div class="marcel"><input type="text" value="{{ getEnumExams(tt.forExam) }}"></div>
           </td>
           <td class="div-input-text3">
             <div class="marcel"><input type="text" value="{{ tt.size }}"></div>
@@ -53,3 +53,5 @@
     </table>
   </form>
 </div>
+
+

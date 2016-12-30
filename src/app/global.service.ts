@@ -17,6 +17,8 @@ export class GlobalService {
   private studentID: number = -1;
   private instructorName: string = "";
   private studentName: string = "";
+	private attemptID: number = -1;
+	private currentQuestionIndex: number = -1;
 	//private loginID: number;
   private baseUrl: string;
   private baseUrlImage: string;
@@ -54,6 +56,27 @@ export class GlobalService {
 			});
 		}	
   }
+
+  public getAttemptID(): number {
+    return this.attemptID;
+  }
+  public setAttemptID(id: number) {
+    this.attemptID = id;
+    // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
+    //     this.studentName = student.firstName + " " + student.lastName;
+    // });	
+  }
+
+  public getCurrentQuestionIndex(): number {
+    return this.currentQuestionIndex;
+  }
+  public setCurrentQuestionIndex(id: number) {
+    this.currentQuestionIndex = id;
+    // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
+    //     this.studentName = student.firstName + " " + student.lastName;
+    // });	
+  }
+
   public getStudentName(): string {
     return this.studentName;
   }
@@ -93,7 +116,7 @@ export class GlobalService {
 	// Returns the received JSON data if the Response the GET is 200, otherwise an empty JSON object
 	public getExtractText(res: Response) {
 		if (res.status == 200 || res.status == 202) {
-			console.log("==== Response getExtractText" + res.url + ": Status: " + res.status);
+			console.log("==== Response getExtractText " + res.url + ": Status: " + res.status);
 			return parseInt(res.text());
 		} else if (res.status == 204){
 			console.log("==== Response getExtractText" + res.url + ": Status: " + res.status);

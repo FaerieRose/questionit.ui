@@ -198,3 +198,19 @@ article {
   border-width: 0;
   background-color: black;
 }
+
+/* ----------------------------------------------------------------------------------- */
+/* Layout input buttons  disabled                                                              */
+label.buttondisbled {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 1vh;
+  background-color: #dddddd;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #eee;
+  margin-top: 0.5vh;
+  padding: 0 2em 0 2em;
+}
+

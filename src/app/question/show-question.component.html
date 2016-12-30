@@ -21,7 +21,7 @@
     <table>
       <tr *ngFor='let answer of possibleAnswers; let i = index;' class="answers" >
         <td> 
-          ​<input class="answers" type="text" disabled value="{{ i+1 }}">
+          ​<input class="answers" type="text" disabled value="{{ toCharLetter(i+1) }}">
         </td>
         <td>
           <input class="answers" type="checkbox" [checked]="givenAnswers.answers[i]">
