@@ -1,17 +1,39 @@
 <div *ngIf='currentAttemptID'>  
-  <h1>I'm an attempt, nr. {{currentAttemptID}}</h1>
+    <h1>attempt id: {{currentAttemptID}}</h1>
   
-   <div class="div-input-text">
-    <div class="divHalf1">
-      <label class="control-input text" for="trala">trala</label><br> 
-      ​<textarea class="control-input input-text" id="trala" placeholder="Question" value="{{ trala }}" (change)="updatetrala($event)" ></textarea>
+ 
+    <div *ngIf='question'>
+        <h3> QuestionNR: {{currentQuestionNR}}</h3>
+        <div>question text: {{question.question}}    </div>
+
+    <label class="control-input text" for="questionanswers">Answers</label><br>
+    <table>
+      <tr  *ngFor='let answer of question.possibleAnswers; let i = index;' class="answers" >
+        <td> 
+          ​<input class="answers" type="text" disabled value="{{ toCharLetter(i+1) }}">
+        </td>
+        <td>
+          <input class="answers" type="checkbox" (change)="updateGivenAnswer(i, $event)" >
+        </td>
+        <td class="answers">
+          <textarea id="answer{{ i }}"  value="{{ question.possibleAnswers[i] }}" ></textarea><br>
+        </td>
+        <!--<td>
+          <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>
+        </td>-->
+      </tr>
+    </table>
     </div>
     
-  </div>  
-<div *ngIf='question'>
-    <h2> Question {{currentQuestionNR}}</h2>
-    <div>question text: {{question.question}}    </div>
-</div>
+    <label class="button" id="prevQuestion">Previous Question
+      <input type="button" (click)="goPrevQuestion()" style="display:none" />
+    </label>
+    <label class="button" id="nextQuestion">Next Question
+      <input type="button" (click)="goNextQuestion()" style="display:none" />
+    </label>
+    <label class="button" id="overview">Exam Review
+      <input type="button" (click)="goPostExam()" style="display:none" />
+    </label>
 </div>  
 
 

@@ -12,7 +12,9 @@ import { Observable }              from 'rxjs/Observable';
 
 import { GlobalService }           from '../global.service';
 import { Attempt }                 from './attempt';
-import { Question } 							 from '../question/question'; 
+import { Question }				   from '../question/question';
+import { AnswerList }              from '../answerlist/answerlist';
+
 
 @Injectable()
 export class AttemptService {
@@ -57,6 +59,24 @@ export class AttemptService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 
+  putGivenAnswer(id: number, questNR: number, givenAnswer: AnswerList): Observable<number> {
+	 /**
+	 * PUT answerList from givenAnswers corresponding with number relating to index
+	 *  ( number = index + 1 )
+	 * Path = 'api/attempts'
+	 * @return 200 + JSON if there is data, or 204 (noContent), or 406 "Not Acceptable when number is not corresponding 
+	 * @author S.Martens
+	@PUT
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	@Path("{id}/answerlist/{nr}")
+	 */
+		this.currentUrl = this.attemptUrl + "/" + id + "/answerlist/" + questNR;
+		let jsonResult: string = JSON.stringify(givenAnswer);
+		console.log("---- JSON(AnswerList) = " + jsonResult);
+		return this.http.put(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
+  }
+  
   getGivenAnswers(id: number): Observable<String[]> {
 		this.currentUrl = this.attemptUrl + "/" + id + "/givenAnswersList";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
