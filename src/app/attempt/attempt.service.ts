@@ -14,6 +14,7 @@ import { GlobalService }           from '../global.service';
 import { Attempt }                 from './attempt';
 import { Question }				   from '../question/question';
 import { AnswerList }              from '../answerlist/answerlist';
+import { TestTemplate }			   from '../testtemplate/testtemplate'
 
 
 @Injectable()
@@ -49,10 +50,10 @@ export class AttemptService {
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
   }
 
-	getQuestion(attemptId: number, questionNr: number): Observable<Question> {
+  getQuestion(attemptId: number, questionNr: number): Observable<Question> {
 		this.currentUrl = this.attemptUrl + "/" + attemptId + "/question/" + questionNr;
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
-	}
+  }
 
   getCorrectAnswers(id: number): Observable<String[]> {
 		this.currentUrl = this.attemptUrl + "/" + id + "/correctAnswers";
@@ -89,6 +90,11 @@ export class AttemptService {
 
   getMarkedQuestions(id: number): Observable<number[]> {
 		this.currentUrl = this.attemptUrl + "/" + id + "/markedQuestions";
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+  }
+
+  getTesttemplate(attemptID: number): Observable<TestTemplate>{
+	  	this.currentUrl = this.attemptUrl + "/" + attemptID + "/TestTemplate";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 

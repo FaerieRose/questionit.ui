@@ -18,9 +18,9 @@ import { AnswerList }               from '../answerlist/answerlist';
 })
 export class AttemptComponent implements OnInit {   
 
-trala: String;
 currentAttemptID: number;       //id of attempt currently in progress
 currentQuestionNR: number;      //question nr. (index [1, ...]) to display
+currentQuestionAmount: number;  //amount of questions in this test
 question: Question;
 givenAnswer: AnswerList;
 
@@ -33,10 +33,12 @@ constructor(
 
     ngOnInit(){
         this.currentAttemptID = this.globalService.getCurrentAttemptID();
-        this.currentQuestionNR = this.globalService.getCurrentQuestionIndex();
-       
+        this.currentQuestionAmount = this.globalService.getCurrentQuestionAmount();
+        this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
+            
+        this.resetGivenAnswer();
         this.getQuestion(this.currentAttemptID, this.currentQuestionNR );
-        this.givenAnswer = { "id" : 0, "answers" : [false, false, false, false, false, false, false, false, false, false]}
+        
     }
 
     getQuestion(attmptID, questNR){
@@ -46,6 +48,10 @@ constructor(
         });
     }
 
+    resetGivenAnswer(){
+        this.givenAnswer = { "id" : 0, "answers" : [false, false, false, false, false, false, false, false, false, false]};
+    }
+    
     updateGivenAnswer(id: number, $event) {
         this.givenAnswer.answers[id] = $event.target.checked;
     
@@ -54,28 +60,34 @@ constructor(
     saveAnswer(){
         this.attemptService.putGivenAnswer(this.currentAttemptID, this.currentQuestionNR, this.givenAnswer).subscribe(res =>{
             console.log(res.toString);
+            //TODO response handling
         });
         //save remainingtime?
+        //what if response != OK?
         
     }
 
     markQuestion(){
-        //later...
+        //TODO later...
     }
 
     goPrevQuestion(){
         this.saveAnswer();
-        this.trala = "dffdfs";
+        this.resetGivenAnswer();
+        
     }
 
     goNextQuestion(){
         this.saveAnswer();
-        this.trala = "dffdfs";
+        this.resetGivenAnswer();
+        
+        this.globalService.setCurrentQuestionNr(this.globalService.getCurrentQuestionNr() + 1 );
+        this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
+        this.getQuestion(this.currentAttemptID, this.currentQuestionNR);
     }
 
     goPostExam(){
         this.saveAnswer();
-        this.trala = "dffdfs";
     }
 
 
