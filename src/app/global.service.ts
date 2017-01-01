@@ -63,10 +63,7 @@ export class GlobalService {
   }
   public setCurrentAttemptID(id: number) {
     this.currentAttemptID = id;
-    // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
-    //     this.studentName = student.firstName + " " + student.lastName;
-    // });	
-  }
+	}
 
 	public setCurrentQuestionAmount(amount: number){
 		this.currentQuestionAmount = amount;
@@ -79,11 +76,9 @@ export class GlobalService {
   public getCurrentQuestionNr(): number {
     return this.currentQuestionNr;
   }
+
   public setCurrentQuestionNr(qNr: number) {
-    if (qNr <= this.currentQuestionAmount) this.currentQuestionNr = qNr;
-    // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
-    //     this.studentName = student.firstName + " " + student.lastName;
-    // });	
+    if ((qNr <= this.currentQuestionAmount) && (qNr > 0)) this.currentQuestionNr = qNr;
   }
 
   public getStudentName(): string {

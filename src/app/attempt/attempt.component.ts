@@ -1,13 +1,14 @@
-import { Component, Directive, OnInit }        from '@angular/core';
+import { Component, Directive, OnInit } from '@angular/core';
+import { Router }                       from '@angular/router';
 
-import { GlobalService }            from '../global.service';
-import { TestTemplateService }      from '../testtemplate/testtemplate.service';
-import { AttemptService }           from '../attempt/attempt.service';
+import { GlobalService }                from '../global.service';
+import { TestTemplateService }          from '../testtemplate/testtemplate.service';
+import { AttemptService }               from '../attempt/attempt.service';
 //import { QuestionModule }           from '../question/question.module';
-import { Question }                 from '../question/question';
-import { QuestionService }          from '../question/question.service';
-//import { QuestionDisplayComponent } from '../question/question-display.component';
-import { AnswerList }               from '../answerlist/answerlist';
+import { Question }                     from '../question/question';
+import { QuestionService }              from '../question/question.service';
+//import { QuestionDisplayComponent }  from '../question/question-display.component';
+import { AnswerList }                   from '../answerlist/answerlist';
 
 
 @Component({
@@ -28,6 +29,7 @@ constructor(
     private testTemplateService: TestTemplateService,
     private attemptService: AttemptService,
     private globalService: GlobalService,
+    private router: Router
     ) {
   }
 
@@ -74,20 +76,30 @@ constructor(
     goPrevQuestion(){
         this.saveAnswer();
         this.resetGivenAnswer();
-        
+        //will not go past first (nr. 1) question.
+        this.globalService.setCurrentQuestionNr(this.globalService.getCurrentQuestionNr() - 1 );
+        this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
+        this.getQuestion(this.currentAttemptID, this.currentQuestionNR);
+    
     }
 
     goNextQuestion(){
-        this.saveAnswer();
-        this.resetGivenAnswer();
-        
-        this.globalService.setCurrentQuestionNr(this.globalService.getCurrentQuestionNr() + 1 );
-        this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
-        this.getQuestion(this.currentAttemptID, this.currentQuestionNR);
-    }
+        if (this.currentQuestionNR < this.currentQuestionAmount){
+            this.saveAnswer();
+            this.resetGivenAnswer();
+            this.globalService.setCurrentQuestionNr(this.globalService.getCurrentQuestionNr() + 1 );
+            this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
+            this.getQuestion(this.currentAttemptID, this.currentQuestionNR);
+        } else {
+            this.goPostExam();
+        }
+
+}
 
     goPostExam(){
         this.saveAnswer();
+        this.resetGivenAnswer();
+        this.router.navigate(['studentpostattempt']);
     }
 
 
