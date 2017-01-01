@@ -60,7 +60,7 @@ export class AttemptService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 
-  putGivenAnswer(id: number, questNR: number, givenAnswer: AnswerList): Observable<number> {
+  putGivenAnswer(attemptID: number, questNR: number, givenAnswer: AnswerList): Observable<number> {
 	 /**
 	 * PUT answerList from givenAnswers corresponding with number relating to index
 	 *  ( number = index + 1 )
@@ -72,10 +72,15 @@ export class AttemptService {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Path("{id}/answerlist/{nr}")
 	 */
-		this.currentUrl = this.attemptUrl + "/" + id + "/answerlist/" + questNR;
+		this.currentUrl = this.attemptUrl + "/" + attemptID + "/answerlist/" + questNR;
 		let jsonResult: string = JSON.stringify(givenAnswer);
 		console.log("---- JSON(AnswerList) = " + jsonResult);
 		return this.http.put(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
+  }
+
+  getGivenAnswer(attemptID: number, questNR: number): Observable<AnswerList> {
+	  	this.currentUrl = this.attemptUrl + "/" + attemptID + "/answerlist/" + questNR;
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
   
   getGivenAnswers(id: number): Observable<String[]> {

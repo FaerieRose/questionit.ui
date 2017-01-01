@@ -5,21 +5,22 @@
     <div *ngIf='question'>
         <h3> QuestionNR: {{currentQuestionNR}}</h3>
         <div>question text: {{question.question}}    </div>
-
-    <label class="control-input text" for="questionanswers">Answers</label><br>
-    <table>
-      <tr  *ngFor='let answer of question.possibleAnswers; let i = index;' class="answers" >
-        <td> 
-          ​<input class="answers" type="text" disabled value="{{ toCharLetter(i+1) }}">
-        </td>
-        <td>
-          <input class="answers" type="checkbox" (change)="updateGivenAnswer(i, $event)" >
-        </td>
-        <td class="answers">
-          <textarea id="answer{{ i }}"  value="{{ question.possibleAnswers[i] }}" ></textarea><br>
-        </td>
-       </tr>
-    </table>
+        <div *ngIf='givenAnswer'>
+            <label class="control-input text" for="questionanswers">Answers</label><br>
+            <table>
+            <tr  *ngFor='let answer of question.possibleAnswers; let i = index;' class="answers" >
+                <td> 
+                ​<input class="answers" type="text" disabled value="{{ toCharLetter(i+1) }}">
+                </td>
+                <td>
+                <input class="answers" type="checkbox" [value]="givenAnswer.answers[i]" (change)="updateGivenAnswer(i, $event)" >
+                </td>
+                <td class="answers">
+                <textarea id="answer{{ i }}"  value="{{ question.possibleAnswers[i] }}" ></textarea><br>
+                </td>
+            </tr>
+            </table>
+        </div>
     </div>
     
     <label class="button" id="prevQuestion">Previous Question

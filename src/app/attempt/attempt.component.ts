@@ -44,10 +44,17 @@ constructor(
     }
 
     getQuestion(attmptID, questNR){
+      
       this.attemptService.getQuestion(attmptID, questNR).subscribe(q => {
-        console.log("In AttemptComponent.getQuestion with q.id = " + q.id);
+        //console.log("In AttemptComponent.getQuestion with q.id = " + q.id);
         this.question = q;
         });
+      //always retrieve answer, does not matter if question still unanswered (all false)
+      this.givenAnswer = null;      //let's try this to only show possibleanswers when done retrieving givenansw.
+      this.attemptService.getGivenAnswer(attmptID, questNR).subscribe(al =>{
+          this.givenAnswer = al;
+          console.log("attempt.getQuestion retrieved Answerlist: " + this.givenAnswer.answers);
+      })  
     }
 
     resetGivenAnswer(){
@@ -55,13 +62,15 @@ constructor(
     }
     
     updateGivenAnswer(id: number, $event) {
+        console.log("now in updategivenanswer");
         this.givenAnswer.answers[id] = $event.target.checked;
     
     }
 
     saveAnswer(){
+        console.log("saveAnswer. attemptID: " + this.currentAttemptID + ", questnNR: " + this.currentQuestionNR + ", answers: " + this.givenAnswer.answers);
         this.attemptService.putGivenAnswer(this.currentAttemptID, this.currentQuestionNR, this.givenAnswer).subscribe(res =>{
-            console.log(res.toString);
+            console.log("saveAnswer result: " + JSON.stringify(res));
             //TODO response handling
         });
         //save remainingtime?
@@ -94,7 +103,7 @@ constructor(
             this.goPostExam();
         }
 
-}
+    }
 
     goPostExam(){
         this.saveAnswer();
