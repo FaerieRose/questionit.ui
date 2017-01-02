@@ -31,7 +31,7 @@ export class StudentPostAttemptComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    var attempt_id = this.globalService.getAttemptID().valueOf();
+    var attempt_id = this.globalService.getCurrentAttemptID().valueOf();
    //  var attempt_id = 2;
  
     this.getReviewIncorrectChoices(attempt_id);
@@ -42,7 +42,7 @@ export class StudentPostAttemptComponent implements OnInit {
     var attempt_id : Number = 1;
     // var id : Number = 3;
     // this.globalService.setAttemptID(id.valueOf());
-    attempt_id = this.globalService.getAttemptID().valueOf();
+    attempt_id = this.globalService.getCurrentAttemptID().valueOf();
     this.EndAttempt(attempt_id);  
     this.router.navigate(['attemptscore/'+ attempt_id]);
   }

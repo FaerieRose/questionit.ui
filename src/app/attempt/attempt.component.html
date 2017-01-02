@@ -1,0 +1,37 @@
+<div *ngIf='currentAttemptID'>  
+    <h1>attempt id: {{currentAttemptID}}</h1>
+  
+ 
+    <div *ngIf='question'>
+        <h3> Question nr. {{currentQuestionNR}} of {{currentQuestionAmount}}</h3>
+        <div>question text: {{question.question}}    </div>
+        <div *ngIf='givenAnswer'>
+            <label class="control-input text" for="questionanswers">Answers</label><br>
+            <table>
+            <tr  *ngFor='let answer of question.possibleAnswers; let i = index;' class="answers" >
+                <td> 
+                ​<input class="answers" type="text" disabled value="{{ toCharLetter(i+1) }}">
+                </td>
+                <td>
+                <input class="answers" type="checkbox" [checked]="givenAnswer.answers[i]" (change)="updateGivenAnswer(i, $event)" >
+                </td>
+                <td class="answers">
+                <textarea id="answer{{ i }}"  value="{{ question.possibleAnswers[i] }}" ></textarea><br>
+                </td>
+            </tr>
+            </table>
+        </div>
+    </div>
+    
+    <label class="button" id="prevQuestion">Previous Question
+      <input type="button" (click)="goPrevQuestion()" style="display:none" />
+    </label>
+    <label class="button" id="nextQuestion">Next Question
+      <input type="button" (click)="goNextQuestion()" style="display:none" />
+    </label>
+    <label class="button" id="overview">Exam Review
+      <input type="button" (click)="goPostExam()" style="display:none" />
+    </label>
+</div>  
+
+
