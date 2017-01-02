@@ -71,6 +71,7 @@ constructor(
         console.log("saveAnswer. attemptID: " + this.currentAttemptID + ", questnNR: " + this.currentQuestionNR + ", answers: " + this.givenAnswer.answers);
         this.attemptService.putGivenAnswer(this.currentAttemptID, this.currentQuestionNR, this.givenAnswer).subscribe(res =>{
             console.log("saveAnswer result: " + JSON.stringify(res));
+            //this.givenAnswer = null;    //nope...async...timing unpredictable... 
             //TODO response handling
         });
         //save remainingtime?
