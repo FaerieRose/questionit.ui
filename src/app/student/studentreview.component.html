@@ -3,16 +3,16 @@
   <table>
       <tr  *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
         <td> 
-          ​<input class="attempts" type="text" disabled value="{{ attempt.testtemplate.name }}">
+          ​<input class="attempts" type="text" disabled value="{{ attempt.testTemplate.name }}">
         </td>
         <td>
-          <input class="attempts" type="text" value="{{ attempt.startDateTime.toString() }}" >
+          <input class="attempts" type="text" value="{{ attempt.startDateTime.toLocaleDateString() }}" >
         </td>
         <td class="attempts">
-          <text class="attempts" value="{{ attempt.programmingLanguage }}" ></text><br>
+          <input class="attempts" value="{{ attempt.testTemplate.programmingLanguage }}" ><br>
         </td>
         <td class="attempts">
-          <text class="attempts" value="{{ currentStudentScore[i] }}" ></text><br>
+          <input class="attempts" value="{{ currentStudentScore[i] }}" ><br>
         </td>
         <!--<td>
           <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>

@@ -32,13 +32,14 @@ export class StudentReviewComponent implements OnInit {
   ngOnInit() {
     this.currentStudent = null;
     this.studentService.getStudentById(this.globalService.getStudentID()).subscribe(student =>{
-      this.currentStudent = student;
+      console.log(JSON.stringify(student));
       this.currentStudentAttempts = student.attempts;
       for (var i = 0; i < this.currentStudentAttempts.length; i++){
         this.attemptService.getScoresRate(this.currentStudentAttempts[i].id).subscribe(score =>{
           this.currentStudentScores[i] = score;
-        })
+        });
       }
+      this.currentStudent = student;
     })
   }
 
