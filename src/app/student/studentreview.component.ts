@@ -19,9 +19,10 @@ import { StudentService }         from '../student/student.service';
 
 export class StudentReviewComponent implements OnInit {
 
-  currentStudent: Student;
-  currentStudentAttempts: Attempt[];
-  currentStudentScores: number[];
+  currentStudent = null;
+  currentStudentAttempts = [];
+  attemptStartDates = [];           //: string[]; NOPE...defining array type makes field undefined...?!?!
+  currentStudentScores = [];
 
   constructor(
         private globalService: GlobalService,
@@ -34,13 +35,18 @@ export class StudentReviewComponent implements OnInit {
     this.studentService.getStudentById(this.globalService.getStudentID()).subscribe(student =>{
       console.log(JSON.stringify(student));
       this.currentStudentAttempts = student.attempts;
+      this.attemptStartDates.length = 1;
+      this.currentStudentScores.length = 1;
       for (var i = 0; i < this.currentStudentAttempts.length; i++){
+        this.attemptStartDates.push((new Date(this.currentStudentAttempts[i].startDateTime)).toLocaleString());
+        //this probably runs into async probls...needs fix
         this.attemptService.getScoresRate(this.currentStudentAttempts[i].id).subscribe(score =>{
           this.currentStudentScores[i] = score;
         });
       }
       this.currentStudent = student;
-    })
+      console.log("done in studentreview.Oninit, example startdate: " + new Date(this.currentStudent.attempts[0].startDateTime));
+    });
   }
 
 

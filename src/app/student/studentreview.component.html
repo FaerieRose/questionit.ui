@@ -1,18 +1,18 @@
 <h1 >  Review page for student</h1>
-<div *ngIf="currentStudentAttempts" > 
+<div *ngIf="currentStudent" > 
   <table>
       <tr  *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
         <td> 
-          ​<input class="attempts" type="text" disabled value="{{ attempt.testTemplate.name }}">
+          ​<input type="text" disabled value="{{ attempt.testTemplate.name }}">
         </td>
         <td>
-          <input class="attempts" type="text" value="{{ attempt.startDateTime.toLocaleDateString() }}" >
+          <input type="text" value="{{ attemptStartDates[i] }}" >
         </td>
-        <td class="attempts">
-          <input class="attempts" value="{{ attempt.testTemplate.programmingLanguage }}" ><br>
+        <td>
+          <input value="{{ attempt.testTemplate.programmingLanguage }}" ><br>
         </td>
-        <td class="attempts">
-          <input class="attempts" value="{{ currentStudentScore[i] }}" ><br>
+        <td>
+          <input value="{{ currentStudentScore[i] }}" ><br>
         </td>
         <!--<td>
           <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>
