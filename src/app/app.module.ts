@@ -13,6 +13,8 @@ import { AppComponent }             from './app.component';
 import { LoginComponent }           from './login/login.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { StudentComponent }         from './student/student.component';
+import { AttemptComponent }         from './attempt/attempt.component';
+//import { ShowQuestionComponent }    from './question/show-question.component';
 import { AttemptScoreComponent }    from './attempt/attemptscore.component';
 import { CreateTestComponent }      from './createtest/createtest.component';
 import { GlobalService }            from './global.service';
@@ -26,6 +28,7 @@ import { StudentPostAttemptComponent }   from './student/studentpostattempt.comp
     LoginComponent,
     StudentClassComponent,
     StudentComponent,
+    AttemptComponent,
     AttemptScoreComponent,
     CreateTestComponent,
     StudentReviewComponent,
