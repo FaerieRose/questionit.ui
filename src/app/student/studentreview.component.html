@@ -9,15 +9,16 @@
           <input type="text" value="{{ attemptStartDates[i] }}" >
         </td>
         <td>
-          <input value="{{ attempt.testTemplate.programmingLanguage }}" ><br>
+          <input value="{{ attemptLanguages[i] }}" ><br>
         </td>
         <td>
-          <input value="{{ currentStudentScore[i] }}" ><br>
+          <input value="{{ currentStudentScores[i] }}" ><br>
         </td>
         <!--<td>
           <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>
         </td>-->
       </tr>
     </table>
+    <input type="button" (click)="goBack()" style="display:none" />
 
 </div>
