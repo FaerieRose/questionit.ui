@@ -107,6 +107,7 @@ export class ShowQuestionComponent implements OnInit {
   //   });
   // }
 
+  // To be reworked:
   gotoPreviousQuestion() {
     // this.getQuestion(this.question.id - 1);
     if (this.index > 1) {
@@ -114,6 +115,7 @@ export class ShowQuestionComponent implements OnInit {
     }
   }
 
+  // To be reworked:
   gotoNextQuestion() {
     // this.getQuestion(this.question.id + 1);
     if (this.index < this.size) {
@@ -126,6 +128,7 @@ export class ShowQuestionComponent implements OnInit {
     return char;
   }
 
+  // To be reworked:
   gotoPostExam() {
     this.router.navigate(['studentpostattempt']);
   }
