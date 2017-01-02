@@ -22,7 +22,7 @@ export class ChooseTestTemplateComponent implements OnInit {
   languages = [];
   //exams = [];
   testTemplateList: TestTemplate[];
-  //list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
+ // list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
 
   constructor(
         private testTemplateService  : TestTemplateService,
@@ -34,6 +34,7 @@ export class ChooseTestTemplateComponent implements OnInit {
 
   ngOnInit() {
     this.getTestTemplateListMeta();
+    // this.getTestTemplateListSelection();
   }
 
   getTestTemplateListMeta() {
@@ -42,6 +43,32 @@ export class ChooseTestTemplateComponent implements OnInit {
       console.log(this.testTemplateList.length);
     }); 
   }
+
+  getTestTemplateListSelection() {
+    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
+      testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == 0);
+      this.testTemplateList = testTemplates;
+      //console.log(this.testTemplateList.length);
+    }); 
+  }
+
+  getTestTemplateListSelectionLanguage(enumLang : number) {
+    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
+      console.log("getTestTemplatesMeta() " + testTemplates.length);
+      if (enumLang != 0){
+          testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == enumLang);
+      }
+      this.testTemplateList = testTemplates;
+      console.log(this.testTemplateList.length);
+    }); 
+  }
+
+  updateLanguage($event)    {
+    var EnumL : number;
+    EnumL  = parseInt($event.target.value);
+    this.testTemplateList = undefined;
+    this.getTestTemplateListSelectionLanguage(EnumL);
+   }
 
   // updateLanguage($event)    { 
   //   this.list.language  = EnumLanguages[parseInt($event.target.value)];
@@ -72,6 +99,14 @@ export class ChooseTestTemplateComponent implements OnInit {
 
   getInstructorId(): number {
     return this.globalService.getInstructorID();
+  }
+
+  getEnumLanguages(nrEnum : number): String{
+    return EnumLanguages[nrEnum];
+  }
+
+  getEnumExams(nrEnum : number): String{
+    return EnumExams[nrEnum];
   }
 
 }

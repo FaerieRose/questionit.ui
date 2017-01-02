@@ -29,6 +29,7 @@ export class QuestionComponent implements OnInit {
   exams = [];
   possibleAnswers: string[] = [ "" ];
   correctAnswers: AnswerList;
+  list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true}
 
   constructor(
         private route: ActivatedRoute,
@@ -124,8 +125,8 @@ export class QuestionComponent implements OnInit {
 
   }
 
-  updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
-  updateExam($event)        { this.question.forExam              = $event.target.value; }
+  // updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
+  // updateExam($event)        { this.question.forExam              = $event.target.value; }
   updateName($event)        { this.question.name                 = $event.target.value; }
   updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
   updateExplanation($event) { this.question.explanationAnswer    = $event.target.value; }
@@ -158,5 +159,21 @@ export class QuestionComponent implements OnInit {
     var char = String.fromCharCode(number.valueOf() + 64);
     return char;
   }
+
+  updateLanguage($event)    { 
+    this.list.language  = EnumLanguages[parseInt($event.target.value)];
+    this.questionService.getLevels(this.list.language).subscribe(levels => {
+      console.log(levels);
+      this.exams.length = 1;
+      for(let i=0 ; i<levels.length ; i++) {
+        this.exams.push( { "id": i+1, "name":levels[i] } );
+      }
+    })
+    this.list.exam = this.exams[0].name;
+  //  this.getQuestionList(); 
+  }
+
+  updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];   //  this.getQuestionList();
+     }
 
 }
