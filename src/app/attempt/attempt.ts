@@ -24,4 +24,5 @@ export class Attempt {
     startDateTime: Date;
     endDateTime: Date;
     timeToCompleteInSeconds: number;
+
 }

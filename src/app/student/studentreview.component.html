@@ -1,3 +1,23 @@
-<div> 
-  <h1 >  Review page for student</h1>
+<h1 >  Review page for student</h1>
+<div *ngIf="currentStudentAttempts" > 
+  <table>
+      <tr  *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
+        <td> 
+          ​<input class="attempts" type="text" disabled value="{{ attempt.testtemplate.name }}">
+        </td>
+        <td>
+          <input class="attempts" type="text" value="{{ attempt.startDateTime.toString() }}" >
+        </td>
+        <td class="attempts">
+          <text class="attempts" value="{{ attempt.programmingLanguage }}" ></text><br>
+        </td>
+        <td class="attempts">
+          <text class="attempts" value="{{ currentStudentScore[i] }}" ></text><br>
+        </td>
+        <!--<td>
+          <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>
+        </td>-->
+      </tr>
+    </table>
+
 </div>

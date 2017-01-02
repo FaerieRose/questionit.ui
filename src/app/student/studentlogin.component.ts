@@ -1,6 +1,13 @@
 /* ----------------------------------------------------------------------------------- */
 /* Author       : S.Martens                                                            */
 /* Date created : 20 Dec 2016                                                          */
+/*
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }  from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -31,6 +38,11 @@ export class StudentLoginComponent implements OnInit {
 
   studentNewAttempt(student_id) : void{
       this.router.navigate(['choosetesttemplate']);
+  }
+
+  //go to overview of previous attempts
+  reviewAttempts(){
+       this.router.navigate(['studentreview']);
   }
   
   studentLogOut(){
