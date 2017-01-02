@@ -10,15 +10,16 @@ import './rxjs-extensions';
 
 //import { QuestionComponent }     from './question/question.component';
 //import { ShowQuestionComponent } from './question/show-question.component';
-import { LoginComponent }    from './login/login.component';
-import { StudentComponent }      from './student/student.component';
-import { StudentClassComponent}  from './studentclasses/studentclass.component';
-import { CreateTestComponent}    from './createtest/createtest.component';
-import { AttemptScoreComponent}  from './attempt/attemptscore.component';
+import { LoginComponent }               from './login/login.component';
+import { StudentComponent }             from './student/student.component';
+import { StudentClassComponent}         from './studentclasses/studentclass.component';
+import { CreateTestComponent}           from './createtest/createtest.component';
+import { AttemptScoreComponent}         from './attempt/attemptscore.component';
+import { AttemptComponent}              from './attempt/attempt.component';
 //import { ChooseTestTemplateComponent}  from './choose-testtemplate/choose-testtemplate.component';
-import { StudentReviewComponent }   from './student/studentreview.component';
-import { StudentLoginComponent }   from './student/studentlogin.component';
-import { StudentPostAttemptComponent }   from './student/studentpostattempt.component';
+import { StudentReviewComponent }       from './student/studentreview.component';
+import { StudentLoginComponent }        from './student/studentlogin.component';
+import { StudentPostAttemptComponent }  from './student/studentpostattempt.component';
 
 
 const routes: Routes = [
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'choosetesttemplate', loadChildren: 'app/choosetesttemplate/choosetesttemplate.module#ChooseTestTemplateModule' },
   { path: 'studentreview' ,     component: StudentReviewComponent}, 
   { path: 'studentlogin' ,      component: StudentLoginComponent}, 
-  { path: 'studentpostattempt', component: StudentPostAttemptComponent}
+  { path: 'studentpostattempt', component: StudentPostAttemptComponent},
+  { path: 'attempt',            component: AttemptComponent}
   
 ];
 

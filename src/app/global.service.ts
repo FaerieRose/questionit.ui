@@ -17,8 +17,9 @@ export class GlobalService {
   private studentID: number = -1;
   private instructorName: string = "";
   private studentName: string = "";
-	private attemptID: number = -1;
-	private currentQuestionIndex: number = -1;
+	private currentAttemptID: number = -1;				//id of attempt currently in progress
+	private currentQuestionNr: number = -1;				//index [1, currentQuestionAmount] of currently displayed attempt question.
+	private currentQuestionAmount: number = -1;		//amount of questions in current attempt.
 	//private loginID: number;
   private baseUrl: string;
   private baseUrlImage: string;
@@ -57,24 +58,27 @@ export class GlobalService {
 		}	
   }
 
-  public getAttemptID(): number {
-    return this.attemptID;
+  public getCurrentAttemptID(): number {
+    return this.currentAttemptID;
   }
-  public setAttemptID(id: number) {
-    this.attemptID = id;
-    // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
-    //     this.studentName = student.firstName + " " + student.lastName;
-    // });	
+  public setCurrentAttemptID(id: number) {
+    this.currentAttemptID = id;
+	}
+
+	public setCurrentQuestionAmount(amount: number){
+		this.currentQuestionAmount = amount;
+	}
+
+	public getCurrentQuestionAmount(): number{
+		return this.currentQuestionAmount;
+	}
+
+  public getCurrentQuestionNr(): number {
+    return this.currentQuestionNr;
   }
 
-  public getCurrentQuestionIndex(): number {
-    return this.currentQuestionIndex;
-  }
-  public setCurrentQuestionIndex(id: number) {
-    this.currentQuestionIndex = id;
-    // this.http.get(this.baseUrl + "students/" + this.studentID).map(this.getExtractData).subscribe(student => {
-    //     this.studentName = student.firstName + " " + student.lastName;
-    // });	
+  public setCurrentQuestionNr(qNr: number) {
+    if ((qNr <= this.currentQuestionAmount) && (qNr > 0)) this.currentQuestionNr = qNr;
   }
 
   public getStudentName(): string {
