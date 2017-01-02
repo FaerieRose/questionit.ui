@@ -11,7 +11,7 @@ import { Component, Directive, OnInit } from '@angular/core';
 import { Router }                       from '@angular/router';
 
 import { GlobalService }                from '../global.service';
-import { TestTemplateService }          from '../testtemplate/testtemplate.service';
+//import { TestTemplateService }          from '../testtemplate/testtemplate.service';
 import { AttemptService }               from '../attempt/attempt.service';
 //import { QuestionModule }           from '../question/question.module';
 import { Question }                     from '../question/question';
@@ -23,7 +23,7 @@ import { AnswerList }                   from '../answerlist/answerlist';
 @Component({
   selector: 'attempt-selector',
   templateUrl: 'attempt.component.html',
-  providers: [TestTemplateService, AttemptService]
+  providers: [ AttemptService ]
   
 })
 export class AttemptComponent implements OnInit {   
@@ -36,7 +36,7 @@ question: Question;
 givenAnswer: AnswerList;
 
 constructor(
-    private testTemplateService: TestTemplateService,
+    //private testTemplateService: TestTemplateService,
     private attemptService: AttemptService,
     private globalService: GlobalService,
     private router: Router
