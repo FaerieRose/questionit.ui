@@ -3,7 +3,7 @@
   
  
     <div *ngIf='question'>
-        <h3> QuestionNR: {{currentQuestionNR}}</h3>
+        <h3> Question nr. {{currentQuestionNR}} of {{currentQuestionAmount}}</h3>
         <div>question text: {{question.question}}    </div>
         <div *ngIf='givenAnswer'>
             <label class="control-input text" for="questionanswers">Answers</label><br>

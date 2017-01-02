@@ -1,3 +1,12 @@
+/**
+ * @Author: Dave Schellekens
+ * date: 01-01-2017
+ * 
+ * Displays a single question out of an attempt and lets student choose answer. answer gets saved
+ * when clicking prev/next/review.
+ * 
+ */
+
 import { Component, Directive, OnInit } from '@angular/core';
 import { Router }                       from '@angular/router';
 
@@ -20,6 +29,7 @@ import { AnswerList }                   from '../answerlist/answerlist';
 export class AttemptComponent implements OnInit {   
 
 currentAttemptID: number;       //id of attempt currently in progress
+//currentTestTemplate: TestTemplate;    //testtemplate currentAttempt is based on
 currentQuestionNR: number;      //question nr. (index [1, ...]) to display
 currentQuestionAmount: number;  //amount of questions in this test
 question: Question;
@@ -35,6 +45,9 @@ constructor(
 
     ngOnInit(){
         this.currentAttemptID = this.globalService.getCurrentAttemptID();
+        //this.attemptService.getTesttemplate(this.currentAttemptID).subscribe(tt =>{
+        //    this.currentTestTemplate = tt;
+        //}) ;
         this.currentQuestionAmount = this.globalService.getCurrentQuestionAmount();
         this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
             
