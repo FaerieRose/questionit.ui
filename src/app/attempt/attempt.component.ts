@@ -7,17 +7,18 @@
  * 
  */
 
-import { Component, Directive, OnInit } from '@angular/core';
+import { Component, OnInit }            from '@angular/core'; // Removed Directive
 import { Router }                       from '@angular/router';
 
 import { GlobalService }                from '../global.service';
-//import { TestTemplateService }          from '../testtemplate/testtemplate.service';
 import { AttemptService }               from '../attempt/attempt.service';
-//import { QuestionModule }           from '../question/question.module';
 import { Question }                     from '../question/question';
-//import { QuestionService }              from '../question/question.service';
 import { QuestionDisplayComponent }     from '../question/question-display.component';
+
 import { AnswerList }                   from '../answerlist/answerlist';
+//import { TestTemplateService }          from '../testtemplate/testtemplate.service';
+//import { QuestionModule }           from '../question/question.module';
+//import { QuestionService }              from '../question/question.service';
 
 
 @Component({
@@ -27,12 +28,11 @@ import { AnswerList }                   from '../answerlist/answerlist';
   
 })
 export class AttemptComponent implements OnInit {   
-
+    question: Question;
     currentAttemptID: number;       //id of attempt currently in progress
     //currentTestTemplate: TestTemplate;    //testtemplate currentAttempt is based on
     currentQuestionNR: number;      //question nr. (index [1, ...]) to display
     currentQuestionAmount: number;  //amount of questions in this test
-    question: Question;
     givenAnswer: AnswerList;
 
     constructor (
@@ -54,15 +54,15 @@ export class AttemptComponent implements OnInit {
         
     }
 
-    getQuestion(attmptID, questNR){
+    getQuestion(attemptID, questNR){
       
-      this.attemptService.getQuestion(attmptID, questNR).subscribe(q => {
+      this.attemptService.getQuestion(attemptID, questNR).subscribe(question => {
         //console.log("In AttemptComponent.getQuestion with q.id = " + q.id);
-        this.question = q;
+        this.question = question;
       });
       //always retrieve answer, does not matter if question still unanswered (all false)
       this.givenAnswer = null;      //let's try this to only show possibleanswers when done retrieving givenansw.
-      this.attemptService.getGivenAnswer(attmptID, questNR).subscribe(al => {
+      this.attemptService.getGivenAnswer(attemptID, questNR).subscribe(al => {
         this.givenAnswer = al;
         console.log("attempt.getQuestion retrieved Answerlist: " + this.givenAnswer.answers);
       })  

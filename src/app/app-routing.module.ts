@@ -15,7 +15,7 @@ import { StudentComponent }             from './student/student.component';
 import { StudentClassComponent}         from './studentclasses/studentclass.component';
 import { CreateTestComponent}           from './createtest/createtest.component';
 import { AttemptScoreComponent}         from './attempt/attemptscore.component';
-import { AttemptComponent}              from './attempt/attempt.component';
+//import { AttemptComponent}              from './attempt/attempt.component';
 //import { ChooseTestTemplateComponent}  from './choose-testtemplate/choose-testtemplate.component';
 import { StudentReviewComponent }       from './student/studentreview.component';
 import { StudentLoginComponent }        from './student/studentlogin.component';
@@ -35,7 +35,8 @@ const routes: Routes = [
   { path: 'studentreview' ,     component: StudentReviewComponent}, 
   { path: 'studentlogin' ,      component: StudentLoginComponent}, 
   { path: 'studentpostattempt', component: StudentPostAttemptComponent},
-  { path: 'attempt',            component: AttemptComponent}
+  //{ path: 'attempt',            component: AttemptComponent}
+  { path: 'attempt',           loadChildren: 'app/attempt/attempt.module#AttemptModule' }// attempt.module#AttemptModule' }
   
 ];
 
