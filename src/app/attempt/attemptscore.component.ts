@@ -5,7 +5,7 @@
 import { Component, OnInit }  from '@angular/core';
 import { ActivatedRoute, Params ,Router } from '@angular/router';
 import { Attempt }                 from './attempt';
-import { AttemptService }        from '../attempt/attempt.service';
+import { AttemptService }        from './attempt.service';
 
 @Component({
   selector: 'my-attemptscore',

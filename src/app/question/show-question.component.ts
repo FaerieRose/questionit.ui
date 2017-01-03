@@ -3,7 +3,7 @@
 /* Date created : 9 Dec 2016                                                           */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }        from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params, Router }   from '@angular/router';
 
 import { Question }                 from './question';
 import { QuestionService }          from './question.service';
@@ -23,9 +23,14 @@ export class ShowQuestionComponent implements OnInit {
   question: Question;
   possibleAnswers: string[] = [ "" ];
   givenAnswers: AnswerList;
+  // Temporarily:
+  index: number; // Used to set/get the index of the current question in the current test template.
+  size: number; // Used to set the size of the current question list. This is a temporary solution. 
+  // Both index and size must actually be managed by the attempt.component which is created by Dave.
 
   constructor(
         private route            : ActivatedRoute, 
+        private router           : Router,
         private questionService  : QuestionService,
         private answerListService: AnswerListService, 
         private globalService    : GlobalService) {
@@ -36,6 +41,8 @@ export class ShowQuestionComponent implements OnInit {
     // console.log("In ShowQuestionComponent.ngOnInit with id = " + id)
     //this.getQuestion(params['id']);
     this.getQuestion(id);
+    this.size = 10;
+    this.index = 1;
   }
 
   resetGivenAnswers(): AnswerList {
@@ -81,9 +88,9 @@ export class ShowQuestionComponent implements OnInit {
     this.possibleAnswers.push("");
   }
 
-  updateName($event)        { this.question.name                 = $event.target.value; }
-  updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
-  updateQuestion($event)    { this.question.question             = $event.target.value; }
+  //updateName($event)        { this.question.name                 = $event.target.value; }
+  //updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
+  //updateQuestion($event)    { this.question.question             = $event.target.value; }
   updateAnswer(id: number, $event) {
     this.possibleAnswers[id] =  $event.target.value;
     this.question.possibleAnswers = this.possibleAnswers; 
@@ -100,17 +107,38 @@ export class ShowQuestionComponent implements OnInit {
   //   });
   // }
 
+  // To be reworked:
   gotoPreviousQuestion() {
-    this.getQuestion(this.question.id - 1);
+    // this.getQuestion(this.question.id - 1);
+    if (this.index > 1) {
+      this.getQuestion(--this.index);
+    }
   }
 
+  // To be reworked:
   gotoNextQuestion() {
-    this.getQuestion(this.question.id + 1);
+    // this.getQuestion(this.question.id + 1);
+    if (this.index < this.size) {
+      this.getQuestion(++this.index);
+    }
   }
 
- toCharLetter(number: Number){
+  toCharLetter(number: Number){
     var char = String.fromCharCode(number.valueOf() + 64);
     return char;
   }
+
+  // To be reworked:
+  gotoPostExam() {
+    this.router.navigate(['studentpostattempt']);
+  }
+
+  // getIndex(): number {
+  //   return this.index;
+  // }
+
+  // setIndex(index: number) {
+  //   this.index = index;
+  // }
 
 }
