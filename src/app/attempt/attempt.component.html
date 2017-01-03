@@ -1,10 +1,14 @@
 <div *ngIf='currentAttemptID'>  
-    <h1>attempt id: {{currentAttemptID}}</h1>
+    <p>Attempt id: {{currentAttemptID}}</p>
   
  
     <div *ngIf='question'>
         <h3> Question nr. {{currentQuestionNR}} of {{currentQuestionAmount}}</h3>
-        <div>question text: {{question.question}}    </div>
+        <div class="div-input-text">
+            <div class="formattedQuestion">
+                <question-display [question]="question.question"></question-display>
+            </div>
+        </div>
         <div *ngIf='givenAnswer'>
             <label class="control-input text" for="questionanswers">Answers</label><br>
             <table>
