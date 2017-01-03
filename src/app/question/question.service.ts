@@ -23,7 +23,7 @@ export class QuestionService {
 	private questionUrl: string;
 	private currentUrl: string;
 
-  constructor(private http: Http, private globalService: GlobalService) {
+  	constructor(private http: Http, private globalService: GlobalService) {
 		this.questionUrl = this.globalService.getBaseUrl() + "questions";
 		console.log("Question base url: " + this.questionUrl);
 	}

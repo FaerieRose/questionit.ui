@@ -15,8 +15,8 @@ import { GlobalService }                from '../global.service';
 import { AttemptService }               from '../attempt/attempt.service';
 //import { QuestionModule }           from '../question/question.module';
 import { Question }                     from '../question/question';
-import { QuestionService }              from '../question/question.service';
-//import { QuestionDisplayComponent }  from '../question/question-display.component';
+//import { QuestionService }              from '../question/question.service';
+import { QuestionDisplayComponent }     from '../question/question-display.component';
 import { AnswerList }                   from '../answerlist/answerlist';
 
 
@@ -28,20 +28,18 @@ import { AnswerList }                   from '../answerlist/answerlist';
 })
 export class AttemptComponent implements OnInit {   
 
-currentAttemptID: number;       //id of attempt currently in progress
-//currentTestTemplate: TestTemplate;    //testtemplate currentAttempt is based on
-currentQuestionNR: number;      //question nr. (index [1, ...]) to display
-currentQuestionAmount: number;  //amount of questions in this test
-question: Question;
-givenAnswer: AnswerList;
+    currentAttemptID: number;       //id of attempt currently in progress
+    //currentTestTemplate: TestTemplate;    //testtemplate currentAttempt is based on
+    currentQuestionNR: number;      //question nr. (index [1, ...]) to display
+    currentQuestionAmount: number;  //amount of questions in this test
+    question: Question;
+    givenAnswer: AnswerList;
 
-constructor(
-    //private testTemplateService: TestTemplateService,
-    private attemptService: AttemptService,
-    private globalService: GlobalService,
-    private router: Router
-    ) {
-  }
+    constructor (
+        //private testTemplateService: TestTemplateService,
+        private attemptService: AttemptService,
+        private globalService: GlobalService,
+        private router: Router) {}
 
     ngOnInit(){
         this.currentAttemptID = this.globalService.getCurrentAttemptID();
@@ -61,14 +59,34 @@ constructor(
       this.attemptService.getQuestion(attmptID, questNR).subscribe(q => {
         //console.log("In AttemptComponent.getQuestion with q.id = " + q.id);
         this.question = q;
-        });
+      });
       //always retrieve answer, does not matter if question still unanswered (all false)
       this.givenAnswer = null;      //let's try this to only show possibleanswers when done retrieving givenansw.
-      this.attemptService.getGivenAnswer(attmptID, questNR).subscribe(al =>{
-          this.givenAnswer = al;
-          console.log("attempt.getQuestion retrieved Answerlist: " + this.givenAnswer.answers);
+      this.attemptService.getGivenAnswer(attmptID, questNR).subscribe(al => {
+        this.givenAnswer = al;
+        console.log("attempt.getQuestion retrieved Answerlist: " + this.givenAnswer.answers);
       })  
     }
+
+    // getQuestion(id: number) {
+    //   this.question = null;
+    //   this.questionService.getQuestionExam(id).subscribe(question => {
+    //     if (question.id == -1) {
+    //       console.log("----NO QUESTION AVAILABLE");
+    //       this.question = new Question();
+    //       this.givenAnswers = this.resetGivenAnswers();
+    //       this.resetPossibleAnswers();
+    //     } else {
+    //       this.question = question;
+    //       if (this.question.possibleAnswers != undefined) {
+    //         this.possibleAnswers = this.question.possibleAnswers;
+    //         this.givenAnswers  = this.resetGivenAnswers(); 
+    //       } else {
+    //         this.resetPossibleAnswers();
+    //       }
+    //     }
+    //   });
+    // }
 
     resetGivenAnswer(){
         this.givenAnswer = { "id" : 0, "answers" : [false, false, false, false, false, false, false, false, false, false]};

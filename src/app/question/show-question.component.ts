@@ -88,9 +88,9 @@ export class ShowQuestionComponent implements OnInit {
     this.possibleAnswers.push("");
   }
 
-  updateName($event)        { this.question.name                 = $event.target.value; }
-  updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
-  updateQuestion($event)    { this.question.question             = $event.target.value; }
+  //updateName($event)        { this.question.name                 = $event.target.value; }
+  //updateType($event)        { this.question.typeOfQuestion       = $event.target.value; }
+  //updateQuestion($event)    { this.question.question             = $event.target.value; }
   updateAnswer(id: number, $event) {
     this.possibleAnswers[id] =  $event.target.value;
     this.question.possibleAnswers = this.possibleAnswers; 
@@ -123,7 +123,7 @@ export class ShowQuestionComponent implements OnInit {
     }
   }
 
- toCharLetter(number: Number){
+  toCharLetter(number: Number){
     var char = String.fromCharCode(number.valueOf() + 64);
     return char;
   }
