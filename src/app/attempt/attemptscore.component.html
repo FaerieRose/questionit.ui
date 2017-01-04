@@ -1,32 +1,36 @@
 
 <div> 
-  <h1 >  Attempt id: {{visibleId}} </h1>
-  <p> </p>
+  <p>Attempt id: {{ visibleId }}</p>
+  <p></p>
   <div *ngIf="scoresRate > -1">
-    <label class="label.text text"> Your total percentage is: {{(scoresRate*100).toFixed(1)}} % </label>
-  </div>
+    <label class="label.text text">Your total percentage is: {{ (scoresRate*100).toFixed(1) }} % </label>
+  </div> 
   <p> </p>
   <div>
     <table>
       <tr> 
         <th>
-            questions:
+            Questions:
         </th>
         <th>
-            your answer(s):
+            Your answer(s):
         </th>  
         <th>
-            answer(s) if NOK:
+            Correct answer(s):
         </th>    
       </tr>
       <tr *ngFor="let element of scoresList; let i = index;" >
-         <td class="{{ element ? 'correct':'incorrect'}}">
-           <li> 
-             Question {{ i + 1 }}
-            </li>
-         </td>
-         <td > {{ givenAnswers[i] }} </td>
-        <td *ngIf="!element"> {{ correctAnswers[i] }} </td> 
+        <td class="{{ element ? 'correct':'incorrect' }}">
+          <li> 
+            Question {{ i + 1 }}
+          </li>
+        </td>
+        <td *ngIf="givenAnswers">
+          {{ givenAnswers[i] }}
+        </td>
+        <td *ngIf="correctAnswers && !element">
+          {{ correctAnswers[i] }}
+        </td>
       </tr>
     </table>
   </div>
