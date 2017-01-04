@@ -1,3 +1,23 @@
-<div> 
-  <h1 >  Review page for student</h1>
+<h1 >  Review page for student</h1>
+<div *ngIf="currentStudentAttempts" > 
+  <table>
+      <tr  *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
+        <td> 
+          ​<input type="text" disabled value="{{ attempt.testTemplateName }}">
+        </td>
+        <td>
+          <input type="text" value="{{ attemptStartDates[i] }}" >
+        </td>
+        <td>
+          <input value="{{ attemptLanguages[i] }}" ><br>
+        </td>
+        <td>
+          <input value="{{ attemptScores[i] }} %" ><br>
+        </td>
+      </tr>
+    </table>
+    <br>
+    <label class="button" >Back
+      <input type="button" (click)="goBack()" style="display:none" />
+    </label>
 </div>
