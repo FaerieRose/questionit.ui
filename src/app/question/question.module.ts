@@ -7,7 +7,6 @@ import { CommonModule }        from '@angular/common';
 
 import { QuestionComponent }            from './question.component';
 import { QuestionsComponent }           from './questions.component';
-import { ShowQuestionComponent }        from './show-question.component';
 import { QuestionDisplayComponent }     from './question-display.component';
 
 import { QuestionRoutingModule }        from './question-routing.module';
@@ -17,7 +16,6 @@ import { QuestionRoutingModule }        from './question-routing.module';
   declarations: [
     QuestionComponent, 
     QuestionsComponent, 
-    ShowQuestionComponent,
     QuestionDisplayComponent
   ]
 })

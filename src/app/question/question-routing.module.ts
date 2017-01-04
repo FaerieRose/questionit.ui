@@ -8,12 +8,10 @@ import { Routes,
 
 import { QuestionComponent }            from './question.component';
 import { QuestionsComponent }           from './questions.component';
-import { ShowQuestionComponent }        from './show-question.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'browse', pathMatch: 'full'},
   { path: 'edit/:id', component: QuestionComponent }, //Edit Question. id==-1 leads to new question.
-  { path: 'show/:id', component: ShowQuestionComponent },
   { path: 'browse', component: QuestionsComponent }
 ];
 
