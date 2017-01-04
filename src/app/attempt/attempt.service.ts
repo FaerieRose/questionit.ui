@@ -41,6 +41,7 @@ export class AttemptService {
 
   getScoresRate(id: number): Observable<number> {
 		this.currentUrl = this.attemptUrl + "/" + id + "/scoresRate";
+		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
   }
 

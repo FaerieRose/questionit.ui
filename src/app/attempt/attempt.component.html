@@ -23,10 +23,10 @@
         </div>
     </div>
     
-    <label class="button" id="prevQuestion">Previous Question
+    <label *ngIf='currentQuestionNR > 1' class="button" id="prevQuestion">Previous Question
       <input type="button" (click)="goPrevQuestion()" style="display:none" />
     </label>
-    <label class="button" id="nextQuestion">Next Question
+    <label *ngIf='currentQuestionNR < currentQuestionAmount' class="button" id="nextQuestion">Next Question
       <input type="button" (click)="goNextQuestion()" style="display:none" />
     </label>
     <label class="button" id="overview">Exam Review
