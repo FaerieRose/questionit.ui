@@ -27,7 +27,7 @@ export class StudentReviewComponent implements OnInit {
   currentStudentAttempts = [];
   attemptStartDates = [];           //: string[]; NOPE...defining array type makes field undefined...?!?!
   attemptLanguages = [];
-  currentStudentScores = [];
+  attemptScores = [];
 
   constructor(
         private globalService: GlobalService,
@@ -41,13 +41,16 @@ export class StudentReviewComponent implements OnInit {
     this.currentStudentName = this.globalService.getStudentName();
     this.attemptStartDates.length = 0;
     this.attemptLanguages.length = 0;
+    this.attemptScores.length = 0;
     this.studentService.getStudentAttemptsForReview(this.currentStudentID).subscribe(attempts =>{
       this.currentStudentAttempts = attempts;
       console.log(JSON.stringify(this.currentStudentAttempts));
       for (var i = 0; i < this.currentStudentAttempts.length; i++){
         this.attemptStartDates.push((new Date(this.currentStudentAttempts[i].startDateTime)).toLocaleString());
         this.attemptLanguages.push(EnumLanguages[this.currentStudentAttempts[i].testTemplateProgrammingLanguage]);
-      }
+        //sanity check: don't want NaN or negative values
+        this.attemptScores.push(this.currentStudentAttempts[i].testScore > 0 ? this.currentStudentAttempts[i].testScore * 100 : 0 );
+    }
     });
 
     // this.currentStudent = null;

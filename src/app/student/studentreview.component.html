@@ -12,10 +12,12 @@
           <input value="{{ attemptLanguages[i] }}" ><br>
         </td>
         <td>
-          <input value="{{ attempt.testScore * 100 }} %" ><br>
+          <input value="{{ attemptScores[i] }} %" ><br>
         </td>
       </tr>
     </table>
-    <input type="button" (click)="goBack()" style="display:none" />
-
+    <br>
+    <label class="button" >Back
+      <input type="button" (click)="goBack()" style="display:none" />
+    </label>
 </div>
