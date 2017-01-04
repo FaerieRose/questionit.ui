@@ -1,9 +1,9 @@
 <h1 >  Review page for student</h1>
-<div *ngIf="currentStudent" > 
+<div *ngIf="currentStudentAttempts" > 
   <table>
       <tr  *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
         <td> 
-          ​<input type="text" disabled value="{{ attempt.testTemplate.name }}">
+          ​<input type="text" disabled value="{{ attempt.testTemplateName }}">
         </td>
         <td>
           <input type="text" value="{{ attemptStartDates[i] }}" >
@@ -12,11 +12,8 @@
           <input value="{{ attemptLanguages[i] }}" ><br>
         </td>
         <td>
-          <input value="{{ currentStudentScores[i] }}" ><br>
+          <input value="{{ attempt.testScore * 10 }} %" ><br>
         </td>
-        <!--<td>
-          <label class="button" id="removeAnswer">Remove Answer<input type="button" (click)="removeAnswer(i)" ><br>
-        </td>-->
       </tr>
     </table>
     <input type="button" (click)="goBack()" style="display:none" />

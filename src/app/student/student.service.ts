@@ -11,6 +11,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { GlobalService } from '../global.service';
 import { Student } from './student';
+import { Attempt } from '../attempt/attempt';
 
 
 @Injectable()
@@ -35,8 +36,14 @@ export class StudentService {
 
 	getStudentsForClass(instructor: string): Observable<Student[]> {
 		console.log(" we zitten nu in de getStudentsForClass");
+		//TODO: this url gets ALL students!!?!?!
 		this.currentUrl = this.studentUrl;
 		console.log(this.currentUrl);
+		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
+	}
+
+	getStudentAttemptsForReview(studentID: number): Observable<Attempt[]> {
+        this.currentUrl = this.studentUrl + "/" + studentID + "/attempts";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
