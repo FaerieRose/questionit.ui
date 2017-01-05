@@ -118,11 +118,16 @@ export class QuestionComponent implements OnInit {
     this.possibleAnswers.push("");
   }
 
-  
-  //INCOMPLETE! Work in progress...
   removeAnswer(index) {
-    this.correctAnswers[index] = false;
+    // Remove element on given index from array
+    this.correctAnswers.answers.splice(index, 1);
+    // Append new 'false' element at the end to get 10 elements again
+    this.correctAnswers.answers.push(false);
+    this.question.correctAnswers = this.correctAnswers;
 
+    // Remove element on given index from array
+    this.possibleAnswers.splice(index,1);
+    this.question.possibleAnswers = this.possibleAnswers; 
   }
 
   // updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
