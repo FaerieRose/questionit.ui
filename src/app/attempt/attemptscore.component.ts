@@ -2,10 +2,11 @@
 /* Author       : Dave Schellekens , S.Martens                                         */
 /* Date created : 09 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit }              from '@angular/core';
 import { ActivatedRoute, Params ,Router } from '@angular/router';
-import { Attempt }                 from './attempt';
-import { AttemptService }        from './attempt.service';
+import { Attempt }                        from './attempt';
+import { AttemptService }                 from './attempt.service';
+import { GlobalService }                  from '../global.service';
 
 @Component({
   selector: 'my-attemptscore',
@@ -25,7 +26,8 @@ export class AttemptScoreComponent implements OnInit {
   constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private attemptService  : AttemptService,
+        private globalService: GlobalService,
+        private attemptService: AttemptService
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,6 @@ export class AttemptScoreComponent implements OnInit {
     this.getCorrectAnswers(attempt_id);
     this.getGivenAnswers(attempt_id);
     this.visibleId = attempt_id;
-
   }
 
   getAttempt(attempt_id) {
@@ -76,6 +77,7 @@ export class AttemptScoreComponent implements OnInit {
   }
 
   studentReview(attempt_id) : void{
+    this.globalService.setCurrentAttemptID(-1); // We are leaving the attempt and going back to normal state.
     this.router.navigate(['studentreview']);
   }
 
