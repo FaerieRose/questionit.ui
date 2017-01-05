@@ -10,7 +10,7 @@
             </div>
         </div>
         <div *ngIf='givenAnswer'>
-            <label class="control-input text" for="questionanswers">Answers</label><br>
+            <label class="control-input text" for="questionanswers">Select the {{ i }} correct answer(s):</label><br>
             <table>
             <tr  *ngFor='let answer of question.possibleAnswers; let i = index;' class="answers" >
                 <td> 

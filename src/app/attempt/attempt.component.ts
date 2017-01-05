@@ -51,11 +51,9 @@ export class AttemptComponent implements OnInit {
             
         this.resetGivenAnswer();
         this.getQuestion(this.currentAttemptID, this.currentQuestionNR );
-        
     }
 
     getQuestion(attemptID, questNR){
-      
       this.attemptService.getQuestion(attemptID, questNR).subscribe(question => {
         //console.log("In AttemptComponent.getQuestion with q.id = " + q.id);
         this.question = question;
@@ -95,7 +93,6 @@ export class AttemptComponent implements OnInit {
     updateGivenAnswer(id: number, $event) {
         console.log("now in updategivenanswer");
         this.givenAnswer.answers[id] = $event.target.checked;
-    
     }
 
     saveAnswer(){
@@ -107,7 +104,6 @@ export class AttemptComponent implements OnInit {
         });
         //save remainingtime?
         //what if response != OK?
-        
     }
 
     markQuestion(){
@@ -121,7 +117,6 @@ export class AttemptComponent implements OnInit {
         this.globalService.setCurrentQuestionNr(this.globalService.getCurrentQuestionNr() - 1 );
         this.currentQuestionNR = this.globalService.getCurrentQuestionNr();
         this.getQuestion(this.currentAttemptID, this.currentQuestionNR);
-    
     }
 
     goNextQuestion(){
@@ -134,7 +129,6 @@ export class AttemptComponent implements OnInit {
         } else {
             this.goPostExam();
         }
-
     }
 
     goPostExam(){
@@ -142,7 +136,6 @@ export class AttemptComponent implements OnInit {
         this.resetGivenAnswer();
         this.router.navigate(['studentpostattempt']);
     }
-
 
     toCharLetter(number: Number){
         var char = String.fromCharCode(number.valueOf() + 64);
