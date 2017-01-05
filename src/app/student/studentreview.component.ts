@@ -78,4 +78,8 @@ export class StudentReviewComponent implements OnInit {
     this.router.navigate(['studentlogin']);
   }
 
+  showAttemptDetails(id: number){
+    this.router.navigate(['attemptscore/'+ id]);
+  }
+
 }
