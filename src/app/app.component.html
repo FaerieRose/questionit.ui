@@ -22,8 +22,8 @@
       <span *ngIf="globalService.getStudentID() > 0">
         <legend>Student: {{ globalService.getStudentName() }}</legend>
       </span><br>
-      <legend>Navigation</legend>
-      <div *ngIf="globalService.getCurrentAttemptID() == -1">
+      <legend *ngIf="(globalService.getInstructorID() > 0) || (globalService.getStudentID() > 0)">Navigation</legend>
+      <div id="instructorLinks" *ngIf="globalService.getInstructorID() > 0">
         <a class="nav-link" routerLink="/question"              routerLinkActive="active"> >> Questions</a><br>
         <a class="nav-link" routerLink="/question/edit/1"       routerLinkActive="active"> >> Edit Question</a><br>
         <a class="nav-link" routerLink="/question/edit/-1"      routerLinkActive="active"> >> New Question</a><br>
@@ -37,6 +37,11 @@
         <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Student Login</a><br>
         <a class="nav-link" routerLink="/studentpostattempt"    routerLinkActive="active"> >> Student Post Attempt</a><br>
         <a class="nav-link" routerLink="/studentreview"         routerLinkActive="active"> >> Student Review</a><br>
+      </div>
+      <div id="studentLinks" *ngIf="(globalService.getStudentID() > 0) && (globalService.getCurrentAttemptID() == -1)">
+        <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Home</a><br>
+        <a class="nav-link" routerLink="/choosetesttemplate"    routerLinkActive="active"> >> Start new exam</a><br>
+        <a class="nav-link" routerLink="/studentreview"         routerLinkActive="active"> >> Review past exams</a><br>
       </div>
       <div *ngIf="globalService.getCurrentAttemptID() != -1">
         <a>Finish your test first!!</a><br>

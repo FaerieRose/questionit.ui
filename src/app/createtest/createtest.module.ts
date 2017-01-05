@@ -6,12 +6,9 @@
    delete file, but comment-out all code.
    
 /* ----------------------------------------------------------------------------------- */
+//import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
 
-
-
-
-
-
+//import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-routing.module';
 
 
 // import { NgModule }            from '@angular/core';

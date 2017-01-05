@@ -53,6 +53,7 @@ export class StudentPostAttemptComponent implements OnInit {
   
   EndAttempt(attempt_id) {
     this.studentService.postEndAttempt(attempt_id).subscribe(Student => {
+      // Should we do globalService.setCurrentAttemptID(-1) here?
       console.log("POST end attempt made");
       }); 
   }

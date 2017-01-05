@@ -2,15 +2,15 @@
 /* Author       : FaerieRose                                                           */
 /* Date created : 23 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { Component, OnInit }     from '@angular/core';
-import { Router }                from '@angular/router';
+import { Component, OnInit }        from '@angular/core';
+import { Router }                   from '@angular/router';
 
-import { GlobalService }         from '../global.service';
-import { TestTemplate }          from '../testtemplate/testtemplate';
-import { TestTemplateService }   from '../testtemplate/testtemplate.service';
+import { GlobalService }            from '../global.service';
+import { TestTemplateModelBasic }   from '../testtemplate/testtemplatemodelbasic';
+import { TestTemplateService }      from '../testtemplate/testtemplate.service';
 
-import { EnumLanguages }         from '../enums'; 
-import { EnumExams }             from '../enums'; 
+import { EnumLanguages }            from '../enums'; 
+import { EnumExams }                from '../enums'; 
 
 @Component({
   selector: 'my-testtemplates',
@@ -21,7 +21,8 @@ import { EnumExams }             from '../enums';
 export class ChooseTestTemplateComponent implements OnInit {
   languages = [];
   //exams = [];
-  testTemplateList: TestTemplate[];
+  //testTemplateList: TestTemplate[];
+  testTemplateList: TestTemplateModelBasic[];
  // list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
 
   constructor(
@@ -44,13 +45,15 @@ export class ChooseTestTemplateComponent implements OnInit {
     }); 
   }
 
-  getTestTemplateListSelection() {
-    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
-      testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == 0);
-      this.testTemplateList = testTemplates;
-      //console.log(this.testTemplateList.length);
-    }); 
-  }
+  
+  // Not used...
+  // getTestTemplateListSelection() {
+  //   this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
+  //     testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == 0);
+  //     this.testTemplateList = testTemplates;
+  //     //console.log(this.testTemplateList.length);
+  //   }); 
+  // }
 
   getTestTemplateListSelectionLanguage(enumLang : number) {
     this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
