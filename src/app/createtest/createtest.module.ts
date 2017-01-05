@@ -5,17 +5,17 @@
 import { NgModule }            from '@angular/core';
 import { CommonModule }        from '@angular/common';
 
-import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
+//import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
 
-import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-routing.module';
+//import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-routing.module';
 
 @NgModule({
   imports: [ 
     CommonModule, 
-    ChooseTestTemplateRoutingModule 
+    //ChooseTestTemplateRoutingModule 
   ],
   declarations: [
-    ChooseTestTemplateComponent
+    //ChooseTestTemplateComponent
   ]
 })
 export class ChooseTestTemplateModule { }

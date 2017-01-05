@@ -28,7 +28,7 @@ export class TestTemplateService {
 	}
 
 	getTestTemplateMetaById(id: number): Observable<TestTemplateModelBasic> {
-		this.currentUrl = this.testTemplateUrl + "/" + id + "/meta";
+		this.currentUrl = this.testTemplateUrl + "/" + id + "/basic";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
@@ -37,7 +37,7 @@ export class TestTemplateService {
 	}
 
 	getTestTemplatesMeta(): Observable<TestTemplate[]> {
-		this.currentUrl = this.testTemplateUrl + "/meta";
+		this.currentUrl = this.testTemplateUrl + "/basic";
 		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
