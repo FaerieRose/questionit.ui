@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { Headers, RequestOptions } from '@angular/http';
-import { Request, RequestMethod } from '@angular/http';
+import { Injectable } 				from '@angular/core';
+import { Http, Response } 			from '@angular/http';
+import { Headers, RequestOptions } 	from '@angular/http';
+import { Request, RequestMethod } 	from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
+import { Observable } 				from 'rxjs/Observable';
 
-import { GlobalService } from '../global.service';
-import { TestTemplate } from './testtemplate';
-import { Question }              from '../question/question';
+import { GlobalService } 			from '../global.service';
+import { TestTemplate } 			from './testtemplate';
+import { TestTemplateModelBasic } 	from './testtemplatemodelbasic';
+import { Question }              	from '../question/question';
 
 
 @Injectable()
@@ -26,7 +27,7 @@ export class TestTemplateService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
-	getTestTemplateMetaById(id: number): Observable<TestTemplate> {
+	getTestTemplateMetaById(id: number): Observable<TestTemplateModelBasic> {
 		this.currentUrl = this.testTemplateUrl + "/" + id + "/meta";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
@@ -40,7 +41,8 @@ export class TestTemplateService {
 		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
-removeQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+
+	removeQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
 		let template: TestTemplate = new TestTemplate();
 		this.testTemplateUrl = this.testTemplateUrl;
 		console.log("in de removeQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId);
@@ -54,8 +56,6 @@ removeQuestionToTemplate(templateId: number, questionId :number): Observable<Que
         return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 
 	}
-
-
 
 
 	addQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {

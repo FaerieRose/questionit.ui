@@ -1,22 +1,23 @@
 /**
  * Author: Dave Schellekens
- * Date created: 09-12-2016 * 
+ * Date created: 05-01-2017 * 
  *   
  * 
 */
 
-import { Question }    from '../question/question';
 import { EnumLanguages } from '../enums'; 
 import { EnumExams }     from '../enums';
 
-export class TestTemplate {
+export class TestTemplateModelBasic {
     id? : number;
+    attemptTimeInMinutes: number;
+    creationDateTime: Date;
+    creatorID: number;
     name : string;
     programmingLanguage: EnumLanguages;
     forExam: EnumExams;
-    //creator: any;
     isEnabled: boolean;
-    questions: Question[];
-    attemptTimeInMinutes: number;
-    //size: number;
+    questionIDs: number[];
+    size: number;
 }
+	

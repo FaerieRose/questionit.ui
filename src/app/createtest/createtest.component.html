@@ -62,7 +62,7 @@
     </td>
     <td class="div-input-text3"><input type="checkbox" /></td>
     <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-    <td class="div-input-text3"><input type="checkbox" value="" (change)="addOrRemoveQuestionFromTest($event, quest.id, value)" /></td>
+    <td class="div-input-text3"><input type="checkbox" (change)="addOrRemoveQuestionFromTest($event, quest.id)" /></td>
 
   </tr>
 </tbody>
