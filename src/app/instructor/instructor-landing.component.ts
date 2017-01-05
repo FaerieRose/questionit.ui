@@ -39,7 +39,7 @@ export class InstructorLandingComponent {
     
 
     goToCreateExam(){
-        this.router.navigate(['instructor/landing']);   //doesn't exist yet
+        this.router.navigate(['createtest']);
     }
 
     goToCreateUsers(){

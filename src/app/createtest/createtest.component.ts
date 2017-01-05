@@ -63,7 +63,7 @@ export class CreateTestComponent implements OnInit {
       this.testTemplate.name = "";
       this.testTemplate.programmingLanguage = 0;
       this.testTemplate.questions = null;
-      this.testTemplate.size = 0;
+      //this.testTemplate.size = 0;
       this.saveTest();
 
     } else {
@@ -109,16 +109,17 @@ export class CreateTestComponent implements OnInit {
     this.getQuestionList();
   }
 
-  addOrRemoveQuestionFromTest($event, questionId: number, value: boolean) {
+  addOrRemoveQuestionFromTest($event, questionId: number) {
     console.log ("de waarde van checked :" + $event.target.checked);
-if($event.target.checked){
+    if($event.target.checked){
+      console.log("*********************************************************");
+      this.createTestService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
+    } else {
+      console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+      this.createTestService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
+    }
+  }
 
-  console.log("*********************************************************");
-    this.createTestService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
-  }else{console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-    this.createTestService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
-  }
-  }
   saveTest() {
     let template = this.testTemplate;
     if (template.id == -1) { this.testTemplate.id = 1; }
