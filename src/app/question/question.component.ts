@@ -154,6 +154,7 @@ export class QuestionComponent implements OnInit {
         this.questionService.postQuestion(qstn, answerListId).subscribe(question => {
           //return value check?
           console.log("POST SUCCEEDED");
+          alert("Question saved!");
           //save success confirmation for user?
         });
       }
