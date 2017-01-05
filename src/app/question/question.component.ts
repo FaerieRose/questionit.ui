@@ -121,8 +121,11 @@ export class QuestionComponent implements OnInit {
   
   //INCOMPLETE! Work in progress...
   removeAnswer(index) {
+    for (let i: number = index; i <= 8; i++){
+      this.correctAnswers[index] = this.correctAnswers[index + 1];
+    }
     this.correctAnswers[index] = false;
-
+    this.possibleAnswers.splice(index,1)
   }
 
   // updateLanguage($event)    { this.question.programmingLanguage  = $event.target.value; }
