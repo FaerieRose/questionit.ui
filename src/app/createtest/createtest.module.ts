@@ -1,47 +1,34 @@
 /* ----------------------------------------------------------------------------------- */
 /* Author       : Rik & Rémond                                                         */
 /* Date created : 15 Dec 2016                                                          */
+
+/* NOTE (D. Schellekens): This file/module doesn't work, and isn't used. Decided not to
+   delete file, but comment-out all code.
+   
 /* ----------------------------------------------------------------------------------- */
-import { NgModule }            from '@angular/core';
-import { CommonModule }        from '@angular/common';
-
-import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
-
-import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-routing.module';
-
-@NgModule({
-  imports: [ 
-    CommonModule, 
-    ChooseTestTemplateRoutingModule 
-  ],
-  declarations: [
-    ChooseTestTemplateComponent
-  ]
-})
-export class ChooseTestTemplateModule { }
 
 
-// /* ----------------------------------------------------------------------------------- */
-// /* Author       : Bas Smulders                                                         */
-// /* Date created : 09 Dec 2016                                                          */
-// /* ----------------------------------------------------------------------------------- */
+
+
+
+
+
+
 // import { NgModule }            from '@angular/core';
 // import { CommonModule }        from '@angular/common';
 
-// import { QuestionComponent }            from './question.component';
-// import { QuestionsComponent }           from './questions.component';
-// import { ShowQuestionComponent }        from './show-question.component';
-// import { QuestionDisplayComponent }     from './question-display.component';
+// import { ChooseTestTemplateComponent }  from './choosetesttemplate.component';
 
-// import { QuestionRoutingModule }        from './question-routing.module';
+// import { ChooseTestTemplateRoutingModule }        from './choosetesttemplate-routing.module';
 
 // @NgModule({
-//   imports: [ CommonModule, QuestionRoutingModule ],
+//   imports: [ 
+//     CommonModule, 
+//     ChooseTestTemplateRoutingModule 
+//   ],
 //   declarations: [
-//     QuestionComponent, 
-//     QuestionsComponent, 
-//     ShowQuestionComponent,
-//     QuestionDisplayComponent
+//     ChooseTestTemplateComponent
 //   ]
 // })
-// export class QuestionModule { }
+// export class ChooseTestTemplateModule { }
+
