@@ -49,7 +49,6 @@ export class QuestionComponent implements OnInit {
     this.getQuestion(id);
     // alternative, takes ACTUAL value of routeParams (not tested):
     // this.route.params.switchMap((params: Params) => this.getQuestion(+params['id']));
-    
   }
 
   resetCorrectAnswers(): AnswerList {
@@ -113,7 +112,6 @@ export class QuestionComponent implements OnInit {
     //   }
     // });
   
-
   addAnswer() {
     this.possibleAnswers.push("");
   }
@@ -145,7 +143,6 @@ export class QuestionComponent implements OnInit {
     this.question.correctAnswers = this.correctAnswers;
   }
 
-
   saveQuestion() {
     let qstn = this.question;
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
@@ -161,7 +158,7 @@ export class QuestionComponent implements OnInit {
     });
   }
 
- toCharLetter(number: Number){
+  toCharLetter(number: Number){
     var char = String.fromCharCode(number.valueOf() + 64);
     return char;
   }
@@ -179,7 +176,8 @@ export class QuestionComponent implements OnInit {
   //  this.getQuestionList(); 
   }
 
-  updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];   //  this.getQuestionList();
-     }
+  updateExam($event) { 
+    this.list.exam = EnumExams[parseInt($event.target.value)];   //  this.getQuestionList();
+  }
 
 }

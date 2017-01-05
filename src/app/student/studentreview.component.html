@@ -1,7 +1,11 @@
-<h1 >  Review page for student</h1>
-<div *ngIf="currentStudentAttempts" > 
+<h1>Overview of your previous test results</h1>
+<div *ngIf="currentStudentAttempts"> 
   <table>
-      <tr  *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
+      <th>Exam name</th>
+      <th>Start time</th>
+      <th>Programming language</th>
+      <th>Score</th>
+      <tr *ngFor='let attempt of currentStudentAttempts; let i = index;' class="attempts" >
         <td> 
           ​<input type="text" disabled value="{{ attempt.testTemplateName }}">
         </td>
@@ -13,6 +17,9 @@
         </td>
         <td>
           <input value="{{ attemptScores[i].toFixed(1) }} %" ><br>
+        </td>
+        <td>
+          <label class="button" id="details">Details<input type="button" (click)="showAttemptDetails(attempt.id)" style="display:none"/></label>
         </td>
       </tr>
     </table>
