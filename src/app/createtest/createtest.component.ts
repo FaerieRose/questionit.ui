@@ -33,7 +33,7 @@ export class CreateTestComponent implements OnInit {
 
   constructor(
     private questionService: QuestionService,
-    private createTestService: TestTemplateService,
+    private testTemplateService: TestTemplateService,
     private globalService: GlobalService,
     private route: ActivatedRoute,
     private router: Router) {
@@ -67,7 +67,7 @@ export class CreateTestComponent implements OnInit {
       this.saveTest();
 
     } else {
-      this.createTestService.getTestTemplateById(id).subscribe(testTemplate => {
+      this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
         this.testTemplate = testTemplate;
 
 
@@ -79,7 +79,7 @@ export class CreateTestComponent implements OnInit {
 
   getTestTemplateById(id: number) {
 
-    this.createTestService.getTestTemplateById(id).subscribe(testTemplate => {
+    this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
       if (testTemplate.id == 1) {
         this.testTemplate = new TestTemplate();
       } else {
@@ -113,17 +113,17 @@ export class CreateTestComponent implements OnInit {
     console.log ("de waarde van checked :" + $event.target.checked);
     if($event.target.checked){
       console.log("*********************************************************");
-      this.createTestService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
+      this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
     } else {
       console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-      this.createTestService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
+      this.testTemplateService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
     }
   }
 
   saveTest() {
     let template = this.testTemplate;
     if (template.id == -1) { this.testTemplate.id = 1; }
-    this.createTestService.postNewTestTemplate(template).subscribe(TestTemplate => {
+    this.testTemplateService.postNewTestTemplate(template).subscribe(TestTemplate => {
       this.testTemplate.id = TestTemplate.id;
     });
   }

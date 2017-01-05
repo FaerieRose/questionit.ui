@@ -22,13 +22,13 @@ export class TestTemplateService {
 		this.testTemplateUrl = this.globalService.getBaseUrl() + 'testtemplates';
 	}
 
-	getTestTemplateById(id: number): Observable<TestTemplate> {
-		this.currentUrl = this.testTemplateUrl + "/" + id;
+	getTestTemplateById(id: number): Observable<TestTemplateModelBasic> {
+		this.currentUrl = this.testTemplateUrl + "/" + id + "/basic";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
 	getTestTemplateMetaById(id: number): Observable<TestTemplateModelBasic> {
-		this.currentUrl = this.testTemplateUrl + "/" + id + "/meta";
+		this.currentUrl = this.testTemplateUrl + "/" + id + "/basic";
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
@@ -36,25 +36,22 @@ export class TestTemplateService {
 		//To do
 	}
 
-	getTestTemplatesMeta(): Observable<TestTemplate[]> {
-		this.currentUrl = this.testTemplateUrl + "/meta";
+	getTestTemplatesMeta(): Observable<TestTemplateModelBasic[]> {
+		this.currentUrl = this.testTemplateUrl + "/basic";
 		console.log(this.currentUrl);
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
 	removeQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+		//TODO: method is erg twijfelachtig. nog niet getest.
 		let template: TestTemplate = new TestTemplate();
-		this.testTemplateUrl = this.testTemplateUrl;
 		console.log("in de removeQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId);
-        
         this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/removequestionfromtesttemplate/"+ questionId;
 		console.log("==============-----------------***-"+this.currentUrl +"----------------=================");
 		// console.log( templateId + " currentUrl: " + this.currentUrl)
         let jsonResult: string = "{}";
         console.log("---- JSON(TestTemplate) = " + jsonResult);
-		//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
-        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
-
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
 
 
@@ -62,7 +59,7 @@ export class TestTemplateService {
 		let template: TestTemplate = new TestTemplate();
 		console.log("in de addQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId)
 
-        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/question/"+ questionId;
+        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/addquestiontotemplate/"+ questionId;
 		console.log( templateId + " currentUrl: " + this.currentUrl)
         let jsonResult: string = "{}";
         console.log("---- JSON(TestTemplate) = " + jsonResult);
