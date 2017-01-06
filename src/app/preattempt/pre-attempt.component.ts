@@ -26,6 +26,7 @@ import { AttemptService }                 from '../attempt/attempt.service';
 @Component({
   selector:     'my-pre-attempt',
   templateUrl:  'pre-attempt.component.html',
+  styleUrls:    ['pre-attempt.component.css'],
   providers:    [ TestTemplateService, AttemptService ]
 })
 export class PreAttemptComponent implements OnInit {

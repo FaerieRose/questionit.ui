@@ -4,7 +4,10 @@
 <!-- -------------------------------------------------------------------------------- -->
 <div *ngIf='testtemplateMB'>
   <legend></legend>
-  You are about to start the following test:
+  <h2>Taking a test</h2>
+  <p>You are about to start a test. Find a place where you can sit and work undisturbed for the given amount of time.</p>
+  <p>The test starts as soon as you click the 'Start test' button, which will take you directly to the first question of the test.</p>  
+  <p>Good luck!</p>  
   <div class="div-input-text">
     <label class="control-input text" for="testtemplate-name">Title of test:</label>
     <label class="control-input text" type="text" id="testtemplate-name" placeholder="Type">{{ testtemplateMB.name }}</label><br>
@@ -17,8 +20,8 @@
     <label class="control-input text" for="testtemplate-size">Number of questions:</label>
     <label class="control-input text" type="text" id="testtemplate-size" placeholder="Type">{{ testtemplateMB.size }}</label><br>
   </div>
-
-  <label *ngIf='true' class="button" id="previousQuestion">Start test
+  <p></p>
+  <label class="button" id="startNewAttempt">Start test 
     <input type="button" (click)="startNewAttempt(testtemplateMB.id)" style="display:none" />
   </label>
 </div>

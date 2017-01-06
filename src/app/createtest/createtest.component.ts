@@ -68,7 +68,7 @@ export class CreateTestComponent implements OnInit {
 
     } else {
       this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
-        this.testTemplate = testTemplate;
+         this.testTemplate = testTemplate;
 
 
       });
