@@ -57,13 +57,9 @@ export class CreateTestComponent implements OnInit {
     this.testTemplate.programmingLanguage = 0;
     this.testTemplate.questions = null;
       
-    
-    //this.getQuestionList();
-
-    //  this.getTestTemplateById(1);
-    //this.testTemplate = new TestTemplate();
-
   }
+
+  
 
   // getTestTemplate(id: number) {
   //     this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
