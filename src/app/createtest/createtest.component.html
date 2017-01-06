@@ -33,12 +33,6 @@
     </select>
 </div>
 
-<!--<div *ngIf="questionList">
-  <ul>
-    <li *ngFor="let qstn of questionList" (click)="editQuestion(qstn.id)">{{ qstn.id }} - {{ qstn.name }}</li>
-  </ul>
-</div>-->
-
 <div id="questionList" class="answers">
   <form>
     <legend>Select Questions For The New Test</legend>
@@ -62,7 +56,7 @@
     </td>
     <td class="div-input-text3"><input type="checkbox" /></td>
     <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-    <td class="div-input-text3"><input type="checkbox" (change)="addOrRemoveQuestionFromTest($event, quest.id)" /></td>
+    <td class="div-input-text3"><input type="checkbox" checked="{{ includeInTest[i] }}" (change)="addOrRemoveQuestionFromTest($event, i)" /></td>
 
   </tr>
 </tbody>
