@@ -118,21 +118,25 @@ export class CreateTestComponent implements OnInit {
   }
 
   saveTest() {
-    let template = this.testTemplate;
-    // ???? remnant of new/existing??? if (template.id == -1) { this.testTemplate.id = 1; }
-    //cannot post template with list of questionIDs, only list of Questions.:(
-    //this is probably the reason why questions were added/removed on checkbox click.  
-    //TODO create backend call to post template together with list of questionIDs?  
-    //post template first  
-    this.testTemplateService.postNewTestTemplate(template).subscribe(tt => {
-      this.testTemplate.id = tt.id;
-      //TODO: result?
-      for (var i = 0; i < this.questionList.length; i++){
-          if (this.includeInTest[i] == true) {
-            this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe(q => { });
-          }
-      }
-    });
+    if (this.includeInTest.every(lmnt => lmnt == false)) {
+      alert("No questions selected; Exam has not been saved");
+    } else {
+      let template = this.testTemplate;
+      // ???? remnant of new/existing??? if (template.id == -1) { this.testTemplate.id = 1; }
+      //cannot post template with list of questionIDs, only list of Questions.:(
+      //this is probably the reason why questions were added/removed on checkbox click.  
+      //TODO create backend call to post template together with list of questionIDs?  
+      //post template first  
+      this.testTemplateService.postNewTestTemplate(template).subscribe(tt => {
+        this.testTemplate.id = tt.id;
+        //TODO: result?
+        for (var i = 0; i < this.questionList.length; i++){
+            if (this.includeInTest[i] == true) {
+              this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe(q => { });
+            }
+        }
+      });
+    }
   }
 
   updateTestName($event) {
