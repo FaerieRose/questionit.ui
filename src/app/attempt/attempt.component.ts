@@ -24,6 +24,7 @@ import { AnswerList }                   from '../answerlist/answerlist';
 @Component({
   selector: 'attempt-selector',
   templateUrl: 'attempt.component.html',
+  styleUrls: ['attempt.component.css'],
   providers: [ AttemptService ]
   
 })
