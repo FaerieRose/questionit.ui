@@ -28,7 +28,7 @@ export class CreateTestComponent implements OnInit {
   languages = [];
   exams = [];
   testTemplate: TestTemplate;
-  questionList: Question[];
+  questionList = [];
   includeInTest: Boolean[];
   testTemplateList: TestTemplate[];
   questionListFilter = { "exam": EnumExams[0], "language": EnumLanguages[0], "enabled": true }
@@ -58,7 +58,7 @@ export class CreateTestComponent implements OnInit {
     this.testTemplate.questions = null;
       
     
-    this.getQuestionList();
+    //this.getQuestionList();
 
     //  this.getTestTemplateById(1);
     //this.testTemplate = new TestTemplate();
@@ -86,8 +86,9 @@ export class CreateTestComponent implements OnInit {
     this.questionService.getQuestions(this.questionListFilter.exam, this.questionListFilter.language, this.questionListFilter.enabled).subscribe(questions => {
       this.questionList = questions;
       console.log(this.questionList.length);
-      this.includeInTest = null;
+      this.includeInTest = [];
       for (var i = 0; i < this.questionList.length; i++) { this.includeInTest.push(false); }
+      console.log(this.includeInTest);
     });
   }
 
@@ -105,17 +106,17 @@ export class CreateTestComponent implements OnInit {
     this.getQuestionList();
   }
 
-  addOrRemoveQuestionFromTest($event, questionIndex: number) {
-    console.log ("de waarde van checked :" + $event.target.checked);
-    this.includeInTest[questionIndex] = $event.target.checked;
-    // if($event.target.checked){
-    //   console.log("*********************************************************");
-    //   this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
-    // } else {
-    //   console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-    //   this.testTemplateService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
-    // }
-  }
+  // addOrRemoveQuestionFromTest($event, questionIndex: number) {
+  //   console.log ("de waarde van checked :" + $event.target.checked);
+  //   this.includeInTest[questionIndex] = $event.target.checked;
+  //   // if($event.target.checked){
+  //   //   console.log("*********************************************************");
+  //   //   this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
+  //   // } else {
+  //   //   console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+  //   //   this.testTemplateService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
+  //   // }
+  // }
 
   saveTest() {
     if (this.includeInTest.every(lmnt => lmnt == false)) {
