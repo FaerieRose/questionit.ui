@@ -2,7 +2,9 @@
 /* Author       : Rik & Rémond                                                         */
 /* Date created : 15 Dec 2016                                                          */
 /* Rebuilt      : 06-01-2017, Dave Schellekens
-/* ----------------------------------------------------------------------------------- */
+ * 
+ * May be modified later to include editing existing testtemplates. for now create only.
+ ----------------------------------------------------------------------------------- */
 import { Component, OnInit } from '@angular/core';
 //import { ActivatedRoute, Params } from '@angular/router';
 //import { Router } from '@angular/router';
@@ -46,9 +48,6 @@ export class CreateTestComponent implements OnInit {
   }
 
   ngOnInit() {
-    //  let id = +this.route.snapshot.params['id'];
-    // console.log("===---HET ID---==="+id);
-    //this.getTestTemplate(0);
     this.testTemplate = new TestTemplate();
     this.testTemplate.attemptTimeInMinutes = 0;
     this.testTemplate.forExam = 0;
@@ -56,10 +55,9 @@ export class CreateTestComponent implements OnInit {
     this.testTemplate.name = "";
     this.testTemplate.programmingLanguage = 0;
     this.testTemplate.questions = null;
+    this.testTemplate.id = null;
       
   }
-
-  
 
   // getTestTemplate(id: number) {
   //     this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
@@ -102,37 +100,25 @@ export class CreateTestComponent implements OnInit {
     this.getQuestionList();
   }
 
-  // addOrRemoveQuestionFromTest($event, questionIndex: number) {
-  //   console.log ("de waarde van checked :" + $event.target.checked);
-  //   this.includeInTest[questionIndex] = $event.target.checked;
-  //   // if($event.target.checked){
-  //   //   console.log("*********************************************************");
-  //   //   this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
-  //   // } else {
-  //   //   console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
-  //   //   this.testTemplateService.removeQuestionToTemplate(this.testTemplate.id, questionId).subscribe(q => { });
-  //   // }
-  // }
-
   saveTest() {
     if (this.includeInTest.every(lmnt => lmnt == false)) {
       alert("No questions selected; Exam has not been saved");
     } else {
+      this.testTemplate.questions = [];       //TODO check if this indeed nulls questionsarray
       let template = this.testTemplate;
-      // ???? remnant of new/existing??? if (template.id == -1) { this.testTemplate.id = 1; }
-      //cannot post template with list of questionIDs, only list of Questions.:(
-      //this is probably the reason why questions were added/removed on checkbox click.  
-      //TODO create backend call to post template together with list of questionIDs?  
-      //post template first  
-      this.testTemplateService.postNewTestTemplate(template).subscribe(tt => {
-        this.testTemplate.id = tt.id;
-        //TODO: result?
-        for (var i = 0; i < this.questionList.length; i++){
+      //add marked questions (just the id field) to testtemplate
+      for (var i = 0; i < this.questionList.length; i++){
             if (this.includeInTest[i] == true) {
-              //this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe(q => { });
-              this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe();
+              //this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe();
+              var qstn = new Question;
+              qstn.id = this.questionList[i].id;    //assuming all other fields will be null.
+              template.questions.push(qstn);
             }
         }
+      //template should be ready for putting now
+      this.testTemplateService.putTestTemplateWithQuestions(template).subscribe(ttbasic => {
+        console.log("PUT done. returned result: " + JSON.stringify(ttbasic));
+        
       });
     }
   }

@@ -80,4 +80,13 @@ export class TestTemplateService {
 		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	}
 
+	putTestTemplateWithQuestions(testTemplate: TestTemplate): Observable<TestTemplateModelBasic> {
+		console.log(" we zitten nu in de putTestTemplate");
+		//this.currentUrl = this.testTemplateUrl;
+		let jsonResult: string = JSON.stringify(testTemplate);
+		console.log("Will PUT JSON(TestTemplate) " + jsonResult);
+		
+		return this.http.put(this.testTemplateUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+	}
+
 }
