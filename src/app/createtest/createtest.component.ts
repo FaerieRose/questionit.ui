@@ -129,7 +129,8 @@ export class CreateTestComponent implements OnInit {
         //TODO: result?
         for (var i = 0; i < this.questionList.length; i++){
             if (this.includeInTest[i] == true) {
-              this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe(q => { });
+              //this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe(q => { });
+              this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe();
             }
         }
       });
