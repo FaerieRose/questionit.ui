@@ -55,16 +55,18 @@ export class TestTemplateService {
 	}
 
 
-	addQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+	//addQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+	addQuestionToTemplate(templateId: number, questionId :number) {
 		let template: TestTemplate = new TestTemplate();
 		console.log("in de addQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId)
 
-        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/addquestiontotemplate/"+ questionId;
+        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/addquestion/"+ questionId;
 		console.log( templateId + " currentUrl: " + this.currentUrl)
         let jsonResult: string = "{}";
         console.log("---- JSON(TestTemplate) = " + jsonResult);
 		//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
-        return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+        //return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
 
 	}
 
