@@ -54,8 +54,8 @@ export class CreateTestComponent implements OnInit {
     this.testTemplate.isEnabled = true;
     this.testTemplate.name = "";
     this.testTemplate.programmingLanguage = 0;
-    this.testTemplate.questions = null;
-    this.testTemplate.id = null;
+    this.testTemplate.questions = [];
+    //this.testTemplate.id = null;              //NOPE. backend translates this to 0 somewhere...
       
   }
 
@@ -116,9 +116,14 @@ export class CreateTestComponent implements OnInit {
             }
         }
       //template should be ready for putting now
-      this.testTemplateService.putTestTemplateWithQuestions(template).subscribe(ttbasic => {
-        console.log("PUT done. returned result: " + JSON.stringify(ttbasic));
-        
+      console.log("about to PUT testtemplate: " + JSON.stringify(template));
+      this.testTemplateService.putTestTemplateWithQuestions(template).subscribe(res => {
+         console.log("PUT done. returned result: " + res);
+         if (res == 1) {
+           alert("Exam saved to DB.");
+         } else {
+           alert("Oops! Something went wrong...");
+         }
       });
     }
   }
