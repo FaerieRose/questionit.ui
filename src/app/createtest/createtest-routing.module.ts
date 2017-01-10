@@ -2,22 +2,22 @@
 /* Author       : Rik & Rémond                                                         */
 /* Date created : 15 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { NgModule }     from '@angular/core';
-import { Routes,
-         RouterModule } from '@angular/router';
+// import { NgModule }     from '@angular/core';
+// import { Routes,
+//          RouterModule } from '@angular/router';
 
-import { ChooseTestTemplateComponent }  from '../choosetesttemplate/choosetesttemplate.component';
+// import { ChooseTestTemplateComponent }  from '../choosetesttemplate/choosetesttemplate.component';
 
-const routes: Routes = [
-  { path: '', redirectTo: 'browse', pathMatch: 'full'},
-  { path: 'browse', component: ChooseTestTemplateComponent }
-];
+// const routes: Routes = [
+//   { path: '', redirectTo: 'browse', pathMatch: 'full'},
+//   { path: 'browse', component: ChooseTestTemplateComponent }
+// ];
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class ChooseTestTemplateRoutingModule {}
+// @NgModule({
+//   imports: [RouterModule.forChild(routes)],
+//   exports: [RouterModule]
+// })
+// export class ChooseTestTemplateRoutingModule {}
 
 // /* ----------------------------------------------------------------------------------- */
 // /* Author       : Bas Smulders                                                         */
