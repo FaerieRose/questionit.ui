@@ -8,12 +8,13 @@
 
 <div class="div-input-text">
   <label class="control-input text" for="testtemplatename">Name Of The Test</label>
-  <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>
+  <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Exam name" [(ngModel)]="testTemplate.name"><br>
+  <!--<input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>-->
 </div>
 
 <div class="div-input-text">
   <label class="control-input text" for="testtemplatename">Number Of Minutes To Complete The Test</label>
-  <input class="control-input input-text" type="number" id="attempttimeinminutes" placeholder="Time in Minutes" (change)="updateDuration($event)"><br>
+  <input class="control-input input-text" type="number" id="attempttimeinminutes" [(ngModel)]="testTemplate.attemptTimeInMinutes"><br>
 </div>
 
 <legend>Select Program Language And Type Of Exam</legend>
@@ -61,15 +62,15 @@
     </td>
     <td class="div-input-text3"><input type="checkbox" /></td>
     <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-    <td class="div-input-text3"><input type="checkbox" [(ngModel)]="includeInTest[i]" name="pietjepuk" /></td>
+    <td class="div-input-text3"><input type="checkbox" [(ngModel)]="includeInTest[i]" name="justsomename" /></td>
 
   </tr>
 </tbody>
 </table>
 <!-- not pretty, but functional -->
-<label class="button" [class.buttongreyout]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes==''? true: false" id="saveTestTemplate">Save
-      <input type="button" [disabled]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes==''" (click)="saveTest()" style="display:none"/>
-      <div *ngIf="testTemplate.name=='' || testTemplate.attemptTimeInMinutes==''">Please fill in empty fields first!</div>
+<label class="button" [class.buttongreyout]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes < 1 ? true: false" id="saveTestTemplate">Save
+      <input type="button" [disabled]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes < 1" (click)="saveTest()" style="display:none"/>
+      <div *ngIf="testTemplate.name=='' || testTemplate.attemptTimeInMinutes < 1">Please fill in empty fields first!</div>
 </label>
 </form>
 </div>

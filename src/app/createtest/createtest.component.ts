@@ -49,7 +49,7 @@ export class CreateTestComponent implements OnInit {
 
   ngOnInit() {
     this.testTemplate = new TestTemplate();
-    this.testTemplate.attemptTimeInMinutes = 0;
+    this.testTemplate.attemptTimeInMinutes = null;
     this.testTemplate.forExam = 0;
     this.testTemplate.isEnabled = true;
     this.testTemplate.name = "";
@@ -128,17 +128,17 @@ export class CreateTestComponent implements OnInit {
     }
   }
 
-  updateTestName($event) {
-     this.testTemplate.name = $event.target.value;
-  }
+  // updateTestName($event) {
+  //    this.testTemplate.name = $event.target.value;
+  // }
 
   updateExam($event) {
     this.questionListFilter.exam = EnumExams[parseInt($event.target.value)]; this.testTemplate.forExam = parseInt($event.target.value);
     this.getQuestionList();
   }
   
-  updateDuration($event) {
-     this.testTemplate.attemptTimeInMinutes = $event.target.value;
-  }
+  // updateDuration($event) {
+  //    this.testTemplate.attemptTimeInMinutes = $event.target.value;
+  // }
 
 }
