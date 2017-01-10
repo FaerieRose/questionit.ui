@@ -25,6 +25,7 @@ export class GlobalService {
   private baseUrlImage: string;
 	private languages = [];
 	private exams = [];
+	private version: String = "20170110_1531"; // Update this string for each merge with develop branch.
 
   constructor(private http: Http) {
 		this.defineBaseUrl();
@@ -100,6 +101,10 @@ export class GlobalService {
 	public getExams() {
 		return this.exams;
 	}
+
+	public getVersion(): String {
+    return this.version;
+  }
 
 	// -------------------------------------------------------------
 	// Returns the received JSON data if the Response the GET is 200, otherwise an empty JSON object
