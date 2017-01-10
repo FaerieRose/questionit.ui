@@ -70,14 +70,25 @@ export class TestTemplateService {
 
 	}
 
-	postNewTestTemplate(testTemplate: TestTemplate): Observable<TestTemplate> {
-		console.log(" we zitten nu in de postNewTestTemplate");
-		let template: TestTemplate = new TestTemplate();
-		template = testTemplate;
-		this.currentUrl = this.testTemplateUrl;
-		let jsonResult: string = JSON.stringify(template);
-		console.log("---- JSON(TestTemplate) = " + jsonResult);
-		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+	// made obsolete by putTestTemplateWithQuestions
+	//
+	// postNewTestTemplate(testTemplate: TestTemplate): Observable<TestTemplate> {
+	// 	console.log(" we zitten nu in de postNewTestTemplate");
+	// 	let template: TestTemplate = new TestTemplate();
+	// 	template = testTemplate;
+	// 	this.currentUrl = this.testTemplateUrl;
+	// 	let jsonResult: string = JSON.stringify(template);
+	// 	console.log("---- JSON(TestTemplate) = " + jsonResult);
+	// 	return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+	// }
+
+	putTestTemplateWithQuestions(testTemplate: TestTemplate): Observable<Number> {
+		console.log(" we zitten nu in de putTestTemplate");
+		//this.currentUrl = this.testTemplateUrl;
+		let jsonResult: string = JSON.stringify(testTemplate);
+		console.log("Will PUT JSON(TestTemplate) " + jsonResult);
+		
+		return this.http.put(this.testTemplateUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
 	}
 
 }
