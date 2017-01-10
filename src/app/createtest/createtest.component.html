@@ -66,8 +66,10 @@
   </tr>
 </tbody>
 </table>
-<label class="button" id="saveTestTemplate">Save
-      <input type="button" (click)="saveTest()" style="display:none"/>
+<!-- not pretty, but functional -->
+<label class="button" [class.buttongreyout]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes==''? true: false" id="saveTestTemplate">Save
+      <input type="button" [disabled]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes==''" (click)="saveTest()" style="display:none"/>
+      <div *ngIf="testTemplate.name=='' || testTemplate.attemptTimeInMinutes==''">Please fill in empty fields first!</div>
 </label>
 </form>
 </div>
