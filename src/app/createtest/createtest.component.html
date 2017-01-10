@@ -33,6 +33,10 @@
     </select>
 </div>
 
+<div *ngIf='!includeInTest'>
+  <br>
+  <label>Please select programming language to show a list of questions</label>
+</div>
 <div *ngIf='includeInTest'>
 <div *ngIf='questionList.length == includeInTest.length' id="questionList" class="answers">
   <form>
