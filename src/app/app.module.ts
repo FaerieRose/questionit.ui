@@ -13,13 +13,12 @@ import { AppComponent }             from './app.component';
 import { LoginComponent }           from './login/login.component';
 import { StudentClassComponent }    from './studentclasses/studentclass.component';
 import { StudentComponent }         from './student/student.component';
-//import { AttemptComponent }         from './attempt/attempt.component';
 import { AttemptScoreComponent }    from './attempt/attemptscore.component';
 import { CreateTestComponent }      from './createtest/createtest.component';
 import { GlobalService }            from './global.service';
 import { StudentReviewComponent }   from './student/studentreview.component';
-import { StudentLoginComponent }   from './student/studentlogin.component';
-import { StudentPostAttemptComponent }   from './student/studentpostattempt.component';
+import { StudentLoginComponent }    from './student/studentlogin.component';
+import { StudentPostAttemptComponent } from './student/studentpostattempt.component';
 
 @NgModule({
   declarations: [
