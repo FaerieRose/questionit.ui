@@ -2,21 +2,24 @@
 /* Author       : Bas Smulders                                                         */
 /* Date created : 09 Dec 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { NgModule }            from '@angular/core';
-import { CommonModule }        from '@angular/common';
+import { NgModule }              from '@angular/core';
+import { CommonModule }          from '@angular/common';
 
-import { QuestionComponent }            from './question.component';
-import { QuestionsComponent }           from './questions.component';
-import { QuestionDisplayComponent }     from './question-display.component';
+import { QuestionComponent }     from './question.component';
+import { QuestionsComponent }    from './questions.component';
 
-import { QuestionRoutingModule }        from './question-routing.module';
+import { QuestionRoutingModule } from './question-routing.module';
+import { QuestionDisplayModule } from './question-display.module';
 
 @NgModule({
-  imports: [ CommonModule, QuestionRoutingModule ],
+  imports: [ 
+    CommonModule, 
+    QuestionRoutingModule, 
+    QuestionDisplayModule 
+  ],
   declarations: [
     QuestionComponent, 
-    QuestionsComponent, 
-    QuestionDisplayComponent
+    QuestionsComponent
   ]
 })
 export class QuestionModule { }
