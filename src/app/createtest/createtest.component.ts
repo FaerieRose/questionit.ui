@@ -44,19 +44,49 @@ export class CreateTestComponent implements OnInit {
     ) {
     //this.testTemplate = new TestTemplate();
     this.languages = this.globalService.getLanguages();
-    this.exams.push({ "id": 0, "name": "NONE" });
+    //this.exams.push({ "id": 0, "name": "NONE" });       dropdown list not working correctly. instead getexams
+    this.exams = this.globalService.getExams();
   }
 
   ngOnInit() {
-    this.testTemplate = new TestTemplate();
-    this.testTemplate.attemptTimeInMinutes = null;
-    this.testTemplate.forExam = 0;
-    this.testTemplate.isEnabled = true;
-    this.testTemplate.name = "";
-    this.testTemplate.programmingLanguage = 0;
-    this.testTemplate.questions = [];
-    //this.testTemplate.id = null;              //NOPE. backend translates this to 0 somewhere...
-      
+    //TODO selectedtemplateID needs to be set at just before every route to this component!!!
+    if (this.globalService.getSelectedTemplateID() > -1) {
+      this.testTemplateService.getTestTemplateMetaById(this.globalService.getSelectedTemplateID()).subscribe(ttbasic =>{
+        this.testTemplate = new TestTemplate();
+        this.testTemplate.attemptTimeInMinutes = ttbasic.attemptTimeInMinutes;
+        this.testTemplate.forExam = ttbasic.forExam;
+        this.testTemplate.isEnabled = ttbasic.isEnabled;
+        this.testTemplate.name = ttbasic.name;
+        this.testTemplate.programmingLanguage = ttbasic.programmingLanguage;
+        this.testTemplate.forExam = ttbasic.forExam;
+        //ok, now get questionlist!
+        this.questionListFilter.exam = EnumExams[this.testTemplate.forExam];
+        this.questionListFilter.language = EnumLanguages[this.testTemplate.programmingLanguage];
+        this.questionListFilter.enabled = true;
+        this.getQuestionList();
+        //for (var i = 0; i < this.questionList.length; i++) { this.includeInTest.push(this.questionList[i].id); }
+        //arrValues.indexOf('Sam') > -1
+        for (var i = 0; i < this.questionList.length; i++) {
+            if (ttbasic.questionIDs.indexOf(this.questionList[i].id) > -1) {this.includeInTest[i] = true;}
+        }
+        // this.testTemplate.questions = [];  
+        // for (let qstnID of ttbasic.questionIDs) {
+        //   var questjun = new Question();
+        //   questjun.id = qstnID;
+        //   this.testTemplate.questions.push(questjun);
+        // }
+        console.log("testtemplate created from metameuk: " + JSON.stringify(this.testTemplate));
+      });
+        
+    } else {
+      this.testTemplate = new TestTemplate();
+      this.testTemplate.attemptTimeInMinutes = null;
+      this.testTemplate.forExam = 0;
+      this.testTemplate.isEnabled = true;
+      this.testTemplate.name = "";
+      this.testTemplate.programmingLanguage = 0;
+      this.testTemplate.questions = [];
+    }
   }
 
   // getTestTemplate(id: number) {

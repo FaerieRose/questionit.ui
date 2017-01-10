@@ -93,7 +93,8 @@ export class ChooseTestTemplateComponent implements OnInit {
   }
 
   editTestTemplate(testTemplateId) {
-     this.router.navigate(['/testtemplates', testTemplateId.toString(),'edit']);
+     this.globalService.setSelectedTemplateID(testTemplateId);
+     this.router.navigate(['createtest']);
   }
 
   getStudentId(): number {

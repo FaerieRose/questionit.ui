@@ -14,8 +14,9 @@ import { Instructor }     from './instructor/instructor';
 @Injectable()
 export class GlobalService {
   private instructorID: number = -1;
-  private studentID: number = -1;
   private instructorName: string = "";
+  private selectedTemplateID: number = -1;
+	private studentID: number = -1;
   private studentName: string = "";
 	private currentAttemptID: number = -1;				//id of attempt currently in progress
 	private currentQuestionNr: number = -1;				//index [1, currentQuestionAmount] of currently displayed attempt question.
@@ -45,6 +46,14 @@ export class GlobalService {
   public getInstructorName(): string {
     return this.instructorName;
   }
+
+	public setSelectedTemplateID(templID: number) {
+		this.selectedTemplateID = templID;
+	}
+
+	public getSelectedTemplateID(): number {
+		return this.selectedTemplateID;
+	}
 
   public getStudentID(): number {
     return this.studentID;
