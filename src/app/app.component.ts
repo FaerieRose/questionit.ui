@@ -16,7 +16,7 @@ import { Student }           from './student/student';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  styleUrls: ['app.component.css'],
+  styleUrls: ['app.styles.css'],
   providers: [ InstructorService, StudentService ]
 })
 export class AppComponent {
