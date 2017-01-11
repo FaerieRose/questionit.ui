@@ -21,7 +21,7 @@
 <div>
   <div class="div-input-text">
     <label class="control-input text" for="testTemplateListLanguage">Select Programming Language For Exam</label>
-    <select [(ngModel)]="testTemplate.programmingLanguage" class="control-input input-text" id="testTemplateListLanguage" (change)="updateLanguage($event)">
+    <select [(ngModel)]="testTemplate.programmingLanguage" class="control-input input-text" id="testTemplateListLanguage">
       <option *ngFor='let lang of languages' value='{{ lang.id }}' >{{ lang.name }}</option>
     </select>
   </div>
@@ -39,7 +39,7 @@
   <label>Please select programming language to show a list of questions</label>
 </div>
 <div *ngIf='includeInTest'>
-<div *ngIf='questionList.length == includeInTest.length' id="questionList" class="answers">
+<div *ngIf='questionListIsReady' id="questionList" class="answers">
   <form>
     <legend>Select Questions For The New Test</legend>
     <table style="width:100%">
@@ -62,7 +62,7 @@
     </td>
     <td class="div-input-text3"><input type="checkbox" /></td>
     <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-    <td class="div-input-text3"><input type="checkbox" [(ngModel)]="includeInTest[i]" name="justsomename" /></td>
+    <td class="div-input-text3"><input type="checkbox" [(ngModel)]="includeInTest[i]" (change)="debugstuff()" name="justsomename" /></td>
 
   </tr>
 </tbody>

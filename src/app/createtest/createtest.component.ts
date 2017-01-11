@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { GlobalService } from '../global.service';
 import { TestTemplate } from '../testtemplate/testtemplate';
+import { TestTemplateModelBasic } from '../testtemplate/testtemplatemodelbasic';
 
 import { TestTemplateService } from '../testtemplate/testtemplate.service';
 
@@ -34,6 +35,7 @@ export class CreateTestComponent implements OnInit {
   includeInTest: Boolean[];
   testTemplateList: TestTemplate[];
   questionListFilter = { "exam": EnumExams[0], "language": EnumLanguages[0], "enabled": true }
+  questionListIsReady = false;
 
   constructor(
     private questionService: QuestionService,
@@ -52,6 +54,9 @@ export class CreateTestComponent implements OnInit {
     //TODO selectedtemplateID needs to be set at just before every route to this component!!!
     if (this.globalService.getSelectedTemplateID() > -1) {
       this.testTemplateService.getTestTemplateMetaById(this.globalService.getSelectedTemplateID()).subscribe(ttbasic =>{
+        console.log("fetched testtemplatebasic: " + JSON.stringify(ttbasic));
+        let tiereliere = ttbasic.questionsIds;
+        console.log("questionsIds: " + tiereliere);
         this.testTemplate = new TestTemplate();
         this.testTemplate.attemptTimeInMinutes = ttbasic.attemptTimeInMinutes;
         this.testTemplate.forExam = ttbasic.forExam;
@@ -59,23 +64,19 @@ export class CreateTestComponent implements OnInit {
         this.testTemplate.name = ttbasic.name;
         this.testTemplate.programmingLanguage = ttbasic.programmingLanguage;
         this.testTemplate.forExam = ttbasic.forExam;
+        console.log("testtemplate created from metameuk: " + JSON.stringify(this.testTemplate));
         //ok, now get questionlist!
         this.questionListFilter.exam = EnumExams[this.testTemplate.forExam];
         this.questionListFilter.language = EnumLanguages[this.testTemplate.programmingLanguage];
         this.questionListFilter.enabled = true;
-        this.getQuestionList();
-        //for (var i = 0; i < this.questionList.length; i++) { this.includeInTest.push(this.questionList[i].id); }
-        //arrValues.indexOf('Sam') > -1
-        for (var i = 0; i < this.questionList.length; i++) {
-            if (ttbasic.questionIDs.indexOf(this.questionList[i].id) > -1) {this.includeInTest[i] = true;}
-        }
+        this.getQuestionList(ttbasic);
+       
         // this.testTemplate.questions = [];  
         // for (let qstnID of ttbasic.questionIDs) {
         //   var questjun = new Question();
         //   questjun.id = qstnID;
         //   this.testTemplate.questions.push(questjun);
         // }
-        console.log("testtemplate created from metameuk: " + JSON.stringify(this.testTemplate));
       });
         
     } else {
@@ -106,16 +107,23 @@ export class CreateTestComponent implements OnInit {
   //   });
   // }
 
-  getQuestionList() {
+  getQuestionList(ttbasic: TestTemplateModelBasic) {
     this.questionService.getQuestions(this.questionListFilter.exam, this.questionListFilter.language, this.questionListFilter.enabled).subscribe(questions => {
       this.questionList = questions;
-      console.log(this.questionList.length);
+      console.log("questionlist length: " + this.questionList.length);
       this.includeInTest = [];
-      for (var i = 0; i < this.questionList.length; i++) { this.includeInTest.push(false); }
-      console.log(this.includeInTest);
+      for (var i = 0; i < this.questionList.length; i++) {
+        this.includeInTest.push(false);
+        //TODO check if ttbasic == null?
+        if (ttbasic.questionsIds.indexOf(this.questionList[i].id) > -1) {this.includeInTest[i] = true;}
+      }
+      console.log("this.includeIntest: " + this.includeInTest);
+      this.questionListIsReady = true;
     });
   }
 
+
+  //TODO Have removed call to this from html, because of ngmodel binding. needs check if all is still well. WTF is levels???
   updateLanguage($event) {
     this.questionListFilter.language = EnumLanguages[parseInt($event.target.value)];
     this.testTemplate.programmingLanguage = parseInt($event.target.value);
@@ -127,7 +135,8 @@ export class CreateTestComponent implements OnInit {
       }
     })
     this.questionListFilter.exam = this.exams[0].name;
-    this.getQuestionList();
+    //TODO show warning that this will undo question selection?
+    this.getQuestionList(null);
   }
 
   saveTest() {
@@ -164,11 +173,16 @@ export class CreateTestComponent implements OnInit {
 
   updateExam($event) {
     this.questionListFilter.exam = EnumExams[parseInt($event.target.value)]; this.testTemplate.forExam = parseInt($event.target.value);
-    this.getQuestionList();
+    //TODO show warning that this will undo question selection?
+    this.getQuestionList(null);
   }
   
   // updateDuration($event) {
   //    this.testTemplate.attemptTimeInMinutes = $event.target.value;
   // }
+
+  debugstuff() {
+    console.log(this.includeInTest);
+  }
 
 }
