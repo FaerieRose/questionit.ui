@@ -62,7 +62,7 @@
     </td>
     <td class="div-input-text3"><input type="checkbox" /></td>
     <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-    <td class="div-input-text3"><input type="checkbox" [(ngModel)]="includeInTest[i]" (change)="debugstuff()" name="justsomename" /></td>
+    <td class="div-input-text3"><input type="checkbox" [checked]="includeInTest[i]" (change)="updateIncludedQuestions(i, $event)" name="justsomename" /></td>
 
   </tr>
 </tbody>

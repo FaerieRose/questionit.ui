@@ -181,8 +181,10 @@ export class CreateTestComponent implements OnInit {
   //    this.testTemplate.attemptTimeInMinutes = $event.target.value;
   // }
 
-  debugstuff() {
-    console.log(this.includeInTest);
+  updateIncludedQuestions(index, $event) {
+    //console.log("before change: " + this.includeInTest);
+    this.includeInTest[index] = $event.target.checked;
+    //console.log("after change: " + this.includeInTest);
   }
 
 }
