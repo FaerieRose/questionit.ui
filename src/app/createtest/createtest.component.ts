@@ -36,6 +36,7 @@ export class CreateTestComponent implements OnInit {
   testTemplateList: TestTemplate[];
   questionListFilter = { "exam": EnumExams[0], "language": EnumLanguages[0], "enabled": true }
   questionListIsReady = false;
+  bCreateTest = false;
 
   constructor(
     private questionService: QuestionService,
@@ -53,11 +54,12 @@ export class CreateTestComponent implements OnInit {
   ngOnInit() {
     //TODO selectedtemplateID needs to be set at just before every route to this component!!!
     if (this.globalService.getSelectedTemplateID() > -1) {
+      this.bCreateTest = false;
       this.testTemplateService.getTestTemplateMetaById(this.globalService.getSelectedTemplateID()).subscribe(ttbasic =>{
         console.log("fetched testtemplatebasic: " + JSON.stringify(ttbasic));
-        let tiereliere = ttbasic.questionsIds;
-        console.log("questionsIds: " + tiereliere);
+        console.log("questionsIds: " + ttbasic.questionsIds);
         this.testTemplate = new TestTemplate();
+        this.testTemplate.id = ttbasic.id;
         this.testTemplate.attemptTimeInMinutes = ttbasic.attemptTimeInMinutes;
         this.testTemplate.forExam = ttbasic.forExam;
         this.testTemplate.isEnabled = ttbasic.isEnabled;
@@ -80,6 +82,7 @@ export class CreateTestComponent implements OnInit {
       });
         
     } else {
+      this.bCreateTest = true;
       this.testTemplate = new TestTemplate();
       this.testTemplate.attemptTimeInMinutes = null;
       this.testTemplate.forExam = 0;
@@ -114,8 +117,9 @@ export class CreateTestComponent implements OnInit {
       this.includeInTest = [];
       for (var i = 0; i < this.questionList.length; i++) {
         this.includeInTest.push(false);
-        //TODO check if ttbasic == null?
-        if (ttbasic.questionsIds.indexOf(this.questionList[i].id) > -1) {this.includeInTest[i] = true;}
+        if (ttbasic != null) {
+          if (ttbasic.questionsIds.indexOf(this.questionList[i].id) > -1) {this.includeInTest[i] = true;}
+        }
       }
       console.log("this.includeIntest: " + this.includeInTest);
       this.questionListIsReady = true;
@@ -143,7 +147,7 @@ export class CreateTestComponent implements OnInit {
     if (this.includeInTest.every(lmnt => lmnt == false)) {
       alert("No questions selected; Exam has not been saved");
     } else {
-      this.testTemplate.questions = [];       //TODO check if this indeed nulls questionsarray
+      this.testTemplate.questions = [];
       let template = this.testTemplate;
       //add marked questions (just the id field) to testtemplate
       for (var i = 0; i < this.questionList.length; i++){
@@ -158,10 +162,10 @@ export class CreateTestComponent implements OnInit {
       console.log("about to PUT testtemplate: " + JSON.stringify(template));
       this.testTemplateService.putTestTemplateWithQuestions(template).subscribe(res => {
          console.log("PUT done. returned result: " + res);
-         if (res == 1) {
-           alert("Exam saved to DB.");
-         } else {
+         if (res == -1) {
            alert("Oops! Something went wrong...");
+         } else {
+           alert("Exam saved to DB.");
          }
       });
     }
