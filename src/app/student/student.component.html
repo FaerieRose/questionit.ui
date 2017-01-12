@@ -43,7 +43,7 @@
       <tbody>
         <tr *ngFor="let stud of studentList; let i = index;">
           <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ stud.firstName }}" (change)="updateListFirstName($event,i)"></div>
+            <input class="input-text" type="text" value="{{ stud.firstName }}" (change)="updateListFirstName($event,i)">
           </td>
           <td class="div-input-text3">
             <div class="marcel"><input type="text" value="{{ stud.lastName }}" (change)="updateListLastName($event,i)"></div>

@@ -34,16 +34,17 @@ export class InstructorLandingComponent {
   }
 
     goToOverview(){
-        this.router.navigate(['instructor/landing']);   //doesn't exist yet
+        alert("not implemented yet");   //doesn't exist yet
     }
     
 
     goToCreateExam(){
+        this.globalService.setSelectedTemplateID(-1);
         this.router.navigate(['createtest']);
     }
 
     goToCreateUsers(){
-        this.router.navigate(['instructor/landing']);   //doesn't exist yet
+        alert("not implemented yet");   //doesn't exist yet
     }
 
     goToLogin(){

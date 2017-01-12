@@ -17,7 +17,8 @@ import { InstructorService } from '../instructor/instructor.service';
 @Component({
   selector: 'my-studentclass',
   templateUrl: './studentclass.component.html',
-  styleUrls: ['studentclass.component.css'],
+  //styleUrls: ['studentclass.component.css'],
+  styleUrls: ['../app.styles.css'],
   providers: [StudentClassService]
 
 })

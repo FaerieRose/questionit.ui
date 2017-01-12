@@ -1,0 +1,353 @@
+/*.control-input {
+  margin: 0px;
+  padding: 0px 0px 0px 1em;
+}*/
+
+.correct {
+  color: green; 
+}
+
+/* attempt.component*/
+/* choosetesttemplate.component*/
+/* login.component*/
+/* pre-attempt.component*/
+/* question.component*/
+/* studentclass.component*/
+/*.div-input-text {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em;
+}*/
+
+/* createtest.component*/
+/* instructor.component*/
+/* student.component*/
+.div-input-text {
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em; /*top right botton left*/ 
+}
+
+/* studentclass.component*/
+.div-input-text2 {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  margin-top: 0.5vh;
+  padding: 0.2vh 1em 0.5vh 1em;  /* top right botton left */
+}
+
+/* studentclass.component*/
+.div-input-text3 {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+}
+
+/* createtest.component*/
+/* instructor.component*/
+/* student.component*/
+.div-input-text3 {
+  /*display: inline-block;*/
+  display: inline-grid;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 27%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+}
+
+/* choosetesttemplate.component*/
+.div-table-text {
+  display: inline-grid;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  margin-top: 0.5vh;
+  width: 33%;
+  padding: 0.5vh 1em 0.5vh 1em;  /* top right botton left */
+  white-space: nowrap;
+}
+
+/*.divCol {
+  margin: 0;
+  padding-left: 2vw;
+  padding-right: 2vw;
+}*/
+
+.divHalf1 {
+  display: inline-block;
+  width: 55%;
+}
+
+.divHalf2 {
+  display: inline-block;
+  width: 40%;
+}
+
+.divMain {
+  overflow-y: auto;  
+  overflow-x: hidden; 
+  height: 84vh;
+  direction: rtl;
+}
+
+/*.divNav {
+  background-color: #E1F1FE;
+  border-radius: 0 0 3vh 3vh;
+  height: 84vh;
+}*/
+/*.divRowBody {
+  margin: 1vh 2vh 2vh 2vh;
+  padding: 0;
+}*/
+
+/*.divRowTitle {
+  background-color: #23639E;
+  margin: 2vh 2vh 1vh 2vh;
+  padding: 2vh;
+  max-height: 100px;
+  height: 10vh;
+  text-align: center;
+  border-radius: 3vh 3vh 0 3vh;
+}*/
+
+/*.divRowTitle h1 {
+  font-size: 6vh;
+  font-weight: bold;
+  color: #E1F1FE;
+}*/
+
+.incorrect { 
+  color: red; 
+}
+
+/*.input-text {
+  border: 0px;
+  border-radius: 1vh;
+}*/
+
+.marcel{
+   /*display: inline-block;*/
+  display: inline-grid;
+  cursor: pointer;
+  position: relative;
+  border-radius: 1vh;
+  background-color: #fff;
+  /*background-color: #0000FE;*/
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.3vh;
+  /*padding: 0.5vh 1em 0.5vh 1em;   /*top right botton left*/ 
+}
+
+.pQuestion {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color:#777;
+}
+
+/*#divLogo, #divLogo2, #divLogo3 {
+  width: 100%;
+  text-align: center;
+  padding: 3vh;
+  margin-bottom: 2vh;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #23639E;
+}*/
+
+/*#divRouterOutlet {
+  margin: 0;
+  padding: 0;
+  direction: ltr;  
+}*/
+
+#divSave {
+  text-align: right;
+}
+
+#divScreen {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #F7F8F9;
+}
+
+/*#logo, #logo2, #logo3 {
+  width: 10vw;
+}*/
+
+article {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: black;
+}
+
+div.answers {
+  display: block;
+  height: 6vh;
+  width: 100%;
+  margin-top: 0.5vh;
+  position: relative;
+}
+
+input.answers {
+  display: inline-block;
+  font-size: 3vh;
+  height: 3vh;
+  width: 3vh;
+  padding: 0;
+  margin: 1.5vh 0.5vh 1.5vh 0.5vh;     /* top right botton left */
+  border-width: 0;
+  background-color: #E1F1FE;
+}
+
+/*label.button {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 1vh;
+  background-color: #23639E;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+  margin-top: 0.5vh;
+  padding: 0 2em 0 2em;
+}*/
+
+label.buttondisbled {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 1vh;
+  background-color: #dddddd;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #eee;
+  margin-top: 0.5vh;
+  padding: 0 2em 0 2em;
+}
+
+/* createtest.component*/
+label.buttongreyout {
+  background-color: #808080;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+}
+
+/*label.text {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+}*/
+
+/*select.input-text, input.input-text {
+  width: 63%;
+}*/
+
+/* createtest.component*/
+/* instructor.component*/
+/* student.component*/
+/* studentclass.component*/
+/*td {
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+}*/
+
+/* choosetesttemplate.component*/
+/* td {
+  box-shadow: 2px 2px 1px #23639E;
+} */
+
+/* attempt.component*/
+td {
+  width: 10em;
+}
+
+/*td input {
+  display: inline-block;
+  margin: 0.5vh;     
+  width: inherit;
+  padding: 0;
+  border-width: 0;
+  background-color: #FFFFFF;
+}*/
+
+td.answers {
+  width: 80vw;
+}
+
+/*td.deze {
+  position: relative;
+  width: 35%;
+  margin-top: 2px;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+}*/
+
+td.indx {
+  width: 3vw;
+}
+
+td.name {
+  width: 16vw;
+}
+
+td.mail {
+  width: 32vw;
+}
+
+textarea.answers {
+  display: inline-block;
+  height: 6vh;
+  width: 100%;
+}
+
+textarea.input-text {
+  width: 100%;
+  overflow-y: auto;
+}
+
+textarea#question {
+  height: 20em;
+}
+
+textarea#questionexplanation {
+  height: 5em;
+}
+
+ul { 
+  display: block;
+  list-style-type: none;
+  margin-top: 1em;
+  margin-bottom: 1 em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0px;
+}

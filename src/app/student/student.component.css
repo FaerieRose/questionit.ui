@@ -4,7 +4,7 @@
 /* ----------------------------------------------------------------------------------- */
 /* Layout input text fields                                                            */
 .div-input-text {
-  /*display: inline-block;*/
+  display: inline-block;
   cursor: pointer;
   position: relative;
   border-radius: 1vh;
@@ -62,7 +62,7 @@ td.deze {
 label.text {
   color: #23639E;
   position: relative;
-  width: 35%;
+  width: 30%;
 }
 
 select.input-text, input.input-text {

@@ -28,10 +28,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let studcl of studentClassList; let i = index;">
- 
-        <!--<td>{{ studcl.name }}</td>-->
-        <td class="deze"><input type="text" value="{{ studcl.name }}" (change)="updateClassName($event,i)"></td>
-        
+        <td class="td-input-text">
+          <input class="control-input input-text" type="text" value="{{ studcl.name }}" (change)="updateClassName($event,i)">
+        </td>        
       </tr>
     </tbody>
   </table>
@@ -50,7 +49,7 @@
     <tbody>
       <tr *ngFor="let instr of instructorList; let i = index;">
 
-        <td class ="deze">{{ instr.firstName }}</td>
+        <td class ="td-input-text-3col">{{ instr.firstName }}</td>
         <td class ="deze">{{ instr.lastName }}</td>
         <td class ="deze">{{ instr.email }}</td>
 
