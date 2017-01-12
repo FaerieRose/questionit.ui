@@ -8,33 +8,38 @@
 
 <div class="div-input-text">
   <label class="control-input text" for="testtemplatename">Name Of The Test</label>
-  <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>
+  <input class="control-input input-text" type="text" id="testtemplatename" placeholder="Exam name" [(ngModel)]="testTemplate.name"><br>
+  <!--<input class="control-input input-text" type="text" id="testtemplatename" placeholder="Name" (change)="updateTestName($event)"><br>-->
 </div>
 
 <div class="div-input-text">
   <label class="control-input text" for="testtemplatename">Number Of Minutes To Complete The Test</label>
-  <input class="control-input input-text" type="number" id="attempttimeinminutes" placeholder="Time in Minutes" (change)="updateDuration($event)"><br>
+  <input class="control-input input-text" type="number" id="attempttimeinminutes" [(ngModel)]="testTemplate.attemptTimeInMinutes"><br>
 </div>
 
 <legend>Select Program Language And Type Of Exam</legend>
 <div>
   <div class="div-input-text">
     <label class="control-input text" for="testTemplateListLanguage">Select Programming Language For Exam</label>
-    <select class="control-input input-text" id="testTemplateListLanguage" (change)="updateLanguage($event)">
-      <option *ngFor='let lang of languages' value='{{ lang.id }}' >{{ lang.name }}</option> 
+    <select [(ngModel)]="testTemplate.programmingLanguage" class="control-input input-text" id="testTemplateListLanguage" (change)="updateLanguage($event)">
+      <option *ngFor='let lang of languages' value='{{ lang.id }}' >{{ lang.name }}</option>
     </select>
   </div>
 </div>
 
 <div class="div-input-text">
   <label class="control-input text" for="questionexam">For Exam</label>
-  <select class="control-input input-text" id="questionexam" (change)="updateExam($event)">
+  <select [(ngModel)]="testTemplate.forExam" class="control-input input-text" id="questionexam" (change)="updateExam($event)">
       <option *ngFor='let exam of exams' value='{{ exam.id }}' >{{ exam.name }}</option> 
     </select>
 </div>
 
+<div *ngIf='(!questionListIsReady) && (bCreateTest)'>
+  <br>
+  <label>Please select programming language to show a list of questions</label>
+</div>
 <div *ngIf='includeInTest'>
-<div *ngIf='questionList.length == includeInTest.length' id="questionList" class="answers">
+<div *ngIf='questionListIsReady' id="questionList" class="answers">
   <form>
     <legend>Select Questions For The New Test</legend>
     <table style="width:100%">
@@ -57,13 +62,15 @@
     </td>
     <td class="div-input-text3"><input type="checkbox" /></td>
     <!--<td class="div-input-text3"><label class="button" id="addQuestionToExam">Add To Test<input type="button" style="display:none"/></label></td>-->
-    <td class="div-input-text3"><input type="checkbox" [(ngModel)]="includeInTest[i]" name="pietjepuk" /></td>
+    <td class="div-input-text3"><input type="checkbox" [checked]="includeInTest[i]" (change)="updateIncludedQuestions(i, $event)" name="justsomename" /></td>
 
   </tr>
 </tbody>
 </table>
-<label class="button" id="saveTestTemplate">Save
-      <input type="button" (click)="saveTest()" style="display:none"/>
+<!-- not pretty, but functional -->
+<label class="button" [class.buttongreyout]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes < 1 ? true: false" id="saveTestTemplate">Save
+      <input type="button" [disabled]="testTemplate.name=='' || testTemplate.attemptTimeInMinutes < 1" (click)="saveTest()" style="display:none"/>
+      <div *ngIf="testTemplate.name=='' || testTemplate.attemptTimeInMinutes < 1">Please fill in empty fields first!</div>
 </label>
 </form>
 </div>

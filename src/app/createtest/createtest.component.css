@@ -186,6 +186,13 @@ label.button {
   padding: 0 2em 0 2em;
 }
 
+label.buttongreyout {
+  background-color: #808080;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+}
+
+
 /* ----------------------------------------------------------------------------------- */
 /* Try-outs:::::::::::;                                                                */
 article {
