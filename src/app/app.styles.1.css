@@ -1,7 +1,7 @@
-.control-input {
+/*.control-input {
   margin: 0px;
-  padding: 0px 0px 0px 1em;      /* top right botton left */
-}
+  padding: 0px 0px 0px 1em;
+}*/
 
 .correct {
   color: green; 
@@ -13,7 +13,7 @@
 /* pre-attempt.component*/
 /* question.component*/
 /* studentclass.component*/
-.div-input-text {
+/*.div-input-text {
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -22,8 +22,8 @@
   text-align: justify;
   width: 100%;
   margin-top: 0.5vh;
-  padding: 0.5vh 1em 0.5vh 1em; /*top right botton left*/ 
-}
+  padding: 0.5vh 1em 0.5vh 1em;
+}*/
 
 /* createtest.component*/
 /* instructor.component*/
@@ -88,11 +88,11 @@
   white-space: nowrap;
 }
 
-.divCol {
+/*.divCol {
   margin: 0;
   padding-left: 2vw;
   padding-right: 2vw;
-}
+}*/
 
 .divHalf1 {
   display: inline-block;
@@ -111,17 +111,17 @@
   direction: rtl;
 }
 
-.divNav {
+/*.divNav {
   background-color: #E1F1FE;
   border-radius: 0 0 3vh 3vh;
   height: 84vh;
-}
-.divRowBody {
+}*/
+/*.divRowBody {
   margin: 1vh 2vh 2vh 2vh;
   padding: 0;
-}
+}*/
 
-.divRowTitle {
+/*.divRowTitle {
   background-color: #23639E;
   margin: 2vh 2vh 1vh 2vh;
   padding: 2vh;
@@ -129,22 +129,22 @@
   height: 10vh;
   text-align: center;
   border-radius: 3vh 3vh 0 3vh;
-}
+}*/
 
-.divRowTitle h1 {
+/*.divRowTitle h1 {
   font-size: 6vh;
   font-weight: bold;
   color: #E1F1FE;
-}
+}*/
 
 .incorrect { 
   color: red; 
 }
 
-.input-text {
+/*.input-text {
   border: 0px;
   border-radius: 1vh;
-}
+}*/
 
 .marcel{
    /*display: inline-block;*/
@@ -165,7 +165,7 @@
   color:#777;
 }
 
-#divLogo, #divLogo2, #divLogo3 {
+/*#divLogo, #divLogo2, #divLogo3 {
   width: 100%;
   text-align: center;
   padding: 3vh;
@@ -173,13 +173,13 @@
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #23639E;
-}
+}*/
 
-#divRouterOutlet {
+/*#divRouterOutlet {
   margin: 0;
   padding: 0;
   direction: ltr;  
-}
+}*/
 
 #divSave {
   text-align: right;
@@ -193,9 +193,9 @@
   background-color: #F7F8F9;
 }
 
-#logo, #logo2, #logo3 {
+/*#logo, #logo2, #logo3 {
   width: 10vw;
-}
+}*/
 
 article {
   display: inline-block;
@@ -227,7 +227,7 @@ input.answers {
   background-color: #E1F1FE;
 }
 
-label.button {
+/*label.button {
   display: inline-block;
   cursor: pointer;
   position: relative;
@@ -238,7 +238,7 @@ label.button {
   color: #fff;
   margin-top: 0.5vh;
   padding: 0 2em 0 2em;
-}
+}*/
 
 label.buttondisbled {
   display: inline-block;
@@ -260,25 +260,25 @@ label.buttongreyout {
   color: #fff;
 }
 
-label.text {
+/*label.text {
   color: #23639E;
   position: relative;
   width: 35%;
-}
+}*/
 
-select.input-text, input.input-text {
+/*select.input-text, input.input-text {
   width: 63%;
-}
+}*/
 
 /* createtest.component*/
 /* instructor.component*/
 /* student.component*/
 /* studentclass.component*/
-td {
+/*td {
   margin: 0;
   border-width: 0;
   padding: 0;
-}
+}*/
 
 /* choosetesttemplate.component*/
 /* td {
@@ -290,27 +290,26 @@ td {
   width: 10em;
 }
 
-td input {
+/*td input {
   display: inline-block;
-  margin: 0.5vh;     /* top right botton left */
+  margin: 0.5vh;     
   width: inherit;
   padding: 0;
   border-width: 0;
   background-color: #FFFFFF;
-}
+}*/
 
 td.answers {
   width: 80vw;
 }
 
-td.deze {
-  /*color: #23639E;*/
+/*td.deze {
   position: relative;
   width: 35%;
   margin-top: 2px;
   border-radius: 1vh;
   background-color: #E1F1FE;
-}
+}*/
 
 td.indx {
   width: 3vw;

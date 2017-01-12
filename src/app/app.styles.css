@@ -1,3 +1,9 @@
+/* For title bar, nav bar and main div */
+.divCol {
+  margin: 0;
+  padding-left: 2vw;   /* vw: padding is relative to window width */
+  padding-right: 2vw;
+}
 
 /* START Title bar QuestionIT */
 .divRowTitle {
@@ -26,14 +32,7 @@
 
 
 /* START Nav bar */
-.divCol {
-  margin: 0;
-  padding-left: 2vw;   /* vw: padding is relative to window width */
-  padding-right: 2vw;
-}
-
 /* Centers the logo in the nav bar and creates the line below it. */
-/*#divLogo, #divLogo2, #divLogo3 {*/
 #divLogo {
   width: 100%;
   text-align: center;
@@ -50,8 +49,101 @@
   height: 84vh;
 }
 
-/*#logo, #logo2, #logo3 {*/
 #logo {
   width: 10vw;
 }
 /* END Nav bar */
+
+/* START Main div/router outlet */
+#divRouterOutlet {
+  margin: 0;
+  padding: 0;
+  direction: ltr;  
+}
+/* END Main div/router outlet */
+
+/* START studentclass.component */
+.control-input {
+  margin: 0px;
+  padding: 0px 0px 0px 1em;      /* top right botton left */
+}
+
+.div-input-text {
+  /*display: inline-block;*/
+  /*cursor: pointer;*/
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em; /*top right botton left*/ 
+}
+
+.input-text {
+  border: 0px;
+  border-radius: 1vh;
+}
+
+label.button {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 1vh;
+  background-color: #23639E;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+  margin-top: 0.5vh;
+  padding: 0 2em 0 2em;
+}
+
+label.text {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+}
+
+select.input-text, input.input-text {
+  width: 63%;
+}
+/* START studentclass.component */
+
+/* START tables */
+td {
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+}
+
+td input {
+  display: inline-block;
+  margin: 0.5vh;     /* top right botton left */
+  width: inherit;
+  padding: 0;
+  border-width: 0;
+  background-color: #FFFFFF;
+}
+
+td.deze {
+  position: relative;
+  width: 35%;
+  margin-top: 2px;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+}
+
+.td-input-text {
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em; /*top right botton left*/ 
+}
+
+.td-input-text-3col {
+  width: 33%;
+}
+/* END tables */
