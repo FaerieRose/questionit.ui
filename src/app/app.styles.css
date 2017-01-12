@@ -1,3 +1,11 @@
+/* For title bar, nav bar and main div */
+.divCol {
+  margin: 0;
+  padding-left: 2vw;   /* vw: padding is relative to window width */
+  padding-right: 2vw;
+}
+
+/* START Title bar QuestionIT */
 .divRowTitle {
   background-color: #23639E;
   margin: 2vh 2vh 1vh 2vh;
@@ -9,50 +17,23 @@
 }
 
 .divRowTitle h1 {
-  font-size: 6vh;
+  font-size: 6vh;       /* vh: size is relative to window height */
   font-weight: bold;
   color: #E1F1FE;
 }
+/* END Title bar QuestionIT */
 
+/* START Main row (contains the main div as well as the nav bar div */
 .divRowBody {
-  margin: 1vh 2vh 2vh 2vh;
+  margin: 1vh 2vh 2vh 2vh; /*top right bottom left*/ 
   padding: 0;
 }
+/* END Main row (contains the main div as well as the nav bar div */
 
-.divNav {
-  background-color: #E1F1FE;
-  border-radius: 0 0 3vh 3vh;
-  height: 84vh;
-}
 
-#divScreen {
-  margin-left: 0;
-  margin-right: 0;
-  padding-left: 0;
-  padding-right: 0;
-  background-color: #F7F8F9;
-}
-
-.divCol {
-  margin: 0;
-  padding-left: 2vw;
-  padding-right: 2vw;
-}
-
-.divMain {
-  overflow-y: auto;  
-  overflow-x: hidden; 
-  height: 84vh;
-  direction: rtl;
-}
-
-#divRouterOutlet {
-  margin: 0;
-  padding: 0;
-  direction: ltr;  
-}
-
-#divLogo, #divLogo2, #divLogo3 {
+/* START Nav bar */
+/* Centers the logo in the nav bar and creates the line below it. */
+#divLogo {
   width: 100%;
   text-align: center;
   padding: 3vh;
@@ -62,6 +43,107 @@
   border-bottom-color: #23639E;
 }
 
-#logo, #logo2, #logo3 {
+.divNav {
+  background-color: #E1F1FE;
+  border-radius: 0 0 3vh 3vh;
+  height: 84vh;
+}
+
+#logo {
   width: 10vw;
 }
+/* END Nav bar */
+
+/* START Main div/router outlet */
+#divRouterOutlet {
+  margin: 0;
+  padding: 0;
+  direction: ltr;  
+}
+/* END Main div/router outlet */
+
+/* START studentclass.component */
+.control-input {
+  margin: 0px;
+  padding: 0px 0px 0px 1em;      /* top right botton left */
+}
+
+.div-input-text {
+  /*display: inline-block;*/
+  /*cursor: pointer;*/
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em; /*top right botton left*/ 
+}
+
+.input-text {
+  border: 0px;
+  border-radius: 1vh;
+}
+
+label.button {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  border-radius: 1vh;
+  background-color: #23639E;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+  margin-top: 0.5vh;
+  padding: 0 2em 0 2em;
+}
+
+label.text {
+  color: #23639E;
+  position: relative;
+  width: 35%;
+}
+
+select.input-text, input.input-text {
+  width: 63%;
+}
+/* START studentclass.component */
+
+/* START tables */
+td {
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+}
+
+td input {
+  display: inline-block;
+  margin: 0.5vh;     /* top right botton left */
+  width: inherit;
+  padding: 0;
+  border-width: 0;
+  background-color: #FFFFFF;
+}
+
+td.deze {
+  position: relative;
+  width: 35%;
+  margin-top: 2px;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+}
+
+.td-input-text {
+  position: relative;
+  border-radius: 1vh;
+  background-color: #E1F1FE;
+  text-align: justify;
+  width: 100%;
+  margin-top: 0.5vh;
+  padding: 0.5vh 1em 0.5vh 1em; /*top right botton left*/ 
+}
+
+.td-input-text-3col {
+  width: 33%;
+}
+/* END tables */
