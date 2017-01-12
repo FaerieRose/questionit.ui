@@ -253,6 +253,13 @@ label.buttondisbled {
   padding: 0 2em 0 2em;
 }
 
+/* createtest.component*/
+label.buttongreyout {
+  background-color: #808080;
+  box-shadow: 2px 2px 1px cornflowerblue;
+  color: #fff;
+}
+
 label.text {
   color: #23639E;
   position: relative;
