@@ -1,13 +1,15 @@
-/* ----------------------------------------------------------------------------------- */
-/* Author       : Rik & Rémond                                                         */
-/* Date created : 15 Dec 2016                                                          */
-/* Rebuilt      : 06-01-2017, Dave Schellekens
+
+/**
+ * Author       : Dave Schellekens                                                     
+ * Date created : 15 Dec 2016                                                          
+ * Rebuilt      : 06-01-2017, Dave Schellekens
  * 
- * May be modified later to include editing existing testtemplates. for now create only.
- ----------------------------------------------------------------------------------- */
+ *
+ * routing to this component requires selectedtesttemplate to be set in globalService.
+ * Setting it to -1 will let user create a new testtemplate.
+ *********************************************************************************************/
+
 import { Component, OnInit } from '@angular/core';
-//import { ActivatedRoute, Params } from '@angular/router';
-//import { Router } from '@angular/router';
 
 import { GlobalService } from '../global.service';
 import { TestTemplate } from '../testtemplate/testtemplate';
@@ -42,17 +44,12 @@ export class CreateTestComponent implements OnInit {
     private questionService: QuestionService,
     private testTemplateService: TestTemplateService,
     private globalService: GlobalService,
-    //private route: ActivatedRoute,
-    //private router: Router
     ) {
-    //this.testTemplate = new TestTemplate();
     this.languages = this.globalService.getLanguages();
-    //this.exams.push({ "id": 0, "name": "NONE" });       dropdown list not working correctly. instead getexams
     this.exams = this.globalService.getExams();
   }
 
   ngOnInit() {
-    //TODO selectedtemplateID needs to be set at just before every route to this component!!!
     if (this.globalService.getSelectedTemplateID() > -1) {
       this.bCreateTest = false;
       this.testTemplateService.getTestTemplateMetaById(this.globalService.getSelectedTemplateID()).subscribe(ttbasic =>{
@@ -72,15 +69,7 @@ export class CreateTestComponent implements OnInit {
         this.questionListFilter.language = EnumLanguages[this.testTemplate.programmingLanguage];
         this.questionListFilter.enabled = true;
         this.getQuestionList(ttbasic);
-       
-        // this.testTemplate.questions = [];  
-        // for (let qstnID of ttbasic.questionIDs) {
-        //   var questjun = new Question();
-        //   questjun.id = qstnID;
-        //   this.testTemplate.questions.push(questjun);
-        // }
       });
-        
     } else {
       this.bCreateTest = true;
       this.testTemplate = new TestTemplate();
@@ -92,23 +81,6 @@ export class CreateTestComponent implements OnInit {
       this.testTemplate.questions = [];
     }
   }
-
-  // getTestTemplate(id: number) {
-  //     this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
-  //       this.testTemplate = testTemplate;
-  //     });
-  //   }
-  // }
-
-  // getTestTemplateById(id: number) {
-  //   this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
-  //     if (testTemplate.id == 1) {
-  //       this.testTemplate = new TestTemplate();
-  //     } else {
-  //       this.testTemplate = testTemplate;
-  //     }
-  //   });
-  // }
 
   getQuestionList(ttbasic: TestTemplateModelBasic) {
     this.questionService.getQuestions(this.questionListFilter.exam, this.questionListFilter.language, this.questionListFilter.enabled).subscribe(questions => {
@@ -127,7 +99,6 @@ export class CreateTestComponent implements OnInit {
   }
 
 
-  //TODO Have removed call to this from html, because of ngmodel binding. needs check if all is still well. WTF is levels???
   updateLanguage($event) {
     this.questionListFilter.language = EnumLanguages[parseInt($event.target.value)];
     this.testTemplate.programmingLanguage = parseInt($event.target.value);
@@ -139,7 +110,6 @@ export class CreateTestComponent implements OnInit {
       }
     })
     this.questionListFilter.exam = this.exams[0].name;
-    //TODO show warning that this will undo question selection?
     this.getQuestionList(null);
   }
 
@@ -152,9 +122,8 @@ export class CreateTestComponent implements OnInit {
       //add marked questions (just the id field) to testtemplate
       for (var i = 0; i < this.questionList.length; i++){
             if (this.includeInTest[i] == true) {
-              //this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe();
               var qstn = new Question;
-              qstn.id = this.questionList[i].id;    //assuming all other fields will be null.
+              qstn.id = this.questionList[i].id;
               template.questions.push(qstn);
             }
         }
@@ -171,20 +140,11 @@ export class CreateTestComponent implements OnInit {
     }
   }
 
-  // updateTestName($event) {
-  //    this.testTemplate.name = $event.target.value;
-  // }
-
   updateExam($event) {
     this.questionListFilter.exam = EnumExams[parseInt($event.target.value)]; this.testTemplate.forExam = parseInt($event.target.value);
-    //TODO show warning that this will undo question selection?
     this.getQuestionList(null);
   }
   
-  // updateDuration($event) {
-  //    this.testTemplate.attemptTimeInMinutes = $event.target.value;
-  // }
-
   updateIncludedQuestions(index, $event) {
     //console.log("before change: " + this.includeInTest);
     this.includeInTest[index] = $event.target.checked;
