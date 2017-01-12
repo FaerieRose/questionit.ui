@@ -173,11 +173,14 @@ export class QuestionComponent implements OnInit {
       }
     })
     this.list.exam = this.exams[0].name;
-  //  this.getQuestionList(); 
+    // Update Question object -> needed to save value to backend
+    this.question.programmingLanguage  = $event.target.value;
   }
 
   updateExam($event) { 
-    this.list.exam = EnumExams[parseInt($event.target.value)];   //  this.getQuestionList();
+    this.list.exam = EnumExams[parseInt($event.target.value)];
+    // Update Question object -> needed to save value to backend
+    this.question.forExam              = $event.target.value;
   }
 
 }
