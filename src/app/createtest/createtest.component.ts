@@ -1,16 +1,19 @@
-/* ----------------------------------------------------------------------------------- */
-/* Author       : Rik & Rémond                                                         */
-/* Date created : 15 Dec 2016                                                          */
-/* Rebuilt      : 06-01-2017, Dave Schellekens
+
+/**
+ * Author       : Dave Schellekens                                                     
+ * Date created : 15 Dec 2016                                                          
+ * Rebuilt      : 06-01-2017, Dave Schellekens
  * 
- * May be modified later to include editing existing testtemplates. for now create only.
- ----------------------------------------------------------------------------------- */
+ *
+ * routing to this component requires selectedtesttemplate to be set in globalService.
+ * Setting it to -1 will let user create a new testtemplate.
+ *********************************************************************************************/
+
 import { Component, OnInit } from '@angular/core';
-//import { ActivatedRoute, Params } from '@angular/router';
-//import { Router } from '@angular/router';
 
 import { GlobalService } from '../global.service';
 import { TestTemplate } from '../testtemplate/testtemplate';
+import { TestTemplateModelBasic } from '../testtemplate/testtemplatemodelbasic';
 
 import { TestTemplateService } from '../testtemplate/testtemplate.service';
 
@@ -34,57 +37,67 @@ export class CreateTestComponent implements OnInit {
   includeInTest: Boolean[];
   testTemplateList: TestTemplate[];
   questionListFilter = { "exam": EnumExams[0], "language": EnumLanguages[0], "enabled": true }
+  questionListIsReady = false;
+  bCreateTest = false;
 
   constructor(
     private questionService: QuestionService,
     private testTemplateService: TestTemplateService,
     private globalService: GlobalService,
-    //private route: ActivatedRoute,
-    //private router: Router
     ) {
-    //this.testTemplate = new TestTemplate();
     this.languages = this.globalService.getLanguages();
-    this.exams.push({ "id": 0, "name": "NONE" });
+    this.exams = this.globalService.getExams();
   }
 
   ngOnInit() {
-    this.testTemplate = new TestTemplate();
-    this.testTemplate.attemptTimeInMinutes = 0;
-    this.testTemplate.forExam = 0;
-    this.testTemplate.isEnabled = true;
-    this.testTemplate.name = "";
-    this.testTemplate.programmingLanguage = 0;
-    this.testTemplate.questions = [];
-    //this.testTemplate.id = null;              //NOPE. backend translates this to 0 somewhere...
-      
+    if (this.globalService.getSelectedTemplateID() > -1) {
+      this.bCreateTest = false;
+      this.testTemplateService.getTestTemplateMetaById(this.globalService.getSelectedTemplateID()).subscribe(ttbasic =>{
+        console.log("fetched testtemplatebasic: " + JSON.stringify(ttbasic));
+        console.log("questionsIds: " + ttbasic.questionsIds);
+        this.testTemplate = new TestTemplate();
+        this.testTemplate.id = ttbasic.id;
+        this.testTemplate.attemptTimeInMinutes = ttbasic.attemptTimeInMinutes;
+        this.testTemplate.forExam = ttbasic.forExam;
+        this.testTemplate.isEnabled = ttbasic.isEnabled;
+        this.testTemplate.name = ttbasic.name;
+        this.testTemplate.programmingLanguage = ttbasic.programmingLanguage;
+        this.testTemplate.forExam = ttbasic.forExam;
+        console.log("testtemplate created from metameuk: " + JSON.stringify(this.testTemplate));
+        //ok, now get questionlist!
+        this.questionListFilter.exam = EnumExams[this.testTemplate.forExam];
+        this.questionListFilter.language = EnumLanguages[this.testTemplate.programmingLanguage];
+        this.questionListFilter.enabled = true;
+        this.getQuestionList(ttbasic);
+      });
+    } else {
+      this.bCreateTest = true;
+      this.testTemplate = new TestTemplate();
+      this.testTemplate.attemptTimeInMinutes = null;
+      this.testTemplate.forExam = 0;
+      this.testTemplate.isEnabled = true;
+      this.testTemplate.name = "";
+      this.testTemplate.programmingLanguage = 0;
+      this.testTemplate.questions = [];
+    }
   }
 
-  // getTestTemplate(id: number) {
-  //     this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
-  //       this.testTemplate = testTemplate;
-  //     });
-  //   }
-  // }
-
-  // getTestTemplateById(id: number) {
-  //   this.testTemplateService.getTestTemplateById(id).subscribe(testTemplate => {
-  //     if (testTemplate.id == 1) {
-  //       this.testTemplate = new TestTemplate();
-  //     } else {
-  //       this.testTemplate = testTemplate;
-  //     }
-  //   });
-  // }
-
-  getQuestionList() {
+  getQuestionList(ttbasic: TestTemplateModelBasic) {
     this.questionService.getQuestions(this.questionListFilter.exam, this.questionListFilter.language, this.questionListFilter.enabled).subscribe(questions => {
       this.questionList = questions;
-      console.log(this.questionList.length);
+      console.log("questionlist length: " + this.questionList.length);
       this.includeInTest = [];
-      for (var i = 0; i < this.questionList.length; i++) { this.includeInTest.push(false); }
-      console.log(this.includeInTest);
+      for (var i = 0; i < this.questionList.length; i++) {
+        this.includeInTest.push(false);
+        if (ttbasic != null) {
+          if (ttbasic.questionsIds.indexOf(this.questionList[i].id) > -1) {this.includeInTest[i] = true;}
+        }
+      }
+      console.log("this.includeIntest: " + this.includeInTest);
+      this.questionListIsReady = true;
     });
   }
+
 
   updateLanguage($event) {
     this.questionListFilter.language = EnumLanguages[parseInt($event.target.value)];
@@ -97,21 +110,20 @@ export class CreateTestComponent implements OnInit {
       }
     })
     this.questionListFilter.exam = this.exams[0].name;
-    this.getQuestionList();
+    this.getQuestionList(null);
   }
 
   saveTest() {
     if (this.includeInTest.every(lmnt => lmnt == false)) {
       alert("No questions selected; Exam has not been saved");
     } else {
-      this.testTemplate.questions = [];       //TODO check if this indeed nulls questionsarray
+      this.testTemplate.questions = [];
       let template = this.testTemplate;
       //add marked questions (just the id field) to testtemplate
       for (var i = 0; i < this.questionList.length; i++){
             if (this.includeInTest[i] == true) {
-              //this.testTemplateService.addQuestionToTemplate(this.testTemplate.id, this.questionList[i].id).subscribe();
               var qstn = new Question;
-              qstn.id = this.questionList[i].id;    //assuming all other fields will be null.
+              qstn.id = this.questionList[i].id;
               template.questions.push(qstn);
             }
         }
@@ -119,26 +131,24 @@ export class CreateTestComponent implements OnInit {
       console.log("about to PUT testtemplate: " + JSON.stringify(template));
       this.testTemplateService.putTestTemplateWithQuestions(template).subscribe(res => {
          console.log("PUT done. returned result: " + res);
-         if (res == 1) {
-           alert("Exam saved to DB.");
-         } else {
+         if (res == -1) {
            alert("Oops! Something went wrong...");
+         } else {
+           alert("Exam saved to DB.");
          }
       });
     }
   }
 
-  updateTestName($event) {
-     this.testTemplate.name = $event.target.value;
-  }
-
   updateExam($event) {
     this.questionListFilter.exam = EnumExams[parseInt($event.target.value)]; this.testTemplate.forExam = parseInt($event.target.value);
-    this.getQuestionList();
+    this.getQuestionList(null);
   }
   
-  updateDuration($event) {
-     this.testTemplate.attemptTimeInMinutes = $event.target.value;
+  updateIncludedQuestions(index, $event) {
+    //console.log("before change: " + this.includeInTest);
+    this.includeInTest[index] = $event.target.checked;
+    //console.log("after change: " + this.includeInTest);
   }
 
 }
