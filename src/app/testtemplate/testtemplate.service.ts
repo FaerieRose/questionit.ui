@@ -42,33 +42,37 @@ export class TestTemplateService {
 		return this.http.get(this.currentUrl).map(this.globalService.getExtractData);
 	}
 
-	removeQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
-		//TODO: method is erg twijfelachtig. nog niet getest.
-		let template: TestTemplate = new TestTemplate();
-		console.log("in de removeQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId);
-        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/removequestionfromtesttemplate/"+ questionId;
-		console.log("==============-----------------***-"+this.currentUrl +"----------------=================");
-		// console.log( templateId + " currentUrl: " + this.currentUrl)
-        let jsonResult: string = "{}";
-        console.log("---- JSON(TestTemplate) = " + jsonResult);
-		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
-	}
+	// made obsolete by putTestTemplateWithQuestions
+	//
+	// removeQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
+	// 	//TODO: method is erg twijfelachtig. nog niet getest.
+	// 	let template: TestTemplate = new TestTemplate();
+	// 	console.log("in de removeQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId);
+    //     this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/removequestionfromtesttemplate/"+ questionId;
+	// 	console.log("==============-----------------***-"+this.currentUrl +"----------------=================");
+	// 	// console.log( templateId + " currentUrl: " + this.currentUrl)
+    //     let jsonResult: string = "{}";
+    //     console.log("---- JSON(TestTemplate) = " + jsonResult);
+	// 	return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+	// }
 
 
+	// made obsolete by putTestTemplateWithQuestions
+	//
 	//addQuestionToTemplate(templateId: number, questionId :number): Observable<Question> {
-	addQuestionToTemplate(templateId: number, questionId :number) {
-		let template: TestTemplate = new TestTemplate();
-		console.log("in de addQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId)
+	// addQuestionToTemplate(templateId: number, questionId :number) {
+	// 	let template: TestTemplate = new TestTemplate();
+	// 	console.log("in de addQuestionToTemplate in templateId : "+ templateId + " en questionId : " + questionId)
 
-        this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/addquestion/"+ questionId;
-		console.log( templateId + " currentUrl: " + this.currentUrl)
-        let jsonResult: string = "{}";
-        console.log("---- JSON(TestTemplate) = " + jsonResult);
-		//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
-        //return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
-		return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+    //     this.currentUrl = this.testTemplateUrl +"/"+ templateId + "/addquestion/"+ questionId;
+	// 	console.log( templateId + " currentUrl: " + this.currentUrl)
+    //     let jsonResult: string = "{}";
+    //     console.log("---- JSON(TestTemplate) = " + jsonResult);
+	// 	//console.log(this.http.get(this.testTemplateUrl + "/meta").map(this.globalService.getExtractData));
+    //     //return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
+	// 	return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
 
-	}
+	// }
 
 	// made obsolete by putTestTemplateWithQuestions
 	//
@@ -82,13 +86,13 @@ export class TestTemplateService {
 	// 	return this.http.post(this.currentUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractData);
 	// }
 
-	putTestTemplateWithQuestions(testTemplate: TestTemplate): Observable<Number> {
+	putTestTemplateWithQuestions(testTemplate: TestTemplate): Observable<number> {
 		console.log(" we zitten nu in de putTestTemplate");
 		//this.currentUrl = this.testTemplateUrl;
 		let jsonResult: string = JSON.stringify(testTemplate);
 		console.log("Will PUT JSON(TestTemplate) " + jsonResult);
 		
-		return this.http.put(this.testTemplateUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractVoid);
+		return this.http.put(this.testTemplateUrl, jsonResult, { headers: this.headers }).map(this.globalService.getExtractText);
 	}
 
 }
