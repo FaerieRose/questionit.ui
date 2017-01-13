@@ -26,7 +26,7 @@ export class GlobalService {
   private baseUrlImage: string;
 	private languages = [];
 	private exams = [];
-	private version: String = "20170112_1639"; // Update this string for each merge with develop branch.
+	private version: String = "20170113_1429"; // Update this string for each merge with develop branch.
 
   constructor(private http: Http) {
 		this.defineBaseUrl();
