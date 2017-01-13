@@ -19,7 +19,6 @@ export class Question {
   correctAnswers: AnswerList;
   givenAnswers: any[];
   possibleAnswers: string[];
-  isEnabled: boolean;
-  //isObsolete: boolean;
+  enabled: boolean;
   numberOfCorrectAnswers: number; // Added by Bas 2016-12-09
 }

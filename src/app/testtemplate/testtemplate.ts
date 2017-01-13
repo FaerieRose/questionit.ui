@@ -15,7 +15,7 @@ export class TestTemplate {
     programmingLanguage: EnumLanguages;
     forExam: EnumExams;
     //creator: any;
-    isEnabled: boolean;
+    enabled: boolean;
     questions: Question[];
     attemptTimeInMinutes: number;
     //size: number;
