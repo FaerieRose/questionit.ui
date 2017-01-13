@@ -59,7 +59,7 @@ export class CreateTestComponent implements OnInit {
         this.testTemplate.id = ttbasic.id;
         this.testTemplate.attemptTimeInMinutes = ttbasic.attemptTimeInMinutes;
         this.testTemplate.forExam = ttbasic.forExam;
-        this.testTemplate.isEnabled = ttbasic.isEnabled;
+        this.testTemplate.enabled = ttbasic.enabled;
         this.testTemplate.name = ttbasic.name;
         this.testTemplate.programmingLanguage = ttbasic.programmingLanguage;
         this.testTemplate.forExam = ttbasic.forExam;
@@ -75,7 +75,7 @@ export class CreateTestComponent implements OnInit {
       this.testTemplate = new TestTemplate();
       this.testTemplate.attemptTimeInMinutes = null;
       this.testTemplate.forExam = 0;
-      this.testTemplate.isEnabled = true;
+      this.testTemplate.enabled = true;
       this.testTemplate.name = "";
       this.testTemplate.programmingLanguage = 0;
       this.testTemplate.questions = [];
