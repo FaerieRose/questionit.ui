@@ -16,7 +16,7 @@ export class TestTemplateModelBasic {
     name : string;
     programmingLanguage: EnumLanguages;
     forExam: EnumExams;
-    isEnabled: boolean;
+    enabled: boolean;
     questionsIds: number[];
     size: number;
 }
