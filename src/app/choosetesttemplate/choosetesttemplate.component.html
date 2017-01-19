@@ -59,7 +59,7 @@
             <div class="marcel"><input type="text" value="{{ tt.attemptTimeInMinutes }}"></div>
           </td>        
            -->
-          <td >
+          <td *ngIf="getStudentId() > 0" class="div-table-text">
             <label class="button" id="takeTest">Take test<input type="button" (click)="goToPreAttempt(tt.id)" style="display:none"/></label>
           </td>
           <td *ngIf="getInstructorId() > 0" class="div-table-text">
