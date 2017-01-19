@@ -21,29 +21,35 @@
       </span>
       <span *ngIf="globalService.getStudentID() > 0">
         <legend>Student: {{ globalService.getStudentName() }}</legend>
+      </span>
+      <span *ngIf="(globalService.getInstructorID() > 0) || (globalService.getStudentID() > 0)">
+        <a class="nav-link" routerLink="/login"                 routerLinkActive="active"> >> Logout</a><br>
       </span><br>
       <legend *ngIf="(globalService.getInstructorID() > 0) || (globalService.getStudentID() > 0)">Navigation</legend>
       <div id="instructorLinks" *ngIf="globalService.getInstructorID() > 0">
+        <a class="nav-link" routerLink="/instructor/landing"    routerLinkActive="active"> >> Home</a><br>
         <a class="nav-link" routerLink="/question"              routerLinkActive="active"> >> Questions</a><br>
+        <!-- Questions can only be edited via the Questions page
         <a class="nav-link" routerLink="/question/edit/1"       routerLinkActive="active"> >> Edit Question</a><br>
+        -->
         <a class="nav-link" routerLink="/question/edit/-1"      routerLinkActive="active"> >> New Question</a><br>
-        <a class="nav-link" routerLink="/instructor"            routerLinkActive="active"> >> Instructor</a><br>
+        <a class="nav-link" routerLink="/choosetesttemplate"    routerLinkActive="active"> >> Test Templates</a><br>
+        <a class="nav-link" routerLink="/createtest"            routerLinkActive="active"> >> New Test Template</a><br>
+        <a class="nav-link" routerLink="/instructor"            routerLinkActive="active"> >> Manage Instructor Accounts</a><br>
+        <a class="nav-link" routerLink="/student"               routerLinkActive="active"> >> Manage Student Accounts</a><br>
         <a class="nav-link" routerLink="/instructor/bind"       routerLinkActive="active"> >> Select Teacher For Class</a><br>
-        <a class="nav-link" routerLink="/studentclasses"        routerLinkActive="active"> >> studentclass</a><br>
-        <a class="nav-link" routerLink="/student"               routerLinkActive="active"> >> Student</a><br>
+        <a class="nav-link" routerLink="/studentclasses"        routerLinkActive="active"> >> Manage Student Classes</a><br>
+        <!-- Links for students disabled for instructor:
         <a class="nav-link" routerLink="/attemptscore/1"        routerLinkActive="active"> >> Attempt Score</a><br>
-        <a class="nav-link" routerLink="/choosetesttemplate"    routerLinkActive="active"> >> Choose Test Template</a><br>
-        <!-- needs selectedtemplate set otherwise results unpredictable <a class="nav-link" routerLink="/createtest"            routerLinkActive="active"> >> Create A New Test Template</a><br> -->
         <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Student Login</a><br>
         <a class="nav-link" routerLink="/studentpostattempt"    routerLinkActive="active"> >> Student Post Attempt</a><br>
         <a class="nav-link" routerLink="/studentreview"         routerLinkActive="active"> >> Student Review</a><br>
-        <a class="nav-link" routerLink="/login"                 routerLinkActive="active"> >> Logout</a><br>       
+        -->
       </div>
       <div id="studentLinks" *ngIf="(globalService.getStudentID() > 0) && (globalService.getCurrentAttemptID() == -1)">
         <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Home</a><br>
         <a class="nav-link" routerLink="/choosetesttemplate"    routerLinkActive="active"> >> Start new exam</a><br>
         <a class="nav-link" routerLink="/studentreview"         routerLinkActive="active"> >> Review past exams</a><br>
-        <a class="nav-link" routerLink="/login"                 routerLinkActive="active"> >> Logout</a><br>       
       </div>
       <div *ngIf="globalService.getCurrentAttemptID() != -1">
         <a>Finish your test first!!</a><br>
