@@ -37,11 +37,13 @@
         <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Student Login</a><br>
         <a class="nav-link" routerLink="/studentpostattempt"    routerLinkActive="active"> >> Student Post Attempt</a><br>
         <a class="nav-link" routerLink="/studentreview"         routerLinkActive="active"> >> Student Review</a><br>
+        <a class="nav-link" routerLink="/login"                 routerLinkActive="active"> >> Logout</a><br>       
       </div>
       <div id="studentLinks" *ngIf="(globalService.getStudentID() > 0) && (globalService.getCurrentAttemptID() == -1)">
         <a class="nav-link" routerLink="/studentlogin"          routerLinkActive="active"> >> Home</a><br>
         <a class="nav-link" routerLink="/choosetesttemplate"    routerLinkActive="active"> >> Start new exam</a><br>
         <a class="nav-link" routerLink="/studentreview"         routerLinkActive="active"> >> Review past exams</a><br>
+        <a class="nav-link" routerLink="/login"                 routerLinkActive="active"> >> Logout</a><br>       
       </div>
       <div *ngIf="globalService.getCurrentAttemptID() != -1">
         <a>Finish your test first!!</a><br>
