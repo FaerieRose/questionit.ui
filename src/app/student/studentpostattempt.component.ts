@@ -21,6 +21,7 @@ import { GlobalService }          from '../global.service';
 export class StudentPostAttemptComponent implements OnInit {
   reviewIncorrectChoices : number[];
   markedQuestions : number[];
+  attemptId: number;
 
   constructor(
         private route: ActivatedRoute,
@@ -31,46 +32,58 @@ export class StudentPostAttemptComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    var attempt_id = this.globalService.getCurrentAttemptID().valueOf();
-   //  var attempt_id = 2;
- 
-    this.getReviewIncorrectChoices(attempt_id);
-    this.getMarkedQuestions(attempt_id);
+    this.attemptId = this.globalService.getCurrentAttemptID().valueOf();
+    this.getReviewIncorrectChoices();
+    this.getMarkedQuestions();
   }
 
   studentFinishAttempt() : void{
-    var attempt_id : Number = 1;
-    // var id : Number = 3;
-    // this.globalService.setAttemptID(id.valueOf());
-    attempt_id = this.globalService.getCurrentAttemptID().valueOf();
-    this.EndAttempt(attempt_id);  
-    this.router.navigate(['attemptscore/'+ attempt_id]);
+    this.endAttempt();  
+    this.router.navigate(['attemptscore/'+ this.attemptId]);
   }
   
-  studentBackContinue(){
-    this.router.navigate(['/question/show']);
+  returnToLastKnownPosition() {
+    this.returnToQuestion(this.globalService.getCurrentQuestionNr());
   }  
   
-  EndAttempt(attempt_id) {
-    this.studentService.postEndAttempt(attempt_id).subscribe(Student => {
+  endAttempt() {
+    this.studentService.postEndAttempt(this.attemptId).subscribe(Student => {
       // Should we do globalService.setCurrentAttemptID(-1) here?
       console.log("POST end attempt made");
       }); 
   }
   
-  getReviewIncorrectChoices(attempt_id){
-    this.attemptService.getReviewIncorrectChoices(attempt_id).subscribe(reviewIncorrectChoices => {
+  // getReviewIncorrectChoices(attempt_id){
+  //   this.attemptService.getReviewIncorrectChoices(attempt_id).subscribe(reviewIncorrectChoices => {
+  //     this.reviewIncorrectChoices = reviewIncorrectChoices;
+  //     // console.log(this.reviewIncorrectChoices);
+  //     }); 
+  // }
+  getReviewIncorrectChoices(){
+    this.attemptService.getReviewIncorrectChoices(this.attemptId).subscribe(reviewIncorrectChoices => {
       this.reviewIncorrectChoices = reviewIncorrectChoices;
       // console.log(this.reviewIncorrectChoices);
       }); 
   }
 
-  getMarkedQuestions(attempt_id){
-    this.attemptService.getMarkedQuestions(attempt_id).subscribe(markedQuestions => {
+  // getMarkedQuestions(attempt_id){
+  //   this.attemptService.getMarkedQuestions(attempt_id).subscribe(markedQuestions => {
+  //     this.markedQuestions = markedQuestions;
+  //     // console.log(this.markedQuestions);
+  //     }); 
+  // }
+  getMarkedQuestions(){
+    this.attemptService.getMarkedQuestions(this.attemptId).subscribe(markedQuestions => {
       this.markedQuestions = markedQuestions;
       // console.log(this.markedQuestions);
       }); 
   }
 
+  returnToQuestion(questionNr) {
+    console.log("returnToQuestion(" + questionNr + ")");
+    //this.attemptService.getQuestion(this.attemptId, questionNr);
+    this.globalService.setCurrentQuestionNr(questionNr);
+    this.router.navigate(['attempt']);
+  }
   
 }
