@@ -1,14 +1,15 @@
 <div> 
-  <h1 >  Post attempt page for students attempt</h1>
+  <h1>Exam review</h1>
+    <p>Here you can review your exam before finalising it.</p>
     <p> </p>
-    <p> </p>
+    <p>Click 'Finish' to end the exam and calculate your final score. <strong>NOTE: onze you click 'Finish' you can no longer make any changes!</strong></p>
    <div >
     <label class="button" >Finish<input type="button" (click)="studentFinishAttempt()" style="display:none"/></label>
   </div>
   <p> </p>
-  <p> </p>
+  <p>To go back to the question where you just were click:</p>
    <div >
-    <label class="button" >Back / Continue<input type="button" (click)="studentBackContinue()" style="display:none"/></label>
+    <label class="button" >Back / Continue<input type="button" (click)="returnToLastKnownPosition()" style="display:none"/></label>
   </div>
   <p> </p>
   <div >
@@ -16,9 +17,9 @@
   </div>
   <p> </p>
   <table>
-    <tr *ngFor="let element of reviewIncorrectChoices; let i = index" >
+    <tr *ngFor="let element of reviewIncorrectChoices" >
       <td>
-        <label class="button"> Question  {{element}} <input type="button" (click)="studentBackContinue(i)" style="display:none"/></label> 
+        <label class="button"> Question  {{element}} <input type="button" (click)="returnToQuestion(element)" style="display:none"/></label> 
       </td>
     </tr>
   </table>
@@ -28,9 +29,9 @@
   </div>
   <p> </p>
   <table>
-   <tr *ngFor="let element of markedQuestions; let i = index">
+   <tr *ngFor="let element of markedQuestions">
     <td>
-      <label class="button">  Question  {{element+1}} <input type="button" (click)="studentBackContinue(i)" style="display:none"/></label>  
+      <label class="button">  Question  {{element+1}} <input type="button" (click)="returnToQuestion(element)" style="display:none"/></label>  
     </td>
    </tr>
   </table>
