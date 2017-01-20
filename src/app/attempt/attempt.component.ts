@@ -10,8 +10,6 @@
 import { Component, OnInit }            from '@angular/core'; // Removed Directive
 import { Router }                       from '@angular/router';
 
-import { Observable }                   from 'rxjs/Observable';
-
 import { GlobalService }                from '../global.service';
 import { AttemptService }               from '../attempt/attempt.service';
 import { Question }                     from '../question/question';
