@@ -62,7 +62,6 @@ export class StudentPostAttemptComponent implements OnInit {
   getReviewIncorrectChoices(){
     this.attemptService.getReviewIncorrectChoices(this.attemptId).subscribe(reviewIncorrectChoices => {
       this.reviewIncorrectChoices = reviewIncorrectChoices;
-      console.log("StudentPostAttemptComponent.getReviewIncorrectChoices: " + this.reviewIncorrectChoices);
       }); 
   }
 
