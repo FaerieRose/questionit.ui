@@ -146,13 +146,7 @@ export class AttemptComponent implements OnInit {
     }
 
     goPostExam(){
-        // TO DO: Wait for result of saveAnswer before navigating to studentpostattempt.
-        //   If we don't wait, the given answer of the lastly visited question has not been saved before
-        //   reading the answers back from the database.
         this.saveAnswerAndNavigateToPostAttempt();
-        //this.saveAnswer();
-        //this.resetGivenAnswer();
-        //this.router.navigate(['studentpostattempt']);
     }
 
     toCharLetter(number: Number){
