@@ -10,6 +10,8 @@
 import { Component, OnInit }            from '@angular/core'; // Removed Directive
 import { Router }                       from '@angular/router';
 
+import { Observable }                   from 'rxjs/Observable';
+
 import { GlobalService }                from '../global.service';
 import { AttemptService }               from '../attempt/attempt.service';
 import { Question }                     from '../question/question';
@@ -107,6 +109,19 @@ export class AttemptComponent implements OnInit {
         //what if response != OK?
     }
 
+    saveAnswerAndNavigateToPostAttempt() {
+        console.log("saveAnswer. attemptID: " + this.currentAttemptID + ", questnNR: " + this.currentQuestionNR + ", answers: " + this.givenAnswer.answers);
+        this.attemptService.putGivenAnswer(this.currentAttemptID, this.currentQuestionNR, this.givenAnswer).subscribe(res =>{
+            console.log("saveAnswer result: " + JSON.stringify(res));
+            this.resetGivenAnswer();
+            this.router.navigate(['studentpostattempt']);
+            //this.givenAnswer = null;    //nope...async...timing unpredictable... 
+            //TODO response handling
+        });
+        //save remainingtime?
+        //what if response != OK?
+    }
+
     markQuestion(){
         //TODO later...
     }
@@ -133,9 +148,13 @@ export class AttemptComponent implements OnInit {
     }
 
     goPostExam(){
-        this.saveAnswer();
-        this.resetGivenAnswer();
-        this.router.navigate(['studentpostattempt']);
+        // TO DO: Wait for result of saveAnswer before navigating to studentpostattempt.
+        //   If we don't wait, the given answer of the lastly visited question has not been saved before
+        //   reading the answers back from the database.
+        this.saveAnswerAndNavigateToPostAttempt();
+        //this.saveAnswer();
+        //this.resetGivenAnswer();
+        //this.router.navigate(['studentpostattempt']);
     }
 
     toCharLetter(number: Number){
