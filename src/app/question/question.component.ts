@@ -69,6 +69,8 @@ export class QuestionComponent implements OnInit, DoCheck {
                                      // If this is not set to -1 the new question will have the same correct answers as the
                                      // question which was selected before. Changes made to the correct answers here
                                      // will mess up the correct answers of the other question.
+                                     // We don't touch the actual values of correctAnswers.answers because the values in the
+                                     // UI should remain the same.
       }
     }
     
