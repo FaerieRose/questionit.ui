@@ -27,44 +27,46 @@
       </thead>
       <tbody>
         <tr *ngFor="let tt of testTemplateList">
-          <td class="div-table-text">
-            <div><label class="control-input text">{{ tt.name }}</label></div>
-          </td>
-          <td class="div-table-text">
-            <div><label class="control-input text">{{ getEnumLanguages(tt.programmingLanguage) }}</label></div>
-          </td>
-          <td class="div-table-text">
-            <div><label class="control-input text">{{ getEnumExams(tt.forExam) }}</label></div>
-          </td>
-          <td class="div-table-text">
-            <div><label class="control-input text">{{ tt.size }}</label></div>
-          </td>
-          <td class="div-table-text">
-            <div><label class="control-input text">{{ tt.attemptTimeInMinutes }}</label></div>
-          </td>
-          <!--         
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ tt.name }}"></div>
-          </td>
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ getEnumLanguages(tt.programmingLanguage) }}"></div>
-          </td>
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ getEnumExams(tt.forExam) }}"></div>
-          </td>
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ tt.size }}"></div>
-          </td>
-          <td class="div-input-text3">
-            <div class="marcel"><input type="text" value="{{ tt.attemptTimeInMinutes }}"></div>
-          </td>        
-           -->
-          <td *ngIf="getStudentId() > 0" class="div-table-text">
-            <label class="button" id="takeTest">Take test<input type="button" (click)="goToPreAttempt(tt.id)" style="display:none"/></label>
-          </td>
-          <td *ngIf="getInstructorId() > 0" class="div-table-text">
-            <label class="button" id="editTest">Edit test<input type="button" (click)="editTestTemplate(tt.id)" style="display:none"/></label>
-          </td>
+          <!-- <div *ngIf="tt.enabled"> this is not the right approach -->
+            <td class="div-table-text">
+              <div><label class="control-input text">{{ tt.name }}</label></div>
+            </td>
+            <td class="div-table-text">
+              <div><label class="control-input text">{{ getEnumLanguages(tt.programmingLanguage) }}</label></div>
+            </td>
+            <td class="div-table-text">
+              <div><label class="control-input text">{{ getEnumExams(tt.forExam) }}</label></div>
+            </td>
+            <td class="div-table-text">
+              <div><label class="control-input text">{{ tt.size }}</label></div>
+            </td>
+            <td class="div-table-text">
+              <div><label class="control-input text">{{ tt.attemptTimeInMinutes }}</label></div>
+            </td>
+            <!--         
+            <td class="div-input-text3">
+              <div class="marcel"><input type="text" value="{{ tt.name }}"></div>
+            </td>
+            <td class="div-input-text3">
+              <div class="marcel"><input type="text" value="{{ getEnumLanguages(tt.programmingLanguage) }}"></div>
+            </td>
+            <td class="div-input-text3">
+              <div class="marcel"><input type="text" value="{{ getEnumExams(tt.forExam) }}"></div>
+            </td>
+            <td class="div-input-text3">
+              <div class="marcel"><input type="text" value="{{ tt.size }}"></div>
+            </td>
+            <td class="div-input-text3">
+              <div class="marcel"><input type="text" value="{{ tt.attemptTimeInMinutes }}"></div>
+            </td>        
+            -->
+            <td *ngIf="getStudentId() > 0" class="div-table-text">
+              <label class="button" id="takeTest">Take test<input type="button" (click)="goToPreAttempt(tt.id)" style="display:none"/></label>
+            </td>
+            <td *ngIf="getInstructorId() > 0" class="div-table-text">
+              <label class="button" id="editTest">Edit test<input type="button" (click)="editTestTemplate(tt.id)" style="display:none"/></label>
+            </td>
+          <!-- </div> -->
         </tr>
       </tbody>
     </table>

@@ -34,14 +34,13 @@ export class ChooseTestTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTestTemplateListMeta();
-    // this.getTestTemplateListSelection();
+    this.getTestTemplateListMeta(0); // 0 -> no filter on language
   }
 
-  getTestTemplateListMeta() {
+  getTestTemplateListMeta(languageId : number) {
     this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { //this.list.exam, this.list.language, this.list.enabled, this.list.obsolete).subscribe(questions => {
-      this.testTemplateList = testTemplates;
-      console.log(this.testTemplateList.length);
+      this.testTemplateList = testTemplates.filter(tt => this.isAvailableToUser(tt, languageId));
+      //this.testTemplateList = testTemplates;
     }); 
   }
 
@@ -55,22 +54,30 @@ export class ChooseTestTemplateComponent implements OnInit {
   //   }); 
   // }
 
-  getTestTemplateListSelectionLanguage(enumLang : number) {
-    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
-      console.log("getTestTemplatesMeta() " + testTemplates.length);
-      if (enumLang != 0){
-          testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == enumLang);
-      }
-      this.testTemplateList = testTemplates;
-      console.log(this.testTemplateList.length);
-    }); 
+  /*
+   * Callback function for the test templates array filter
+   */
+  isAvailableToUser(tt, languageId): boolean {
+    if (languageId > 0) {
+      return (tt.programmingLanguage == languageId && tt.enabled);
+    } else {
+      return tt.enabled;
+    }
   }
 
+  // getTestTemplateListSelectionLanguage(languageId : number) {
+  //   this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
+  //     this.testTemplateList = testTemplates.filter(tt => this.isAvailableToUser(tt, languageId));
+  //     //this.testTemplateList = testTemplates;
+  //   }); 
+  // }
+
   updateLanguage($event)    {
-    var EnumL : number;
-    EnumL  = parseInt($event.target.value);
+    var languageId : number;
+    languageId  = parseInt($event.target.value);
     this.testTemplateList = undefined;
-    this.getTestTemplateListSelectionLanguage(EnumL);
+    //this.getTestTemplateListSelectionLanguage(languageId);
+    this.getTestTemplateListMeta(languageId);
    }
 
   // updateLanguage($event)    { 
@@ -89,7 +96,6 @@ export class ChooseTestTemplateComponent implements OnInit {
   goToPreAttempt(testTemplateId) {
      //navigate to /startattempt/:testTemplateId
      this.router.navigate(['choosetesttemplate/startattempt', testTemplateId.toString()]);
-     //console.log(testTemplateId.toString());
   }
 
   editTestTemplate(testTemplateId) {
