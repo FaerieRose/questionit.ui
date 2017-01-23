@@ -64,13 +64,8 @@ export class QuestionComponent implements OnInit, DoCheck {
       if (id == -1) {
         // By setting this.question.id to the value -1 we force 
         // the application to treat this as a new question.
-        this.question.id = -1;  
-        this.correctAnswers.id = -1; // Make sure that the correct answers for this new question are stored in a new record.
-                                     // If this is not set to -1 the new question will have the same correct answers as the
-                                     // question which was selected before. Changes made to the correct answers here
-                                     // will mess up the correct answers of the other question.
-                                     // We don't touch the actual values of correctAnswers.answers because the values in the
-                                     // UI should remain the same.
+        this.question.id = -1;
+        this.correctAnswers = this.resetCorrectAnswers();
       }
     }
     

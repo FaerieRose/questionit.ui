@@ -48,6 +48,7 @@
         </td>
         <td>
           <input class="answers" type="checkbox" [checked]="correctAnswers.answers[i]" (change)="updateCorrectAnswer(i, $event)" >
+          <!-- <input class="answers" type="checkbox" [(ngModel)]="correctAnswers.answers[i]" > -->
         </td>
         <td class="answers">
           <textarea class="control-input input-text answers" id="answer{{ i }}" (change)="updateAnswer(i, $event)" value="{{ answer }}" ></textarea>
