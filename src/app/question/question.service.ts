@@ -58,8 +58,9 @@ export class QuestionService {
 
 	// -------------------------------------------------------------
 	// POST a question
-	postQuestion(question: Question, correctAnswersId: number) : Observable<Question> {
-		this.currentUrl = this.questionUrl + "/creator/1/correct-answers/" + correctAnswersId;
+	// backend returns the id of the question
+	postQuestion(question: Question, correctAnswersId: number) : Observable<number> {
+		this.currentUrl = this.questionUrl + "/creator/" + this.globalService.getInstructorID() + "/correct-answers/" + correctAnswersId;
 		let qstn: Question = new Question();
 		qstn = question;
 		qstn.correctAnswers = undefined;
