@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------- */
-/* Author       : FaerieRose                                                           */
+/* Author       : FaerieRose, Bas Smulders                                             */
 /* Date created : 23 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }        from '@angular/core';
@@ -19,77 +19,48 @@ import { EnumExams }                from '../enums';
   providers: [ TestTemplateService ]
 })
 export class ChooseTestTemplateComponent implements OnInit {
-  languages = [];
+  languages = []; // Used for the programming language filter
   //exams = [];
-  //testTemplateList: TestTemplate[];
   testTemplateList: TestTemplateModelBasic[];
- // list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
+  //list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
 
   constructor(
-        private testTemplateService  : TestTemplateService,
-        private globalService    : GlobalService,
-        private router: Router) { 
+        private testTemplateService: TestTemplateService,
+        private globalService: GlobalService,
+        private router: Router
+        ) { 
     this.languages = this.globalService.getLanguages();
-    //this.exams.push( { "id": 0, "name":"NONE" } );
   }
-
   ngOnInit() {
-    this.getTestTemplateListMeta();
-    // this.getTestTemplateListSelection();
+    this.getTestTemplateList(EnumLanguages.NONE); // initially no filter on language
   }
 
-  getTestTemplateListMeta() {
-    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { //this.list.exam, this.list.language, this.list.enabled, this.list.obsolete).subscribe(questions => {
-      this.testTemplateList = testTemplates;
-      console.log(this.testTemplateList.length);
+  getTestTemplateList(languageId : EnumLanguages) {
+    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => {
+      this.testTemplateList = testTemplates.filter(tt => this.isAvailableToUser(tt, languageId));
     }); 
   }
 
-  
-  // Not used...
-  // getTestTemplateListSelection() {
-  //   this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
-  //     testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == 0);
-  //     this.testTemplateList = testTemplates;
-  //     //console.log(this.testTemplateList.length);
-  //   }); 
-  // }
-
-  getTestTemplateListSelectionLanguage(enumLang : number) {
-    this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => { 
-      console.log("getTestTemplatesMeta() " + testTemplates.length);
-      if (enumLang != 0){
-          testTemplates = testTemplates.filter(testTemplate => testTemplate.programmingLanguage == enumLang);
-      }
-      this.testTemplateList = testTemplates;
-      console.log(this.testTemplateList.length);
-    }); 
+  /*
+   * Callback function for the test templates array filter
+   */
+  isAvailableToUser(tt, languageId): boolean {
+    if (languageId != EnumLanguages.NONE) {
+      return (tt.programmingLanguage == languageId && (tt.enabled || this.globalService.getInstructorID() > 0));
+    } else {
+      return tt.enabled || this.globalService.getInstructorID() > 0;
+    }
   }
 
   updateLanguage($event)    {
-    var EnumL : number;
-    EnumL  = parseInt($event.target.value);
+    var languageId : EnumLanguages;
+    languageId  = parseInt($event.target.value);
     this.testTemplateList = undefined;
-    this.getTestTemplateListSelectionLanguage(EnumL);
+    this.getTestTemplateList(languageId);
    }
 
-  // updateLanguage($event)    { 
-  //   this.list.language  = EnumLanguages[parseInt($event.target.value)];
-  //   this.questionService.getLevels(this.list.language).subscribe(levels => {
-  //     console.log(levels);
-  //     this.exams.length = 1;
-  //     for(let i=0 ; i<levels.length ; i++) {
-  //       this.exams.push( { "id": i+1, "name":levels[i] } );
-  //     }
-  //   })
-  //   this.list.exam = this.exams[0].name;
-  //   this.getQuestionList(); 
-  // }
-
   goToPreAttempt(testTemplateId) {
-     //navigate to /startattempt/:testTemplateId
      this.router.navigate(['choosetesttemplate/startattempt', testTemplateId.toString()]);
-     //console.log(testTemplateId.toString());
   }
 
   editTestTemplate(testTemplateId) {
@@ -111,6 +82,10 @@ export class ChooseTestTemplateComponent implements OnInit {
 
   getEnumExams(nrEnum : number): String{
     return EnumExams[nrEnum];
+  }
+
+  getYesNo(b: boolean): String {
+    return (b ? "Yes" : "No");
   }
 
 }

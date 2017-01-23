@@ -35,7 +35,7 @@ export class CreateTestComponent implements OnInit {
   testTemplate: TestTemplate;
   questionList = [];
   includeInTest: Boolean[];
-  testTemplateList: TestTemplate[];
+  //testTemplateList: TestTemplate[];
   questionListFilter = { "exam": EnumExams[0], "language": EnumLanguages[0], "enabled": true }
   questionListIsReady = false;
   bCreateTest = false;
@@ -63,7 +63,7 @@ export class CreateTestComponent implements OnInit {
         this.testTemplate.name = ttbasic.name;
         this.testTemplate.programmingLanguage = ttbasic.programmingLanguage;
         this.testTemplate.forExam = ttbasic.forExam;
-        console.log("testtemplate created from metameuk: " + JSON.stringify(this.testTemplate));
+        console.log("testtemplate created from meta data: " + JSON.stringify(this.testTemplate));
         //ok, now get questionlist!
         this.questionListFilter.exam = EnumExams[this.testTemplate.forExam];
         this.questionListFilter.language = EnumLanguages[this.testTemplate.programmingLanguage];
@@ -75,7 +75,7 @@ export class CreateTestComponent implements OnInit {
       this.testTemplate = new TestTemplate();
       this.testTemplate.attemptTimeInMinutes = null;
       this.testTemplate.forExam = 0;
-      this.testTemplate.enabled = true;
+      this.testTemplate.enabled = false; // A test template is disabled by default
       this.testTemplate.name = "";
       this.testTemplate.programmingLanguage = 0;
       this.testTemplate.questions = [];
