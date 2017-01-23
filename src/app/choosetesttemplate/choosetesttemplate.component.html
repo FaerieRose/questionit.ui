@@ -21,6 +21,7 @@
           <th>Name</th>
           <th>Programming language</th>
           <th>For exam</th>
+          <th *ngIf="getInstructorId() > 0">Available for students</th>
           <th>Nr of questions</th>
           <th>Time allowed (min)</th>
         </tr>
@@ -36,6 +37,9 @@
             </td>
             <td class="div-table-text">
               <div><label class="control-input text">{{ getEnumExams(tt.forExam) }}</label></div>
+            </td>
+            <td *ngIf="getInstructorId() > 0" class="div-table-text">
+              <div><label class="control-input text">{{ getYesNo(tt.enabled) }}</label></div>
             </td>
             <td class="div-table-text">
               <div><label class="control-input text">{{ tt.size }}</label></div>

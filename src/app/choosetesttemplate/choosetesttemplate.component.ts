@@ -1,5 +1,5 @@
 /* ----------------------------------------------------------------------------------- */
-/* Author       : FaerieRose                                                           */
+/* Author       : FaerieRose, Bas Smulders                                             */
 /* Date created : 23 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
 import { Component, OnInit }        from '@angular/core';
@@ -19,11 +19,10 @@ import { EnumExams }                from '../enums';
   providers: [ TestTemplateService ]
 })
 export class ChooseTestTemplateComponent implements OnInit {
-  languages = [];
+  languages = []; // Used for the programming language filter
   //exams = [];
-  //testTemplateList: TestTemplate[];
   testTemplateList: TestTemplateModelBasic[];
- // list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
+  //list = { "exam":EnumExams[0], "language":EnumLanguages[0], "enabled": true, "obsolete":false }
 
   constructor(
         private testTemplateService: TestTemplateService,
@@ -31,17 +30,14 @@ export class ChooseTestTemplateComponent implements OnInit {
         private router: Router
         ) { 
     this.languages = this.globalService.getLanguages();
-    //this.exams.push( { "id": 0, "name":"NONE" } );
   }
-
   ngOnInit() {
-    this.getTestTemplateListMeta(EnumLanguages.NONE); // initially no filter on language
+    this.getTestTemplateList(EnumLanguages.NONE); // initially no filter on language
   }
 
-  getTestTemplateListMeta(languageId : EnumLanguages) {
+  getTestTemplateList(languageId : EnumLanguages) {
     this.testTemplateService.getTestTemplatesMeta().subscribe(testTemplates => {
       this.testTemplateList = testTemplates.filter(tt => this.isAvailableToUser(tt, languageId));
-      //this.testTemplateList = testTemplates;
     }); 
   }
 
@@ -50,9 +46,9 @@ export class ChooseTestTemplateComponent implements OnInit {
    */
   isAvailableToUser(tt, languageId): boolean {
     if (languageId != EnumLanguages.NONE) {
-      return (tt.programmingLanguage == languageId && tt.enabled);
+      return (tt.programmingLanguage == languageId && (tt.enabled || this.globalService.getInstructorID() > 0));
     } else {
-      return tt.enabled;
+      return tt.enabled || this.globalService.getInstructorID() > 0;
     }
   }
 
@@ -60,11 +56,10 @@ export class ChooseTestTemplateComponent implements OnInit {
     var languageId : EnumLanguages;
     languageId  = parseInt($event.target.value);
     this.testTemplateList = undefined;
-    this.getTestTemplateListMeta(languageId);
+    this.getTestTemplateList(languageId);
    }
 
   goToPreAttempt(testTemplateId) {
-     //navigate to /startattempt/:testTemplateId
      this.router.navigate(['choosetesttemplate/startattempt', testTemplateId.toString()]);
   }
 
@@ -87,6 +82,10 @@ export class ChooseTestTemplateComponent implements OnInit {
 
   getEnumExams(nrEnum : number): String{
     return EnumExams[nrEnum];
+  }
+
+  getYesNo(b: boolean): String {
+    return (b ? "Yes" : "No");
   }
 
 }
