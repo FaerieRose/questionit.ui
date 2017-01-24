@@ -28,6 +28,10 @@
       <option value='false' selected>FALSE</option> 
     </select>
   </div>-->
+
+  <label class="button" id="newQuestion">New
+    <input type="button" (click)="createNewQuestion()" style="display:none"/>
+  </label>
 </div>
 
 <div *ngIf="questionList">
