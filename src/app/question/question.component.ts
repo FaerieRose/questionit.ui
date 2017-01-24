@@ -2,7 +2,7 @@
 /* Author       : FaerieRose                                                           */
 /* Date created : 10 Nov 2016                                                          */
 /* ----------------------------------------------------------------------------------- */
-import { Component, OnInit, DoCheck }  from '@angular/core';
+import { Component, OnInit }  from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 //import { Router, ActivatedRoute, Params } from '@angular/router';
 
@@ -23,7 +23,7 @@ import { EnumExams }       from '../enums';
   styleUrls: [ 'question.component.css' ],
   providers: [ QuestionService, AnswerListService ]
 })
-export class QuestionComponent implements OnInit, DoCheck {
+export class QuestionComponent implements OnInit {
   question: Question;
   languages = [];
   exams = [];
@@ -51,25 +51,25 @@ export class QuestionComponent implements OnInit, DoCheck {
     // this.route.params.switchMap((params: Params) => this.getQuestion(+params['id']));
   }
 
-  // ngDoCheck is used to check for any changes that do not trigger OnInit or OnChanges.
-  // In this case it is used for the scenario where the user clicks the link 'New Question'
-  // while the QuestionComponent is already loaded to edit an existing question. 
-  // In this circumstance ngOnInit is not triggered, so we use ngDoCheck to catch it.
-  ngDoCheck() {
-    // This code is executed when navigating
-    //   from /question/edit/x (where x > 0) 
-    //   to /question/edit/-1
-    let id = +this.route.snapshot.params['id'];
-    if (this.question) {
-      if (id == -1) {
-        // By setting this.question.id to the value -1 we force 
-        // the application to treat this as a new question.
-        this.question.id = -1;
-        this.correctAnswers = this.resetCorrectAnswers();
-      }
-    }
+  // // ngDoCheck is used to check for any changes that do not trigger OnInit or OnChanges.
+  // // In this case it is used for the scenario where the user clicks the link 'New Question'
+  // // while the QuestionComponent is already loaded to edit an existing question. 
+  // // In this circumstance ngOnInit is not triggered, so we use ngDoCheck to catch it.
+  // ngDoCheck() {
+  //   // This code is executed when navigating
+  //   //   from /question/edit/x (where x > 0) 
+  //   //   to /question/edit/-1
+  //   let id = +this.route.snapshot.params['id'];
+  //   if (this.question) {
+  //     if (id == -1) {
+  //       // By setting this.question.id to the value -1 we force 
+  //       // the application to treat this as a new question.
+  //       this.question.id = -1;
+  //       this.correctAnswers = this.resetCorrectAnswers();
+  //     }
+  //   }
     
-  }
+  // }
 
   resetCorrectAnswers(): AnswerList {
     let correctAnswers = new AnswerList();

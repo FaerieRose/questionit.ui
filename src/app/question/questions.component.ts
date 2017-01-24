@@ -60,7 +60,10 @@ export class QuestionsComponent implements OnInit {
   editQuestion(questionId){
      //navigate to /question/:questionId
      this.router.navigate(['question/edit', questionId.toString()]);
-     //console.log(questionId.toString());
+  }
+
+  createNewQuestion() {
+     this.router.navigate(['question/edit/-1']);
   }
 
   updateExam($event)        { this.list.exam      = EnumExams[parseInt($event.target.value)];     this.getQuestionList(); }
