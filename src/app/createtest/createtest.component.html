@@ -17,6 +17,11 @@
   <input class="control-input input-text" type="number" id="attempttimeinminutes" [(ngModel)]="testTemplate.attemptTimeInMinutes"><br>
 </div>
 
+<div class="div-input-text">
+  <label class="control-input text" for="testtemplatename">Test available for students</label>
+  <input class="answers" type="checkbox" [(ngModel)]="testTemplate.enabled">
+</div>
+
 <legend>Select Program Language And Type Of Exam</legend>
 <div>
   <div class="div-input-text">

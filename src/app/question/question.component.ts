@@ -81,7 +81,6 @@ export class QuestionComponent implements OnInit {
         this.question.programmingLanguage = 0;
         this.correctAnswers = this.resetCorrectAnswers();
         this.resetPossibleAnswers();
-        console.log("----NEW QUESTION CREATED");
     } else {
         this.questionService.getQuestion(id).subscribe(question => {
           this.question = question;
@@ -148,10 +147,10 @@ export class QuestionComponent implements OnInit {
     this.answerListService.postAnswerList(this.correctAnswers).subscribe(answerListId => {
       //will return id==-1 if post failed  
       if (answerListId > 0) {
-        this.questionService.postQuestion(qstn, answerListId).subscribe(question => {
+        this.questionService.postQuestion(qstn, answerListId).subscribe(id => {
           //return value check?
           //console.log("POST SUCCEEDED");
-          alert("Question saved!");
+          alert("Question saved with id: " + id);
           //save success confirmation for user?
         });
       }

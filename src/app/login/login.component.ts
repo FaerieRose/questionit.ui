@@ -37,15 +37,16 @@ export class LoginComponent implements OnInit{
   }
 
 
-  ngOnInit(){
+  ngOnInit() {
       this.globalService.setInstructorID(-1);
       this.globalService.setStudentID(-1);
       this.loginMsg = "";
       this.studentService.getStudents().subscribe(students => {
-        this.students = students;});
+          this.students = students;
+      });
       this.instructorService.getInstructors().subscribe(instructors => {
-        this.instructors = instructors;});      
-
+          this.instructors = instructors;
+      });
   }
 
   trylogin(loginName: String){

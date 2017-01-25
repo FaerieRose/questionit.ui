@@ -107,6 +107,19 @@ export class AttemptComponent implements OnInit {
         //what if response != OK?
     }
 
+    saveAnswerAndNavigateToPostAttempt() {
+        console.log("saveAnswer. attemptID: " + this.currentAttemptID + ", questnNR: " + this.currentQuestionNR + ", answers: " + this.givenAnswer.answers);
+        this.attemptService.putGivenAnswer(this.currentAttemptID, this.currentQuestionNR, this.givenAnswer).subscribe(res =>{
+            console.log("saveAnswer result: " + JSON.stringify(res));
+            this.resetGivenAnswer();
+            this.router.navigate(['studentpostattempt']);
+            //this.givenAnswer = null;    //nope...async...timing unpredictable... 
+            //TODO response handling
+        });
+        //save remainingtime?
+        //what if response != OK?
+    }
+
     markQuestion(){
         //TODO later...
     }
@@ -133,9 +146,7 @@ export class AttemptComponent implements OnInit {
     }
 
     goPostExam(){
-        this.saveAnswer();
-        this.resetGivenAnswer();
-        this.router.navigate(['studentpostattempt']);
+        this.saveAnswerAndNavigateToPostAttempt();
     }
 
     toCharLetter(number: Number){
